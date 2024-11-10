@@ -1,8 +1,8 @@
 ---
 title: |
        | POLI SCI 210
-       | Introduction to Empirical Methods
-       | in Political Science
+       | Introduction to
+       | Empirical Methods in Political Science
        | Winter 2025
 format: 
   typst:
@@ -17,10 +17,10 @@ fontsize: 12pt
 ```
 
 <!-- Remember double space for line skip -->
-**Instructor:** Gustavo Diaz (<gustavo.diaz@northwestern.edu>) 
-**Time and Place:**  Tues/Thurs 11:00am -- 12:20pm, Scott Hall 212  
+**Instructor:** Gustavo Diaz (<gustavo.diaz@northwestern.edu>)  
+**Time and Place:**  Tues/Thurs 11:00am -- 12:20pm, Kresge Centennial Hall 2-415      
 **Canvas:** TBD  
-**Student Hours:** [Schedule an appointment](https://calendly.com/gustavo-diaz-nu/f24-meetings)
+**Student Hours:** TBD or [by appointment](https://calendly.com/gustavo-diaz-nu/f24-meetings)
 
 **Teaching Assistants:**
 
@@ -30,38 +30,78 @@ fontsize: 12pt
 
  
 
-
-
 # Course Overview
 
 
-
+This course introduces the empirical methods used by political scientists to answer research questions, including their appropriate application, advantages, and shortcomings. You will learn how researchers use data in social science contexts, with a particular emphasis on political science topics, across three broad areas: quantitative studies (statistical methods), experimental studies, and qualitative studies. This course prepares students to read and evaluate research in subsequent courses on substantive social science topics.
 
 # Learning Objectives
 
+- Identify and explain descriptive and causal inference approaches, as well as their challenges in political science
 
+- Evaluate inferential claims in academic social science research
 
+- Identify types of research designs, explain their strengths and weaknesses, and discuss alternative approaches
 
-# Prerequisites
-
+- Communicate research processes and findings
 
 
 # Requirements
 
-## Textbook
+There are no requirements to take this course, which is required for Political Science majors. This course also counts toward the Empirical and Deductive Reasoning requirement (formerly known as Formal Studies Distribution Area) at Weinberg College.
 
-## Additional readings
+{{< pagebreak >}}
+
+# Required reading
+
+::: {.callout-note}
+## **Textbook**
+
+Clipperton, Jean, et al. 2020. [*Empirical Methods in Political Science An Introduction*](https://nulib-oer.github.io/empirical-methods-polisci/). Northwestern University Libraries
+:::
+
+This is a FREE resource available through the link above. The rest of the syllabus will refer to the textbook as **EMPS** for short.
+
+Any other supplemental material or reading will be linked in the schedule below and available on Canvas. 
 
 
-# Evaluation
+# Assignments
 
+This course uses a labor-based grading agreement, commonly known as contract grading. In this course, instead of being given a final grade based on how “good” your submitted assignments are, your final grade will be based on the amount of labor you put into the course. The goal is to decouple grades from performance and emphasize learning and effort.
+
+Each assignment is worth a number of points. You need 240 points out of a total of 350 to receive an A.
+
+There are five types of assignments:
+
+1. **Quizzes** (10 points each)
+2. **Research design critiques** (10 points each)
+3. **AI memos** (10 points each) 
+4. **Section participation** (10 points each)
+5. **Research design proposal** (30 points)
+
+With the exception of quizzes, which award points based on correct answers, all assignments are marked as complete or incomplete. You receive full points for every complete assignment.
+
+The weekly assignments are due on Fridays at 11:59 PM of the week they are assigned. You can choose which assignments to complete, but you will be deducted 20 points if you have not obtained at least 100 points by Friday, February 14.
+
+As a point of reference, assuming an X week quarter, you should average 2 complete assignments every week.
+
+## Quizzes
+
+## Research design critiques
+
+## AI memos
+
+## Section participation
+
+## Research design proposal
 
 
 
 # Grading
 
-This course uses a labor-based grading agreement, commonly known as contract grading. In this course, instead of being given a final grade based on how “good” your submitted assignments are, your final grade will be based on the amount of labor you put into the course. The goal is to decouple grades from performance and emphasize learning and effort.
+The following table translates points to letter grades.
 
+[TABLE HERE]
 
 
 
@@ -69,7 +109,62 @@ This course uses a labor-based grading agreement, commonly known as contract gra
 
 # Schedule
 
+## Week 1 (January 7/9): Introduction and Overview
 
+EMPS Chapter 1-2
+
+
+## Week 2 (January 14/16): Theory and Data
+
+EMPS Chapters 3-4
+
+<!-- https://doi.org/10.2307/2393788 -->
+
+
+## Week 3 (January 21/23): Inference
+
+EMPS Chapter 5
+
+## Week 4 (January 28/30): Surveys
+
+EMPS Chapter 6
+
+<!-- Maybe no need to assign Schwarz, just talk about it? -->
+<!-- https://cci.drexel.edu/faculty/sgasson/Readings/Schwarz%20%5B1999%5D%20Self-reports%20-%20How%20the%20questions%20shape%20the%20answers.pdf -->
+
+<!-- https://doi.org/10.1093/ijpor/edz019 -->
+
+
+## Week 5 (February 4/6): Experiments
+
+EMPS Chapter 7
+
+<!-- https://doi.org/10.1086/693984 -->
+
+<!-- https://doi.org/10.1017/S0003055413000488 -->
+
+
+## Week 6 (February 11/13): Large N
+
+EMPS Chapter 8
+
+
+## Week 7 (February 18/20): Small N
+
+EMPS Chapter 9
+
+
+## Week 8 (February 25/27): Network Analysis
+
+EMPS Chapter 11
+
+
+## Week 9 (March 4/6): Machine Learning
+
+EMPS Chapter 12
+
+
+## Week 10 (March 11/13) Weinberg College Reading Period NO CLASS
 
 
 
