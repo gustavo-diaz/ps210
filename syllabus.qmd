@@ -149,14 +149,14 @@ EMPS Chapter 7
 EMPS Chapter 8
 
 
-## Week 7 (February 18/20): Small N
+## Week 7 (February 18/20): Quasi-Experiments
+
+Reading TBD
+
+
+## Week 8 (February 25/27): Small N
 
 EMPS Chapter 9
-
-
-## Week 8 (February 25/27): Network Analysis
-
-EMPS Chapter 11
 
 
 ## Week 9 (March 4/6): Machine Learning
