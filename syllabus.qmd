@@ -111,6 +111,7 @@ The following table translates points to letter grades.
 
 ## Week 1 (January 7/9): Introduction and Overview
 
+<!-- But maybe not relevant because I want them to focus on the methods -->
 <!-- https://calgara.github.io/Pol157_Spring2019/howtoread.pdf -->
 
 EMPS Chapter 1-2
