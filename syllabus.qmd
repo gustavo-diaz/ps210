@@ -33,7 +33,7 @@ fontsize: 12pt
 # Course Overview
 
 
-This course introduces the empirical methods used by political scientists to answer research questions, including their appropriate application, advantages, and shortcomings. You will learn how researchers use data in social science contexts, with a particular emphasis on political science topics, across three broad areas: quantitative studies (statistical methods), experimental studies, and qualitative studies. This course prepares students to read and evaluate research in subsequent courses on substantive social science topics.
+This course introduces the empirical methods used by political scientists to answer research questions, including their appropriate application, advantages, and shortcomings. You will learn how researchers use data in social science contexts, with a particular emphasis on political science topics, across three broad areas: quantitative (statistical), experimental, and qualitative studies. This course prepares students to read and evaluate research in subsequent courses on substantive social science topics.
 
 # Learning Objectives
 
@@ -121,7 +121,10 @@ EMPS Chapter 1-2
 
 EMPS Chapters 3-4
 
+<!-- ASSIGN NU FACULTY ONLY -->
+
 <!-- https://doi.org/10.2307/2393788 -->
+
 
 
 ## Week 3 (January 21/23): Inference
