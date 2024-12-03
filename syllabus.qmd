@@ -33,7 +33,7 @@ fontsize: 12pt
 # Course Overview
 
 
-This course introduces the empirical methods used by political scientists to answer research questions, including their appropriate application, advantages, and shortcomings. You will learn how researchers use data in social science contexts, with a particular emphasis on political science topics, across three broad areas: quantitative (statistical), experimental, and qualitative studies. This course prepares students to read and evaluate research in subsequent courses on substantive social science topics.
+This course introduces the empirical methods used by political scientists to answer research questions, including their appropriate application, advantages, and shortcomings. You will learn how researchers use data in social science contexts, with a particular emphasis on political science topics, across three broad areas: quantitative, experimental, and qualitative studies. This course prepares students to read and evaluate research in subsequent courses on substantive social science topics.
 
 # Learning Objectives
 
@@ -111,9 +111,6 @@ The following table translates points to letter grades.
 
 ## Week 1 (January 7/9): Introduction and Overview
 
-<!-- But maybe not relevant because I want them to focus on the methods -->
-<!-- https://calgara.github.io/Pol157_Spring2019/howtoread.pdf -->
-
 EMPS Chapter 1-2
 
 
@@ -123,13 +120,18 @@ EMPS Chapters 3-4
 
 <!-- ASSIGN NU FACULTY ONLY -->
 
-<!-- https://doi.org/10.2307/2393788 -->
+<!-- What theory is not: https://doi.org/10.2307/2393788 -->
 
+Krcmaric, Daniel, Stephen C. Nelson, and Andrew Roberts. 2024. ["Billionaire Politicians: A Global Perspective."](https://doi.org/10.1017/S1537592723002761) *Perspectives on Politics* 22 (2): 357-371
 
 
 ## Week 3 (January 21/23): Inference
 
 EMPS Chapter 5
+
+<!-- Rosenzweig, Leah R. and Nicole E. Wilson. 2023. ["State of the Fiscal Contract in Lagos' Informal Settlements."](https://doi.org/10.1007/s12116-022-09369-6) *Studies in Comparative International Development* 58: 1-28 -->
+
+Baum, Matthew A., James N. Druckman, Matthew D. Simonson, Jennifer Lin, and Roy H. Perlis. 2024. ["The Political Consequences of Depression: How Conspiracy Beliefs, Participatory Inclinations, and Depression Affect Support for Political Violence."](https://doi.org/10.1111/ajps.12827) *American Journal of Political Science* 68 (2):575-594
 
 ## Week 4 (January 28/30): Surveys
 
@@ -140,10 +142,14 @@ EMPS Chapter 6
 
 <!-- https://doi.org/10.1093/ijpor/edz019 -->
 
+Merseth, Julie Lee. 2018. ["Race-ing solidarity: Asian Americans and support for Black Lives Matter."](https://doi.org/10.1080/21565503.2018.1494015) *Politics, Groups, and Identities* 6 (3): 337-356
+
 
 ## Week 5 (February 4/6): Experiments
 
 EMPS Chapter 7
+
+Naunov, Martin. 2024. ["The Effect of Protesters' Gender on Public Reactions to Protests and Protest Repression."](https://doi.org/10.1017/S0003055424000133) *American Political Science Review*
 
 <!-- https://doi.org/10.1086/693984 -->
 
@@ -154,21 +160,41 @@ EMPS Chapter 7
 
 EMPS Chapter 8
 
+McGrath, Mary C. 2017. ["Economic Behavior and the Partisan Perceptual Screen."](http://dx.doi.org/10.1561/100.00015100) *Quarterly Journal of Political Science* 11 (4): 363-383
+
+<!-- Ligbober OLS: https://doi.org/10.1017/S1537592723002943 -->
+
 
 ## Week 7 (February 18/20): Quasi-Experiments
 
-Reading TBD
+Hungtinton-Klein, Nick. 2022. [*The Effect: An Introduction to Research Design and Causality*](https://theeffectbook.net). Chapman & Hall. Chapter 18
 
+Cattaneo, Matias D., Nicolás Idrobo, and Rocío Titiunik. 2020. [*A Practical Introduction to Regression Discontinuity Designs: Foundations*](https://titiunik.github.io/books/CattaneoIdroboTitiunik2020-CUP-Foundations.pdf). Cambridge University Press. Chapters 1-4
+
+García-Montoya, Laura, Ana Arjona, and Matthew Lacombe. 2022. ["Violence and Voting in the United States: How School Shootings Affect Elections."](https://doi.org/10.1017/S0003055421001179) *American Political Science Review* 116 (3): 807-826
+<!-- Critique: https://doi.org/10.1017/S0003055424000108 -->
+
+Ademi, Ubeydullah and Firat Kimya. 2024. ["Democratic transition and party polarization: A fuzzy regression discontinuity design approach."](https://doi.org/10.1177/13540688231171689) *Party Politics* 30 (4):736-749
+
+<!-- Ademi: https://doi.org/10.1177/13540688231171689 -->
 
 ## Week 8 (February 25/27): Small N
 
 EMPS Chapter 9
 
+<!-- Candidates -->
+<!-- Iza Ding ethnography: https://doi.org/10.1017/s0043887120000131 -->
+
+<!-- Dani Gilbert interviews: https://doi.org/10.1017/S0003055422000041 -->
+Gilbert, Danielle. 2022. ["The Logic of Kidnapping in Civil War: Evidence from Colombia."](https://doi.org/10.1017/S0003055422000041) *American Political Science Review* 116 (4): 1226-1241
 
 ## Week 9 (March 4/6): Machine Learning
 
 EMPS Chapter 12
 
+<!-- Ligbober string matching: https://doi.org/10.1017/psrm.2024.55 -->
+
+Libgober, Brian and Connor T. Jerzak. 2024. ["Linking datasets on organizations using half a billion open-collaborated records."](https://doi.org/10.1017/psrm.2024.55) *Political Science Research and Methods* 
 
 ## Week 10 (March 11/13) Weinberg College Reading Period NO CLASS
 
