@@ -18,17 +18,25 @@ fontsize: 12pt
 
 <!-- Remember double space for line skip -->
 **Instructor:** Gustavo Diaz (<gustavo.diaz@northwestern.edu>)  
-**Time and Place:**  Tues/Thurs 11:00am -- 12:20pm, Kresge Centennial Hall 2-415      
+**Lecture:**  Tues/Thurs 11:00am -- 12:20pm, Kresge Centennial Hall 2-415      
 **Canvas:** TBD  
 **Student Hours:** TBD or [by appointment](https://calendly.com/gustavo-diaz-nu/f24-meetings)
 
 **Teaching Assistants:**
 
-- TBD 1
-- TBD 2
+|               | **FirstName LastName**   | **FirstName LastName**   |
+|:-|:--------|:--------|
+| **Email**         | <firstname.lastname@u.northwestern.edu>  | <firstname.lastname@u.northwestern.edu> |
+| **Office**        | Office | Office |
+| **Hours** | Hours  | Hours  |
 
+**Discussion Sections:**
 
- 
+| | **Section 60** | **Section 61** | **Section 62** | **Section 63** |
+|:----|:-----------|:-----------|:-----------|:-----------|
+| **Time**          | Th 1:00--1:50pm      | Th 1:00--1:50pm      | Fr 2:00--2:50pm      | Fr 3:00--3:50pm      |
+| **Room**      | University Hall 218 | Parkes Hall 213  | University Hall 418  | University Hall 418  |
+| **TA**            | Name    | Name     | Name      | Name      |
 
 # Course Overview
 
@@ -50,9 +58,7 @@ This course introduces the empirical methods used by political scientists to ans
 
 There are no requirements to take this course, which is required for Political Science majors. This course also counts toward the Empirical and Deductive Reasoning requirement (formerly known as Formal Studies Distribution Area) at Weinberg College.
 
-{{< pagebreak >}}
-
-# Required reading
+# Required Reading
 
 ::: {.callout-note}
 ## **Textbook**
@@ -62,14 +68,19 @@ Clipperton, Jean, et al. 2020. [*Empirical Methods in Political Science An Intro
 
 This is a FREE resource available through the link above. The rest of the syllabus will refer to the textbook as **EMPS** for short.
 
-Any other supplemental material or reading will be linked in the schedule below and available on Canvas. 
+Any other required material or reading will be linked in the schedule below and available on Canvas. 
 
 
-# Assignments
+# Grading
 
-This course uses a labor-based grading agreement, commonly known as contract grading. In this course, instead of being given a final grade based on how “good” your submitted assignments are, your final grade will be based on the amount of labor you put into the course. The goal is to decouple grades from performance and emphasize learning and effort.
+This course uses a labor-based grading agreement, commonly known as contract grading. In this course, instead of being given a final grade based on how “good” your submitted assignments are, your final grade will be based on the amount of work you put into the course. The goal is to decouple grades from performance and emphasize learning and effort.
 
-Each assignment is worth a number of points. You need 240 points out of a total of 350 to receive an A.
+Each assignment is worth a number of points. You need 200 points out of a total of 350 to receive an A. The following table translates points to letter grades. These correspond in ratio to the [Weinberg College grading system](https://weinberg.northwestern.edu/undergraduate/courses-registration-grades/the-grading-system.html).
+
+| **Grade** | **A** | **A-** | **B+** | **B**| **B-** | **C+** | **C** | **C-** | **D** | **F** |
+:----|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:----:|:---:|
+| Points | $\geq$ 200 | 185 | 165 | 150 | 135 | 115 | 100 | 85 | 50 | $<$ 50 |
+| GPA | 4.0 | 3.7 | 3.3 | 3.0 | 2.7 | 2.3 | 2.0 | 1.7 | 1 | 0 |
 
 There are five types of assignments:
 
@@ -77,32 +88,53 @@ There are five types of assignments:
 2. **Research design critiques** (10 points each)
 3. **AI memos** (10 points each) 
 4. **Section participation** (10 points each)
-5. **Research design proposal** (30 points)
+5. **Research proposal** (30 points)
 
-With the exception of quizzes, which award points based on correct answers, all assignments are marked as complete or incomplete. You receive full points for every complete assignment.
+With the exception of quizzes, which award points based on correct answers, all assignments are marked as satisfactory or unsatisfactory. You receive full points for every assignment marked as satisfactory.
 
 The weekly assignments are due on Fridays at 11:59 PM of the week they are assigned. You can choose which assignments to complete, but you will be deducted 20 points if you have not obtained at least 100 points by Friday, February 14.
 
-As a point of reference, assuming an X week quarter, you should average 2 complete assignments every week.
+As a point of reference, with eight weeks of assignments in the quarter, you should average 25 points every week to secure an A. If you plan to complete 3 assignments every week, then you can afford to have two weeks without submitting any assignment.
 
-## Quizzes
+## Quizzes (10 points each x 8)
 
-## Research design critiques
+Weekly quizzes on the lecture and textbook material will be available on Canvas each week. These quizzes are brief, untimed, and consist only of multiple choice, matching, and true/false questions. Each quiz may be taken as many times as you want before the deadline to earn 10 points. Quizzes may be taken while referencing notes and course materials.
 
-## AI memos
+## Research design critiques (10 points each x 8)
 
-## Section participation
+Every week has additional non-textbook readings assigned, these are usually published articles that illustrate the application of the methods we discuss that week. You can choose to write a short form document (around 700-1,000 words) that summarizes the question, relevance, and research design of the study in question, and then use course material to evaluate its design or implementation. 
 
-## Research design proposal
+Ultimately, your research design critique must answer the question of "what should we change if we were to go back and conduct the study ourselves?"
+
+
+## AI memos (10 points each x 8)
+
+On the first class meeting of every week, the instructor will present keywords or prompts. You can use at least one of these prompts to ask a generative AI chatbot to explain the corresponding concept or discussion. You should then ask at least five follow up or clarification questions on the topic. The keywords or prompts for every week are good starting points, but you are welcome to come up with your own questions, as long as they relate to course material for that week.
+
+Based on your conversation with the AI, you will write a short memo (500-1000 words) summarizing the interaction and evaluating its quality. How does the AI explanation compare to what we discussed in class? Why is it different from the course material? Why is it more/less helpful than what is covered in the textbook or lectures? Do you feel the recommended sources are credible? At the end of the document, you should also attach a transcript of your conversation with the AI (you can directly ask in the chat to export a copy in Word format).
+
+Northwestern University recommends students and faculty to use [Microsoft Copilot](https://www.it.northwestern.edu/about/news-events/2024/microsoft-copilot-available-university-community.html) to engage with generative AI. When using Copilot via Office 365 or Bing while logged into your Northwestern email account, your data will not be shared nor used for product improvement or to train other AI models. However, you are welcome to use your favorite generative AI chatbot as long as you are able to include a transcript in your memo.
 
 
 
-# Grading
 
-The following table translates points to letter grades.
+## Section participation (10 points each x 8)
 
-[TABLE HERE]
+During sections, we will engage in additional discussion of the week's material, with emphasis on the assigned non-textbook readings for each week. Your participation will be marked as satisfactory/unsatisfactory in each week. You must actively participate, not merely attend, in order to receive credit.
 
+## Research proposal (30 points)
+
+This course is a good opportunity to start thinking about your own research interests. As an optional assignment, you can write a research grant proposal following the guidelines of the [Office of Undergraduate Research](https://undergradresearch.northwestern.edu) for [academic year](https://undergradresearch.northwestern.edu/funding/ayurg/) or [summer](https://undergradresearch.northwestern.edu/funding/surg/) research grants.
+
+You can only complete this assignment after if you receive prior approval to do so. To receive approval, you must schedule a meeting with a member of the instrocutional team to discuss your research interests and expectations prior to **Friday, February 21**.
+
+Note that your research proposal needs to be about a political science topic OR connect with one of the methods covered in the course, but not both necessarily.
+
+If approved to complete it, your research proposal is due on **Wednesday, March 19, 11:59 PM**.
+
+# Northwestern University Syllabus Standards
+
+This course follows the [Northwestern University Syllabus Standards](https://www.registrar.northwestern.edu/registration-graduation/northwestern-university-syllabus-standards.html). Students are responsible for familiarizing themselves with this information.
 
 
 {{< pagebreak >}}
@@ -200,11 +232,7 @@ Libgober, Brian and Connor T. Jerzak. 2024. ["Linking datasets on organizations 
 
 
 
-{{< pagebreak >}}
 
-# Northwestern University Syllabus Standards
-
-This course follows the [Northwestern University Syllabus Standards](https://www.registrar.northwestern.edu/registration-graduation/northwestern-university-syllabus-standards.html). Students are responsible for familiarizing themselves with this information.
 
 
 
