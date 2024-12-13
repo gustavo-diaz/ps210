@@ -17,26 +17,28 @@ fontsize: 12pt
 ```
 
 <!-- Remember double space for line skip -->
-**Instructor:** Gustavo Diaz (<gustavo.diaz@northwestern.edu>)  
-**Lecture:**  Tues/Thurs 11:00am -- 12:20pm, Kresge Centennial Hall 2-415      
+**Instructor:** Gustavo Diaz (he/him)  
+**Email:** <gustavo.diaz@northwestern.edu>  
+**Lecture:**  Tues/Thurs 11:00am -- 12:20pm, University Hall 122     
 **Canvas:** TBD  
 **Student Hours:** TBD or [by appointment](https://calendly.com/gustavo-diaz-nu/f24-meetings)
 
 **Teaching Assistants:**
 
-|               | **FirstName LastName**   | **FirstName LastName**   |
+|               | **Chloe Bernadaux**   | **Lucas Camara**   |
 |:-|:--------|:--------|
-| **Email**         | <firstname.lastname@u.northwestern.edu>  | <firstname.lastname@u.northwestern.edu> |
-| **Office**        | Office | Office |
-| **Hours** | Hours  | Hours  |
+| **Email**         | <chloebernadaux2028@u.northwestern.edu>  | <lucascamara2028@u.northwestern.edu> |
+| **Office**        | Scott Hall 215 | Scott Hall 219 |
+| **Hours** | Tu 12:30--1:30pm  | Mo 5:00--6:00pm  |
+|           | We 3:30--4:40pm | Th 9:50--10:50am |
 
 **Discussion Sections:**
 
-| | **Section 60** | **Section 61** | **Section 62** | **Section 63** |
+| | **Section 60** | **Section 61** | **Section 63** | **Section 65** |
 |:----|:-----------|:-----------|:-----------|:-----------|
 | **Time**          | Th 1:00--1:50pm      | Th 1:00--1:50pm      | Fr 2:00--2:50pm      | Fr 3:00--3:50pm      |
 | **Room**      | University Hall 218 | Parkes Hall 213  | University Hall 418  | University Hall 418  |
-| **TA**            | Name    | Name     | Name      | Name      |
+| **TA**            | Bernadaux   | Camara    | Camara     | Bernadaux     |
 
 # Course Overview
 
@@ -126,7 +128,7 @@ During sections, we will engage in additional discussion of the week's material,
 
 This course is a good opportunity to start thinking about your own research interests. As an optional assignment, you can write a research grant proposal following the guidelines of the [Office of Undergraduate Research](https://undergradresearch.northwestern.edu) for [academic year](https://undergradresearch.northwestern.edu/funding/ayurg/) or [summer](https://undergradresearch.northwestern.edu/funding/surg/) research grants.
 
-You can only complete this assignment after if you receive prior approval to do so. To receive approval, you must schedule a meeting with a member of the instrocutional team to discuss your research interests and expectations prior to **Friday, February 21**.
+You can only complete this assignment after if you receive prior approval to do so. To receive approval, you must schedule a meeting with a member of the instructional team to discuss your research interests and expectations prior to **Friday, February 21**.
 
 Note that your research proposal needs to be about a political science topic OR connect with one of the methods covered in the course, but not both necessarily.
 
@@ -142,6 +144,8 @@ This course follows the [Northwestern University Syllabus Standards](https://www
 # Schedule
 
 ## Week 1 (January 7/9): Introduction and Overview
+
+**NO DISCUSSION SECTIONS**
 
 EMPS Chapter 1-2
 
@@ -228,7 +232,9 @@ EMPS Chapter 12
 
 Libgober, Brian and Connor T. Jerzak. 2024. ["Linking datasets on organizations using half a billion open-collaborated records."](https://doi.org/10.1017/psrm.2024.55) *Political Science Research and Methods* 
 
-## Week 10 (March 11/13) Weinberg College Reading Period NO CLASS
+## Week 10 (March 11/13) Weinberg College Reading Period
+
+**NO CLASS**
 
 
 
