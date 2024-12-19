@@ -1,0 +1,112 @@
+---
+title: "POLI_SCI 210"
+subtitle: "Introduction to Empirical Methods in Political Science"
+date: "Winter 2025"
+date-format: "[W]inter 2025"
+format:
+    revealjs:
+      slide-number: false
+      progress: false
+      chalkboard: true
+      theme: [default, custom.scss]
+---
+
+## Motivating example
+
+TBD
+
+## About this course
+
+::: incremental
+- **Empirical:** Derived from observation, positivist
+
+- **Methods:** Tools for research (mostly quantitative)
+
+- **Political:** Who has power, how power is used
+
+- **Science:** Knowledge generation through *falsification*
+
+
+:::
+
+## Plan for today
+
+::: incremental
+
+- Who are we and why are we here?
+
+
+- How this course works
+
+:::
+
+&nbsp;
+
+. . .
+
+::: {.r-stack}
+**Wednesday:** The scientific method
+:::
+
+
+&nbsp;
+
+. . .
+
+
+::: {.r-stack}
+NO SECTIONS THIS WEEK
+:::
+
+# Who are we and why are we here?
+
+## About me
+
+{{< fa user >}} [Gustavo Diaz](https://gustavodiaz.org) (he/him)
+
+{{< fa envelope >}} <gustavo.diaz@northwestern.edu>  
+
+{{< fa building-columns >}}  Scott Hall 103
+
+{{< fa calendar-check >}} Thursdays 2:00 -- 4:00pm or [by appointment](https://calendly.com/gustavo-diaz-nu/meetings)
+
+## Teaching Assistants
+
+{{< fa user >}} [Chloe Bernadaux](https://polisci.northwestern.edu/people/graduate-students/chloe-bernadaux.html)
+
+{{< fa envelope >}} <chloebernadaux2028@u.northwestern.edu>  
+
+{{< fa building-columns >}}  Scott Hall 215
+
+&nbsp;
+
+{{< fa user >}} [Lucas Camara](https://polisci.northwestern.edu/people/graduate-students/lucas-camara.html)
+
+{{< fa envelope >}} <lucascamara2028@u.northwestern.edu>  
+
+{{< fa building-columns >}}  Scott Hall 219
+
+::: aside
+Check the syllabus for discussion sections and TA office hours
+:::
+
+## About you
+
+::: incremental
+- Polisci majors?
+
+- Filling a requirement?
+
+- Exploring options?
+
+- Here for the vibes?
+:::
+
+# Course overview
+
+## Textbook
+
+## Assignments
+
+## A typical week
+

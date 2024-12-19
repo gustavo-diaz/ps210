@@ -1,0 +1,22 @@
+---
+title: "POLI_SCI 210 Slides"
+format: html
+---
+
+Week 1: Introduction and Overview
+
+Week 2: Theory and Data
+
+Week 3: Inference
+
+Week 4: Surveys
+
+Week 5: Experiments
+
+Week 6: Large N
+
+Week 7: Quasi-Experiments
+
+Week 8: Small N
+
+Week 9: Machine Learning

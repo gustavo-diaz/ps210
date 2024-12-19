@@ -20,8 +20,8 @@ fontsize: 12pt
 **Instructor:** Gustavo Diaz (he/him)  
 **Email:** <gustavo.diaz@northwestern.edu>  
 **Lecture:**  Tues/Thurs 11:00am -- 12:20pm, University Hall 122     
-**Canvas:** TBD  
-**Student Hours:** TBD or [by appointment](https://calendly.com/gustavo-diaz-nu/f24-meetings)
+**Canvas:** <https://canvas.northwestern.edu/courses/224184>  
+**Student Hours:** Thursday 2:00 -- 4:00pm, Scott Hall 103 or [by appointment](https://calendly.com/gustavo-diaz-nu/meetings)
 
 **Teaching Assistants:**
 
@@ -39,6 +39,8 @@ fontsize: 12pt
 | **Time**          | Th 1:00--1:50pm      | Th 1:00--1:50pm      | Fr 2:00--2:50pm      | Fr 3:00--3:50pm      |
 | **Room**      | University Hall 218 | Parkes Hall 213  | University Hall 418  | University Hall 418  |
 | **TA**            | Bernadaux   | Camara    | Camara     | Bernadaux     |
+
+{{< pagebreak >}}
 
 # Course Overview
 
