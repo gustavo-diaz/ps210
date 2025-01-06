@@ -1,5 +1,5 @@
 ---
-title: "POLI_SCI 210"
+title: "POLI SCI 210"
 subtitle: "Introduction to Empirical Methods in Political Science"
 date: "Winter 2025"
 date-format: "[W]inter 2025"
@@ -8,12 +8,17 @@ format:
       slide-number: false
       progress: false
       chalkboard: true
+      preview-links: true
       theme: [default, custom.scss]
 ---
 
-## Motivating example
+---
 
-TBD
+![](fig/wage_gap.png){width="60%" fig-align="center"}
+
+::: aside
+**Source:** [Georgetown University Center on Education and the Workforce, 2019](https://cew.georgetown.edu/wp-content/uploads/College_ROI.pdf)
+:::
 
 ## About this course
 
@@ -26,8 +31,21 @@ TBD
 
 - **Science:** Knowledge generation through *falsification*
 
-
 :::
+
+. . .
+
+**Primary focus:** *Quantitative* methods
+
+. . .
+
+**Complement:** POLI_SCI 211 -- Interpretive Methods
+
+. . .
+
+**Follow with:** POLI_SCI 312 -- Statistical Research Methods
+
+
 
 ## Plan for today
 
@@ -45,7 +63,7 @@ TBD
 . . .
 
 ::: {.r-stack}
-**Wednesday:** The scientific method
+[**Wednesday:** The scientific method](#wed)
 :::
 
 
@@ -60,9 +78,9 @@ NO SECTIONS THIS WEEK
 
 # Who are we and why are we here?
 
-## About me
+## Instructor
 
-{{< fa user >}} [Gustavo Diaz](https://gustavodiaz.org) (he/him)
+{{< fa user >}} [Gustavo Diaz](https://gustavodiaz.org) (he/him/his)
 
 {{< fa envelope >}} <gustavo.diaz@northwestern.edu>  
 
@@ -100,13 +118,449 @@ Check the syllabus for discussion sections and TA office hours
 - Exploring options?
 
 - Here for the vibes?
+
+- In the waitlist?
 :::
+
+## About you
+
+- Polisci majors?
+
+- Filling a requirement?
+
+- Exploring options?
+
+- Here for the vibes?
+
+- In the waitlist?
+
+::: aside
+Registration questions or problems? Contact Undergraduate Program Coordinator: <briana.martinez@northwestern.edu>
+:::
+
 
 # Course overview
 
 ## Textbook
 
+:::: {.columns}
+
+::: {.column width="70%"}
+```{=html}
+<iframe width="800" height="500"  src="https://nulib-oer.github.io/empirical-methods-polisci/" title="Empirical Methods in Political Science"></iframe>
+```
+
+:::
+
+::: {.column width="30%"}
+
+![](fig/EMPS_textbook.png)
+:::
+::::
+
+::: aside
+<https://nulib-oer.github.io/empirical-methods-polisci/>
+:::
+
+## Canvas [{{< fa link >}}](https://canvas.northwestern.edu/courses/224184){preview-link="false"}
+
+::: incremental
+
+- Syllabus
+
+- Course materials by week
+
+- Updated regularly with readings, slides, etc.
+
+- Complete/submit assignments 
+
+- Check grading (1: satisfactory, 0: unsatisfactory)
+
+:::
+
+::: aside
+[canvas.northwestern.edu/courses/224184](https://canvas.northwestern.edu/courses/224184){preview-link="false"}
+:::
+
+
+
 ## Assignments
 
+::: incremental
+1. **Quizzes** (10 points each, weekly)
+2. **Research design critiques** (10 points each, weekly)
+3. **AI memos** (10 points each, weekly) 
+4. **Section participation** (10 points each, weekly)
+5. **Research proposal** (30 points, optional)
+:::
+
+. . .
+
+350 points total, need 200 for an A
+
+. . .
+
+25 points/week gives you two weeks to spare
+
+. . .
+
+**Valentine's rule:** Get *at least* 100 points by February 14 or get 20 points deducted {{< fa heart-crack >}}
+
+
+# AI memo example
+
+[m365.cloud.microsoft](https://m365.cloud.microsoft){preview-link="false"}
+
 ## A typical week
+
+- **Before Tuesday:** Check Canvas for updated materials (1-2 chapters + 1 article)
+
+- **Tuesday:** Quizzes and AI memo prompts available at beginning of lecture
+
+- **Wednesday:** Prepare for discussion sections
+
+- **Thursday:** Lecture, discussion sections, instructor open office hours
+
+- **Friday:** Discussion sections, weekly assignments due at 11:59 PM
+
+
+
+::: {style="text-align: center"}
+## The Scientific Method {#wed .center}
+
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
+
+## Last time
+
+. . .
+
+This is a course about **Political Science** research methods
+
+::: incremental
+1. **Politics:** Power relationships across many subfields
+2. **Science:** Knowledge generation through falsification
+:::
+
+## Informally
+
+. . .
+
+Some philosophers may think "Political Science" is an *oxymoron*
+
+::: incremental
+1. **Politics:** Normative statements about what's good for the *polity*
+2. **Science:** True, unquestionable knowledge
+:::
+
+. . .
+
+Can there be a **SCIENCE** of **POLITICS**?
+
+# [Whiteboard](https://miro.com/app/board/uXjVLxbPeSU=/?share_link_id=628474761690)
+
+![](fig/science_board.png){fig-align="center"}
+
+---
+
+```{=html}
+<iframe width="1000" height="800" src="https://miro.com/app/live-embed/uXjVLxbPeSU=/?moveToViewport=-1253,-996,2602,1355&embedId=980138490683" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+```
+
+## The goal of science
+
+::: incremental
+- **Inference:** Use *what we know* to learn about *what we do not know*
+
+- **Key:** Try to prove ourselves wrong, even if we believe we are right (*falsification*)
+
+- Scientific statements are **falsifiable**
+:::
+
+## Scientific statement
+
+. . .
+
+A **meaningful**
+
+::: aside
+Definition from [Clark, Golder, and Golder (2024). "Principles of Comparative Politics." CQ Press.](https://collegepublishing.sagepub.com/products/principles-of-comparative-politics-4-259276) Chapter 2.
+:::
+
+## Scientific statement
+
+A **meaningful declarative** sentence
+
+::: aside
+Definition from [Clark, Golder, and Golder (2024). "Principles of Comparative Politics." CQ Press.](https://collegepublishing.sagepub.com/products/principles-of-comparative-politics-4-259276) Chapter 2.
+:::
+
+## Scientific statement
+
+A **meaningful declarative** sentence that is **unambiguously true or false**.
+
+::: aside
+Definition from [Clark, Golder, and Golder (2024). "Principles of Comparative Politics." CQ Press.](https://collegepublishing.sagepub.com/products/principles-of-comparative-politics-4-259276) Chapter 2.
+:::
+
+::: incremental
+- **Meaningful:** We agree on its interpretation
+
+- **Declarative:** Claims or asserts something
+
+- **Unambiguously true or false:** One or the other, but not both or neither (therefore refutable or falsifiable)
+:::
+
+## Unscientific statements
+
+::: incremental
+- Triangles have three sides
+
+- Political science is the study of politics
+
+- God created the world
+
+- Edison created the lightbulb
+:::
+
+## Unscientific statements
+
+Two types:
+
+. . .
+
+1. Tautologies
+2. Unobservable phenomena
+
+. . .
+
+**Important:** non-science $\neq$ nonsense
+
+## Reminder
+
+. . .
+
+**Scientific statements** are true or false
+
+**Scientific knowledge/evidence** is neither
+
+. . . 
+
+Why?
+
+. . .
+
+How do you **evaluate** a scientific statement?
+
+## The scientific method
+
+**Step 0:** Puzzle/Question
+
+**Step 1:** Theory/Model
+
+**Step 2:** Hypothesis/Implications
+
+**Step 3:** Observation/Testing
+
+**Step 4:** Conclusion/Evaluation
+
+::: aside
+More details next week!
+:::
+
+## Example
+
+![](fig/weed.png){width=40% fig-align="center"}
+
+::: aside
+[medicine.tulane.edu/news/study-tulane-researcher-suggests-marijuana-can-cause-infertility-men](https://medicine.tulane.edu/news/study-tulane-researcher-suggests-marijuana-can-cause-infertility-men){preview-link="false"}
+:::
+
+## Practice
+
+. . .
+
+**Puzzle/question:**
+
+## Practice
+
+**Puzzle/question:** Does marijuana cause infertility?
+
+## Practice
+
+**Puzzle/question:** Does marijuana cause infertility?
+
+**Theory:** 
+
+## Practice
+
+**Puzzle/question:** Does marijuana cause infertility?
+
+**Theory:** THC kills cells
+
+## Practice
+
+**Puzzle/question:** Does marijuana cause infertility?
+
+**Theory:** THC kills cells
+
+**Hypothesis:**
+
+## Practice
+
+**Puzzle/question:** Does marijuana cause infertility?
+
+**Theory:** THC kills cells
+
+**Hypothesis:** Male smokers have lower semen volume than non-smokers
+
+## Practice
+
+**Puzzle/question:** Does marijuana cause infertility?
+
+**Theory:** THC kills cells
+
+**Hypothesis:** Male smokers have lower semen volume than non-smokers
+
+**Test:**
+
+## Practice
+
+**Puzzle/question:** Does marijuana cause infertility?
+
+**Theory:** THC kills cells
+
+**Hypothesis:** Male smokers have lower semen volume than non-smokers
+
+**Test:**
+
+## Practice
+
+**Puzzle/question:** Does marijuana cause infertility?
+
+**Theory:** THC kills cells
+
+**Hypothesis:** Male smokers have lower semen volume than non-smokers
+
+**Test:** Bring men to lab, ask if they smoke, measure sperm, ask if they smoke, compare
+
+## Practice
+
+**Puzzle/question:** Does marijuana cause infertility?
+
+**Theory:** THC kills cells
+
+**Hypothesis:** Male smokers have lower semen volume than non-smokers
+
+**Test:** Bring men to lab, ask if they smoke, measure sperm, ask if they smoke, compare
+
+**Conclusion:**
+
+## Practice
+
+**Puzzle/question:** Does marijuana cause infertility?
+
+**Theory:** THC kills cells
+
+**Hypothesis:** Male smokers have lower semen volume than non-smokers
+
+**Test:** Bring men to lab, ask if they smoke, measure sperm, ask if they smoke, compare
+
+**Conclusion:** "Study by Tulane researcher **SUGGESTS** marijuana **CAN** cause infertility in men
+
+## Why the cautious language?
+
+. . .
+
+We want to know the **counterfactual**: Person A's fertility with and without marijuana *consumption*
+
+. . . 
+
+But we can only compare **smokers** to **non-smokers**
+
+. . . 
+
+This is the **fundamental problem of causal inference** (more in week 5)
+
+## Why the cautious language?
+
+Also...
+
+::: incremental
+- Only men
+- Undergoing fertility evaluation
+- In *one* urology clinic in Washington state
+- 409 total, 71 current smokers (17%), 103 past smokers (25%)
+:::
+
+
+
+## Testing theories
+
+::: incremental
+- Cannot test **theories** because they are **statements**
+
+- Need to **believe** theory is true to engage with it scientifically
+
+- Instead, test **arguments** that follow from a theory (hypotheses, implications)
+:::
+
+. . .
+
+**Valid argument:** Accepting it *compels us* to accept conclusion
+
+**Invalid argument:** Accepting premises *frees us* from accepting/rejecting conclusion
+
+## Scientific critiques
+
+. . .
+
+**Valid critiques** to **valid arguments** fall in *three categories*
+
+::: incremental
+1. **Omitted variable:** Stress leads men to smoke marijuana AND to become infertile
+
+2. **Reverse causation:** Infertility causes men to smoke marijuana
+
+3. **Selection bias:** Men who smoke marijuana wait longer before going consulting a doctor
+:::
+
+## Scientific critiques
+
+A Valid critique implies:
+
+::: incremental
+1. Observed implications also follow from **alternative theories**
+
+2. **Cannot falsify** theory
+
+3. Need to find **better implications** to distinguish among competing theories
+:::
+
+## Scientific critiques
+
+**Scientist's dilemma:**
+
+::: incremental
+- When things go well, your theory is ~~accepted~~ **not rejected**
+- When things go wrong, your theory is ~~rejected~~ **not accepted**
+- Future research can always flip things around!
+:::
+
+
+
+## Takeaways
+
+1. Science differs from other forms of knowledge generation in that we try really hard to prove ourselves wrong
+2. Scientific statements/arguments are falsifiable
+3. We never observe the ideal counterfactual
+4. We can only test a few implications of a theory at a time
+5. Findings can align with many alternative theories
+
+## Next week
+
+LALALA
 

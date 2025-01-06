@@ -17,7 +17,7 @@ fontsize: 12pt
 ```
 
 <!-- Remember double space for line skip -->
-**Instructor:** Gustavo Diaz (he/him)  
+**Instructor:** Gustavo Diaz (he/him/his)  
 **Email:** <gustavo.diaz@northwestern.edu>  
 **Lecture:**  Tues/Thurs 11:00am -- 12:20pm, University Hall 122     
 **Canvas:** <https://canvas.northwestern.edu/courses/224184>  
@@ -96,7 +96,7 @@ There are five types of assignments:
 
 With the exception of quizzes, which award points based on correct answers, all assignments are marked as satisfactory or unsatisfactory. You receive full points for every assignment marked as satisfactory.
 
-The weekly assignments are due on Fridays at 11:59 PM of the week they are assigned. You can choose which assignments to complete, but you will be deducted 20 points if you have not obtained at least 100 points by Friday, February 14.
+The weekly assignments will be made available no later than the beginning of the first lecture of the corresponding week. These assignments are due on Fridays at 11:59 PM of the week they are assigned. You can choose which assignments to complete, but you will be deducted 20 points if you have not obtained at least 100 points by Friday, February 14. This requirement is waived if you have officially been approved for accommodations for this course by [AccessibleNU](https://www.northwestern.edu/accessiblenu/).
 
 As a point of reference, with eight weeks of assignments in the quarter, you should average 25 points every week to secure an A. If you plan to complete 3 assignments every week, then you can afford to have two weeks without submitting any assignment.
 
