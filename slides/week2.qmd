@@ -1,0 +1,149 @@
+---
+format:
+    revealjs:
+      slide-number: false
+      progress: false
+      chalkboard: true
+      preview-links: true
+      theme: [default, custom.scss]
+---
+
+
+
+
+::: {style="text-align: center"}
+## Theory and Data {.center}
+
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
+
+## Lingering questions
+
+::: incremental
+- Course organization?
+- Assignments/grading?
+- Material?
+:::
+
+## General roadmap
+
+::: incremental
+- **Weeks 1-2:** Build common language to talk about different methods
+
+- **Week 3 onward:** Talk about different methods and when/why/how they are useful or important
+:::
+
+## Last week: The scientific method
+
+**Step 0:** Puzzle/Question
+
+**Step 1:** Theory/Model
+
+**Step 2:** Hypothesis/Implications
+
+**Step 3:** Observation/Testing
+
+**Step 4:** Conclusion/Evaluation
+
+## This week
+
+**Step 0:** Puzzle/Question
+
+**Step 1:** Theory/Model
+
+**Step 2:** Hypothesis/Implications
+
+**Step 3:** Observation/Testing
+
+**Step 4:** Conclusion/Evaluation
+
+## This week
+
+[**Step 0:** Puzzle/Question]{style="color:gray;"}
+
+**Step 1:** Theory/Model **TUESDAY**
+
+[**Step 2:** Hypothesis/Implications]{style="color:gray;"}
+
+[**Step 3:** Observation/Testing]{style="color:gray;"}
+
+[**Step 4:** Conclusion/Evaluation]{style="color:gray;"}
+
+. . .
+
+**THURSDAY:** Start moving toward the next steps with a conversation about *data*
+
+# Part I: Theory
+
+::: {style="text-align: center"}
+## What is a theory? {.center}
+
+
+:::
+
+::: {style="text-align: center"}
+## What is a theory? {.center}
+
+### ¯\\_(ツ)_/¯
+
+:::
+
+::: {style="text-align: center"}
+## What is a theory? {.center}
+
+### ¯\\_(ツ)_/¯
+
+I have no idea
+
+:::
+
+::: {style="text-align: center"}
+## What is a theory? {.center}
+
+### ¯\\_(ツ)_/¯
+
+I have no idea
+
+::: {style="font-size: 80%;"}
+Or, rather, I don't understand why political scientists make it so complicated
+:::
+
+:::
+
+::: {style="text-align: center"}
+## What is a theory? {.center}
+
+### ¯\\_(ツ)_/¯
+
+I have no idea
+
+::: {style="font-size: 80%;"}
+Or, rather, I don't understand why political scientists make it so complicated
+:::
+
+::: {style="font-size: 60%;"}
+To me, it's either something very simple or I just don't get it 
+:::
+
+:::
+
+---
+
+[VOCABULARY DEFINITION]
+
+::: {style="text-align: center"}
+## Theory and Data {.center}
+
+
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
+
+## Part I: Theory
+
+# Part II: Data
