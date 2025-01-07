@@ -35,10 +35,6 @@ format:
 
 . . .
 
-**Primary focus:** *Quantitative* methods
-
-. . .
-
 **Complement:** POLI_SCI 211 -- Interpretive Methods
 
 . . .
@@ -115,8 +111,6 @@ Check the syllabus for discussion sections and TA office hours
 
 - Filling a requirement?
 
-- Exploring options?
-
 - Here for the vibes?
 
 - In the waitlist?
@@ -127,8 +121,6 @@ Check the syllabus for discussion sections and TA office hours
 - Polisci majors?
 
 - Filling a requirement?
-
-- Exploring options?
 
 - Here for the vibes?
 
@@ -174,7 +166,7 @@ Registration questions or problems? Contact Undergraduate Program Coordinator: <
 
 - Complete/submit assignments 
 
-- Check grading (1: satisfactory, 0: unsatisfactory)
+- Check grading
 
 :::
 

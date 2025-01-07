@@ -149,7 +149,7 @@ This course follows the [Northwestern University Syllabus Standards](https://www
 
 **NO DISCUSSION SECTIONS**
 
-EMPS Chapter 1-2
+EMPS Chapters 1-2
 
 
 ## Week 2 (January 14/16): Theory and Data
@@ -234,7 +234,7 @@ EMPS Chapter 12
 
 Libgober, Brian and Connor T. Jerzak. 2024. ["Linking datasets on organizations using half a billion open-collaborated records."](https://doi.org/10.1017/psrm.2024.55) *Political Science Research and Methods* 
 
-## Week 10 (March 11/13) Weinberg College Reading Period
+## Week 10 (March 11/13): Weinberg College Reading Period
 
 **NO CLASS**
 
