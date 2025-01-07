@@ -3,7 +3,7 @@ title: "POLI_SCI 210 Slides"
 format: html
 ---
 
-Week 1: Introduction and Overview
+[Week 1: Introduction and Overview](slides/week1.html)
 
 Week 2: Theory and Data
 
