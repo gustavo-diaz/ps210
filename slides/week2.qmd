@@ -8,6 +8,19 @@ format:
       theme: [default, custom.scss]
 ---
 
+```{r setup, include=FALSE}
+library(knitr)
+
+opts_chunk$set(echo = FALSE, 
+               message = FALSE, 
+               warning = FALSE, 
+               results = "asis", 
+               out.width = "100%")
+
+library(tidyverse)
+library(tidyr)
+library(tinytable)
+```
 
 
 
@@ -26,6 +39,24 @@ Introduction to Empirical Methods in Political Science
 - Course organization?
 - Assignments/grading?
 - Material?
+:::
+
+## AI Prompts {background-color="#B6ACD1"}
+
+- What is a theory?
+
+- What makes for a good theory (in social science, political science)?
+
+- What are some common theories in political science?
+
+- What is data? What is a variable?
+
+- Different kids of data/types of variables
+
+- How do political scientists collect data?
+
+::: aside
+**Reminder:** These are just suggestions, feel free to be creative with your prompts!
 :::
 
 ## General roadmap
@@ -74,7 +105,7 @@ Introduction to Empirical Methods in Political Science
 
 . . .
 
-**THURSDAY:** Start moving toward the next steps with a conversation about *data*
+[**THURSDAY:**](#thu) Start moving toward the next steps with a conversation about *data*
 
 # Part I: Theory
 
@@ -418,14 +449,171 @@ Theory is either:
 
 **Trap:** Pressure to say something new leads to overly complicated theories
 
+---
+
+![](fig/nuance.png){fig-align="center" width="90%"}
+
+::: aside
+Healy, Kieran. 2017. ["Fuck Nuance."]() *Sociological Theory* 35 (2): 118-127
+:::
+
+## Nuance traps
+
 . . .
 
-**Rule of thumb:** Good theories explain more than what they assume
+1. **Nuance of the _fine-grain_**
 
+. . .
+
+Theory as *extremely detailed* description of the world
+
+. . .
+
+2. **Nuance of the _conceptual framework_**
+
+
+. . .
+
+Expansion of an *irrefutable theoretical system*
+
+. . .
+
+3. **Nuance of the _connoiseur_**
+
+. . .
+
+Nuanced theory as a sign of *sophistication*
+
+## Rule of thumb
+
+. . .
+
+
+&nbsp;
+
+
+::: {.r-stack}
+
+Good theories explain more than what they assume
+
+:::
 
 ::: aside
 See [Clark (2020)](https://doi.org/10.4135/9781526486387.n4) for a more eloquent presentation
 :::
 
+## Summary
+
+1. Theory is logical explanation or informed speculation
+
+2. Theories explain why we observe what we observe
+
+3. It feels complicated because
+
+    - Good theorizing is hard
+    - Pressure to always say something new
+
+
+
+::: {style="text-align: center"}
+## Theory and Data {#thu .center}
+
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
+
 
 # Part II: Data
+
+--- 
+
+![](fig/data.png){fig-align="center" width="58%"}
+
+::: aside
+[vocabulary.com/dictionary/data](https://www.vocabulary.com/dictionary/data){preview-link="false"}
+:::
+
+## In empirical research
+
+The term *data* is used in two ways:
+
+. . .
+
+1. Data as *information*
+
+. . .
+
+::: {style="font-size: 80%;"}
+> "The data suggests that inflation keeps growing"
+:::
+
+. . . 
+
+
+2. Data as the *raw material* from which we draw inferences
+
+
+. . .
+
+::: {style="font-size: 80%;"}
+> "The data contains 1,000 responses to an online survey"
+:::
+
+## In empirical research
+
+The term *data* is used in two ways:
+
+
+1. Data as *information*
+
+
+
+::: {style="font-size: 80%;"}
+> "The data suggests that inflation keeps growing"
+:::
+
+
+
+
+2. **Data as the *raw material* from which we draw inferences**
+
+
+::: {style="font-size: 80%;"}
+> "The data contains 1,000 responses to an online survey"
+:::
+
+. . .
+
+The second is more correct since "data doesn't speak."
+
+## Data usually comes as a rectangle
+
+```{r}
+table1 %>% tt()
+```
+
+. . .
+
+We call this a **dataset**, **dataframe**, or **database**
+
+## Elements of a dataset
+
+
+
+## A data point is an observation
+
+## A collection of data points is a vector
+
+## Many column vectors together make a matrix
+
+## In the context of *data analysis* they have special names
+
+## Observational data
+
+## Common sources of data in PS
+
+## Measurement of concepts
+
+## Summarizing data
