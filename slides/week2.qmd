@@ -471,6 +471,7 @@ Theory as *extremely detailed* description of the world
 
 2. **Nuance of the _conceptual framework_**
 
+<!-- e.g. social action theory -->
 
 . . .
 
@@ -600,13 +601,68 @@ We call this a **dataset**, **dataframe**, or **database**
 
 ## Elements of a dataset
 
+. . .
+
+A single *observation* is a scalar
+
+$$a = 12$$
+
+. . .
+
+Several scalars together make a vector
 
 
-## A data point is an observation
+$$
+\overrightarrow b = \begin{bmatrix}
+  12 & 14 & 15
+\end{bmatrix}
+$$
 
-## A collection of data points is a vector
+## Elements of a dataset
 
-## Many column vectors together make a matrix
+Vectors have *direction*
+
+. . .
+
+This is a **row** vector
+
+$$
+\overrightarrow b = \begin{bmatrix}
+  12 & 14 & 15
+\end{bmatrix}
+$$
+
+. . .
+
+This is a **column** vector
+
+$$
+\overrightarrow c = 
+\begin{bmatrix}
+  12 \\
+  14 \\
+  15
+\end{bmatrix}
+$$
+
+
+## Elements of a dataset
+
+Several vectors of equal length make a **matrix**
+
+$$A = \begin{bmatrix}
+12 & 14 & 15 \\
+115 & 22 & 127 \\
+193 & 29 & 219
+\end{bmatrix}$$
+
+. . .
+
+The number of *rows* and *columns* are the **dimensions**
+
+. . .
+
+This is a $3 \times 3$ matrix ($r \times c$)
 
 ## In the context of *data analysis* they have special names
 

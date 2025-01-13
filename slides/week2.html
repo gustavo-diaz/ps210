@@ -718,6 +718,7 @@
 <ol start="2" type="1">
 <li><strong>Nuance of the <em>conceptual framework</em></strong></li>
 </ol>
+<!-- e.g. social action theory -->
 </div>
 <div class="fragment">
 <p>Expansion of an <em>irrefutable theoretical system</em></p>
@@ -832,12 +833,12 @@
 <!-- preamble start -->
 
     <script>
-      function styleCell_oeecos792924ritqcykd(i, j, css_id) {
-        var table = document.getElementById("tinytable_oeecos792924ritqcykd");
+      function styleCell_lplwjiknksqexq1ogazd(i, j, css_id) {
+        var table = document.getElementById("tinytable_lplwjiknksqexq1ogazd");
         table.rows[i].cells[j].classList.add(css_id);
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_oeecos792924ritqcykd');
+        var table = document.getElementById('tinytable_lplwjiknksqexq1ogazd');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -845,8 +846,8 @@
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_oeecos792924ritqcykd(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_oeecos792924ritqcykd");
+      function spanCell_lplwjiknksqexq1ogazd(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_lplwjiknksqexq1ogazd");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -872,17 +873,17 @@
         targetCell.rowSpan = rowspan;
         targetCell.colSpan = colspan;
       }
-window.addEventListener('load', function () { styleCell_oeecos792924ritqcykd(0, 0, 'tinytable_css_id051yh66oh8gbeexmtpcm') })
-window.addEventListener('load', function () { styleCell_oeecos792924ritqcykd(0, 1, 'tinytable_css_id051yh66oh8gbeexmtpcm') })
-window.addEventListener('load', function () { styleCell_oeecos792924ritqcykd(0, 2, 'tinytable_css_id051yh66oh8gbeexmtpcm') })
-window.addEventListener('load', function () { styleCell_oeecos792924ritqcykd(0, 3, 'tinytable_css_id051yh66oh8gbeexmtpcm') })
+window.addEventListener('load', function () { styleCell_lplwjiknksqexq1ogazd(0, 0, 'tinytable_css_idw90t40xkbrzfuwnr8h6j') })
+window.addEventListener('load', function () { styleCell_lplwjiknksqexq1ogazd(0, 1, 'tinytable_css_idw90t40xkbrzfuwnr8h6j') })
+window.addEventListener('load', function () { styleCell_lplwjiknksqexq1ogazd(0, 2, 'tinytable_css_idw90t40xkbrzfuwnr8h6j') })
+window.addEventListener('load', function () { styleCell_lplwjiknksqexq1ogazd(0, 3, 'tinytable_css_idw90t40xkbrzfuwnr8h6j') })
     </script>
 
     <style>
-    .table td.tinytable_css_id051yh66oh8gbeexmtpcm, .table th.tinytable_css_id051yh66oh8gbeexmtpcm {  border-bottom: solid 0.1em #d3d8dc; }
+    .table td.tinytable_css_idw90t40xkbrzfuwnr8h6j, .table th.tinytable_css_idw90t40xkbrzfuwnr8h6j {  border-bottom: solid 0.1em #d3d8dc; }
     </style>
     <div class="container">
-      <table class="table table-borderless" id="tinytable_oeecos792924ritqcykd" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_lplwjiknksqexq1ogazd" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         
               <tr>
@@ -938,17 +939,58 @@ window.addEventListener('load', function () { styleCell_oeecos792924ritqcykd(0, 
 <p>We call this a <strong>dataset</strong>, <strong>dataframe</strong>, or <strong>database</strong></p>
 </div>
 </section>
-<section id="elements-of" class="slide level2">
-<h2>Elements of</h2>
+<section id="elements-of-a-dataset" class="slide level2">
+<h2>Elements of a dataset</h2>
+<div class="fragment">
+<p>A single <em>observation</em> is a scalar</p>
+<p><span class="math display">\[a = 12\]</span></p>
+</div>
+<div class="fragment">
+<p>Several scalars together make a vector</p>
+<p><span class="math display">\[
+\overrightarrow b = \begin{bmatrix}
+  12 &amp; 14 &amp; 15
+\end{bmatrix}
+\]</span></p>
+</div>
 </section>
-<section id="a-data-point-is-an-observation" class="slide level2">
-<h2>A data point is an observation</h2>
+<section id="elements-of-a-dataset-1" class="slide level2">
+<h2>Elements of a dataset</h2>
+<p>Vectors have <em>direction</em></p>
+<div class="fragment">
+<p>This is a <strong>row</strong> vector</p>
+<p><span class="math display">\[
+\overrightarrow b = \begin{bmatrix}
+  12 &amp; 14 &amp; 15
+\end{bmatrix}
+\]</span></p>
+</div>
+<div class="fragment">
+<p>This is a <strong>column</strong> vector</p>
+<p><span class="math display">\[
+\overrightarrow c =
+\begin{bmatrix}
+  12 \\
+  14 \\
+  15
+\end{bmatrix}
+\]</span></p>
+</div>
 </section>
-<section id="a-collection-of-data-points-is-a-vector" class="slide level2">
-<h2>A collection of data points is a vector</h2>
-</section>
-<section id="many-column-vectors-together-make-a-matrix" class="slide level2">
-<h2>Many column vectors together make a matrix</h2>
+<section id="elements-of-a-dataset-2" class="slide level2">
+<h2>Elements of a dataset</h2>
+<p>Several vectors of equal length make a <strong>matrix</strong></p>
+<p><span class="math display">\[A = \begin{bmatrix}
+12 &amp; 14 &amp; 15 \\
+115 &amp; 22 &amp; 127 \\
+193 &amp; 29 &amp; 219
+\end{bmatrix}\]</span></p>
+<div class="fragment">
+<p>The number of <em>rows</em> and <em>columns</em> are the <strong>dimensions</strong></p>
+</div>
+<div class="fragment">
+<p>This is a <span class="math inline">\(3 \times 3\)</span> matrix (<span class="math inline">\(r \times c\)</span>)</p>
+</div>
 </section>
 <section id="in-the-context-of-data-analysis-they-have-special-names" class="slide level2">
 <h2>In the context of <em>data analysis</em> they have special names</h2>
