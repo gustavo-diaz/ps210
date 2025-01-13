@@ -33,13 +33,29 @@ Introduction to Empirical Methods in Political Science
 
 :::
 
-## Lingering questions
+## Teaching Assistants
 
-::: incremental
-- Course organization?
-- Assignments/grading?
-- Material?
+{{< fa user >}} [Chloe Bernadaux](https://polisci.northwestern.edu/people/graduate-students/chloe-bernadaux.html)
+
+{{< fa envelope >}} <chloebernadaux2028@u.northwestern.edu>  
+
+{{< fa building-columns >}}  Scott Hall 215
+
+&nbsp;
+
+{{< fa user >}} [Lucas Camara](https://polisci.northwestern.edu/people/graduate-students/lucas-camara.html)
+
+{{< fa envelope >}} <lucascamara2028@u.northwestern.edu>  
+
+{{< fa building-columns >}}  Scott Hall 219
+
+::: aside
+Check the syllabus for discussion sections and TA office hours
 :::
+
+# Questions?
+
+
 
 ## AI Prompts {background-color="#B6ACD1"}
 
@@ -664,12 +680,225 @@ The number of *rows* and *columns* are the **dimensions**
 
 This is a $3 \times 3$ matrix ($r \times c$)
 
-## In the context of *data analysis* they have special names
+## A dataset is just a matrix with labels
 
-## Observational data
+```{r}
+table1 %>% tt()
+```
 
-## Common sources of data in PS
+## A dataset is just a matrix with labels
 
-## Measurement of concepts
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    i = 1,
+    bold = TRUE
+  )
+```
+
+A row is an **observation** or **unit**
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    i = 2,
+    bold = TRUE
+  )
+```
+
+A row is an **observation** or **unit**
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    i = 3,
+    bold = TRUE
+  )
+```
+
+A row is an **observation** or **unit**
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    i = 4,
+    bold = TRUE
+  )
+```
+
+A row is an **observation** or **unit**
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    i = 5,
+    bold = TRUE
+  )
+```
+
+A row is an **observation** or **unit**
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    i = 6,
+    bold = TRUE
+  )
+```
+
+A row is an **observation** or **unit**
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    j = 1,
+    bold = TRUE
+  )
+```
+
+A column is a **variable**
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    j = 2,
+    bold = TRUE
+  )
+```
+
+A column is a **variable**
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    j = 3,
+    bold = TRUE
+  )
+```
+
+A column is a **variable**
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    j = 4,
+    bold = TRUE
+  )
+```
+
+A column is a **variable**
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt()
+```
+
+What does the third row, fourth column represent?
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    i = 3,
+    j = 4,
+    bold = TRUE
+  )
+```
+
+What does the third row, fourth column represent?
+
+## Types of variables
+
+
+::: incremental
+1. **Nominal/categorical:** Cannot be ordered in any way
+2. **Ordinal:** Ordered
+3. **Numerical:** Ordered + equidistant
+:::
+
+. . .
+
+EMPS further distinguishes numerical variables:
+
+::: incremental
+1. **Discrete:** Countable integers
+2. **Continuous:** Infinitesimally uncountable, real numbers
+:::
+
+. . .
+
+But technically everything numerical is discrete!
+
+## Practice
+
+. . .
+
+**[Varieties of Democracy](https://www.v-dem.net)'s _regime type_ measure:**
+
+. . .
+
+0: Closed autocracy -- No multiparty elections
+
+. . .
+
+1: Electoral autocracy -- De-jure elections but not free and fair
+
+. . .
+
+2: Electoral democracy -- Free and fair elections with some flaws
+
+. . .
+
+3: Liberal democracy -- Free and fair elections guaranteed
+
+. . .
+
+::: aside
+More at [v-dem.net](https://www.v-dem.net)
+:::
+
+
+---
+
+```{=html}
+<iframe src="https://ourworldindata.org/grapher/political-regime?tab=map" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>
+```
+
+::: aside
+<https://ourworldindata.org/regimes-of-the-world-data>
+:::
+
+---
+
+## Takeaway {.center}
+
+. . .
+
+::: {.r-stack}
+Variable types depend on what we are **willing to assume**
+:::
+
+
+## Concepts vs. variables
 
 ## Summarizing data
