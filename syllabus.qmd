@@ -37,7 +37,7 @@ fontsize: 12pt
 | | **Section 60** | **Section 61** | **Section 63** | **Section 65** |
 |:----|:-----------|:-----------|:-----------|:-----------|
 | **Time**          | Th 1:00--1:50pm      | Th 1:00--1:50pm      | Fr 2:00--2:50pm      | Fr 3:00--3:50pm      |
-| **Room**      | University Hall 218 | Parkes Hall 213  | University Hall 418  | University Hall 418  |
+| **Room**      | University Hall 218 | University Hall 318  | University Hall 418  | University Hall 418  |
 | **TA**            | Bernadaux   | Camara    | Camara     | Bernadaux     |
 
 {{< pagebreak >}}

@@ -20,6 +20,7 @@ opts_chunk$set(echo = FALSE,
 library(tidyverse)
 library(tidyr)
 library(tinytable)
+library(palmerpenguins)
 ```
 
 
@@ -52,6 +53,14 @@ Introduction to Empirical Methods in Political Science
 ::: aside
 Check the syllabus for discussion sections and TA office hours
 :::
+
+## Sections
+
+| | **Section 60** | **Section 61** | **Section 63** | **Section 65** |
+|:----|:-----------|:-----------|:-----------|:-----------|
+| **Time**          | Th 1:00--1:50pm      | Th 1:00--1:50pm      | Fr 2:00--2:50pm      | Fr 3:00--3:50pm      |
+| **Room**      | University Hall 218 | **University Hall 318**  | University Hall 418  | University Hall 418  |
+| **TA**            | Bernadaux   | Camara    | Camara     | Bernadaux     |
 
 # Questions?
 
@@ -519,7 +528,7 @@ Good theories explain more than what they assume
 See [Clark (2020)](https://doi.org/10.4135/9781526486387.n4) for a more eloquent presentation
 :::
 
-## Summary
+## Takeaways
 
 1. Theory is logical explanation or informed speculation
 
@@ -890,7 +899,34 @@ More at [v-dem.net](https://www.v-dem.net)
 
 ---
 
-## Takeaway {.center}
+## Practice 2
+
+```{r}
+ggplot(penguins) +
+  aes(x = flipper_length_mm,
+      y = body_mass_g) +
+  geom_point(aes(color = species, 
+                 shape = species),
+             size = 3,
+             alpha = 0.8) +
+  scale_color_manual(values = c("darkorange","purple","cyan4")) +
+  labs(title = "Penguin size, Palmer Station LTER",
+       subtitle = "Flipper length and body mass for Adelie, Chinstrap and Gentoo Penguins",
+       x = "Flipper length (mm)",
+       y = "Body mass (g)",
+       color = "Penguin species",
+       shape = "Penguin species") +
+  theme(legend.position = c(0.2, 0.7),
+        plot.title.position = "plot",
+        plot.caption = element_text(hjust = 0, face= "italic"),
+        plot.caption.position = "plot")
+```
+
+::: aside
+How many different variables do you see? What type are they?
+:::
+
+## Reminder {.center}
 
 . . .
 
@@ -899,6 +935,97 @@ Variable types depend on what we are **willing to assume**
 :::
 
 
-## Concepts vs. variables
+## Variables vs. concepts
 
-## Summarizing data
+::: incremental
+- A **concept** is an element defined by a theory
+
+- A **variable** is the measurement of a concept
+
+- The translation from concept to measurement is called **operationalization**
+
+- Because concepts are abstract, there is room for **measurement error**
+:::
+
+## Measurement error
+
+![](fig/board.png)
+
+::: incremental
+
+- **Reliable:** Hypothetical repeated measurements are close to each other
+
+- **Valid:** Distance from center averages to zero
+:::
+
+## Another way to look at it
+
+```{r}
+set.seed(20250113)
+reliable_valid = rnorm(500, 0, 1)
+reliable_invalid = rnorm(500, 5, 1)
+unreliable_valid = rnorm(500, 0, 4)
+unreliable_invalid = rnorm(500, 5, 4)
+
+a = data.frame(
+  obs = reliable_valid,
+  rel = "Reliable",
+  val = "Valid"
+)
+
+b = data.frame(
+  obs = reliable_invalid,
+  rel = "Reliable",
+  val = "Invalid"
+)
+
+c = data.frame(
+  obs = unreliable_valid,
+  rel = "Unreliable",
+  val = "Valid"
+)
+
+d = data.frame(
+  obs = unreliable_invalid,
+  rel = "Unreliable",
+  val = "Invalid"
+)
+
+dat = rbind(a, b, c, d)
+
+dat$val = fct_relevel(dat$val,
+                      "Valid", "Invalid")
+
+ggplot(dat) +
+  aes(x = obs) +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  geom_density(linewidth = 2, color = "purple") +
+  facet_grid(rel ~ val) +
+  labs(
+    x = "Repeated measures",
+    y = "Density"
+  ) +
+  theme_gray(base_size = 20)
+```
+
+
+## Takeaways
+
+- Variables are how we measure concepts
+
+- A variable can be categorical, ordinal, numerical
+
+- Depends mostly on what we are willing to assume
+
+- Gap between concept and variable produces measurement error
+
+::: {style="text-align: center"}
+## Next week {.center}
+
+### Inference
+
+How do we summarize data?
+
+How do we use summaries to evaluate hypotheses?
+
+:::
