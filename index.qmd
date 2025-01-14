@@ -5,7 +5,7 @@ format: html
 
 [Week 1: Introduction and Overview](slides/week1.html)
 
-Week 2: Theory and Data
+[Week 2: Theory and Data](slides/week2.html)
 
 Week 3: Inference
 
