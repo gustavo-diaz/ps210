@@ -147,7 +147,7 @@ heights %>% tt() %>% style_tt(fontsize = 0.7)
 **Measures of central tendency**
 
 ::: incremental
-- **Mean:** $\frac{1}{n}\sum_{i=1}^{n} x$
+- **Mean:** $\frac{1}{n}\sum_{i=1}^{n} x_i$
 
 - **Median:** Value in the middle
 
