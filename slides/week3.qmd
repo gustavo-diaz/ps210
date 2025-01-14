@@ -1,0 +1,159 @@
+---
+format:
+    revealjs:
+      slide-number: false
+      progress: false
+      chalkboard: true
+      preview-links: true
+      theme: [default, custom.scss]
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+
+opts_chunk$set(echo = FALSE, 
+               message = FALSE, 
+               warning = FALSE, 
+               results = "asis", 
+               out.width = "100%")
+
+library(tidyverse)
+library(tinytable)
+```
+
+
+
+::: {style="text-align: center"}
+## Inference {.center}
+
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
+
+
+## AI Prompts {background-color="#B6ACD1"}
+
+TBD
+
+::: aside
+**Reminder:** These are just suggestions, feel free to be creative with your prompts!
+:::
+
+## Last week
+
+- Theory as explanation
+
+- Elements of a good theory
+
+- Data as the raw material from which we draw inferences
+
+- Types of data (variables)
+
+. . .
+
+::: {.r-stack}
+Why do we care so much about data?
+:::
+
+## This week: Inference
+
+::: incremental
+- We use data to conduct **inference**
+
+- **Inference:** Using what we know to understand something we do not know
+
+- **_Statistical_ inference:** Using the *data* we have to understand something for which we do *not* have data
+
+- Data alone does not help unless we **summarize** it
+
+- **TUESDAY:** *Estimation* and *uncertainty*
+
+- **THURSDAY:** Hypothesis testing
+
+:::
+
+## Running example
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+```{r}
+heights = tribble(
+  ~Position, ~`Height (inches)`,
+  1, 59.0,
+  2, 61.5,
+  3, 62.0,
+  4, 63.0,
+  5, 64.7,
+  6, 65.5,
+  7, 68.0,
+  8, 69.0,
+  9, 72.0,
+  10, 72.0,
+  11, 72.0,
+)
+
+heights %>% tt() %>% style_tt(fontsize = 0.7)
+```
+
+:::
+
+::: {.column width="60%"}
+
+::: incremental
+- How would you describe this group of people?
+
+- Taller/shorter than most?
+
+- How do we summarize this data?
+:::
+
+:::
+
+
+::::
+
+## Running example
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+```{r}
+heights = tribble(
+  ~Position, ~`Height (inches)`,
+  1, 59.0,
+  2, 61.5,
+  3, 62.0,
+  4, 63.0,
+  5, 64.7,
+  6, 65.5,
+  7, 68.0,
+  8, 69.0,
+  9, 72.0,
+  10, 72.0,
+  11, 72.0,
+)
+
+heights %>% tt() %>% style_tt(fontsize = 0.7)
+```
+
+:::
+
+::: {.column width="60%"}
+**Measures of central tendency**
+
+::: incremental
+- **Mean:** $\frac{1}{n}\sum_{i=1}^{n} x$
+
+- **Median:** Value in the middle
+
+- **Mode:** Value most often repeated
+:::
+
+:::
+
+::::
