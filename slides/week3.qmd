@@ -841,7 +841,7 @@ $$
 \text{Sample variance: } V[X] = \frac{1}{n} \sum(x_i - \overline{X})^2
 $$
 
-[CONTINUE HERE CHECK IF RIGHT]
+
 
 ## Analytic derivation
 
@@ -856,3 +856,42 @@ The **CLT** lets us use *measures of dispersion* as shortcuts
 $$
 \text{Variance of sample mean: } V[\overline{X}] = \frac{V[X]}{n}
 $$
+
+. . .
+
+$$
+\text{Standard error: } SE[\overline{X}] = \sqrt {V[\overline X]}
+$$
+
+
+. . .
+
+The **standard error** is a measure of dispersion for the **sample mean**
+
+## Calculate confidence intervals
+
+::: incremental
+- **95% CI:** $\overline X \pm 1.96 SE[\overline X]$
+
+- **90% CI:** $\overline X \pm 1.64 SE[\overline X]$
+
+- **95% CI:** $\overline X \pm 2.58 SE[\overline X]$
+:::
+
+. . .
+
+These are only good approximations **IF** the CLT holds
+
+. . .
+
+For which we need a large enough sample
+
+## Summary
+
+- We summarize data to conduct statistical inference
+
+- The mean is *usually* good because of its statistical properties
+
+- We use confidence intervals to convey uncertainty around the sample mean
+
+- 95% confidence intervals are the convention in the social sciences
