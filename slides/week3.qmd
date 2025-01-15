@@ -4,7 +4,7 @@ format:
       slide-number: false
       progress: false
       chalkboard: true
-      preview-links: true
+      code-overflow: wrap
       theme: [default, custom.scss]
 ---
 
@@ -13,12 +13,17 @@ library(knitr)
 
 opts_chunk$set(echo = FALSE, 
                message = FALSE, 
-               warning = FALSE, 
-               results = "asis", 
+               warning = FALSE,
                out.width = "100%")
 
 library(tidyverse)
 library(tinytable)
+library(gganimate)
+# remotes::install_github("kjhealy/gssr")
+library(gssr)
+
+# ggplot global options
+theme_set(theme_gray(base_size = 20))
 ```
 
 
@@ -83,17 +88,17 @@ Why do we care so much about data?
 ```{r}
 heights = tribble(
   ~Position, ~`Height (inches)`,
-  1, 59.0,
-  2, 61.5,
-  3, 62.0,
-  4, 63.0,
-  5, 64.7,
-  6, 65.5,
-  7, 68.0,
-  8, 69.0,
-  9, 72.0,
-  10, 72.0,
-  11, 72.0,
+  1, 62.5,
+  2, 63.0,
+  3, 63.0,
+  4, 66.0,
+  5, 66.0,
+  6, 67.0,
+  7, 68.5,
+  8, 70.0,
+  9, 70.0,
+  10, 70.5,
+  11, 70.7
 )
 
 heights %>% tt() %>% style_tt(fontsize = 0.7)
@@ -123,21 +128,6 @@ heights %>% tt() %>% style_tt(fontsize = 0.7)
 ::: {.column width="40%"}
 
 ```{r}
-heights = tribble(
-  ~Position, ~`Height (inches)`,
-  1, 59.0,
-  2, 61.5,
-  3, 62.0,
-  4, 63.0,
-  5, 64.7,
-  6, 65.5,
-  7, 68.0,
-  8, 69.0,
-  9, 72.0,
-  10, 72.0,
-  11, 72.0,
-)
-
 heights %>% tt() %>% style_tt(fontsize = 0.7)
 ```
 
@@ -149,7 +139,7 @@ heights %>% tt() %>% style_tt(fontsize = 0.7)
 ::: incremental
 - **Mean:** $\frac{1}{n}\sum_{i=1}^{n} x_i$
 
-- **Median:** Value in the middle
+- **Median:** Value in the middle (after ordering)
 
 - **Mode:** Value most often repeated
 :::
@@ -157,3 +147,712 @@ heights %>% tt() %>% style_tt(fontsize = 0.7)
 :::
 
 ::::
+
+## Running example
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+```{r}
+heights %>% tt() %>% style_tt(fontsize = 0.7)
+
+inches = heights$`Height (inches)`
+```
+
+:::
+
+::: {.column width="60%"}
+**Measures of central tendency**
+
+- **Mean = **  `r round(mean(inches), 1)`
+
+- **Median =** 67.0
+
+- **Mode =** 63.0, 66.0, 70.0
+
+:::
+
+::::
+
+## Running example
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+```{r}
+heights %>% tt() %>% style_tt(fontsize = 0.7)
+```
+
+:::
+
+::: {.column width="60%"}
+**Measures of central tendency**
+
+- **Mean = **  `r round(mean(inches), 1)`
+
+- **Median =** 67.0
+
+- **Mode =** 63.0, 66.0, 70.0
+
+Which is a better summary?
+
+:::
+
+::::
+
+## Running example
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+```{r}
+heights %>% tt() %>% style_tt(fontsize = 0.7)
+```
+
+:::
+
+::: {.column width="60%"}
+**Measures of central tendency**
+
+- **Mean = **  `r round(mean(inches), 1)`
+
+- **Median =** 67.0
+
+- **Mode =** 63.0, 66.0, 70.0
+
+Which is a better summary?
+
+**Short answer:** The **mean** because it has some nice statistical properties
+
+:::
+
+::::
+
+## Long answer: Take a step back
+
+**Question from the [2022 General Social Survey](https://gss.norc.org)**
+
+. . .
+
+In 2020, you remember that Joe Biden ran for President on the Democratic ticket against Donald Trump for the Republicans.
+
+:::aside
+Learn more about the GSS at [gss.norc.org](https://gss.norc.org)
+:::
+
+
+## Long answer: Take a step back
+
+**Question from the [2022 General Social Survey](https://gss.norc.org)**
+
+In 2020, you remember that Joe Biden ran for President on the Democratic ticket against Donald Trump for the Republicans. *Do you remember for sure whether or not you voted in that election?*
+
+::: incremental
+- Yes, I voted
+- No, I did not vote
+- I was not eligible to vote
+:::
+
+:::aside
+Learn more about the GSS at [gss.norc.org](https://gss.norc.org)
+:::
+
+
+## Dataset
+
+
+
+```{r, cache = TRUE}
+gss22 = gss_get_yr(2022)
+
+# Question: 
+# Do you remember for sure whether or not you voted in the last election?
+gss = gss22 %>% 
+  select(vote20) %>% 
+  mutate(vote = ifelse(vote20 == 1, "yes", "no")) %>% 
+  drop_na() %>% 
+  select(vote)
+```
+
+
+
+```{r}
+gss %>% print(n = 5000)
+```
+
+
+
+## Dataset
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+```{r}
+gss %>% group_by(vote) %>% tally() %>% tt()
+```
+
+:::
+
+::: {.column width="60%"}
+
+::: incremental
+- Proportion yes = `r mean(gss$vote == "yes") %>% round(2)`
+
+- Pretend this is the entire population
+
+:::
+
+:::
+
+::::
+
+::: incremental
+
+- But we cannot ask almost 4,000 people directly
+
+- We only have time for 10
+
+- So let's take a *random sample* and see what happens
+
+:::
+
+## Asking 10 people
+
+```{r}
+sample_mean = function(n){
+  mean(sample(gss$vote == "yes", size = n), replace = FALSE)
+}
+
+set.seed(20250115)
+means = replicate(10, sample_mean(10))
+
+```
+
+::: incremental
+- Attempt 1: `r means[1] %>% round(2)`
+
+- Attempt 2: `r means[2] %>% round(2)`
+
+- Attempt 3: `r means[2] %>% round(2)`
+
+- Attempt 4: `r means[3] %>% round(2)`
+
+- Attempt 5: `r means[4] %>% round(2)`
+:::
+
+. . .
+
+Average: `r mean(means[1:5]) %>% round(2)`
+
+. . .
+
+What if we tried more and more attempts?
+
+---
+
+```{r, cache = TRUE}
+rep_means = function(reps){
+  means = replicate(reps, sample_mean(10))
+  out = mean(means)
+  return(out)
+}
+
+set.seed(20250115)
+
+obs = seq(10, 500, by = 10) %>% 
+  map(~rep_means(.)) %>% 
+  unlist()
+
+weak_law = data.frame(
+  reps = seq(10, 500, by = 10),
+  avg_prop = obs
+)
+```
+
+```{r}
+wl_plot = ggplot(weak_law) +
+  aes(x = reps, y = obs) +
+  geom_hline(yintercept = 0.74,
+             linetype = "dashed") +
+  geom_point(color = "#4E2A84", size = 2) +
+  labs(x = "Number of attempts",
+       y = "Avgerage proportion") +
+  scale_x_continuous(breaks = seq(0, 500, by = 100))
+```
+
+```{r, cache = TRUE}
+wl_plot +
+  transition_manual(reps, cumulative = TRUE)
+```
+
+
+---
+
+```{r}
+ggplot(weak_law) +
+  aes(x = reps, y = obs) +
+  geom_hline(yintercept = 0.74,
+             linetype = "dashed") +
+  geom_point(color = "#4E2A84", size = 2) +
+  geom_path(color = "#4E2A84") +
+  labs(x = "Number of attempts",
+       y = "Avgerage proportion") +
+  scale_x_continuous(breaks = seq(0, 500, by = 100))
+```
+
+. . .
+
+**Weak law of large numbers:** Sample mean *approximates* the true population mean over many repeated measurements
+
+## So what?
+
+. . .
+
+If we have time to ask 10 people many times...
+
+. . .
+
+Maybe we also have time to ask many people one time?
+
+. . .
+
+
+How many people would be enough?
+
+&nbsp;
+
+. . .
+
+**Another exercise:**
+
+::: incremental
+- Pick a sample size
+
+- Repeat the study with a new sample many times
+
+- Calculate proportion who recall voting every time
+
+:::
+
+## 100 samples of 10 people each
+
+```{r}
+draw_sample = function(data, n) {
+  out = data %>% 
+    sample_n(size = n) %>% 
+    summarize(
+      estimate = mean(vote == "yes")
+    ) %>% .$estimate
+  
+  return(out)
+}
+
+draw_many = function(reps, data, n){
+  temp = replicate(reps, draw_sample(data, n)) %>% 
+    unlist()
+  
+  out = data.frame(
+    n = n,
+    prop = temp
+  )
+  
+  return(out)
+}
+
+samples = c(10, 100, 500)
+
+set.seed(20150115)
+df = samples %>% 
+  map(~draw_many(reps = 100, data = gss, n = .)) %>% 
+  bind_rows %>% 
+  mutate(n = n)
+
+```
+
+```{r}
+ggplot(df %>% filter(n == 10)) +
+  aes(x = prop) + 
+  geom_line(
+    stat = "density",
+    linewidth = 2,
+    color = "#4E2A84",
+    alpha = 0) +
+  labs(y = "Density",
+       x = "Proportion who recall voting") +
+  xlim(0.4, 1)
+```
+
+## 100 samples of 10 people each
+
+```{r}
+ggplot(df %>% filter(n == 10)) +
+  aes(x = prop) + 
+  geom_line(
+    stat = "density",
+    linewidth = 2,
+    color = "#4E2A84") +
+  labs(y = "Density",
+       x = "Proportion who recall voting") +
+  xlim(0.4, 1)
+```
+
+## What about more people?
+
+```{r, fig.align='center'}
+df = df %>% 
+  mutate(samp = paste(n, "people 100 times"))
+
+ggplot(df) +
+  aes(x = prop) + 
+  geom_line(
+    stat = "density",
+    linewidth = 2,
+    color = "#4E2A84") +
+  labs(y = "Density",
+       x = "Proportion who recall voting") +
+  xlim(0.4, 1) +
+  facet_wrap(~samp)
+```
+
+. . .
+
+**Central limit theorem:** Mean converges to a [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) as the sample size increases
+
+## Statistical properties
+
+. . .
+
+The mean is *usually* a good summary of the data because it has good **finite sample** and **asymptotic** properties
+
+. . .
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+**Finite sample properties**
+
+::: incremental
+- Over many repetitions with a fixed sample size
+
+- **Example:** Weak law of large numbers
+:::
+
+:::
+
+::: {.column width="50%"}
+
+**Asymptotic properties**
+
+::: incremental
+- As sample size grows to infinity
+
+- **Example:** Central limit theorem (CLT)
+:::
+
+:::
+
+::::
+
+::: aside
+This is also true for fancier mean-like things that we will learn about this term
+:::
+
+::: {style="text-align: center"}
+## The mean is a good summary {.center}
+
+:::
+
+::: {style="text-align: center"}
+## The mean is a good summary {.center}
+
+Ok, but how good?
+:::
+
+::: {style="text-align: center"}
+## The mean is a good summary {.center}
+
+Ok, but how good?
+
+Are we cooking or are we cooked?
+:::
+
+::: {style="text-align: center"}
+## The mean is a good summary {.center}
+
+Ok, but how good?
+
+Are we cooking or are we cooked?
+
+We want to *quantify* our **confidence** or **uncertainty**
+:::
+
+## Back to heights
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+```{r}
+heights %>% 
+  rename(Height = `Height (inches)`) %>% 
+  tt() %>%
+  style_tt(fontsize = 0.7)
+```
+
+:::
+
+::: {.column width="60%"}
+
+::: incremental
+- The mean was `r mean(inches) %>% round(1)`
+
+- The *range* is [62.5, 70.7]
+
+- Is that informative?
+:::
+
+:::
+
+::::
+
+---
+
+![Some extremes of height. Angus McAskill (1825-1863) and Charles Sherwood Stratton (1838-1883). McAskill was 7 feet 9 inches tall. Stratton, also known as Tom Thumb, was 2 feet 6 inches in height.](fig/short_tall.jpg)
+
+
+## Maybe remove extremes?
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+```{r}
+heights %>% 
+  rename(Height = `Height (inches)`) %>% 
+  tt() %>%
+  style_tt(fontsize = 0.7)
+```
+
+:::
+
+::: {.column width="60%"}
+
+::: incremental
+- Original range is [62.5, 70.7]
+
+- Taking out extremes gives [63.0, 70.5]
+
+- We can't keep doing this with a large sample!
+
+- Is there a more principled way?
+:::
+
+:::
+
+::::
+
+## Use percentiles
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+```{r}
+heights %>% 
+  rename(Height = `Height (inches)`) %>% 
+  mutate(Percentile = seq(0, 100, by = 10)) %>% 
+  tt() %>%
+  style_tt(fontsize = 0.7)
+```
+
+:::
+
+::: {.column width="60%"}
+
+::: incremental
+- Taking away 10% on each side gives [63.0, 70.5]
+
+- 90% of the observations lie in this range
+
+- We call this a **coverage interval**
+
+- This has a different name when applied to the mean
+:::
+:::
+
+::::
+
+## Confidence interval
+
+```{r}
+ggplot(df %>% filter(n == 500)) +
+  aes(x = prop) + 
+  geom_line(
+    stat = "density",
+    linewidth = 2,
+    color = "#4E2A84") +
+  labs(y = "Density",
+       x = "Proportion who recall voting") +
+  facet_wrap(~samp)
+
+avg = mean(df %>% filter(n == 500) %>% .$prop)
+lo = quantile(df %>% filter(n == 500) %>% .$prop, 0.025)
+hi = quantile(df %>% filter(n == 500) %>% .$prop, 0.975)
+```
+
+
+## Confidence interval
+
+```{r}
+ggplot(df %>% filter(n == 500)) +
+  aes(x = prop) + 
+  geom_line(
+    stat = "density",
+    linewidth = 2,
+    color = "#4E2A84") +
+  labs(y = "Density",
+       x = "Proportion who recall voting") +
+  facet_wrap(~samp) +
+  geom_vline(
+    xintercept = avg,
+    linetype = "dashed"
+    ) +
+  annotate("text", y = -1, x = avg + 0.003, label = "Mean")
+```
+
+## Confidence interval
+
+```{r}
+ggplot(df %>% filter(n == 500)) +
+  aes(x = prop) + 
+  geom_line(
+    stat = "density",
+    linewidth = 2,
+    color = "#4E2A84") +
+  labs(y = "Density",
+       x = "Proportion who recall voting") +
+  facet_wrap(~samp) +
+  geom_vline(
+    xintercept = avg,
+    linetype = "dashed"
+    ) +
+  annotate("text", y = -1, x = avg + 0.003, label = "Mean") +
+    geom_vline(
+    xintercept = lo,
+    linetype = "dotted"
+    ) +
+  annotate("text", y = -1, x = lo + 0.007, label = "2.5% percentile") +
+    geom_vline(
+    xintercept = hi,
+    linetype = "dotted"
+    ) +
+  annotate("text", y = -1, x = hi - 0.007, label = "97.5% percentile")
+  
+```
+
+## Confidence interval
+
+```{r}
+ggplot(df %>% filter(n == 500)) +
+  aes(x = prop) + 
+  geom_line(
+    stat = "density",
+    linewidth = 2,
+    color = "#4E2A84") +
+  labs(y = "Density",
+       x = "Proportion who recall voting") +
+  facet_wrap(~samp) +
+  geom_vline(
+    xintercept = avg,
+    linetype = "dashed"
+    ) +
+  annotate("text", y = -1, x = avg + 0.003, label = "Mean") +
+    geom_vline(
+    xintercept = lo,
+    linetype = "dotted"
+    ) +
+  annotate("text", y = -1, x = lo + 0.007, label = "2.5% percentile") +
+    geom_vline(
+    xintercept = hi,
+    linetype = "dotted"
+    ) +
+  annotate("text", y = -1, x = hi - 0.007, label = "97.5% percentile")
+  
+```
+
+::: aside
+**Mean =** `r round(avg, 2)`. **95% confidence interval =**  `r paste0("[",round(lo, 2), ",", round(hi,2), "]")`
+:::
+
+## More formally
+
+. . .
+
+**Confidence interval:** Range of values in which X% of the estimates would fall
+
+## More formally
+
+**Confidence interval:** Range of values in which X% of the estimates would fall **over many repetitions with a fixed sample size**
+
+. . .
+
+**Informally:** We are X% confident that our estimate falls in this range
+
+. . .
+
+How to calculate:
+
+::: incremental
+1. Non-parametric approximation (percentile method)
+
+2. Analytic derivation (shortcut via aymptotic properties)
+:::
+
+::: aside
+The 95% is an arbitrary yet useful convention in the social sciences
+:::
+
+## Analytic derivation
+
+. . .
+
+The percentile method would require us to *actually* repeat the study many times or *simulate*
+
+. . .
+
+The **CLT** lets us use *measures of dispersion* as shortcuts
+
+. . .
+
+
+$$
+\text{Sample mean: }\overline{X} = \frac{1}{n} \sum x_i
+$$
+
+. . .
+
+
+$$
+\text{Sample variance: } V[X] = \frac{1}{n} \sum(x_i - \overline{X})^2
+$$
+
+[CONTINUE HERE CHECK IF RIGHT]
+
+## Analytic derivation
+
+
+
+The percentile method would require us to *actually* repeat the study many times or *simulate*
+
+
+The **CLT** lets us use *measures of dispersion* as shortcuts
+
+
+$$
+\text{Variance of sample mean: } V[\overline{X}] = \frac{V[X]}{n}
+$$
