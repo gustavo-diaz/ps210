@@ -1155,16 +1155,53 @@ ggplot(sims_df) +
   labs(
     x = "Correct cups",
     y = "Frequency"
-  )
+  ) +
   geom_col(alpha = 0)
 ```
 
 ---
 
-[CONTINUE HERE EXPAND PLOT]
+```{r}
+ggplot(sims_df) +
+  aes(x = correct, y = n) +
+  labs(
+    x = "Correct cups",
+    y = "Frequency"
+  ) +
+  geom_col() +
+  geom_text(
+    aes(
+      x = correct,
+      y = n + 20,
+      label = n)
+    )
+```
 
+---
 
+```{r}
+ggplot(sims_df) +
+  aes(x = correct, y = n, fill = as.factor(signif)) +
+  labs(
+    x = "Correct cups",
+    y = "Frequency"
+  ) +
+  geom_col() +
+  theme(legend.position = "none") +
+  scale_fill_manual(
+    values = c("grey35", "#4E2A84")
+  ) +
+  geom_text(
+    aes(
+      x = correct,
+      y = n + 20,
+      label = n)
+    )
+```
 
+. . .
+
+Random guesser gets *at least* 6/8 $\frac{(199+12)}{1000} \approx 0.21$
 
 
 ## p-values
