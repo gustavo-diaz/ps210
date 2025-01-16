@@ -18,6 +18,10 @@ opts_chunk$set(echo = FALSE,
 
 library(tidyverse)
 library(tinytable)
+library(kableExtra)
+library(infer)
+library(tidyr)
+library(broom)
 library(gganimate)
 # remotes::install_github("kjhealy/gssr")
 library(gssr)
@@ -40,7 +44,13 @@ Introduction to Empirical Methods in Political Science
 
 ## AI Prompts {background-color="#B6ACD1"}
 
-TBD
+- Central limit theorem
+
+- Weak law of large numbers
+
+- Confidence interval
+
+- Standard deviation vs. standard error
 
 ::: aside
 **Reminder:** These are just suggestions, feel free to be creative with your prompts!
@@ -75,7 +85,7 @@ Why do we care so much about data?
 
 - **TUESDAY:** *Estimation* and *uncertainty*
 
-- **THURSDAY:** Hypothesis testing
+- [**THURSDAY:**](#thu) Hypothesis testing
 
 :::
 
@@ -137,7 +147,7 @@ heights %>% tt() %>% style_tt(fontsize = 0.7)
 **Measures of central tendency**
 
 ::: incremental
-- **Mean:** $\frac{1}{n}\sum_{i=1}^{n} x_i$
+- **Mean:** $\frac{1}{n}\sum x_i$
 
 - **Median:** Value in the middle (after ordering)
 
@@ -679,9 +689,7 @@ heights %>%
 
 - 90% of the observations lie in this range
 
-- We call this a **coverage interval**
-
-- This has a different name when applied to the mean
+- For the sample mean, this has a special name
 :::
 :::
 
@@ -838,7 +846,7 @@ $$
 
 
 $$
-\text{Sample variance: } V[X] = \frac{1}{n} \sum(x_i - \overline{X})^2
+\text{Sample variance: } V[X] = \frac{1}{(n-1)} \sum(x_i - \overline{X})^2
 $$
 
 
@@ -870,21 +878,46 @@ The **standard error** is a measure of dispersion for the **sample mean**
 
 ## Calculate confidence intervals
 
-::: incremental
-- **95% CI:** $\overline X \pm 1.96 SE[\overline X]$
+. . .
 
-- **90% CI:** $\overline X \pm 1.64 SE[\overline X]$
+![](fig/normal_conf.webp){fig-align="center" width="80%"}
 
-- **95% CI:** $\overline X \pm 2.58 SE[\overline X]$
-:::
+
+## Back to vote recall
+
+```{r}
+
+ci_df = bind_rows(
+  t.test(gss$vote == "yes", conf.level = 0.90) %>% tidy() %>% mutate(level = "90%"),
+  t.test(gss$vote == "yes") %>% tidy() %>% mutate(level = "95%"),
+  t.test(gss$vote == "yes", conf.level = 0.99) %>% tidy() %>% mutate(level = "99%")  
+)
+```
 
 . . .
 
-These are only good approximations **IF** the CLT holds
+```{r}
+ci_df %>% 
+  select(level, estimate, conf.low, conf.high) %>% 
+  tt(digits = 3) %>% 
+  style_tt(fontsize = 0.7)
+```
 
 . . .
 
-For which we need a large enough sample
+```{r, fig.height=4}
+ggplot(ci_df) +
+  aes(x = level, y = estimate) +
+  geom_point(size = 3, color = "#4E2A84") +
+  geom_linerange(aes(x = level,
+                     ymin = conf.low,
+                     ymax = conf.high),
+                 color = "#4E2A84",
+                 linewidth = 1) +
+  labs(x = "Confidence level",
+       y = "Proportion recall")
+```
+
 
 ## Summary
 
@@ -895,3 +928,299 @@ For which we need a large enough sample
 - We use confidence intervals to convey uncertainty around the sample mean
 
 - 95% confidence intervals are the convention in the social sciences
+
+
+
+::: {style="text-align: center"}
+## Inference {#thu .center}
+
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
+
+## Last time
+
+- We summarize data to conduct statistical inference
+
+- The mean is *usually* a good summary
+
+- We compute confidence intervals to *quantify uncertainty* around the mean
+
+. . . 
+
+**TODAY:** *Hypothesis testing* as an alternative approach
+
+## Example: [Fisher (1935)](https://mimno.infosci.cornell.edu/info3350/readings/fisher.pdf) Chapter 2
+
+![](fig/fisher_book.png){fig-align="center"}
+
+## The lady tasting tea
+
+. . . 
+
+*A lady declares that by tasting a cup of tea made with milk she can discriminate whether the milk or the tea infusion was first added to the cup*
+
+. . .
+
+&nbsp;
+
+::: {style="text-align: center"}
+How do you **evaluate** this statement?
+:::
+
+## An experiment
+
+::: incremental
+- Grab eight milk-tea cups
+
+- 4 milk first, 4 tea first
+
+- We arrange them in random order and ask lady to guess
+
+- Lady knows there are 4 of each, but not which ones
+:::
+
+## Results
+
+```{r}
+tea = tribble(
+  ~Lady, ~Tea, ~Milk,
+  "Tea", 3, 1,
+  "Milk", 1, 3
+)
+
+tea = tea %>% mutate(
+  Lady = ifelse(Lady == "Tea", 
+                "Tea First",
+                "Milk First"))
+
+colnames(tea) = c("Lady's Guesses", "Tea First", "Milk First")
+
+tea %>% 
+  kbl() %>% 
+  add_header_above(c(" " = 1, "True Order" = 2))
+```
+
+::: incremental
+- She gets it right $6/8$ times
+
+- What can we conclude?
+:::
+
+## Problem
+
+::: incremental
+- How does "being able to discriminate" look like?
+
+- We **do know** how a person *without* the ability to discriminate milk/tea order looks like
+
+- Random guessing!
+
+- This is our **null hypothesis** ($H_0$)
+
+- Which lets us make **probability statements** about how the world look like **if the null hypothesis was true** 
+:::
+
+## A person with no ability
+
+```{r}
+nulldist = tribble(
+  ~count, ~combinations, ~number,
+  0, "xxxx", "\\(1 \\times 1 = 1\\)",
+  1, "xxxo, xxox, xoxx, oxxx", "\\(4 \\times 4 = 16\\)", 
+  2, "xxoo, xoxo, xoox, oxox, ooxx, oxxo", "\\(6 \\times 6 = 36\\)",
+  3, "xooo, oxoo, ooxo, ooox", "\\(4 \\times 4 = 16\\)",
+  4, "oooo", "\\(1 \\times 1 = 1\\)"
+)
+
+colnames(nulldist) = c("Count", "Possible combinations", "Total")
+
+nulldist %>% 
+  kbl(escape = FALSE) %>% 
+  column_spec(3, color = "white")
+  
+```
+
+::: aside
+Ways of getting a number of tea-first cups right
+:::
+
+. . .
+
+- This is a symmetrical problem!
+
+## A person with no ability {visiblity="uncounted"}
+
+```{r}
+nulldist = tribble(
+  ~count, ~combinations, ~number,
+  0, "xxxx", "\\(1 \\times 1 = 1\\)",
+  1, "xxxo, xxox, xoxx, oxxx", "\\(4 \\times 4 = 16\\)", 
+  2, "xxoo, xoxo, xoox, oxox, ooxx, oxxo", "\\(6 \\times 6 = 36\\)",
+  3, "xooo, oxoo, ooxo, ooox", "\\(4 \\times 4 = 16\\)",
+  4, "oooo", "\\(1 \\times 1 = 1\\)"
+)
+
+colnames(nulldist) = c("Count", "Possible combinations", "Total")
+
+nulldist %>% 
+  kbl(escape = FALSE) %>% 
+  column_spec(3, color = "white")
+  
+```
+
+::: aside
+Ways of getting a number of milk-first cups right
+:::
+
+
+## A person with no ability {visiblity="uncounted"}
+
+```{r}
+nulldist %>% 
+  kbl(escape = FALSE)
+```
+
+. . .
+
+- A person guessing at random gets $6/8$ cups right with probability $\frac{16}{70} \approx 0.23$
+
+
+::: aside
+Ways of getting a number of tea-first **and** milk-first cups right
+:::
+
+## A person with no ability {visiblity="uncounted"}
+
+```{r}
+nulldist %>% 
+  kbl(escape = FALSE)
+```
+
+- And **at least** $6/8$ cups with $\frac{16 + 1}{70} \approx 0.24$
+
+
+::: aside
+Ways of getting a number of tea-first **and** milk-first cups right
+:::
+
+## Another way to look at it
+
+
+
+```{r}
+milk_tea = data.frame(
+  Count = 0:4,
+  Correct = c("0/8", "2/8", "4/8", "6/8", "8,8"),
+  Combinations = c("1/70", "16/70", "36/70", "16/70", "1/70"),
+  Probability = c(1/70, 16/70, 36/70, 16/70, 1/70)
+)
+
+milk_tea %>% tt(digits = 1)
+```
+
+. . .
+
+**Random guesser:** pick 0-4 right with corresponding probability
+
+. . .
+
+Simulate 1000 times to make a **probability distribution**
+
+---
+
+```{r}
+set.seed(20250116)
+
+sims = sample(milk_tea$Count, 
+              size = 1000,
+              replace = TRUE,
+              prob = milk_tea$Probability)
+
+sims_df = data.frame(sims) %>% 
+  group_by(sims) %>% 
+  tally() %>% 
+  mutate(signif = ifelse(sims >= 3, 1, 0),
+         correct = recode(sims,
+                          `0` = "0/8",
+                          `1` = "2/8",
+                          `2` = "4/8",
+                          `3` = "6/8",
+                          `4` = "8/8"))
+
+ggplot(sims_df) +
+  aes(x = correct, y = n) +
+  labs(
+    x = "Correct cups",
+    y = "Frequency"
+  )
+  geom_col(alpha = 0)
+```
+
+---
+
+[CONTINUE HERE EXPAND PLOT]
+
+
+
+
+
+## p-values
+
+::: incremental
+- If the lady is **not** able to discriminate milk-tea order, the probability of observing $6/8$ correct guesses or better is $0.24$
+
+- A **p-value** is the probability of observing a result *equal or more extreme* than what is originally observed...
+
+- ... *when* the **null hypothesis** is true
+
+- Smaller p-values give more evidence **against** the null
+
+- Implying observed value is *less likely to have emerged by chance*
+:::
+
+::: aside
+This is Fisher's interpetation of p-values, which is the most common. [Neyman and Pearson had different ideas](https://pmc.ncbi.nlm.nih.gov/articles/PMC4347431/)
+:::
+
+## Rules of thumb
+
+::: incremental
+
+- A convention in the social sciences is to claim that something with $p < 0.05$ is *statistically significant*
+
+- Meaning we have enough evidence 
+
+- Committing to a **significance level** $\alpha$ implies accepting that sometimes we will get $p < 0.05$ by chance
+
+- This is a **false positive** result
+
+::: aside
+No good reason for $\alpha = 0.05$ other than path dependency.
+:::
+
+:::
+
+## Types of error
+
+```{r}
+error_types = tribble(
+  ~Decision, ~`\\(H_0\\) true`, ~`\\(H_0\\) not true`,
+  "Don't reject \\(H_0\\)", "True negative", "False negative (type II error)",
+  "Reject \\(H_0\\)", "False positive (type I error)", "True positive"
+)
+
+
+
+error_types %>% 
+  kbl(escape = FALSE) %>% 
+  column_spec(1, bold = TRUE, border_right = TRUE) %>% 
+  column_spec(2:3, width = "8cm") %>% 
+  add_header_above(c(" ", "Unobserved reality" = 2))
+```
+
+
+
+
