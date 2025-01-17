@@ -52,6 +52,8 @@ Introduction to Empirical Methods in Political Science
 
 - Standard deviation vs. standard error
 
+- What is a p-value? How to interpret it?
+
 ::: aside
 **Reminder:** These are just suggestions, feel free to be creative with your prompts!
 :::
@@ -645,7 +647,11 @@ heights %>%
 heights %>% 
   rename(Height = `Height (inches)`) %>% 
   tt() %>%
-  style_tt(fontsize = 0.7)
+  style_tt(fontsize = 0.7) %>% 
+  style_tt(
+    i = c(1, 11),
+    color = "gray"
+  )
 ```
 
 :::
@@ -677,7 +683,11 @@ heights %>%
   rename(Height = `Height (inches)`) %>% 
   mutate(Percentile = seq(0, 100, by = 10)) %>% 
   tt() %>%
-  style_tt(fontsize = 0.7)
+  style_tt(fontsize = 0.7) %>% 
+  style_tt(
+    i = c(1, 11),
+    color = "gray"
+  )
 ```
 
 :::
