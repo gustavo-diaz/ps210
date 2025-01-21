@@ -1123,7 +1123,7 @@ Ways of getting a number of tea-first **and** milk-first cups right
 ```{r}
 milk_tea = data.frame(
   Count = 0:4,
-  Correct = c("0/8", "2/8", "4/8", "6/8", "8,8"),
+  Correct = c("0/8", "2/8", "4/8", "6/8", "8/8"),
   Combinations = c("1/70", "16/70", "36/70", "16/70", "1/70"),
   Probability = c(1/70, 16/70, 36/70, 16/70, 1/70)
 )
@@ -1238,7 +1238,9 @@ This is Fisher's interpetation of p-values, which is the most common. [Neyman an
 
 - A convention in the social sciences is to claim that something with $p < 0.05$ is *statistically significant*
 
-- Meaning we have enough evidence 
+- Meaning we have "enough" evidence to reject the null 
+
+- This is known as **Null Hypothesis Significance Testing** (NHST)
 
 - Committing to a **significance level** $\alpha$ implies accepting that sometimes we will get $p < 0.05$ by chance
 
