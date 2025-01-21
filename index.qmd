@@ -7,16 +7,16 @@ format: html
 
 [Week 2: Theory and Data](slides/week2.html)
 
-Week 3: Inference
+[Week 3: Inference](slides/week3.html)
 
-Week 4: Surveys
+[Week 4: Surveys](slides/week4.html)
 
-Week 5: Experiments
+[Week 5: Experiments](slides/week5.html)
 
-Week 6: Large N
+[Week 6: Large N](slides/week6.html)
 
-Week 7: Quasi-Experiments
+[Week 7: Quasi-Experiments](slides/week7.html)
 
-Week 8: Small N
+[Week 8: Small N](slides/week8.html)
 
-Week 9: Machine Learning
+[Week 9: Machine Learning](slides/week9.html)
