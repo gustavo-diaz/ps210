@@ -1,0 +1,175 @@
+---
+format:
+    revealjs:
+      slide-number: false
+      progress: false
+      chalkboard: true
+      code-overflow: wrap
+      theme: [default, custom.scss]
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+
+opts_chunk$set(echo = FALSE, 
+               message = FALSE, 
+               warning = FALSE,
+               out.width = "100%")
+
+library(tidyverse)
+library(tinytable)
+library(kableExtra)
+library(DeclareDesign)
+# library(infer)
+library(tidyr)
+library(broom)
+# library(gganimate)
+# remotes::install_github("kjhealy/gssr")
+library(gssr)
+
+# ggplot global options
+theme_set(theme_gray(base_size = 20))
+```
+
+
+
+::: {style="text-align: center"}
+## Surveys {.center}
+
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
+
+
+## AI Prompts {background-color="#B6ACD1"}
+
+TBD
+
+::: aside
+**Reminder:** These are just suggestions, feel free to be creative with your prompts!
+:::
+
+
+## Last week
+
+Ingredients for **statistical inference**
+
+- Data summary (point estimate, test statistic)
+
+- Uncertainty quantification (confidence intervals, p-values)
+
+- **Keep in mind:** Statistical properties that enable inference (finite sample, asymptotic)
+
+## This week: Surveys
+
+**Survey research:** Study of public opinion
+
+. . .
+
+Not really a *method* more of a *data collection tool*
+
+. . .
+
+**Tuesday:** Sampling
+
+::: incremental
+1. Why random sampling?
+
+2. Sources of error
+:::
+
+. . .
+
+**Thursday:** Survey design
+
+::: incremental
+1. Asking good questions
+
+2. Asking sensitive questions
+:::
+
+---
+
+![](fig/public_opinion.png){fig-align="center"}
+
+::: aside
+[vocabulary.com/dictionary/public%20opinion](https://www.vocabulary.com/dictionary/public%20opinion)
+:::
+
+## Public opinion
+
+::: incremental
+- The study of *self-reported* **attitudes** and **behaviors**
+
+- **Self-report:** What people *say*
+
+- **Attitude:** What people *think* or *feel*
+
+- **Behavior:** What people *do*
+
+- Primarily among the *general public*
+
+- Increasingly on specific *target populations*
+:::
+
+. . .
+
+ **Goal:** Mapping **self-reports** to **actual** attitudes and behaviors
+
+::: {style="text-align: center"}
+## Open question {.center}
+
+. . .
+
+Should political scientist care about **attitudes** on their own?
+
+. . .
+
+Do we only care about **behaviors**?
+
+:::
+
+## Challenge
+
+. . .
+
+There is a gap between *self-reports* and *actual* attitudes/behaviors
+
+. . . 
+
+Two things get in the way:
+
+::: incremental
+
+1. Asking the right people
+
+2. Asking the right questions
+
+:::
+
+## Challenge
+
+
+
+There is a gap between *self-reports* and *actual* attitudes/behaviors
+
+
+
+Two things get in the way:
+
+
+1. **Asking the right people**
+
+2. Asking the right questions
+
+::: {style="text-align: center"}
+## Surveys {#thu .center}
+
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
+
