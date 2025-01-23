@@ -1133,7 +1133,7 @@ milk_tea %>% tt(digits = 1)
 
 . . .
 
-**Random guesser:** pick 0-4 right with corresponding probability
+**Random guesser:** pick 0-8 right with corresponding probability
 
 . . .
 
@@ -1211,7 +1211,7 @@ ggplot(sims_df) +
 
 . . .
 
-Random guesser gets *at least* 6/8 $\frac{(199+12)}{1000} \approx 0.21$
+Random guesser gets *at least* 6/8 cups right $\frac{(199+12)}{1000} \approx 0.21$ of the time
 
 
 ## p-values
@@ -1230,6 +1230,43 @@ Random guesser gets *at least* 6/8 $\frac{(199+12)}{1000} \approx 0.21$
 
 ::: aside
 This is Fisher's interpetation of p-values, which is the most common. [Neyman and Pearson had different ideas](https://pmc.ncbi.nlm.nih.gov/articles/PMC4347431/)
+:::
+
+## Another way to say it
+
+. . .
+
+A **probability statement**
+
+## Another way to say it
+
+A **probability statement** of **how rare our observed _test statistic_** is 
+
+## Another way to say it
+
+A **probability statement** of **how rare our observed _test statistic_** is if the **null hypothesis were to be true**
+
+. . .
+
+Smaller p-value $\rightarrow$ $H_0$ less credible
+
+. . .
+
+But we never say anything about the **hypothesis** we actually want to evaluate!
+
+## Another way to say it
+
+A **probability statement** of **how rare our observed _test statistic_** is if the **null hypothesis were to be true**
+
+
+
+Smaller p-value $\rightarrow$ $H_0$ less credible
+
+
+But we never say anything about the **hypothesis** we actually want to evaluate!
+
+::: aside
+The informal usage in political science articles of listing $H_1, H_2, H_3, \ldots$ is different.
 :::
 
 ## Rules of thumb
