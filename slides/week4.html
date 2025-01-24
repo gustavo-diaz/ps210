@@ -7,7 +7,9 @@
 <link href="week4_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="week4_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="week4_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="week4_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="week4_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="week4_files/libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="week4_files/libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.57">
 
   <title>week4</title>
@@ -352,7 +354,7 @@
 <h2>This week: Surveys</h2>
 <p><strong>Survey research:</strong> Study of public opinion</p>
 <div class="fragment">
-<p>Not really a <em>method</em> more of a <em>data collection tool</em></p>
+<p>Not really a <em>method</em>, more of a <em>data collection tool</em></p>
 </div>
 <div class="fragment">
 <p><strong>Tuesday:</strong> Sampling</p>
@@ -409,16 +411,223 @@
 <p>Do we only care about <strong>behaviors</strong>?</p>
 </div>
 </section>
+<section id="challenge" class="slide level2">
+<h2>Challenge</h2>
+<div class="fragment">
+<p>There is a gap between <em>self-reports</em> and <em>actual</em> attitudes/behaviors</p>
+</div>
+<div class="fragment">
+<p>Two things get in the way:</p>
+<div>
+<ol type="1">
+<li class="fragment"><p>Asking the right people</p></li>
+<li class="fragment"><p>Asking the right questions</p></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="challenge-1" class="slide level2">
+<h2>Challenge</h2>
+<p>There is a gap between <em>self-reports</em> and <em>actual</em> attitudes/behaviors</p>
+<p>Two things get in the way:</p>
+<ol type="1">
+<li><p><strong>Asking the right people</strong></p></li>
+<li><p>Asking the right questions</p></li>
+</ol>
+</section>
+<section id="key-sampling-decisions" class="slide level2">
+<h2>Key sampling decisions</h2>
+<div>
+<ol type="1">
+<li class="fragment"><p>Mode</p></li>
+<li class="fragment"><p>Sampling frame</p></li>
+<li class="fragment"><p>Sample size</p></li>
+<li class="fragment"><p>Sampling procedure</p></li>
+<li class="fragment"><p>Oversampling</p></li>
+</ol>
+</div>
+</section>
+<section id="key-sampling-decisions-1" class="slide level2">
+<h2>Key sampling decisions</h2>
+<ol type="1">
+<li><p><strong>Mode</strong></p></li>
+<li><p><strong>Sampling frame</strong></p></li>
+<li><p><del>Sample size</del></p></li>
+<li><p><strong>Sampling procedure</strong></p></li>
+<li><p><del>Oversampling</del></p></li>
+</ol>
+</section>
+<section id="survey-mode" class="slide level2">
+<h2>Survey mode</h2>
+<div>
+<ul>
+<li class="fragment"><p><strong>Face-to-face:</strong> Oldest, most common method in US national and cross-national surveys</p></li>
+<li class="fragment"><p><strong>Laboratory:</strong> Few people, more intricate tasks</p></li>
+<li class="fragment"><p><strong>Phone:</strong> Groundbreaking at the time, but less reliable nowadays</p></li>
+<li class="fragment"><p><strong>Internet:</strong> Online panels (<a href="https://www.cloudresearch.com/products/connect-for-researchers/">CloudResearch Connect</a>, <a href="https://www.mturk.com">Mturk</a>, <a href="https://www.prolific.com/researchers">Prolific</a>), social media ads, message app chains</p></li>
+</ul>
+</div>
+<div class="fragment">
+<p>National representative surveys usually combine many modes</p>
+</div>
+</section>
+<section class="slide level2">
+
+<p><strong>ANES evaluation of survey modes</strong></p>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="fig/ANES_mode.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+</figure>
+</div>
+
+</div>
+<aside><div>
+<p><strong>Source:</strong> Hillygus et al (2017). <a href="https://electionstudies.org/wp-content/uploads/2021/08/anes_board_2017_mode_report.pdf">“Assessing the Implications of a Mode Change.”</a></p>
+</div></aside></section>
+<section id="sampling-frame" class="slide level2">
+<h2>Sampling frame</h2>
+<div class="fragment">
+<p>List of all the elements within the population <em>from which a sample is selected</em></p>
+</div>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><img data-src="fig/sampling_frame.png"></p>
+</div><div class="column" style="width:60%;">
+<div>
+<ul>
+<li class="fragment"><p><em>Common sampling frames:</em> Phone books, electoral rolls, employee databases, household directories</p></li>
+<li class="fragment"><p><em>Ideal case:</em> <a href="https://ncrr.au.dk/danish-registers/the-danish-civil-registration-system-cpr">Danish Civil Registry</a></p></li>
+<li class="fragment"><p><em><i class="fa-solid fa-fire" aria-label="fire"></i> take:</em> We neve <em>really</em> know what the <em>target population</em> is</p></li>
+</ul>
+</div>
+</div></div>
+</div>
+</section>
+<section id="sampling-procedure" class="slide level2">
+<h2>Sampling procedure</h2>
+<div class="fragment">
+<p><strong><em>Ideal case</em>: Random sampling</strong></p>
+</div>
+<div class="fragment">
+<p><strong>Simple random sampling:</strong> All units have the same inclusion probability (<span class="math inline">\(\approx\)</span> flipping a coin for each)</p>
+</div>
+<div class="fragment">
+<p><strong>Complete random sampling:</strong> <em>Exactly</em> <span class="math inline">\(n\)</span> out of <span class="math inline">\(N\)</span> units are selected at random (<span class="math inline">\(\approx\)</span> arrange in random order and then survey the first <span class="math inline">\(n\)</span>)</p>
+</div>
+<div class="fragment">
+<p>&nbsp;</p>
+<div class="r-stack">
+<p>How are these different?</p>
+</div>
+</div>
+</section>
+<section id="why-is-random-sampling-important" class="slide level2">
+<h2>Why is random sampling important?</h2>
+<div class="fragment">
+<p><strong>Informally:</strong> So that our sample is (in expectation) <em>representative</em> of the target population</p>
+</div>
+<div class="fragment">
+<p><strong>Formally:</strong> To justify statistical inference via CLT</p>
+</div>
+<div class="fragment">
+<p>We need to assume that the observations in our sample are drawn from…</p>
+</div>
+<div class="fragment">
+<div class="r-stack">
+<p><strong>I</strong>ndependent</p>
+</div>
+</div>
+</section>
+<section id="why-is-random-sampling-important-1" class="slide level2">
+<h2>Why is random sampling important?</h2>
+<p><strong>Informally:</strong> So that our sample is (in expectation) <em>representative</em> of the target population</p>
+<p><strong>Formally:</strong> To justify statistical inference via CLT</p>
+<p>We need to assume that the observations in our sample are drawn from…</p>
+<div class="r-stack">
+<p><strong>I</strong>ndependent and <strong>I</strong>dentically</p>
+</div>
+</section>
+<section id="why-is-random-sampling-important-2" class="slide level2">
+<h2>Why is random sampling important?</h2>
+<p><strong>Informally:</strong> So that our sample is (in expectation) <em>representative</em> of the target population</p>
+<p><strong>Formally:</strong> To justify statistical inference via CLT</p>
+<p>We need to assume that the observations in our sample are drawn from…</p>
+<div class="r-stack">
+<p><strong>I</strong>ndependent and <strong>I</strong>dentically <strong>D</strong>istributed</p>
+</div>
+<div class="fragment">
+<p>… data generation processes</p>
+</div>
+<div class="fragment">
+<p>This is known as the <strong>i.i.d assumption</strong></p>
+</div>
+</section>
+<section id="i.i.d.-implications" class="slide level2">
+<h2>i.i.d. implications</h2>
+<div class="fragment">
+<p>Each survey respondent has an internal, unobservable <strong>function</strong> that draws different survey responses with some probability</p>
+</div>
+<div class="fragment">
+<p><strong>Independent:</strong> How <em>I</em> come up with answers does not affect how <em>you</em> come up with answers</p>
+</div>
+<div class="fragment">
+<p><strong>Identically distributed:</strong> ::: incremental - Do not know how responses are drawn</p>
+<ul>
+<li>Assume is the same process for everyone :::</li>
+</ul>
+
+</div>
+<aside><div>
+<p>We call these <em>unobservable functions</em> <a href="https://en.wikipedia.org/wiki/Random_variable">random variables</a></p>
+</div></aside></section>
+<section id="i.i.d.-implications-1" class="slide level2">
+<h2>i.i.d. implications</h2>
+<p>This is equivalent to assuming that individual units are sampled at random <strong>with replacement</strong></p>
+</section>
+<section class="slide level2">
+
+
+<img data-src="fig/sampling_replacement.webp" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="i.i.d.-implications-2" class="slide level2">
+<h2>i.i.d. implications</h2>
+<p>This is equivalent to assuming that individual units are sampled at random <strong>with replacement</strong></p>
+<div class="fragment">
+<p>But we can only do random sampling <em>without replacement</em></p>
+</div>
+<div class="fragment">
+<p><span class="math inline">\(\rightarrow\)</span> A decent approximation if sample size is large enough</p>
+</div>
+<div class="fragment">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Random sampling</strong> allows to justify the <strong>i.i.d. assumption</strong>, which in turn lets us use the standard formula for <strong>confidence intervals</strong> and <strong>p-values</strong>.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="thu" class="slide level2 center" style="text-align: center">
 <h2>Surveys</h2>
 <h3 id="poli-sci-210-1">POLI SCI 210</h3>
 <p>Introduction to Empirical Methods in Political Science</p>
 </section>
+<section id="continue-here-random-sampling-is-expensive" class="slide level2">
+<h2>[CONTINUE HERE RANDOM SAMPLING IS EXPENSIVE]</h2>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
+</section>
     </div>
   </div>
 

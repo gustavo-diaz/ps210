@@ -68,7 +68,7 @@ Ingredients for **statistical inference**
 
 . . .
 
-Not really a *method* more of a *data collection tool*
+Not really a *method*, more of a *data collection tool*
 
 . . .
 
@@ -164,6 +164,226 @@ Two things get in the way:
 
 2. Asking the right questions
 
+## Key sampling decisions
+
+::: incremental
+1. Mode
+
+2. Sampling frame
+
+3. Sample size
+
+4. Sampling procedure
+
+5. Oversampling
+:::
+
+## Key sampling decisions
+
+
+1. **Mode**
+
+2. **Sampling frame**
+
+3. ~~Sample size~~
+
+4. **Sampling procedure**
+
+5. ~~Oversampling~~
+
+
+## Survey mode
+
+::: incremental
+- **Face-to-face:** Oldest, most common method in US national and cross-national surveys
+
+- **Laboratory:** Few people, more intricate tasks
+
+- **Phone:** Groundbreaking at the time, but less reliable nowadays
+
+- **Internet:** Online panels ([CloudResearch Connect](https://www.cloudresearch.com/products/connect-for-researchers/), [Mturk](https://www.mturk.com), [Prolific](https://www.prolific.com/researchers)), social media ads, message app chains
+:::
+
+. . .
+
+National representative surveys usually combine many modes
+
+---
+
+**ANES evaluation of survey modes**
+
+. . .
+
+![](fig/ANES_mode.png){fig-align="center" width="60%"}
+
+::: aside
+**Source:** Hillygus et al (2017). ["Assessing the Implications of a Mode Change."](https://electionstudies.org/wp-content/uploads/2021/08/anes_board_2017_mode_report.pdf)
+:::
+
+
+## Sampling frame
+
+. . .
+
+List of all the elements within the population *from which a sample is selected*
+
+. . .
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+![](fig/sampling_frame.png)
+:::
+
+::: {.column width="60%"}
+
+::: incremental
+
+- *Common sampling frames:* Phone books, electoral rolls, employee databases, household directories
+
+- *Ideal case:* [Danish Civil Registry](https://ncrr.au.dk/danish-registers/the-danish-civil-registration-system-cpr)
+
+- *{{< fa fire >}} take:* We neve *really* know what the *target population* is
+:::
+
+:::
+
+::::
+
+## Sampling procedure
+
+. . .
+
+**_Ideal case_: Random sampling**
+
+. . .
+
+**Simple random sampling:** All units have the same inclusion probability ($\approx$ flipping a coin for each)
+
+. . .
+
+**Complete random sampling:**  *Exactly* $n$ out of $N$ units are selected at random ($\approx$ arrange in random order and then survey the first $n$)
+
+. . .
+
+&nbsp;
+
+::: {.r-stack}
+How are these different?
+:::
+
+## Why is random sampling important?
+
+. . .
+
+**Informally:** So that our sample is (in expectation) *representative* of the target population
+
+. . . 
+
+**Formally:** To justify statistical inference via CLT
+
+. . .
+
+We need to assume that the observations in our sample are drawn from...
+
+. . . 
+
+::: {.r-stack}
+**I**ndependent
+:::
+
+## Why is random sampling important?
+
+
+
+**Informally:** So that our sample is (in expectation) *representative* of the target population
+
+
+
+**Formally:** To justify statistical inference via CLT
+
+We need to assume that the observations in our sample are drawn from...
+
+::: {.r-stack}
+**I**ndependent and **I**dentically
+:::
+
+## Why is random sampling important?
+
+
+
+**Informally:** So that our sample is (in expectation) *representative* of the target population
+
+
+
+**Formally:** To justify statistical inference via CLT
+
+We need to assume that the observations in our sample are drawn from...
+
+::: {.r-stack}
+**I**ndependent and **I**dentically **D**istributed 
+:::
+
+. . .
+
+... data generation processes
+
+. . .
+
+This is known as the **i.i.d assumption**
+
+## i.i.d. implications
+
+. . . 
+
+Each survey respondent has an internal, unobservable **function** that draws different survey responses with some probability
+
+. . .
+
+**Independent:** How *I* come up with answers does not affect how *you* come up with answers
+
+. . .
+
+**Identically distributed:** 
+::: incremental
+- Do not know how responses are drawn
+
+- Assume is the same process for everyone
+:::
+
+::: aside
+We call these *unobservable functions* [random variables](https://en.wikipedia.org/wiki/Random_variable)
+:::
+
+
+## i.i.d. implications
+
+This is equivalent to assuming that individual units are sampled at random **with replacement** 
+
+---
+
+![](fig/sampling_replacement.webp){fig-align="center"}
+
+## i.i.d. implications
+
+This is equivalent to assuming that individual units are sampled at random **with replacement** 
+
+. . .
+
+But we can only do random sampling *without replacement*
+
+. . .
+
+$\rightarrow$ A decent approximation if sample size is large enough
+
+. . . 
+
+::: {.callout-important}
+
+**Random sampling** allows to justify the **i.i.d. assumption**, which in turn lets us use the standard formula for **confidence intervals** and **p-values**.
+:::
+
 ::: {style="text-align: center"}
 ## Surveys {#thu .center}
 
@@ -172,4 +392,6 @@ Two things get in the way:
 Introduction to Empirical Methods in Political Science
 
 :::
+
+## [CONTINUE HERE RANDOM SAMPLING IS EXPENSIVE]
 
