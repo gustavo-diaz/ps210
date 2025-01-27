@@ -23,12 +23,17 @@ library(DeclareDesign)
 # library(infer)
 library(tidyr)
 library(broom)
+library(future)
+library(future.apply)
 # library(gganimate)
 # remotes::install_github("kjhealy/gssr")
 library(gssr)
 
 # ggplot global options
 theme_set(theme_gray(base_size = 20))
+
+# future global options
+options(future.globals.maxSize= 891289600)
 ```
 
 
@@ -45,11 +50,20 @@ Introduction to Empirical Methods in Political Science
 
 ## AI Prompts {background-color="#B6ACD1"}
 
-TBD
+- *Sampling*: Mode, frame, size, procedure, oversampling
 
-::: aside
-**Reminder:** These are just suggestions, feel free to be creative with your prompts!
-:::
+- Independent, identically distributed (i.i.d. assumption in statistics)
+
+- Total survey error framework
+
+- How to ask *good* survey questions?
+
+- What *happens* if people lie in surveys?
+
+- What *to do* if people lie in surveys?
+
+- *Indirect questioning techniques:* Randomized response, list experiment, others not mentioned in lecture
+
 
 
 ## Last week
@@ -82,7 +96,7 @@ Not really a *method*, more of a *data collection tool*
 
 . . .
 
-**Thursday:** Survey design
+[**Thursday:**](#thu) Survey design
 
 ::: incremental
 1. Asking good questions
@@ -346,6 +360,7 @@ Each survey respondent has an internal, unobservable **function** that draws dif
 . . .
 
 **Identically distributed:** 
+
 ::: incremental
 - Do not know how responses are drawn
 
@@ -381,8 +396,192 @@ $\rightarrow$ A decent approximation if sample size is large enough
 
 ::: {.callout-important}
 
-**Random sampling** allows to justify the **i.i.d. assumption**, which in turn lets us use the standard formula for **confidence intervals** and **p-values**.
+**Random sampling** lets us justify the **i.i.d. assumption**, which in turn allows using the standard formula for **confidence intervals** and **p-values**.
 :::
+
+::: {style="text-align: center"}
+## Problems with random sampling? {.center}
+
+. . .
+
+It's expensive and can go wrong!
+
+:::
+
+## Back to GSS data
+
+```{r, cache = TRUE}
+gss22 = gss_get_yr(2022)
+
+# gss22 %>% select(sexnow1). 1 male, 2 women, only 14 trans
+# gss22 %>% select(hispanic). 1 not, else some category
+# gss22 %>% select(degree). 1 HS, 2 or more some post-sec
+
+# Question: 
+# Do you remember for sure whether or not you voted in the last election?
+gss = gss22 %>% 
+  select(vote20, sexnow1, hispanic, degree) %>% 
+  mutate(vote = ifelse(vote20 == 1, "yes", "no"),
+         sex = case_when(
+           sexnow1 == 1 ~ "man",
+           sexnow1 == 2 ~ "woman", 
+           .default = NA 
+         ),
+         hispanic = ifelse(hispanic == 1, "no", "yes"),
+         college = ifelse(degree <= 1, "no", "yes")) %>% 
+  drop_na() %>% 
+  select(vote, sex, hispanic, college)
+```
+
+```{r}
+gss %>% print(n = 5000)
+```
+
+. . .
+
+$\rightarrow$ Take this as a population and compare different sampling procedures
+
+## 500 simulations
+
+```{r}
+simple = 
+  declare_model(data = gss) +
+  declare_measurement(Y = vote == "yes") +
+  declare_inquiry(Y_bar = mean(Y)) +
+  declare_sampling(S = simple_rs(N, prob = 0.025)) +
+  declare_estimator(Y ~ 1, inquiry = "Y_bar")
+
+complete =
+  declare_model(data = gss) +
+  declare_measurement(Y = vote == "yes") +
+  declare_inquiry(Y_bar = mean(Y)) +
+  declare_sampling(S = complete_rs(N, n = 100)) +
+  declare_estimator(Y ~ 1, inquiry = "Y_bar")
+```
+
+
+```{r, cache = TRUE}
+simp_df = simulate_design(simple)
+comp_df = simulate_design(complete) 
+```
+
+
+```{r}
+rand0 = bind_rows(
+  simp_df %>% 
+    mutate(design = "Simple randomization (p = 0.025)"),
+  comp_df %>% 
+    mutate(design = "Complete randomization (n = 100)"))
+
+rand0$design = fct_rev(rand0$design)
+
+ggplot(rand0) +
+  aes(x = estimate) +
+  geom_vline(xintercept = 0.74, linetype = "dashed") +
+  geom_density(linewidth = 2, color = "#4E2A84") +
+  facet_grid(~design) +
+  labs(
+    x = "Proportion who remember voting",
+    y = "Density"
+  )
+```
+
+
+
+## Variants of random sampling
+
+::: incremental
+- **Stratified random sampling:** Complete random simpling within groups/strata
+
+- **Cluster random sampling:** Whole groups brought into sample together
+
+- **Stratified cluster sampling:** First make groups, then sample clusters within each groups
+
+- **Multi-stage random sampling:** First clusters, then units within clusters
+:::
+
+---
+
+![](fig/sampling_types.png){fig-align="center"}
+
+## What changes?
+
+```{r}
+strat = 
+  declare_model(data = gss) +
+  declare_measurement(Y = vote == "yes") +
+  declare_inquiry(Y_bar = mean(Y)) +
+  declare_sampling(S = strata_rs(strata = sex, n = 50)) +
+  declare_estimator(Y ~ 1, inquiry = "Y_bar")
+```
+
+```{r, cache = TRUE}
+set.seed(20250127)
+strat_df = simulate_design(strat, future.seed = FALSE)
+```
+
+
+```{r}
+rand1 = bind_rows(
+  strat_df %>% 
+    mutate(design = "Stratified (50/50 by sex)"),
+  comp_df %>% 
+    mutate(design = "Complete (n = 100)"))
+```
+
+```{r}
+ggplot(rand1) +
+  aes(x = estimate) +
+  geom_vline(xintercept = 0.74, linetype = "dashed") +
+  geom_density(linewidth = 2, color = "#4E2A84") +
+  facet_grid(~design) +
+  labs(
+    x = "Proportion who remember voting",
+    y = "Density"
+  )
+```
+
+. . .
+
+$\rightarrow$ Less likely to get unlucky!
+
+## Non-random sampling
+
+::: incremental
+- **Convenience sampling:** Easy, inexpensive access
+
+- **Quota sampling:** Search until target group count is met
+
+- **Respondent-driven:** Ask respondents for contacts
+:::
+
+. . .
+
+![](fig/nonrandom_sampling.png){fig-align="center" width="80%"}
+
+# Sources of error
+
+## Return to measurement error
+
+![](fig/board.png)
+
+. . .
+
+ Many different forms of measurement error!
+
+## Total survey error framework
+
+![](fig/total_survey_error.png){fig-align="center"}
+
+## Summary
+
+- We conduct surveys to understand attitudes and behaviors
+
+- Gap between *self-reports* and *actual* attitudes behaviors opens the door for measurement error
+
+- Many sources of error (Mode, frame, procedure)
+
+- *Random sampling* important assumption to enable statistical inference
 
 ::: {style="text-align: center"}
 ## Surveys {#thu .center}
@@ -393,5 +592,575 @@ Introduction to Empirical Methods in Political Science
 
 :::
 
-## [CONTINUE HERE RANDOM SAMPLING IS EXPENSIVE]
+## Last time
 
+- Gap between *self-reports* and *actual* attitudes/behaviors opens the door for measurement error
+
+- **Tuesday:** Sample design concerns
+
+- **Today:** Questionnaire design concerns
+
+. . .
+
+1. Asking good questions
+
+2. Asking sensitive questions
+
+
+## Practice
+
+![](fig/tv_watching.png){fig-align="center"}
+
+::: aside
+**Source:** Schwarz, Norbert. 1999. ["Self-reports: How the questions shape the answers."](https://dornsife.usc.edu/norbert-schwarz/wp-content/uploads/sites/231/2023/11/99_ap_schwarz_self-reports.pdf) *American Psychologist* 54 (2): 97
+:::
+
+## More practice
+
+. . . 
+
+Q: *What is the most important thing to teach children to prepare them for life?*
+
+. . . 
+
+A: **To think for themselves**
+
+. . .
+
+- 61.5% multiple choice
+- 4.6% open-ended
+
+
+## What makes a good survey question?
+
+. . . 
+
+No definitive answer!
+
+. . . 
+
+- We want some validity and reliability, but those are hard to gauge
+
+. . . 
+
+- Consistency over time is good
+
+. . .
+
+Here are some vague principles
+
+## Literal vs. pragmatic meaning
+
+. . .
+
+What the words mean vs. what we think the question is asking
+
+. . .
+
+Follow the *maxims of conversation*:
+
+::: incremental
+1. **Maxim of relation:** Answers are relevant *relative* to context
+
+2. **Maxim of quantity:** Answer are informative, but no more informative than required
+
+3. **Maxim of manner:** Most obvious meaning should be the correct one
+
+4. **Maxim of quality:** Not to say anything false or inaccurate
+:::
+
+. . .
+
+Try to approximate everyday language!
+
+## Open-ended vs. closed response
+
+. . .
+
+Q: *What have you done today?*
+
+. . . 
+
+What to say if **open-ended**:
+
+::: incremental
+- I went to class
+
+- I took a shower
+
+- I read the newspaper
+
+- I wrote to my representative
+:::
+
+## Open-ended vs. closed response
+
+
+
+Q: *What have you done today?*
+
+
+What to say if **multiple choice**:
+
+- I went to class
+
+- I took a shower
+
+- I read the newspaper
+
+- I wrote to my representative
+
+
+## Frequency scales
+
+Q: *How frequently have you felt really irritated?*
+
+. . .
+
+What does *really irritated* mean?
+
+. . .
+
+Maybe look at the options:
+
+. . .
+
+- Less than once a year
+
+- About twice per year
+
+- Every other month
+
+- About once a month
+
+- More than once a month
+
+
+
+## Reference periods
+
+. . .
+
+Q: _How many times have you felt really irritated **this year**_
+
+. . .
+
+::: {.r-stack}
+vs.
+:::
+
+. . .
+
+Q: _How many times have you felt really irritated **last week?**_
+
+. . .
+
+&nbsp;
+
+::: {.r-stack}
+Reference periods also convey meaning!
+:::
+
+
+## Rating scales
+
+. . .
+
+Q: *How successful would you say you have been in life?*
+
+. . .
+
+**Scale 1**
+
+0 (Not at all successful) - 10 (extremely successful)
+
+. . .
+
+**Scale 2**
+
+-5 (Not at all successful) - 5 (extremely succesful)
+
+## Rating scales
+
+
+Q: *How successful would you say you have been in life?*
+
+**Scale 1** (13% between 0 and 5)
+
+0 (Not at all successful) - 10 (extremely successful)
+
+
+**Scale 2** (34% between -5 and 0)
+
+-5 (Not at all successful) - 5 (extremely succesful)
+
+&nbsp;
+
+
+::: incremental
+- 0 at the beginning is a *minimum*
+
+- 0 in the middle is a *baseline*
+:::
+
+## Demand effects
+
+. . .
+
+**Preamble 1**
+
+. . .
+
+*You will now be asked to consider some hypothetical (not real) online news items and to indicate which news item you would most prefer to read*
+
+::: aside
+Adapted from [Mummolo and Peterson (2019)](https://doi.org/10.1017/S0003055418000837)
+:::
+
+
+## Demand effects
+
+**Preamble 2**
+
+_You will now be asked to consider some hypothetical (not real) online news items and to indicate which news item you would most prefer to read. **The purpose of this exercise is so we can measure whether the news outlet offering an article influences how likely people are to read the article**_
+
+::: aside
+Adapted from [Mummolo and Peterson (2019)](https://doi.org/10.1017/S0003055418000837)
+:::
+
+## Demand effects
+
+**Preamble 3**
+
+_You will now be asked to consider some hypothetical (not real) online news items and to indicate which news item you would most prefer to read. **The purpose of this exercise is so we can measure whether the news outlet offering an article influences how likely people are to read the article.** [We expect that people will be more likely to choose an article if the news source offering it is known to favor their preferred political party, since people tend to seek out information that is consistent with their personal views]{style="color: #4E2A84;"}_
+
+::: aside
+Adapted from [Mummolo and Peterson (2019)](https://doi.org/10.1017/S0003055418000837)
+:::
+
+## Demand effects
+
+- Respondents' tendency to try use *context* clues to find the *"right" answer*
+
+. . .
+
+Small bits convey **researcher's epistemic interest**
+
+::: incremental
+- Affiliation
+
+- Description of study
+
+- Question-wording
+:::
+
+## Priming effects
+
+![](fig/lasorsa.png){fig-align="center" width="70%"}
+
+::: aside
+Lasorsa, Dominic L. 2003. ["Question-Order Effects in Surveys: The Case of Political Interest, News Attention, and Knowledge."](https://doi.org/10.1177/107769900308000302) *Journalism & Mass Communication Quarterly* 80 (3): 499-512
+:::
+
+## Priming effects
+
+. . .
+
+**Three question groups**
+
+. . .
+
+1. Political interest (How often follow govt news)
+
+2. Political knowledge (Texas politics)
+
+3. News coverage evaluation (Excuse knowledge gaps)
+
+. . .
+
+Shuffle order, and compare frequency for each combination
+
+## Priming effects
+
+![](fig/lasorsa_findings.png){fig-align="center"}
+
+## Priming effects
+
+Questions are affected by their **placement in the survey flow**
+
+. . .
+
+Preceding questions may influence how respondents interpret current question
+
+::: {style="text-align: center"}
+## What if... {.center}
+
+. . .
+
+The problem is *not* how to craft questions
+
+
+. . .
+
+But the questions *themselves*?
+
+:::
+
+
+
+## Some examples
+
+::: incremental
+- Have you lied about having COVID symptoms?
+
+- Would you bribe a police officer to avoid a traffic ticket?
+
+- Have you had sex after drinking alcohol?
+
+- Have you been offered goods or favors for your vote?
+
+- Do you know anyone with links to a militant organization?
+
+- Would you oppose a black family moving next door?
+
+- Would you allow muslim immigrants to become citizens?
+
+:::
+
+## What do these have in common?
+
+::: incremental
+- They are **sensitive questions**
+
+- We can only learn about them through surveys
+
+- Asking about them directly leads to **misreporting**
+
+- This kind of *measurement error is called* **social desirability bias** or **sensitivity bias**
+:::
+
+## How to reduce sensitivity bias?
+
+::: incremental
+
+- Purposefully deviate from *maxims of conversation*
+
+- By adding noise to the question
+
+- Two approaches:
+
+1. Distract from the sensitive attitude/behavior
+
+2. Guarantee anonymity
+
+- Different techniques vary on how they combine the two
+
+- Broadly known as **indirect questioning techniques**
+:::
+
+## Randomized response
+
+For this question, I want you to answer *yes* or *no*.
+
+## Randomized response {visibility="uncounted"}
+
+For this question, I want you to answer *yes* or *no*. But I want you to consider the number of your dice throw.
+
+## Randomized response {visibility="uncounted"}
+
+For this question, I want you to answer *yes* or *no*. But I want you to consider the number of your dice throw. If {{< fa dice-one >}} shows on the dice, tell me *no*.
+
+## Randomized response {visibility="uncounted"}
+
+For this question, I want you to answer *yes* or *no*. But I want you to consider the number of your dice throw. If {{< fa dice-one >}} shows on the dice, tell me *no*. If {{< fa dice-six >}} shows, tell me *yes*.
+
+## Randomized response {visibility="uncounted"}
+
+For this question, I want you to answer *yes* or *no*. But I want you to consider the number of your dice throw. If {{< fa dice-one >}} shows on the dice, tell me *no*. If {{< fa dice-six >}} shows, tell me *yes*. But if another number shows, tell me your own opinion about the question.
+
+. . .
+
+&nbsp;
+
+[TURN AWAY FROM RESPONDENT]
+
+. . .
+
+&nbsp;
+
+Now you throw the dice so that I cannot see what comes out.
+
+## Randomized response {visibility="uncounted"}
+
+For this question, I want you to answer *yes* or *no*. But I want you to consider the number of your dice throw. If {{< fa dice-one >}} shows on the dice, tell me *no*. If {{< fa dice-six >}} shows, tell me *yes*. But if another number shows, tell me your own opinion about the question.
+
+&nbsp;
+
+[TURN AWAY FROM RESPONDENT]
+
+&nbsp;
+
+Have you thrown the dice?
+
+## Randomized response {visibility="uncounted"}
+
+For this question, I want you to answer *yes* or *no*. But I want you to consider the number of your dice throw. If {{< fa dice-one >}} shows on the dice, tell me *no*. If {{< fa dice-six >}} shows, tell me *yes*. But if another number shows, tell me your own opinion about the question.
+
+&nbsp;
+
+[TURN AWAY FROM RESPONDENT]
+
+&nbsp;
+
+Have you picked it up?
+
+## Randomized response {visibility="uncounted"}
+
+For this question, I want you to answer *yes* or *no*. But I want you to consider the number of your dice throw. If {{< fa dice-one >}} shows on the dice, tell me *no*. If {{< fa dice-six >}} shows, tell me *yes*. But if another number shows, tell me your own opinion about the question.
+
+&nbsp;
+
+Now, during the height of the conflict in 2007 and 2008 *(in Afghanistan)*, did you know any militants, like a family member, a friend, or someone you talked to on a regular basis? 
+
+. . .
+
+Please, before you answer, take note of the number you rolled on the dice.
+
+## How does it work?
+
+::: incremental
+
+- We know that about $1/6 \approx 0.17$ respondents said *yes* because they rolled a {{< fa dice-six >}}
+
+- So if $30\%$ in total said *yes*
+
+- We have $\widehat{Y} = 0.3 - 0.17 = 0.13$ as our *population estimate*
+
+- But we **do not know** who they are in our survey!
+
+:::
+
+## Assumptions
+
+. . .
+
+::: {.callout-warning}
+### 1. Honesty given protection
+
+People respond honestly when guaranteed anonymity.
+
+:::
+
+. . .
+
+::: {.callout-warning}
+### 2. One-sided lying
+
+Those who **do not** hold the sensitive trait **never** falsely claim to bear it.
+
+:::
+
+. . .
+
+- These cannot be verified with data!
+
+## List experiment
+
+Now I am going to read you three things that make people angry or upset.
+
+## List experiment {visibility="uncounted"}
+
+Now I am going to read you three things that make people angry or upset. After I read all three, just tell me HOW MANY of them upset you.
+
+## List experiment {visibility="uncounted"}
+
+Now I am going to read you three things that make people angry or upset. After I read all three, just tell me HOW MANY of them upset you. I don't want to know which ones, just HOW MANY.
+
+. . .
+
+### Control group
+
+::: incremental
+1. The federal government increasing the tax on gasoline
+2. Professional athletes getting million-dollar contracts
+3. Large corporations polluting the environment
+:::
+
+## List experiment {visibility="uncounted"}
+
+Now I am going to read you three things that make people angry or upset. After I read all three, just tell me HOW MANY of them upset you. I don't want to know which ones, just HOW MANY.
+
+### Treatment group
+
+1. The federal government increasing the tax on gasoline
+2. Professional athletes getting million-dollar contracts
+3. Large corporations polluting the environment
+4. **A black family moving next door**
+
+## How does it work?
+
+::: incremental
+
+- Respondents are randomly assigned to conditions
+
+- Differences in responses can only be attributed to the presence/absence of the sensitive item (more on this in next week)
+
+- So $\widehat{Y} = \text{Mean(treatment)} - \text{Mean(control)}$ gives a  *population prevalence rate*
+
+- But we **do not know** who they are in our survey!
+
+:::
+
+## Assumptions
+
+. . .
+
+::: {.callout-warning}
+### 1. No liars
+
+Those who **do not** hold the sensitive item **never** falsely claim to bear it.
+
+:::
+
+. . .
+
+::: {.callout-warning}
+### 2. No design effects
+
+Including the sensitive item **does not change** how participants respond to the baseline items
+
+:::
+
+. . .
+
+- These can only be evaluated **indirectly**
+
+
+
+## Other techniques
+
+::: incremental
+
+- [Survey administration protections](https://graemeblair.com/papers/sensitive.pdf)
+
+- [Wisdom of the crowds](https://doi.org/10.1016/j.electstud.2018.09.012)
+
+- [Endorsement experiments](https://doi.org/10.1093/pan/mpr031)
+
+- [Conjoint experiments](https://doi.org/10.1017/pan.2021.30)
+
+- [Network scale-up method](https://doi.org/10.1080/01621459.2021.1935267)
+
+- Variants of the randomized response and list experiment
+
+:::
+
+## Summary
+
+- Asking good survey questions is challenging!
+
+- Ideally, we want to follow the *maxims of conversation*
+
+- But often, getting precise answers means asking *weird* questions
+
+- **Example:** Techniques for sensitive questions
