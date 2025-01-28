@@ -1,0 +1,131 @@
+---
+format:
+    revealjs:
+      slide-number: false
+      progress: false
+      chalkboard: true
+      code-overflow: wrap
+      theme: [default, custom.scss]
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+
+opts_chunk$set(echo = FALSE, 
+               message = FALSE, 
+               warning = FALSE,
+               out.width = "100%")
+
+library(tidyverse)
+library(tinytable)
+library(kableExtra)
+
+library(tidyr)
+library(broom)
+
+
+# ggplot global options
+theme_set(theme_gray(base_size = 20))
+
+```
+
+
+
+::: {style="text-align: center"}
+## Experiments {.center}
+
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
+
+
+## AI Prompts {background-color="#B6ACD1"}
+
+TBD
+
+
+
+## Last week
+
+- Surveys and how to make them good
+
+- Importance of random sampling to justify statistical inference via asymptotic properties (CLT)
+
+- **So far:** Mostly about *descriptive statistics*
+
+## This week
+
+- Moving from *statistical inference* to *causal inference*
+
+- Experiments as the *gold standard*
+
+- **Tuesday:** Logic of experimentation
+
+- [**Thursday:**](#thu) Learning from experiments
+
+## Return to counterfactuals
+
+![](fig/weed.png){width=40% fig-align="center"}
+
+::: aside
+[medicine.tulane.edu/news/study-tulane-researcher-suggests-marijuana-can-cause-infertility-men](https://medicine.tulane.edu/news/study-tulane-researcher-suggests-marijuana-can-cause-infertility-men)
+:::
+
+## Making causal statements
+
+::: incremental
+- Why were we using cautious language?
+
+- **Ideal study:** Compare the same man with and without smoking
+
+- **Actual study:** Compare two *different* groups of men
+:::
+
+. . .
+
+&nbsp;
+
+::: {.r-stack}
+What would allow us to make more confident **causal** claims?
+:::
+
+## Causal inference
+
+. . . 
+
+Imagine we want to establish whether a medical **treatment** improves people's lives
+
+. . .
+
+We want to make sure that the treatment *actually* works
+
+. . .
+
+In other words, we want to *attribute* the treatment as the **cause** of health improvement
+
+. . .
+
+Can we just show that people who receive the treatment get better?
+
+. . .
+
+No! we need some kind of **control**
+
+## Potential outcomes framework
+
+**Ingredients**
+
+[CONTINUE HERE]
+
+::: {style="text-align: center"}
+## Experiments {#thu .center}
+
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
+
+
