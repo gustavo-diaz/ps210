@@ -321,6 +321,8 @@
       margin-right: 0; 
     }
   </style>
+  <script src="week5_files/libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="week5_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -378,6 +380,715 @@
 <div class="r-stack">
 <p>What would allow us to make more confident <strong>causal</strong> claims?</p>
 </div>
+</div>
+</section>
+<section id="causal-inference" class="slide level2">
+<h2>Causal inference</h2>
+<div class="fragment">
+<p>Imagine we want to establish whether a medical <strong>treatment</strong> improves people’s lives</p>
+</div>
+<div class="fragment">
+<p>We want to make sure that the treatment <em>actually</em> works</p>
+</div>
+<div class="fragment">
+<p>In other words, we want to <em>attribute</em> the treatment as the <strong>cause</strong> of health improvement</p>
+</div>
+<div class="fragment">
+<p>Can we just show that people who receive the treatment get better?</p>
+</div>
+<div class="fragment">
+<p>No! we need some kind of <strong>control</strong></p>
+</div>
+</section>
+<section id="potential-outcomes-framework" class="slide level2">
+<h2>Potential outcomes framework</h2>
+<div class="fragment">
+<p><strong>Ingredients</strong></p>
+</div>
+<div class="fragment">
+<div>
+<ul>
+<li class="fragment"><p><span class="math inline">\(D = \{0,1\}\)</span> condition (0: control, 1: treatment)</p></li>
+<li class="fragment"><p><span class="math inline">\(Y(D)\)</span> is the individual <strong>potential outcome</strong></p></li>
+</ul>
+</div>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+Y = \begin{cases}
+Y(0) &amp; \text{if} &amp; D = 0 \\
+Y(1) &amp; \text{if} &amp; D = 1
+\end{cases}
+\]</span></p>
+</div>
+<div class="fragment">
+<p>Switching equation</p>
+<p><span class="math display">\[
+Y = Y(1) \cdot D + Y(0) \cdot (1 - D)
+\]</span></p>
+</div>
+</section>
+<section id="toy-example" class="slide level2">
+<h2>Toy example</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">ID</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(Y(1)\)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(Y(0)\)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="fragment">
+<p><span class="math inline">\(\tau_i = Y(1) - Y(0)\)</span> is the <strong>unit-level treatment effect</strong></p>
+<p>&nbsp;</p>
+</div>
+</section>
+<section id="toy-example-1" class="slide level2">
+<h2>Toy example</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">ID</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(Y(1)\)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(Y(0)\)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(\tau_i\)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p><span class="math inline">\(\tau_i = Y(1) - Y(0)\)</span> is the <strong>unit-level treatment effect</strong></p>
+<p>&nbsp;</p>
+<div class="fragment">
+<p><span class="math inline">\(\tau = \frac{1}{n} \sum_{i=1}^n \tau_i\)</span> is the <strong>average treatment effect</strong> (ATE)</p>
+</div>
+</section>
+<section id="challenge" class="slide level2">
+<h2>Challenge</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">ID</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(Y(1)\)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(Y(0)\)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(\tau_i\)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="challenge-1" class="slide level2">
+<h2>Challenge</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
+<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Unobserved
+</div></th>
+</tr>
+<tr class="odd">
+<th style="text-align: left;" data-quarto-table-cell-role="th">ID</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(Y(1)\)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(Y(0)\)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(\tau_i\)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="fragment">
+<p>Assign condition <span class="math inline">\(D\)</span> (0: control, 1: treatment)</p>
+</div>
+</section>
+<section id="challenge-2" class="slide level2">
+<h2>Challenge</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top" style="width:100%;" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
+<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Unobserved
+</div></th>
+<th colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Observed
+</div></th>
+</tr>
+<tr class="odd">
+<th style="text-align: left;" data-quarto-table-cell-role="th">ID</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(Y(1)\)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(Y(0)\)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(\tau_i\)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(D\)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(Y\)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="fragment">
+<p>To know <span class="math inline">\(\tau\)</span> we need <span class="math inline">\((Y(1) - Y(0))\)</span></p>
+</div>
+<div class="fragment">
+<p>But we only observe one at a time for each unit</p>
+</div>
+</section>
+<section id="challenge-3" class="slide level2">
+<h2>Challenge</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top" style="width:100%;" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
+<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Unobserved
+</div></th>
+<th colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Observed
+</div></th>
+</tr>
+<tr class="odd">
+<th style="text-align: left;" data-quarto-table-cell-role="th">ID</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(Y(1)\)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(Y(0)\)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(\tau_i\)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(D\)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">\(Y\)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>This is the <strong>FUNDAMENTAL PROBLEM OF CAUSAL INFERENCE</strong></p>
+
+<aside><div>
+<p>The term comes from: Holland, Paul W. 1986. <a href="https://doi.org/10.2307/2289064">“Statistics and Causal Inference.”</a> <em>Journal of the American Statistical Association</em> 81 (396): 945-960</p>
+</div></aside></section>
+<section id="what-can-we-do" class="slide level2">
+<h2>What can we do?</h2>
+<div class="fragment">
+<p>We can rewrite the ATE as <span class="math inline">\(\tau = E[\tau_i]\)</span></p>
+</div>
+<div class="fragment">
+<p>And then expand since <span class="math inline">\(\tau_i = Y(1) - Y(0)\)</span></p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+\tau = E[Y(1) - Y(0)]
+\]</span></p>
+</div>
+</section>
+<section id="what-can-we-do-1" class="slide level2">
+<h2>What can we do?</h2>
+<p>We can rewrite the ATE as <span class="math inline">\(\tau = E[\tau_i]\)</span></p>
+<p>And then expand since <span class="math inline">\(\tau_i = Y(1) - Y(0)\)</span></p>
+<p><span class="math display">\[
+\underbrace{\tau = E[Y(1) - Y(0)]}_\text{Average individual treatment effect}
+\]</span></p>
+<div class="fragment">
+<p>Which is equivalent to</p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+\tau = E[Y(1)] - E[Y(0)]
+\]</span></p>
+</div>
+</section>
+<section id="what-can-we-do-2" class="slide level2">
+<h2>What can we do?</h2>
+<p>We can rewrite the ATE as <span class="math inline">\(\tau = E[\tau_i]\)</span></p>
+<p>And then expand since <span class="math inline">\(\tau_i = Y(1) - Y(0)\)</span></p>
+<p><span class="math display">\[
+\underbrace{\tau = E[Y(1) - Y(0)]}_\text{Average individual treatment effect}
+\]</span></p>
+<p>Which is equivalent to</p>
+<p><span class="math display">\[
+\underbrace{\tau = E[Y(1)] - E[Y(0)] }_{\text{Difference in average potential outcomes}}
+\]</span></p>
+</section>
+<section id="what-can-we-do-3" class="slide level2">
+<h2>What can we do?</h2>
+<p>We want to know</p>
+<p><span class="math display">\[
+\underbrace{\tau = E[Y(1)] - E[Y(0)]}_{\text{Difference in average potential outcomes}}
+\]</span></p>
+<div class="fragment">
+<p>But we can only calculate</p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+\widehat \tau = E[Y(1) | D = 1] - E[Y(0) | D = 0]
+\]</span></p>
+</div>
+</section>
+<section id="what-can-we-do-4" class="slide level2">
+<h2>What can we do?</h2>
+<p>We want to know</p>
+<p><span class="math display">\[
+\underbrace{\tau = E[Y(1)] - E[Y(0)]}_{\text{Difference in average potential outcomes}}
+\]</span></p>
+<p>But we can only calculate</p>
+<p><span class="math display">\[
+\underbrace{\widehat \tau = E[Y(1) | D = 1] - E[Y(0) | D = 0]}_\text{Difference in (observed) means between treatment and control groups}
+\]</span></p>
+</section>
+<section id="aside-on-notation" class="slide level2">
+<h2>Aside on notation</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="greek">Greek</h3>
+<ul>
+<li><p>Letters like <span class="math inline">\(\mu\)</span> denote <strong>estimands</strong> (unobserved quantities of interest)</p></li>
+<li><p>A hat <span class="math inline">\(\widehat{\mu}\)</span> denotes <strong>estimators</strong> (rules to calculate a quantity)</p></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="latin">Latin</h3>
+<ul>
+<li><p>Letters like <span class="math inline">\(X\)</span> denote <strong>actual variables</strong> in our data</p></li>
+<li><p>A bar <span class="math inline">\(\overline{X}\)</span> denotes an <strong>estimate</strong> calculated from our data</p></li>
+</ul>
+</div></div>
+<div class="fragment">
+<div style="text-align: center">
+<p><span class="math inline">\(X \rightarrow \overline{X} \rightarrow \widehat{\mu} \xrightarrow{\text{hopefully!}} \mu\)</span></p>
+</div>
+</div>
+</section>
+<section id="aside-on-notation-1" class="slide level2">
+<h2>Aside on notation</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="greek-1">Greek</h3>
+<ul>
+<li><p>Letters like <span class="math inline">\(\mu\)</span> denote <strong>estimands</strong> (unobserved quantities of interest)</p></li>
+<li><p>A hat <span class="math inline">\(\widehat{\mu}\)</span> denotes <strong>estimators</strong> (rules to calculate a quantity)</p></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="latin-1">Latin</h3>
+<ul>
+<li><p>Letters like <span class="math inline">\(X\)</span> denote <strong>actual variables</strong> in our data</p></li>
+<li><p>A bar <span class="math inline">\(\overline{X}\)</span> denotes an <strong>estimate</strong> calculated from our data</p></li>
+</ul>
+</div></div>
+<div style="text-align: center">
+<p><span class="math inline">\(\text{Data} \rightarrow \text{Estimate} \rightarrow \text{Estimator} \xrightarrow{\text{hopefully!}} \text{Estimand}\)</span></p>
+</div>
+</section>
+<section id="aside-on-notation-2" class="slide level2">
+<h2>Aside on notation</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="greek-rightarrow-conceptual">Greek <span class="math inline">\(\rightarrow\)</span> conceptual</h3>
+<ul>
+<li><p>Letters like <span class="math inline">\(\mu\)</span> denote <strong>estimands</strong> (unobserved quantities of interest)</p></li>
+<li><p>A hat <span class="math inline">\(\widehat{\mu}\)</span> denotes <strong>estimators</strong> (rules to calculate a quantity)</p></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="latin-rightarrow-practical">Latin <span class="math inline">\(\rightarrow\)</span> practical</h3>
+<ul>
+<li><p>Letters like <span class="math inline">\(X\)</span> denote <strong>actual variables</strong> in our data</p></li>
+<li><p>A bar <span class="math inline">\(\overline{X}\)</span> denotes an <strong>estimate</strong> calculated from our data</p></li>
+</ul>
+</div></div>
+<div style="text-align: center">
+<p><span class="math inline">\(\text{Data} \rightarrow \text{Estimate} \rightarrow \text{Estimator} \xrightarrow{\text{hopefully!}} \text{Estimand}\)</span></p>
+</div>
+</section>
+<section id="what-can-we-do-5" class="slide level2">
+<h2>What can we do?</h2>
+<p>We want to know</p>
+<p><span class="math display">\[
+\underbrace{\tau = E[Y(1)] - E[Y(0)]}_{\text{Difference in average potential outcomes}}
+\]</span></p>
+<p>But we can only calculate</p>
+<p><span class="math display">\[
+\underbrace{\widehat \tau = E[Y(1) | D = 1] - E[Y(0) | D = 0]}_\text{Difference in (observed) means between treatment and control groups}
+\]</span></p>
+<div class="fragment">
+<p>What would make these two equivalent?</p>
+</div>
+</section>
+<section id="what-can-we-do-6" class="slide level2">
+<h2>What can we do?</h2>
+<p>We want to know</p>
+<p><span class="math display">\[
+\underbrace{\tau = E[Y(1)] - E[Y(0)]}_{\text{Difference in average potential outcomes}}
+\]</span></p>
+<p>But we can only calculate</p>
+<p><span class="math display">\[
+\underbrace{\widehat \tau = E[Y(1) \color{purple}{| D = 1}] - E[Y(0) \color{purple}{| D = 0}]}_\text{Difference in (observed) means between treatment and control groups}
+\]</span></p>
+<p>What would make these two equivalent?</p>
+</section>
+<section id="what-can-we-do-7" class="slide level2">
+<h2>What can we do?</h2>
+<p>We want to know</p>
+<p><span class="math display">\[
+\underbrace{\tau = E[Y(1)] - E[Y(0)]}_{\text{Difference in average potential outcomes}}
+\]</span></p>
+<p>But we can only calculate</p>
+<p><span class="math display">\[
+\underbrace{\widehat \tau = E[Y(1) \color{purple}{| D = 1}] - E[Y(0) \color{purple}{| D = 0}]}_\text{Difference in (observed) means between treatment and control groups}
+\]</span></p>
+<p>We want <strong>treatment assignment</strong> to be <strong>ignorable</strong></p>
+</section>
+<section id="random-assignment" class="slide level2">
+<h2>Random assignment</h2>
+<div>
+<ul>
+<li class="fragment"><p>If we can claim that units are assigned to conditions <span class="math inline">\(D\)</span> <strong>independently</strong> from potential outcomes</p></li>
+<li class="fragment"><p>Then we can claim that <span class="math inline">\(\widehat \tau\)</span> is a <em>valid</em> approximation of <span class="math inline">\(\tau\)</span></p></li>
+<li class="fragment"><p>So that the <em>difference in means</em> is an <strong>unbiased estimator</strong> of the <em>ATE</em></p></li>
+<li class="fragment"><p>Random assignment guarantees this <strong>in expectation</strong></p></li>
+</ul>
+</div>
+</section>
+<section id="implications" class="slide level2">
+<h2>Implications</h2>
+<p>If random assignment works:</p>
+<div>
+<ul>
+<li class="fragment"><p>No reverse causation</p></li>
+<li class="fragment"><p>No selection bias</p></li>
+<li class="fragment"><p>No omitted variable bias</p></li>
+</ul>
+</div>
+<div class="fragment">
+<p>But you can always get unlucky!</p>
+</div>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>     ID           Y0          Y1 D           Y
+1   001  0.484520880  0.73452088 1  0.73452088
+2   002  0.770743000  1.02074300 0  0.77074300
+3   003  0.186039041  0.43603904 1  0.43603904
+4   004 -0.086703465  0.16329654 0 -0.08670346
+5   005  0.681404050  0.93140405 0  0.68140405
+6   006  1.970049082  2.22004908 0  1.97004908
+7   007  0.034679490  0.28467949 0  0.03467949
+8   008 -0.150141526  0.09985847 0 -0.15014153
+9   009  1.687850716  1.93785072 1  1.93785072
+10  010  0.784055885  1.03405589 1  1.03405589
+11  011 -0.637762442 -0.38776244 0 -0.63776244
+12  012 -0.277068057 -0.02706806 1 -0.02706806
+13  013  0.823002236  1.07300224 1  1.07300224
+14  014 -2.189373502 -1.93937350 1 -1.93937350
+15  015 -0.222094995  0.02790501 1  0.02790501
+16  016 -0.351494528 -0.10149453 0 -0.35149453
+17  017  0.540790459  0.79079046 0  0.54079046
+18  018  1.449967063  1.69996706 0  1.44996706
+19  019  0.481129672  0.73112967 1  0.73112967
+20  020  0.796908236  1.04690824 0  0.79690824
+21  021 -0.272698545 -0.02269854 0 -0.27269854
+22  022 -0.528084258 -0.27808426 1 -0.27808426
+23  023  0.511897021  0.76189702 0  0.51189702
+24  024  1.367877780  1.61787778 0  1.36787778
+25  025 -0.535881986 -0.28588199 0 -0.53588199
+26  026 -1.224490453 -0.97449045 1 -0.97449045
+27  027 -0.555344970 -0.30534497 1 -0.30534497
+28  028  0.787555688  1.03755569 0  0.78755569
+29  029  1.290575024  1.54057502 0  1.29057502
+30  030 -0.298503924 -0.04850392 0 -0.29850392
+31  031  1.106959557  1.35695956 1  1.35695956
+32  032  1.411233943  1.66123394 1  1.66123394
+33  033 -0.350808158 -0.10080816 1 -0.10080816
+34  034  1.972989711  2.22298971 1  2.22298971
+35  035  0.374120614  0.62412061 0  0.37412061
+36  036  0.968949768  1.21894977 0  0.96894977
+37  037 -0.983115779 -0.73311578 1 -0.73311578
+38  038  3.808510801  4.05851080 0  3.80851080
+39  039  0.039273376  0.28927338 1  0.28927338
+40  040  1.837033250  2.08703325 1  2.08703325
+41  041  0.547316635  0.79731664 0  0.54731664
+42  042  0.753942870  1.00394287 0  0.75394287
+43  043 -0.159841526  0.09015847 1  0.09015847
+44  044 -0.909914124 -0.65991412 0 -0.90991412
+45  045 -0.287756862 -0.03775686 1 -0.03775686
+46  046 -0.016596088  0.23340391 0 -0.01659609
+47  047  1.156909778  1.40690978 1  1.40690978
+48  048 -0.260608734 -0.01060873 1 -0.01060873
+49  049 -0.231329737  0.01867026 1  0.01867026
+50  050  0.513183579  0.76318358 1  0.76318358
+51  051 -0.795048217 -0.54504822 0 -0.79504822
+52  052 -0.555553990 -0.30555399 0 -0.55555399
+53  053 -1.335733945 -1.08573394 0 -1.33573394
+54  054  0.320930370  0.57093037 0  0.32093037
+55  055 -0.717410370 -0.46741037 1 -0.46741037
+56  056  0.186783022  0.43678302 0  0.18678302
+57  057  1.124596005  1.37459600 0  1.12459600
+58  058 -0.324272361 -0.07427236 1 -0.07427236
+59  059 -0.334272206 -0.08427221 1 -0.08427221
+60  060  0.847170983  1.09717098 1  1.09717098
+61  061 -0.635433468 -0.38543347 0 -0.63543347
+62  062  0.336639967  0.58663997 0  0.33663997
+63  063  0.363978510  0.61397851 0  0.36397851
+64  064 -1.117628192 -0.86762819 1 -0.86762819
+65  065  0.387498325  0.63749833 1  0.63749833
+66  066 -0.218631603  0.03136840 1  0.03136840
+67  067 -0.506793156 -0.25679316 0 -0.50679316
+68  068  1.204699505  1.45469951 1  1.45469951
+69  069  1.059526302  1.30952630 0  1.05952630
+70  070 -0.074526158  0.17547384 0 -0.07452616
+71  071 -0.830365034 -0.58036503 1 -0.58036503
+72  072 -0.468941145 -0.21894114 1 -0.21894114
+73  073  1.345814015  1.59581402 1  1.59581402
+74  074 -0.321602995 -0.07160300 0 -0.32160300
+75  075 -0.642481428 -0.39248143 0 -0.64248143
+76  076 -0.008674945  0.24132506 1  0.24132506
+77  077 -1.545711919 -1.29571192 0 -1.54571192
+78  078  1.176522445  1.42652245 1  1.42652245
+79  079 -0.113464880  0.13653512 1  0.13653512
+80  080 -0.152384954  0.09761505 0 -0.15238495
+81  081  0.616091035  0.86609104 0  0.61609104
+82  082 -0.441221119 -0.19122112 1 -0.19122112
+83  083  0.663856430  0.91385643 1  0.91385643
+84  084 -0.281822792 -0.03182279 0 -0.28182279
+85  085 -0.859475186 -0.60947519 0 -0.85947519
+86  086 -0.691828435 -0.44182843 0 -0.69182843
+87  087 -0.474079361 -0.22407936 0 -0.47407936
+88  088  0.333452142  0.58345214 1  0.58345214
+89  089  1.405313529  1.65531353 1  1.65531353
+90  090 -0.799631680 -0.54963168 0 -0.79963168
+91  091 -0.777157287 -0.52715729 1 -0.52715729
+92  092  0.148078529  0.39807853 1  0.39807853
+93  093  0.166420515  0.41642051 1  0.41642051
+94  094 -1.341202800 -1.09120280 1 -1.09120280
+95  095 -0.070471560  0.17952844 1  0.17952844
+96  096 -1.833589099 -1.58358910 0 -1.83358910
+97  097  0.904463678  1.15446368 1  1.15446368
+98  098  0.191287137  0.44128714 1  0.44128714
+99  099  1.472670687  1.72267069 0  1.47267069
+100 100  0.068868795  0.31886880 0  0.06886880</code></pre>
+</div>
+</div>
+<div>
+<ul>
+<li class="fragment"><p><strong>True ATE:</strong> 0.25</p></li>
+<li class="fragment"><p><strong>Estimate:</strong> 0.246 (p = 0.191)</p></li>
+</ul>
+</div>
+<div class="fragment">
+<p>What happens if we reassign treatment 1000 times?</p>
 </div>
 </section>
 <section id="thu" class="slide level2 center" style="text-align: center">
