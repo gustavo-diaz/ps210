@@ -336,7 +336,12 @@
 </section>
 <section id="ai-prompts" class="slide level2" data-background-color="#B6ACD1">
 <h2>AI Prompts</h2>
-<p>TBD</p>
+<ul>
+<li><p>(Fundamental proble of) causal inference</p></li>
+<li><p>Potential outcomes framework</p></li>
+<li><p>Average treatment effect</p></li>
+<li><p>“Help me design a [survey/field/laboratory] experiment about X”</p></li>
+</ul>
 </section>
 <section id="last-week" class="slide level2">
 <h2>Last week</h2>
@@ -846,7 +851,7 @@ Observed
 \]</span></p>
 <p>But we can only calculate</p>
 <p><span class="math display">\[
-\underbrace{\widehat \tau = E[Y(1) | D = 1] - E[Y(0) | D = 0]}_\text{Difference in (observed) means between treatment and control groups}
+\widehat \tau = E[Y(1) | D = 1] - E[Y(0) | D = 0]
 \]</span></p>
 </section>
 <section id="aside-on-notation" class="slide level2">
@@ -919,13 +924,24 @@ Observed
 \]</span></p>
 <p>But we can only calculate</p>
 <p><span class="math display">\[
+\widehat \tau = E[Y(1) | D = 1] - E[Y(0) | D = 0]
+\]</span></p>
+</section>
+<section id="what-can-we-do-6" class="slide level2">
+<h2>What can we do?</h2>
+<p>We want to know</p>
+<p><span class="math display">\[
+\underbrace{\tau = E[Y(1)] - E[Y(0)]}_{\text{Difference in average potential outcomes}}
+\]</span></p>
+<p>But we can only calculate</p>
+<p><span class="math display">\[
 \underbrace{\widehat \tau = E[Y(1) | D = 1] - E[Y(0) | D = 0]}_\text{Difference in (observed) means between treatment and control groups}
 \]</span></p>
 <div class="fragment">
 <p>What would make these two equivalent?</p>
 </div>
 </section>
-<section id="what-can-we-do-6" class="slide level2">
+<section id="what-can-we-do-7" class="slide level2">
 <h2>What can we do?</h2>
 <p>We want to know</p>
 <p><span class="math display">\[
@@ -937,7 +953,7 @@ Observed
 \]</span></p>
 <p>What would make these two equivalent?</p>
 </section>
-<section id="what-can-we-do-7" class="slide level2">
+<section id="what-can-we-do-8" class="slide level2">
 <h2>What can we do?</h2>
 <p>We want to know</p>
 <p><span class="math display">\[
@@ -1087,8 +1103,224 @@ Observed
 <li class="fragment"><p><strong>Estimate:</strong> 0.246 (p = 0.191)</p></li>
 </ul>
 </div>
+</section>
+<section id="redo-experiment-1000-times" class="slide level2">
+<h2>Redo experiment 1,000 times</h2>
+
+<img data-src="week5_files/figure-revealjs/unnamed-chunk-12-1.png" style="width:100.0%" class="r-stretch"></section>
+<section id="redo-experiment-1000-times-1" class="slide level2">
+<h2>Redo experiment 1,000 times</h2>
+
+<img data-src="week5_files/figure-revealjs/unnamed-chunk-13-1.png" style="width:100.0%" class="r-stretch"></section>
+<section id="redo-experiment-1000-times-2" class="slide level2">
+<h2>Redo experiment 1,000 times</h2>
+
+<img data-src="week5_files/figure-revealjs/unnamed-chunk-14-1.png" style="width:100.0%" class="r-stretch"></section>
+<section id="redo-experiment-1000-times-3" class="slide level2">
+<h2>Redo experiment 1,000 times</h2>
+
+<img data-src="week5_files/figure-revealjs/unnamed-chunk-15-1.png" style="width:100.0%" class="r-stretch"><p><strong>95% confidence interval:</strong> [ -0.12 , 0.62 ]</p>
+</section>
+<section id="types-of-experiment" class="slide level2">
+<h2>Types of experiment</h2>
+<ul>
+<li><p>Survey experiments</p></li>
+<li><p>Field experiments</p></li>
+<li><p>Laboratory experiments</p></li>
+</ul>
 <div class="fragment">
-<p>What happens if we reassign treatment 1000 times?</p>
+<p>Depends on <em>how treatments are delivered</em></p>
+</div>
+</section>
+<section>
+<section id="examples" class="title-slide slide level1 center">
+<h1>Examples</h1>
+
+</section>
+<section id="tomz-and-weeks-2013-public-opinion-and-the-democratic-peace" class="slide level2">
+<h2>Tomz and Weeks (2013): “Public Opinion and the Democratic Peace”</h2>
+<div>
+<ul>
+<li class="fragment"><p>Surveys in the UK (<span class="math inline">\(n = 762\)</span>) and US (<span class="math inline">\(n = 1273\)</span>)</p></li>
+<li class="fragment"><p>April-May 2010</p></li>
+<li class="fragment"><p><strong>Outcome:</strong> Support for military strike</p></li>
+<li class="fragment"><p>2x2x2 survey experiment</p></li>
+</ul>
+</div>
+
+<aside><div>
+<p>Tomz, Michael R. and Jessica L.P. Weeks. 2013. <a href="https://doi.org/10.1017/S0003055413000488">“Public Opinion and the Democratic Peace.”</a> <em>American Political Science Review</em> 107 (4): 849-865</p>
+</div></aside></section>
+<section id="vignette-design" class="slide level2">
+<h2>Vignette design</h2>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="uk">UK</h3>
+<div>
+<ul>
+<li class="fragment"><p><strong>Political regime:</strong> Democracy/not a democracy</p></li>
+<li class="fragment"><p><strong>Military alliances:</strong> Ally/not an ally</p></li>
+<li class="fragment"><p><strong>Military power:</strong> As strong/half as strong</p></li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<h3 id="us">US</h3>
+<div>
+<ul>
+<li class="fragment"><p><strong>Political regime:</strong> Democracy/not a democracy</p></li>
+<li class="fragment"><p><strong>Military alliances:</strong> Ally/not an ally</p></li>
+<li class="fragment"><p><strong>Trade:</strong> High level/not high level</p></li>
+</ul>
+</div>
+</div></div>
+</div>
+</section>
+<section id="results-for-democracy" class="slide level2">
+<h2>Results for democracy</h2>
+
+<img data-src="fig/tomz_weeks_1.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="kalla-et-al-2018-are-you-my-mentor" class="slide level2">
+<h2>Kalla et al (2018): Are You My Mentor?</h2>
+<div>
+<ul>
+<li class="fragment"><p>Correspondence experiment with <span class="math inline">\(N = 8189\)</span> legislators in the US</p></li>
+<li class="fragment"><p>Also known as <em>audit</em> experiments</p></li>
+<li class="fragment"><p>Send email about fake student seeking advice to become politician</p></li>
+<li class="fragment"><p>Cue gender with student’s name</p></li>
+</ul>
+</div>
+
+<aside><div>
+<p>Kalla, Joshua, Frances Rosenbluth, and Dawn Langan Teele. 2018. <a href="https://doi.org/10.1086/693984">“Are You My Mentor? A Field Experiment on Gender, Ethnicity, and Political Self-Starters.”</a> <em>Journal of Politics</em> 80 (1): 337-341</p>
+</div></aside></section>
+<section id="sample-email" class="slide level2">
+<h2>Sample email</h2>
+
+<img data-src="fig/kalla_0.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="findings" class="slide level2 smaller">
+<h2>Findings</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Outcome</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Male Sender</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Female Sender</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Received reply</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">0.27</td>
+<td style="text-align: right;">0.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Meaningful response</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.13</td>
+<td style="text-align: right;">0.47</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Praised</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.17</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Offer to help</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.09</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Warned against running</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.14</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Substantive advice</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.33</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Word count (logged)</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.10</td>
+<td style="text-align: right;">0.06</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Character count</td>
+<td style="text-align: right;">145.00</td>
+<td style="text-align: right;">170.00</td>
+<td style="text-align: right;">0.04</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="fragment">
+<p>Why not much difference by gender?</p>
+
+</div>
+<aside><div>
+<p>Adapted from Table 1</p>
+</div></aside></section>
+<section id="schnall-et-al-2008-disgust-as-embodied-moral-judgment" class="slide level2">
+<h2>Schnall et al (2008): “Disgust as Embodied Moral Judgment”</h2>
+<div>
+<ul>
+<li class="fragment"><p>Students at University of Virginia (n = 43, 18 male)</p></li>
+<li class="fragment"><p>Offered to participate in study for course credit</p></li>
+<li class="fragment"><p><strong>Outcome:</strong> Moral judgment questions (several scenarios)</p></li>
+<li class="fragment"><p><strong>Treatment:</strong> Extraneous disgust (dirty room)</p></li>
+<li class="fragment"><p><strong>Control:</strong> No disgust (clean room)</p></li>
+</ul>
+</div>
+
+<aside><div>
+<p>Schnall, Simone, Jonathan Haidt, Gerald L. Clore, and Alexander H. Jordan. 2008. <a href="https://doi.org/10.1177/0146167208317771">“Disgust as Embodied Moral Judgment.”</a> <em>Personality and Social Psychology Bulletin</em> 34 (8): 1023-1153</p>
+</div></aside></section>
+<section id="conditions" class="slide level2">
+<h2>Conditions</h2>
+<blockquote>
+<p>On the desk there was a transparent plastic cup with the dried up remnants of a smoothie and a pen that was chewed up. Next to the desk was a trash can overflowing with garbage including greasy pizza boxes and dirty-looking tissues. For the no-disgust condition, the same desk was used, but it was covered up with a clean white tablecloth. A new chair was provided, and none of the disgusting objects were present. A new and unchewed pen was provided for filling out the questionnaires.</p>
+</blockquote>
+</section>
+<section id="findings-1" class="slide level2">
+<h2>Findings</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="fig/disgust.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+
+<aside><div>
+<p><em>Private body consciousness</em> is a person’s general attention to internal physical states</p>
+</div></aside></section>
+<section id="summary" class="slide level2">
+<h2>Summary</h2>
+<div class="fragment">
+<p><strong>Last week:</strong></p>
+<ul>
+<li>Random <strong>sampling</strong> enables inference from sample to population because of <em>asymptotic properties</em> (central limit theorem)</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>This week:</strong></p>
+<ul>
+<li>Random <strong>assignment</strong> enables causal inference in experiments because of <em>finite-sample properties</em> (weak law of large numbers)</li>
+</ul>
+</div>
+<div class="fragment">
+<p>Can combine both, but often do not need to</p>
 </div>
 </section>
 <section id="thu" class="slide level2 center" style="text-align: center">
@@ -1100,7 +1332,7 @@ Observed
 <div class="footer footer-default">
 
 </div>
-</div>
+</div></section>
     </div>
   </div>
 

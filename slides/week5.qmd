@@ -43,7 +43,13 @@ Introduction to Empirical Methods in Political Science
 
 ## AI Prompts {background-color="#B6ACD1"}
 
-TBD
+- (Fundamental proble of) causal inference
+
+- Potential outcomes framework
+
+- Average treatment effect
+
+- "Help me design a [survey/field/laboratory] experiment about X"
 
 
 
@@ -355,7 +361,7 @@ But we can only calculate
 
 
 $$
-\underbrace{\widehat \tau = E[Y(1) | D = 1] - E[Y(0) | D = 0]}_\text{Difference in (observed) means between treatment and control groups}
+\widehat \tau = E[Y(1) | D = 1] - E[Y(0) | D = 0]
 $$
 
 
@@ -445,7 +451,20 @@ $\text{Data} \rightarrow \text{Estimate} \rightarrow \text{Estimator} \xrightarr
 $\text{Data} \rightarrow \text{Estimate} \rightarrow \text{Estimator} \xrightarrow{\text{hopefully!}} \text{Estimand}$
 ::: 
 
+## What can we do?
 
+We want to know
+
+$$
+\underbrace{\tau = E[Y(1)] - E[Y(0)]}_{\text{Difference in average potential outcomes}}
+$$
+
+But we can only calculate
+
+
+$$
+\widehat \tau = E[Y(1) | D = 1] - E[Y(0) | D = 0]
+$$
 
 ## What can we do?
 
@@ -570,7 +589,246 @@ obs = difference_in_means(Y ~ D, data = experiment)
 
 ## Redo experiment 1,000 times
 
-[CONTINUE HERE]
+```{r, cache = TRUE}
+set.seed(20250130)
+sim_exp = simulate_design(declaration, future.seed = FALSE)
+```
+
+
+```{r}
+ggplot(sim_exp) +
+  aes(x = estimate) +
+  geom_density(linewidth = 2, color = "#4E2A84") +
+  labs(x = "Estimated ATE",
+       y = "Density")
+```
+
+## Redo experiment 1,000 times
+
+```{r}
+ggplot(sim_exp) +
+  aes(x = estimate) +
+  geom_density(linewidth = 2, color = "#4E2A84") +
+  labs(x = "Estimated ATE",
+       y = "Density") +
+  geom_vline(xintercept = 0.25,
+             linetype = "dashed") +
+  annotate("text", y = -0.01, 
+           x = 0.3,
+           label = "True ATE")
+```
+
+## Redo experiment 1,000 times
+
+```{r}
+ggplot(sim_exp) +
+  aes(x = estimate) +
+  geom_density(linewidth = 2, color = "#4E2A84") +
+  labs(x = "Estimated ATE",
+       y = "Density") +
+  geom_vline(xintercept = 0.25,
+             linetype = "dashed") +
+  annotate("text", y = -0.01, 
+           x = 0.3,
+           label = "True ATE") +
+  geom_vline(xintercept = obs$conf.low,
+             linetype = "dotted") +
+  geom_vline(xintercept = obs$conf.high,
+             linetype = "dotted")
+```
+
+
+## Redo experiment 1,000 times
+
+```{r}
+ggplot(sim_exp) +
+  aes(x = estimate) +
+  geom_density(linewidth = 2, color = "#4E2A84") +
+  labs(x = "Estimated ATE",
+       y = "Density") +
+  geom_vline(xintercept = 0.25,
+             linetype = "dashed") +
+  annotate("text", y = -0.01, 
+           x = 0.3,
+           label = "True ATE") +
+  geom_vline(xintercept = obs$conf.low,
+             linetype = "dotted") +
+  geom_vline(xintercept = obs$conf.high,
+             linetype = "dotted")
+```
+
+**95% confidence interval:** `r paste("[", round(obs$conf.low, 2), ",", round(obs$conf.high, 2), "]")`
+
+## Types of experiment
+
+- Survey experiments
+
+- Field experiments
+
+- Laboratory experiments
+
+. . .
+
+Depends on *how treatments are delivered*
+
+# Examples
+
+## Tomz and Weeks (2013): "Public Opinion and the Democratic Peace"
+
+::: incremental
+
+- Surveys in the UK ($n = 762$) and US ($n = 1273$)
+
+- April-May 2010
+
+- **Outcome:** Support for military strike
+
+- 2x2x2 survey experiment
+
+:::
+
+::: aside
+Tomz, Michael R. and Jessica L.P. Weeks. 2013. ["Public Opinion and the Democratic Peace."](https://doi.org/10.1017/S0003055413000488) *American Political Science Review* 107 (4): 849-865
+:::
+
+## Vignette design
+
+. . .
+
+:::: columns
+
+::: {.column width="50%"}
+### UK
+
+::: incremental
+- **Political regime:** Democracy/not a democracy
+
+- **Military alliances:** Ally/not an ally
+
+- **Military power:** As strong/half as strong
+
+:::
+
+:::
+
+::: {.column width="50%"}
+
+### US
+
+::: incremental
+
+- **Political regime:** Democracy/not a democracy
+
+- **Military alliances:** Ally/not an ally
+
+- **Trade:** High level/not high level
+
+:::
+
+:::
+
+::::
+
+## Results for democracy
+
+![](fig/tomz_weeks_1.png){fig-align="center"}
+
+## Kalla et al (2018): Are You My Mentor?
+
+::: incremental
+- Correspondence experiment with $N = 8189$ legislators in the US
+
+- Also known as *audit* experiments
+
+- Send email about fake student seeking advice to become politician
+
+- Cue gender with student's name
+:::
+
+::: aside
+Kalla, Joshua, Frances Rosenbluth, and Dawn Langan Teele. 2018. ["Are You My Mentor? A Field Experiment on Gender, Ethnicity, and Political Self-Starters."](https://doi.org/10.1086/693984) *Journal of Politics* 80 (1): 337-341
+:::
+
+## Sample email
+
+![](fig/kalla_0.png){fig-align="center"}
+
+
+## Findings {.smaller}
+
+```{r}
+kalla = tribble(
+  ~Outcome, ~Male, ~Female, ~p,
+  "Received reply", 0.25, 0.27, 0.15,
+  "Meaningful response", 0.11, 0.13, 0.47,
+  "Praised", 0.05, 0.06, 0.17,
+  "Offer to help", 0.03, 0.05, 0.09,
+  "Warned against running", 0.01, 0.02, 0.14,
+  "Substantive advice", 0.07, 0.08, 0.33,
+  "Word count (logged)", 1, 1.1, 0.06,
+  "Character count", 145, 170, 0.04
+)
+
+colnames(kalla) = c("Outcome", "Male Sender", "Female Sender", "p-value")
+
+kalla %>% kbl()
+```
+
+. . .
+
+Why not much difference by gender?
+
+::: aside
+Adapted from Table 1
+:::
+
+## Schnall et al (2008): "Disgust as Embodied Moral Judgment"
+
+::: incremental
+- Students at University of Virginia (n = 43, 18 male)
+
+- Offered to participate in study for course credit
+
+- **Outcome:** Moral judgment questions (several scenarios)
+
+- **Treatment:** Extraneous disgust (dirty room)
+
+- **Control:** No disgust (clean room)
+:::
+
+::: aside
+Schnall, Simone, Jonathan Haidt, Gerald L. Clore, and Alexander H. Jordan. 2008. ["Disgust as Embodied Moral Judgment."](https://doi.org/10.1177/0146167208317771) *Personality and Social Psychology Bulletin* 34 (8): 1023-1153
+:::
+
+## Conditions
+
+> On the desk there was a transparent plastic cup with the dried up remnants of a smoothie and a pen that was chewed up. Next to the desk was a trash can overflowing with garbage including greasy pizza boxes and dirty-looking tissues. For the no-disgust condition, the same desk was used, but it was covered up with a clean white tablecloth. A new chair was provided, and none of the disgusting objects were present. A new and unchewed pen was provided for filling out the questionnaires.
+
+## Findings
+
+![](fig/disgust.png){fig-align="center"}
+
+::: aside
+*Private body consciousness* is a person's general attention to internal physical states
+:::
+
+## Summary
+
+. . .
+
+**Last week:**
+
+- Random **sampling** enables inference from sample to population because of *asymptotic properties* (central limit theorem)
+
+. . .
+
+**This week:**
+
+- Random **assignment** enables causal inference in experiments because of *finite-sample properties* (weak law of large numbers)
+
+. . . 
+
+Can combine both, but often do not need to
 
 ::: {style="text-align: center"}
 ## Experiments {#thu .center}
