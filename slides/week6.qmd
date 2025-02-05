@@ -1,0 +1,694 @@
+---
+format:
+    revealjs:
+      slide-number: false
+      progress: false
+      chalkboard: true
+      code-overflow: wrap
+      theme: [default, custom.scss]
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+
+opts_chunk$set(echo = FALSE, 
+               message = FALSE, 
+               warning = FALSE,
+               out.width = "100%")
+
+library(tidyverse)
+library(tinytable)
+library(kableExtra)
+library(modelsummary)
+library(tidyr)
+library(broom)
+
+
+# ggplot global options
+theme_set(theme_gray(base_size = 20))
+
+# set NU purple
+nu_purple = "#4E2A84"
+
+```
+
+
+
+::: {style="text-align: center"}
+## Large N {.center}
+
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
+
+
+## AI Prompts {background-color="#B6ACD1"}
+
+- (Linear) regression
+
+- Ordinary least squares (OLS)
+
+-
+
+
+## Last week
+
+- Experiments to learn about *cause and effect*
+
+- **Broadly:** Summarizing relationships between two variables (difference in means between treatment and control)
+
+- **This week:** A more general method to summarize relationships between two (or more) variables
+
+- **Tuesday:** *Bivariate* relationships
+
+- [**Thursday:**](#thu) *Multivariate* relationships
+
+## An experiment has two variables
+
+::: incremental
+- **Y:** Observed outcome
+
+- **D:** Treatment assignment (0: control, 1: treatment)
+:::
+
+. . . 
+
+**Y** can be any kind of variable (numerical, categorical)
+
+. . .
+
+**D** is categorical because it denotes group membership 
+
+
+## More general names
+
+. . .
+
+```{r}
+variables = tribble(
+  ~Y, ~X,
+  "Outcome variable", "Explanatory variable",
+  "Response variable", "Predictor variable",
+  "Dependent variable", "Independent variable",
+  "Thing you **_want_** to explain", "Thing you **_use_** to explain"
+)
+```
+
+```{r}
+variables %>% 
+  tt() %>% 
+  format_tt(i = 4, markdown = TRUE) %>% 
+  style_tt(j = 1:2, align = "c") %>% 
+  style_tt(i = 4, fontsize = 0.6) %>% 
+  style_tt(j = 2, color = "white")
+```
+
+## More general names
+
+```{r}
+variables %>% 
+  tt() %>% 
+  format_tt(i = 4, markdown = TRUE) %>% 
+  style_tt(j = 1:2, align = "c") %>% 
+  style_tt(i = 4, fontsize = 0.6)
+```
+
+
+. . .
+
+**X** and **Y** can now be any type (numerical, categorical)
+
+. . .
+
+That means we can't just compare means
+
+
+
+## Example
+
+```{r make-cookies, include=FALSE}
+cookies <- tibble(happiness = c(0.5, 2, 1, 2.5, 3, 1.5, 2, 2.5, 2, 3),
+                  cookies = 1:10)
+
+cookies_data <- cookies
+cookies_model <- lm(happiness ~ cookies, data = cookies)
+cookies_fitted <- augment(cookies_model)
+```
+
+```{r cookies-base}
+cookies_base <- ggplot(cookies_fitted, aes(x = cookies, y = happiness)) +
+  geom_point(size = 3) +
+  coord_cartesian(xlim = c(0, 10), ylim = c(0, 3)) +
+  scale_x_continuous(breaks = 0:10) +
+  labs(x = "Cookies eaten", y = "Level of happiness")
+
+cookies_base
+```
+
+## How to summarize?
+
+```{r}
+cookies_base
+```
+
+
+## Connect with a line
+
+```{r cookies-spline}
+cookies_base +
+  geom_smooth(method = lm, color = nu_purple, formula = y ~ splines::bs(x, 7), se = FALSE)
+```
+
+## Maybe smoother?
+
+```{r cookies-loess}
+cookies_base +
+  geom_smooth(method = "loess", color = nu_purple, se = FALSE)
+```
+
+## A straight line?
+
+```{r cookies-lm}
+cookies_base +
+  geom_smooth(method = "lm", color = nu_purple, se = FALSE)
+```
+
+## Straight lines are good
+
+. . .
+
+They can be written as a **linear equation**
+
+. . .
+
+$$
+y = mx + b
+$$
+
+. . .
+
+```{=html}
+<table>
+  <tr>
+    <td class="cell-center">\(y\)</td>
+    <td class="cell-left">&ensp;Outcome variable</td>
+  </tr>
+  <tr>
+    <td class="cell-center">\(x\)</td>
+    <td class="cell-left">&ensp;Explanatory variable</td>
+  </tr>
+  <tr>
+    <td class="cell-center">\(m\)</td>
+    <td class="cell-left">&ensp;Slope (\(\frac{\text{rise}}{\text{run}}\))</td>
+  </tr>
+  <tr>
+    <td class="cell-center">\(b\)</td>
+    <td class="cell-left">&ensp;y-intercept</td>
+  </tr>
+</table>
+```
+
+. . .
+
+This is the *smallest number of parameters* to draw a line
+
+## Slopes and intercepts
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$y = 2x - 1$
+
+```{r simple-line-1, echo=FALSE, fig.dim=c(4.8, 3.5), out.width="100%"}
+ggplot(data = tibble(x = 0:5), aes(x = x)) +
+  stat_function(fun = function(x) 2 * x - 1, 
+                color = nu_purple, size = 1.5) +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) +
+  scale_x_continuous(breaks = 0:5) +
+  scale_y_continuous(breaks = -1:9)
+```
+:::
+
+:::
+
+## Slopes and intercepts
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$y = 2x - 1$
+
+```{r simple-line-1b, echo=FALSE, fig.dim=c(4.8, 3.5), out.width="100%"}
+ggplot(data = tibble(x = 0:5), aes(x = x)) +
+  stat_function(fun = function(x) 2 * x - 1, 
+                color = nu_purple, size = 1.5) +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) +
+  scale_x_continuous(breaks = 0:5) +
+  scale_y_continuous(breaks = -1:9)
+```
+:::
+
+::: {.column width="50%"}
+$y = -0.5x + 6$
+
+```{r simple-line-2, echo=FALSE, fig.dim=c(4.8, 3.5), out.width="100%"}
+ggplot(data = tibble(x = 0:14), aes(x = x)) +
+  stat_function(fun = function(x) -0.5 * x + 6, 
+                color = nu_purple, size = 1.5) +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) +
+  scale_x_continuous(breaks = 0:14) +
+  scale_y_continuous(breaks = -1:9) +
+  theme(panel.grid.minor = element_blank())
+```
+:::
+
+:::
+
+. . .
+
+We can think of *intercept* and *slope* as **estimands** or **inferential targets**
+
+## Drawing lines in statistics
+
+. . .
+
+$$
+y = mx + b
+$$
+
+## Drawing lines in statistics
+
+$$
+\widehat{y} = \widehat{\beta}_0 + \widehat{\beta}_1 x_1
+$$
+
+. . .
+
+```{=html}
+<table>
+  <tr>
+    <td class="cell-center">\(y\)</td>
+    <td class="cell-center">\(\widehat{y}\)</td>
+    <td class="cell-left">&ensp;Outcome variable</td>
+  </tr>
+  <tr>
+    <td class="cell-center">\(x\)</td>
+    <td class="cell-center">\(x_1\)</td>
+    <td class="cell-left">&ensp;Explanatory variable</td>
+  </tr>
+  <tr>
+    <td class="cell-center">\(m\)</td>
+    <td class="cell-center">\(\widehat{\beta}_1\)</td>
+    <td class="cell-left">&ensp;Slope</td>
+  </tr>
+  <tr>
+    <td class="cell-center">\(b\)</td>
+    <td class="cell-center">\(\widehat{\beta}_0\)</td>
+    <td class="cell-left">&ensp;y-intercept</td>
+  </tr>
+</table>
+```
+
+::: aside
+You may see this equation with an extra error term $\varepsilon$ in some textbooks
+:::
+
+## What are we doing?
+
+::: incremental
+- **Before:** Assume there is a *true parameter* that we do not observe (e.g. population mean, ATE)
+
+- **Now:** Assume there is a *true line* that best describes the relationship between X and Y
+
+- There is a **best linear predictor** that we want to *estimate*
+:::
+
+## Which line is a better summary?
+
+![](https://scholar.harvard.edu/sites/scholar.harvard.edu/files/styles/os_files_xxlarge/public/ellaudet/files/the_least_squares_method_new.gif)
+
+## More formally
+
+::: incremental
+- The **best linear predictor** is the line that minimizes the distance of each observation to to the line
+
+- That distance is know as a **residual** or **error**
+:::
+
+## Visualizing residuals
+
+```{r}
+cookies_base +
+  geom_smooth(method = "lm", color = nu_purple, se = FALSE)
+```
+
+## Visualizing residuals
+
+```{r}
+cookies_with_residual <- cookies_base +
+  geom_smooth(method = "lm", color = nu_purple, se = FALSE) +
+  geom_segment(aes(xend = cookies, yend = .fitted), color = "#FF851B", size = 1)
+
+cookies_with_residual
+```
+
+
+## More formally
+
+- The **best linear predictor** is the line that minimizes the distance of each observation to to the line
+
+- That distance is know as a **residual** or **error**
+
+. . .
+
+$$
+e_i = (y_i - \widehat y_i)
+$$
+
+## More formally
+
+- The **best linear predictor** is the line that minimizes the distance of each observation to to the line
+
+- That distance is know as a **residual** or **error**
+
+
+$$
+e_i = (y_i - (b_0 + b_1 x_{1i}))
+$$
+
+## Minimizing residuals
+
+We want to find a **vector of coefficients** ($\widehat \beta_0$, $\widehat \beta_1$) that minimizes the **sum of squared residuals**
+
+. . .
+
+$$
+SSR = \sum_{i=1}^n e_i^2
+$$
+
+. . .
+
+We could try many lines until we find the the smallest SSR
+
+. . .
+
+Or use a method called **Ordinary Least Squares** (OLS)
+
+## OLS regression
+
+. . .
+
+**Estimand**
+
+$\alpha = E[Y] - \frac{\text{Cov}[X,Y]}{V[X]}E[X] \qquad \beta = \frac{\text{Cov}[X,Y]}{V[X]}$
+
+&nbsp;
+
+. . .
+
+**Estimator**
+
+$\widehat\alpha = \overline Y - \frac{\overline{XY} - \overline{X} \cdot \overline{Y}}{\overline{X^2} - \overline{X}^2} \overline{X} \qquad \widehat{\beta} = \frac{\overline{XY} - \overline{X} \cdot \overline{Y}}{\overline{X^2} - \overline{X}^2}$
+
+
+
+::: aside
+$\widehat{\alpha}$: intercept; $\widehat{\beta}$: slope
+:::
+
+## Back to cookies
+
+. . .
+
+$$
+\widehat{y} = \widehat \beta_0 + \widehat \beta_1 x_1
+$$
+
+## Back to cookies
+
+$$
+\widehat{\text{happiness}} = \beta_0 + \beta
+_1 \text{cookies}
+$$
+
+## Back to cookies
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$\widehat{\text{happiness}} = \beta_0 + \beta_1 \text{cookies}$
+:::
+::::
+
+## Back to cookies
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$\widehat{\text{happiness}} = \beta_0 + \beta_1 \text{cookies}$
+
+```{r fig.dim=c(4.8, 4.2), out.width="100%"}
+cookies_base +
+  geom_smooth(method = "lm", color = nu_purple) +
+  coord_cartesian(xlim = c(0, 10), ylim = c(0, 4))
+```
+:::
+::::
+
+## Back to cookies
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$\widehat{\text{happiness}} = \beta_0 + \beta_1 \text{cookies}$
+
+```{r fig.dim=c(4.8, 4.2), out.width="100%"}
+cookies_base +
+  geom_smooth(method = "lm", color = nu_purple) +
+  coord_cartesian(xlim = c(0, 10), ylim = c(0, 4))
+```
+:::
+
+::: {.column width="50%"}
+
+```{r}
+happiness_model <- 
+  lm(happiness ~ cookies,
+     data = cookies_data)
+
+mod = modelsummary(list("happinness" = happiness_model),
+             gof_map = c("nobs", "r.squared"),
+             stars = TRUE,
+             output = "kableExtra")
+
+mod %>% 
+  kable_styling(font_size = 25)
+```
+
+
+:::
+
+::::
+
+## Back to cookies
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$\widehat{\text{happiness}} = \beta_0 + \beta_1 \text{cookies}$
+
+```{r fig.dim=c(4.8, 4.2), out.width="100%"}
+cookies_base +
+  geom_smooth(method = "lm", color = nu_purple) +
+  coord_cartesian(xlim = c(0, 10), ylim = c(0, 4))
+```
+:::
+
+::: {.column width="50%"}
+
+```{r}
+happiness_model <- 
+  lm(happiness ~ cookies,
+     data = cookies_data)
+
+mod = modelsummary(list("happinness" = happiness_model),
+             gof_map = c("nobs", "r.squared"),
+             stars = c('*' = .05),
+             output = "kableExtra")
+
+mod %>% 
+  kable_styling(font_size = 25)
+```
+
+
+:::
+
+::::
+
+## Back to cookies
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$\widehat{\text{happiness}} = 1.10 + 0.16 \cdot \text{cookies}$
+
+```{r fig.dim=c(4.8, 4.2), out.width="100%"}
+cookies_base +
+  geom_smooth(method = "lm", color = nu_purple) +
+  coord_cartesian(xlim = c(0, 10), ylim = c(0, 4))
+```
+:::
+
+::: {.column width="50%"}
+
+```{r}
+happiness_model <- 
+  lm(happiness ~ cookies,
+     data = cookies_data)
+
+mod = modelsummary(list("happinness" = happiness_model),
+             gof_map = c("nobs", "r.squared"),
+             stars = c('*' = .05),
+             output = "kableExtra")
+
+mod %>% 
+  kable_styling(font_size = 25)
+```
+
+
+:::
+
+::::
+
+## Back to cookies
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$\widehat{\text{happiness}} = 1.10 + 0.16 \cdot \text{cookies}$
+
+```{r fig.dim=c(4.8, 4.2), out.width="100%"}
+cookies_base +
+  geom_smooth(method = "lm", color = nu_purple) +
+  coord_cartesian(xlim = c(0, 10), ylim = c(0, 4))
+```
+:::
+
+::: {.column width="50%"}
+
+```{r}
+happiness_model <- 
+  lm(happiness ~ cookies,
+     data = cookies_data)
+
+mod = modelsummary(list("happinness" = happiness_model),
+             gof_map = c("nobs", "r.squared"),
+             stars = c('*' = .05),
+             output = "kableExtra")
+
+mod %>% 
+  kable_styling(font_size = 25)
+```
+
+**On average**
+
+:::
+
+::::
+
+## Back to cookies
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$\widehat{\text{happiness}} = 1.10 + 0.16 \cdot \text{cookies}$
+
+```{r fig.dim=c(4.8, 4.2), out.width="100%"}
+cookies_base +
+  geom_smooth(method = "lm", color = nu_purple) +
+  coord_cartesian(xlim = c(0, 10), ylim = c(0, 4))
+```
+:::
+
+::: {.column width="50%"}
+
+```{r}
+happiness_model <- 
+  lm(happiness ~ cookies,
+     data = cookies_data)
+
+mod = modelsummary(list("happinness" = happiness_model),
+             gof_map = c("nobs", "r.squared"),
+             stars = c('*' = .05),
+             output = "kableExtra")
+
+mod %>% 
+  kable_styling(font_size = 25)
+```
+
+
+**On average**, one additional cookie
+
+:::
+
+::::
+
+## Back to cookies
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$\widehat{\text{happiness}} = 1.10 + 0.16 \cdot \text{cookies}$
+
+```{r fig.dim=c(4.8, 4.2), out.width="100%"}
+cookies_base +
+  geom_smooth(method = "lm", color = nu_purple) +
+  coord_cartesian(xlim = c(0, 10), ylim = c(0, 4))
+```
+:::
+
+::: {.column width="50%"}
+
+```{r}
+happiness_model <- 
+  lm(happiness ~ cookies,
+     data = cookies_data)
+
+mod = modelsummary(list("happinness" = happiness_model),
+             gof_map = c("nobs", "r.squared"),
+             stars = c('*' = .05),
+             output = "kableExtra")
+
+mod %>% 
+  kable_styling(font_size = 25)
+```
+
+
+**On average**, one additional cookie increases happiness by 0.16 points
+
+:::
+
+::::
+
+
+
+## Correlation
+
+## $R^2$
+
+
+::: {style="text-align: center"}
+## Large N {#thu .center}
+
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
+
+
