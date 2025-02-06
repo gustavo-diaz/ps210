@@ -1020,7 +1020,7 @@ dat_4 %>% kbl() %>% add_header_above(c(" " = 4, "Experiment 1" = 2, "Experiment 
 
 - Perhaps men and women react to treatment differently
 
-- We want to rule out results depending on whether we assign treatments to men or women
+- We want results to not depend on whether we assign treatments to men or women
 
 ## Why does this happen? {visibility="uncounted"}
 
@@ -1069,7 +1069,7 @@ Half of the time we are spot on, half of the time we are wrong in either directi
 ## In practice
 
 ::: incremental
-- We only know statitical properties in our simulations
+- We only know statitiscal properties in our simulations
 
 - Need a lot of domain expertise to attribute ATE to policy
 
@@ -1105,7 +1105,7 @@ Half of the time we are spot on, half of the time we are wrong in either directi
 ## Questions
 
 ::: incremental
-1. That are these monkeys representative of?
+1. What are these monkeys representative of?
 
 2. To what other contexts would this apply?
 
@@ -1193,8 +1193,6 @@ See [Shadish et al (2002)](https://psycnet.apa.org/record/2002-17373-000) and [E
 - A **support factor** is one part of the **causal pie**
 
 - **Causal pie:** A set of causes that are jointly but not separately sufficient for a contribution to an effect `(INUS causation)`
-
-- **Analogy:** TUP only works if we have good schools
 :::
 
 ::: aside
