@@ -48,9 +48,13 @@ Introduction to Empirical Methods in Political Science
 
 - (Linear) regression
 
+- Bivariate vs. multivariate regression
+
 - Ordinary least squares (OLS)
 
--
+- OLS regression assumptions (ask me why I did not mention them in class)
+
+- Covariance, correlation, regression
 
 
 ## Last week
@@ -675,12 +679,112 @@ mod %>%
 
 ::::
 
+## Regression and correlation
 
+. . .
 
-## Correlation
+Informally, we use regression coefficients (slopes) to determine whether two variables are **correlated**
 
-## $R^2$
+. . .
 
+Technically, they are related but on a different scale
+
+. . .
+
+**Regression coefficient:** $\beta = \frac{\text{Cov}[X,Y]}{V[X]}$
+
+. . .
+
+**Correlation:** $\rho = \frac{\text{Cov}[X,Y]}{SD[X] SD[Y]}$
+
+::: aside
+By the way, $\text{Cov}[X,Y] = E[(X-E[X])(Y-E[Y])]$
+:::
+
+## Regression and correlation
+
+Informally, we use regression coefficients (slopes) to determine whether two variables are **correlated**
+
+Technically, they are related but on a different scale
+
+**Regression coefficient:** $\beta = \frac{\text{Cov}[X,Y]}{V[X]}$ $\Rightarrow$ in units of Y (happiness)
+
+**Correlation:** $\rho = \frac{\text{Cov}[X,Y]}{SD[X] SD[Y]}$
+
+::: aside
+By the way, $\text{Cov}[X,Y] = E[(X-E[X])(Y-E[Y])]$
+:::
+
+## Regression and correlation
+
+Informally, we use regression coefficients (slopes) to determine whether two variables are **correlated**
+
+Technically, they are related but on a different scale
+
+**Regression coefficient:** $\beta = \frac{\text{Cov}[X,Y]}{V[X]}$ $\Rightarrow$ in units of Y (happiness)
+
+**Correlation:** $\rho = \frac{\text{Cov}[X,Y]}{SD[X] SD[Y]}$ $\Rightarrow$ [-1, 1] scale
+
+::: aside
+By the way, $\text{Cov}[X,Y] = E[(X-E[X])(Y-E[Y])]$
+:::
+
+## With cookies again
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$\widehat{\text{happiness}} = 1.10 + 0.16 \cdot \text{cookies}$
+
+```{r fig.dim=c(4.8, 4.2), out.width="100%"}
+cookies_base +
+  geom_smooth(method = "lm", color = nu_purple) +
+  coord_cartesian(xlim = c(0, 10), ylim = c(0, 4))
+```
+:::
+
+::: {.column width="50%"}
+
+&nbsp;
+
+::: incremental
+
+- **On average**, one additional cookie increases happiness by 0.16 points
+
+- Corresponds to a correlation of `r round(cor(cookies$cookies, cookies$happiness), 2)`
+
+:::
+
+:::
+
+::::
+
+## Helpful for comparison
+
+. . .
+
+Is 0.16 happiness points per cookie a lot?
+
+. . .
+
+We cannot tell without a point of reference
+
+. . .
+
+But correlation is a reference on its own:
+
+```{r, echo = FALSE}
+correlation = tribble(
+  ~`Absolute magnitude`, ~Effect,
+  .1, "Small",
+  .3, "Moderate",
+  .5, "Large"
+)
+
+correlation %>% 
+  tt()
+
+```
 
 ::: {style="text-align: center"}
 ## Large N {#thu .center}
