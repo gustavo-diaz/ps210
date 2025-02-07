@@ -796,3 +796,122 @@ Introduction to Empirical Methods in Political Science
 :::
 
 
+```{r}
+# remotes::install_github("jamesmartherus/anesr")
+library(anesr)
+
+
+data(timeseries_2016)
+
+nes16 = timeseries_2016 %>% 
+  select(
+    V162079, # Feeling thermometer for TRUMP [POST]
+    V162230x, # Better if man works and woman takes care of home [POST]
+    V162255, # Is Barack Obama Muslim (yes/no) [POST]
+    V161267, # Respondent Age [PRE]
+    V161270, # Highest level of Education (Years) [PRE]
+    V161158x # Party ID [PRE]
+  )
+
+nes16 = nes16 %>% 
+  mutate(
+    ft_trump_post = ifelse(V162079 < 0 | V162079 == 998, NA, V162079),
+    women_at_home = case_when(V162230x < 0 ~ NA,
+                              V162230x <= 3 ~ 1,
+                              V162230x <= 7 ~ 0),
+    obamamuslim = ifelse(V162255 == 1, 1, 0),
+    age = ifelse(V161267 < 0, NA, V161267),
+    age0 = age - 18,
+    educ_hs = case_when(V161270 < 0 ~ NA,
+                        V161270 >= 90 ~ NA,
+                        V161270 >= 9 ~ 1,
+                        V161270 <= 8 ~ 0),
+    republican = case_when(V161158x < 0 ~ NA,
+                           V161158x <= 4 ~ 0,
+                           V161158x <= 7 ~ 1)
+  )
+
+nes = nes16 %>% 
+  select(ft_trump_post,
+         women_at_home, obamamuslim,
+         age, age0,
+         educ_hs, republican)
+
+```
+
+
+## Last time
+
+::: incremental
+- **Bivariate regression** as a method to understand relationship between X and Y
+
+- **Today:** More variables! (and why you would want that)
+
+- **Multivariate regression**
+
+:::
+
+## Running example: ANES 2016 data
+
+. . .
+
+**Outcome variable** 
+
+- `ft_trump_post`: Post-election feeling thermometer toward Trump
+
+. . .
+
+```{r, out.width="80%", fig.align='center'}
+ggplot(nes) +
+  aes(x = ft_trump_post) +
+  geom_histogram(bins = 10, fill = nu_purple)
+```
+
+
+## Running example: ANES 2016 data
+
+**Explanatory variables**
+
+::: incremental
+- `women_at_home`: Believe women should stay home
+- `obamamuslim`: Believe Obama is a Muslim
+- `age`: Age in years
+- `age0`: Age in years (starting with 18 = 0)
+- `educ_hs`: Any kind of post-secondary education
+- `republican`: Identifies with Republican party (including leaners)
+:::
+
+## Running example: ANES 2016 data
+
+
+```{r, echo = FALSE}
+nes
+```
+
+## Main relationship
+
+```{r}
+ggplot(nes) +
+  aes(x = obamamuslim,
+      y = ft_trump_post) +
+  geom_jitter(size = 1, 
+              width = 0.3,
+              alpha = 0.8,
+              color = nu_purple) +
+  scale_x_continuous(breaks = c(0, 1))
+```
+
+
+## Regression as conditional means
+
+. . .
+
+```{r}
+lm_race = lm(ft_trump_post ~ obamamuslim, data = nes)
+
+lm_race %>% 
+  tidy() %>% 
+  select(term, estimate, std.error, p.value) %>% 
+  kbl(digits = 2)
+```
+
