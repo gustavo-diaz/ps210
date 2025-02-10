@@ -19,6 +19,7 @@ opts_chunk$set(echo = FALSE,
 library(tidyverse)
 library(tinytable)
 library(kableExtra)
+library(gt)
 library(modelsummary)
 library(tidyr)
 library(broom)
@@ -339,9 +340,9 @@ You may see this equation with an extra error term $\varepsilon$ in some textboo
 ## More formally
 
 ::: incremental
-- The **best linear predictor** is the line that minimizes the distance of each observation to to the line
+- The **best linear predictor** is the line that minimizes the distance of each observation to the line
 
-- That distance is know as a **residual** or **error**
+- That distance is known as **residual** or **error**
 :::
 
 ## Visualizing residuals
@@ -906,6 +907,10 @@ ggplot(nes) +
 
 . . .
 
+$\widehat{\texttt{ft_trump_post}} = \beta_0 + \beta_1 \cdot \texttt{obamamuslim}$
+
+. . .
+
 ```{r}
 lm_race = lm(ft_trump_post ~ obamamuslim, data = nes)
 
@@ -915,3 +920,357 @@ lm_race %>%
   kbl(digits = 2)
 ```
 
+## Regression as conditional means
+
+$\widehat{\texttt{ft_trump_post}} = 32.17 + 35.04 \cdot \texttt{obamamuslim}$
+
+```{r}
+lm_race = lm(ft_trump_post ~ obamamuslim, data = nes)
+
+lm_race %>% 
+  tidy() %>% 
+  select(term, estimate, std.error, p.value) %>% 
+  kbl(digits = 2)
+```
+
+::: incremental
+- What is the average feeling thermometer for someone who *does not* believe Obama is a Muslim?
+
+- What is the average feeling thermometer for someone who *does* believe Obama is a Muslim?
+:::
+
+## What can we say with regression?
+
+::: incremental
+- **Level 1:** Description of *conditional means*
+
+- **Level 2:** Statistical inference (needs CIs or p-values)
+
+- **Level 3:** Causal inference (needs **assumptions**)
+:::
+
+. . .
+
+What do we need to assume to make causal claims?
+
+::: aside
+Berk, Richard. 2010. ["What You Can and Can't Properly do with Regression."](https://doi.org/10.1007/s10940-010-9116-4) *Journal of Quantitative Criminology* 26: 481-487
+:::
+
+## Strategy 1: Random assignment
+
+. . .
+
+If treatment $D$ is *randomly assigned*
+
+::: incremental
+- Potential outcomes are *independent* from treatment: $(Y(0), Y(1)) \perp \!\!\! \perp D$
+- ATE $E[\tau_i]$ is **point-identified**
+- Estimate with *difference in means* between treatment and control
+- Bivariate regression yields the same result
+:::
+
+. . .
+
+What if random assignment is not possible?
+
+## Return to ANES 2016
+
+. . .
+
+We **found** that those who believe Obama is a Muslim were, on average, 35 points more favorable toward Trump
+
+. . .
+
+We want to **claim** this is because:
+
+$$
+\text{Belief in conspiracies} \Rightarrow \text{Support for Trump}
+$$
+
+. . .
+
+What prevents us from making such a claim?
+
+::: incremental
+- Reverse causation
+- Omitted variable bias
+- Selection bias
+:::
+
+## Strategy 2: Ignorability
+
+
+. . .
+
+We want to be able to **ignore** the role of *potential confounders*
+
+. . .
+
+We usually do this by presenting a **controlled** comparison
+
+. . .
+
+So we can say that our *explanatory variable* is distributed in a way that is **conditionally independent**
+
+. . .
+
+**Conditional independence:** $(Y(0), Y(1)) \perp \!\!\! \perp D | \mathbf{X}$
+
+. . .
+
+We now distinguish between:
+
+::: incremental
+- *Explanatory* variable (D) 
+- *Control* variables or *covariates* (X)
+:::
+
+
+::: aside
+There is strong and weak ignorability. For our purposes they are the same
+:::
+
+## Another way to think about it
+
+There *is* a causal effect to be found in **observational data**
+
+. . .
+
+But without random assignment, the effect is *contaminated* by potential confounders
+
+. . .
+
+We want to **adjust** or **control** for these variables
+
+## Multivariate regression
+
+. . .
+
+The linear model setup is flexible
+
+. . .
+
+ $$\widehat{y} = \widehat \beta_0 + \widehat \beta_1 x_1 + \widehat \beta_2 x_2 + \ldots + \widehat \beta_K x_K$$
+
+. . .
+
+You can technically put *whatever* you want in a regression as long as $\text{observations} > \text{variables}$
+
+. . .
+
+But for *statistical* or *causal inference*, anything with more than 2-3 control variables doesn't make much sense
+
+## Increasing dimensions
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](fig/3d.webp)
+:::
+
+::::
+
+## Increasing dimensions
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](fig/3d.webp)
+:::
+
+::: {.column width="50%"}
+More dimensions $\rightarrow$ more likely to see:
+
+::: incremental
+- **Extrapolation:** Fitting line beyond actual range
+
+- **Interpolation:** Gaps within actual range
+
+:::
+
+:::
+
+::::
+
+. . .
+
+Illusion of learning from **empty space**!
+
+## Practice
+
+. . .
+
+We argue conspiracy beliefs $\Rightarrow$ support Trump
+
+. . .
+
+Some alternative explanations:
+
+::: incremental
+- Differences in education
+- Differences in age
+- Partisan motivated reasoning
+:::
+
+## Models
+
+Estimate the following models:
+
+. . .
+
+$\widehat{\texttt{ft_trump_post}} = \beta_0 + \beta_1 \texttt{obamamuslim}$ (Baseline)
+
+. . .
+
+$\widehat{\texttt{ft_trump_post}} = \beta_0 + \beta_1 \texttt{obamamuslim} + \beta_2 \texttt{educ_hs}$
+
+. . .
+
+$\widehat{\texttt{ft_trump_post}} = \beta_0 + \beta_1 \texttt{obamamuslim} + \beta_2 \texttt{age}$
+
+. . .
+
+$\widehat{\texttt{ft_trump_post}} = \beta_0 + \beta_1 \texttt{obamamuslim} + \beta_2 \texttt{republican}$
+
+. . .
+
+$\widehat{\texttt{ft_trump_post}} = \beta_0 + \beta_1 \texttt{obamamuslim} + \beta_2  \texttt{educ_hs} +\\ \beta_3 \texttt{age} + \beta_4 \texttt{republican}$
+
+## Results
+
+```{r}
+lm0 = lm(ft_trump_post ~ obamamuslim, data = nes)
+
+lm1 = lm(ft_trump_post ~ obamamuslim + educ_hs, data = nes)
+
+lm2 = lm(ft_trump_post ~ obamamuslim + age, data = nes)
+
+lm3 = lm(ft_trump_post ~ obamamuslim + republican, data = nes)
+
+lm4 = lm(ft_trump_post ~ obamamuslim + educ_hs +
+           age + republican, data = nes)
+```
+
+```{r}
+models = list(lm0, lm1, lm2, lm3, lm4)
+
+mods = modelsummary(models,
+             gof_map = c("nobs", "r.squared"),
+             stars = c('*' = .05),
+             output = "gt")
+
+mods %>% 
+  tab_style(
+    style = cell_text(color = "#00000000"),
+    locations = cells_body(columns = 2:6)) %>% 
+    tab_style(
+    style = cell_fill(color = "#B6ACD1"),
+    locations = cells_body(rows = 3:4)
+  )
+```
+
+## Results
+
+```{r}
+mods %>% 
+  tab_style(
+    style = cell_text(color = "#00000000"),
+    locations = cells_body(columns = 3:6)) %>% 
+  tab_style(
+    style = cell_fill(color = "#B6ACD1"),
+    locations = cells_body(rows = 3:4)
+  )
+```
+
+
+## Results
+
+```{r}
+mods %>% 
+  tab_style(
+    style = cell_text(color = "#00000000"),
+    locations = cells_body(columns = 4:6)) %>% 
+    tab_style(
+    style = cell_fill(color = "#B6ACD1"),
+    locations = cells_body(rows = 3:4)
+  )
+```
+
+## Results
+
+```{r}
+mods %>% 
+  tab_style(
+    style = cell_text(color = "#00000000"),
+    locations = cells_body(columns = 5:6)) %>% 
+    tab_style(
+    style = cell_fill(color = "#B6ACD1"),
+    locations = cells_body(rows = 3:4)
+  )
+```
+
+## Results
+
+```{r}
+mods %>% 
+  tab_style(
+    style = cell_text(color = "#00000000"),
+    locations = cells_body(columns = 6)) %>% 
+    tab_style(
+    style = cell_fill(color = "#B6ACD1"),
+    locations = cells_body(rows = 3:4)
+  )
+```
+
+## Results
+
+```{r}
+mods %>% 
+    tab_style(
+    style = cell_fill(color = "#B6ACD1"),
+    locations = cells_body(rows = 3:4)
+  )
+```
+
+## Visualizing
+
+```{r}
+names(models) = c("none",
+                  "educ_hs",
+                  "age",
+                  "republican",
+                  "all")
+
+modelplot(models, coef_map = "obamamuslim") +
+  labs(color = "Controls") +
+  theme(legend.position = "bottom", 
+        axis.text.y = element_text(
+          angle = 90, hjust = 0.5)
+        ) +
+  geom_vline(xintercept = 0, linetype = "dashed")
+```
+
+## Interactions
+
+. . .
+
+What if we believed the effect of `obamamuslim` varies depending on attitudes about gender roles?
+
+. . .
+
+**Model:** $\widehat{\texttt{ft_trump_post}} = \beta_0 + \beta_1 \texttt{obamamuslim} + \beta_2 \texttt{women_at_home} + \\ \beta_3 \texttt{obamamuslim} \times \texttt{women_at_home}$
+
+## Interactions
+
+**Model:** $\widehat{\texttt{ft_trump_post}} = \beta_0 + \beta_1 \texttt{obamamuslim} + \beta_2 \texttt{women_at_home} + \\ \beta_3 \texttt{obamamuslim} \times \texttt{women_at_home}$
+
+```{r}
+lm_wah = lm(lm(ft_trump_post ~ obamamuslim*women_at_home, data = nes))
+
+tidy(lm_wah) %>% 
+  mutate(term = ifelse(term == "obamamuslim:women_at_home", 
+                       "interaction", term)) %>% 
+  select(term, estimate, std.error, p.value) %>% 
+  kbl(digits = 2)
+```
