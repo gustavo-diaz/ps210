@@ -515,7 +515,7 @@ bw5 = lm(Y ~ T,
 
 bw10 = lm(Y ~ T, 
          data = tr %>% 
-           filter(X >= -5 & X <= 5))
+           filter(X >= -10 & X <= 10))
 ```
 
 
@@ -523,7 +523,34 @@ bw10 = lm(Y ~ T,
 
 **Continuity-based:** Default automation
 
-[CONTINUE HERE PRESENT SEPARATELY?]
+```{r}
+rd = rdrobust(
+  y = tr$Y,
+  x = tr$X)
+
+tidy.rdrobust <- function(model, ...) {
+  ret <- data.frame(
+    term = row.names(model$coef),
+    std.error = model$se[, 1],
+    p.value = model$pv[, 1]
+  )
+  row.names(ret) <- NULL
+  ret
+}
+
+tidy.rdrobust(rd)
+tidy(bw5)
+tidy(bw10)
+
+tidy(baseline) %>% 
+  filter(term == "T")
+  mutate(Model = "Baseline")
+```
+
+```{r}
+
+```
+
 
 
 
