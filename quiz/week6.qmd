@@ -1,0 +1,153 @@
+---
+title: "week 6 quiz stuff"
+format: html
+---
+
+
+```{r setup, include=FALSE}
+library(knitr)
+
+opts_chunk$set(echo = FALSE, 
+               message = FALSE, 
+               warning = FALSE,
+               out.width = "100%")
+
+library(tidyverse)
+library(tinytable)
+library(kableExtra)
+library(gt)
+library(modelsummary)
+library(marginaleffects)
+library(tidyr)
+library(broom)
+library(webshot2)
+library(ggdist)
+library(distributional)
+
+# ggplot global options
+theme_set(theme_gray(base_size = 20))
+
+# set NU purple
+nu_purple = "#4E2A84"
+
+```
+
+
+
+```{r}
+# remotes::install_github("jamesmartherus/anesr")
+library(anesr)
+
+
+data(timeseries_2016)
+
+nes16 = timeseries_2016 %>% 
+  select(
+    V162079, # Feeling thermometer for TRUMP [POST]
+    V162230x, # Better if man works and woman takes care of home [POST]
+    V162255, # Is Barack Obama Muslim (yes/no) [POST]
+    V161267, # Respondent Age [PRE]
+    V161270, # Highest level of Education (Years) [PRE]
+    V161158x # Party ID [PRE]
+  )
+
+nes16 = nes16 %>% 
+  mutate(
+    ft_trump_post = ifelse(V162079 < 0 | V162079 == 998, NA, V162079),
+    women_at_home = case_when(V162230x < 0 ~ NA,
+                              V162230x <= 3 ~ 1,
+                              V162230x <= 7 ~ 0),
+    obamamuslim = ifelse(V162255 == 1, 1, 0),
+    age = ifelse(V161267 < 0, NA, V161267),
+    age0 = age - 18,
+    educ_hs = case_when(V161270 < 0 ~ NA,
+                        V161270 >= 90 ~ NA,
+                        V161270 >= 9 ~ 1,
+                        V161270 <= 8 ~ 0),
+    republican = case_when(V161158x < 0 ~ NA,
+                           V161158x <= 4 ~ 0,
+                           V161158x <= 7 ~ 1)
+  )
+
+nes = nes16 %>% 
+  select(ft_trump_post,
+         women_at_home, obamamuslim,
+         age, age0,
+         educ_hs, republican)
+
+```
+
+```{r}
+lm_age = lm(ft_trump_post ~ age, data = nes)
+
+tidy(lm_age) %>% 
+  kbl(digits = 3)
+```
+
+```{r}
+lm_age0 = lm(ft_trump_post ~ age0, data = nes)
+
+tidy(lm_age0) %>% 
+  kbl(digits = 3)
+```
+
+```{r}
+confint(lm_age0)
+```
+
+```{r}
+p0 = plot_predictions(lm_age,
+                 condition = "age",
+                 draw = FALSE)
+```
+
+
+```{r}
+lm_age_adj = lm(ft_trump_post ~ age + 
+                  educ_hs + republican,
+                data = nes)
+
+p1 = plot_predictions(lm_age_adj,
+                 condition = "age",
+                 draw = FALSE)
+```
+
+```{r}
+pred_df = bind_rows(
+  p0 %>% mutate(fit = "No controls"),
+  p1 %>% mutate(fit = "Controls")
+)
+```
+
+```{r}
+ggplot(nes) +
+  aes(x = age, y = ft_trump_post) +
+  # This part needs ggdist and distributional
+  stat_lineribbon(
+    data = pred_df,
+    aes(x = age,
+        ydist = dist_normal(mu = estimate,
+                            sigma = std.error),
+        fill = fit),
+    alpha = 0.3
+  ) +
+  scale_fill_viridis_d(begin = 0, end = 0.8) +
+  labs(fill = "Model")
+```
+
+```{r}
+lm_age_wah = lm(ft_trump_post ~ age * women_at_home,
+                data = nes)
+
+tidy(lm_age_wah) %>% 
+  mutate(term = if_else(str_detect(term, ":"), "interaction", term)) %>% 
+  kbl(digits = 3)
+```
+
+
+```{r}
+plot_slopes(lm_age_wah,
+                 variables = "age",
+            condition = "women_at_home")
+```
+
