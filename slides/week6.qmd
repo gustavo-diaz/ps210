@@ -44,6 +44,24 @@ Introduction to Empirical Methods in Political Science
 
 :::
 
+## Be ready for next week! {.smaller background-color="#FDBF57"}
+
+**NO EMPS CHAPTER ASSIGNED**
+
+**Lecture reading**
+
+- Huntinton-Klein, Nick. 2022. [*The Effect: An Introduction to Research Design and Causality*](https://theeffectbook.net). Chapman & Hall. Chapter 18
+
+- Cattaneo, Matias D., Nicolás Idrobo, and Rocío Titiunik. 2020. [*A Practical Introduction to Regression Discontinuity Designs: Foundations*](https://titiunik.github.io/books/CattaneoIdroboTitiunik2020-CUP-Foundations.pdf). Cambridge University Press. Chapters 1-4
+
+**Discussion section (read at least on very carefully)**
+
+- García-Montoya, Laura, Ana Arjona, and Matthew Lacombe. 2022. ["Violence and Voting in the United States: How School Shootings Affect Elections."](https://doi.org/10.1017/S0003055421001179) *American Political Science Review* 116 (3): 807-826
+<!-- Critique: https://doi.org/10.1017/S0003055424000108 -->
+
+- Ademi, Ubeydullah and Firat Kimya. 2024. ["Democratic transition and party polarization: A fuzzy regression discontinuity design approach."](https://doi.org/10.1177/13540688231171689) *Party Politics* 30 (4):736-749
+
+
 
 ## AI Prompts {background-color="#B6ACD1"}
 
@@ -55,7 +73,9 @@ Introduction to Empirical Methods in Political Science
 
 - OLS regression assumptions (ask me why I did not mention them in class)
 
-- Covariance, correlation, regression
+- How to choose what variables to include
+
+- Covariance vs. correlation vs. regression
 
 
 ## Last week
@@ -787,6 +807,18 @@ correlation %>%
 
 ```
 
+## Summary
+
+- Lines are a convenient way to summarize bivariate relationships
+
+- We can treat line-fitting as an estimation problem
+
+- OLS regression has good statistical properties (minimizes SSR)
+
+- Regression and correlation are related but different
+
+- Many different kinds of regression models!
+
 ::: {style="text-align: center"}
 ## Large N {#thu .center}
 
@@ -1251,6 +1283,46 @@ modelplot(models, coef_map = "obamamuslim") +
   geom_vline(xintercept = 0, linetype = "dashed")
 ```
 
+## Everything else constant {.smaller}
+
+Plug-in coefficients in equations:
+
+. . .
+
+$\widehat{\texttt{ft_trump_post}} = 32.17 + 35.04 \cdot \texttt{obamamuslim}$
+
+. . .
+
+$\widehat{\texttt{ft_trump_post}} =  32.76 + 34.85 \cdot \texttt{obamamuslim}  -0.56 \cdot \texttt{educ_hs}$
+
+. . .
+
+$\widehat{\texttt{ft_trump_post}} = 23.09 + 34.72 \cdot \texttt{obamamuslim} + 0.19 \cdot \texttt{age}$
+
+. . .
+
+$\widehat{\texttt{ft_trump_post}} = 20.367 + 22.74 \cdot \texttt{obamamuslim} + 37.53 \cdot \texttt{republican}$
+
+. . .
+
+$\widehat{\texttt{ft_trump_post}} = 21.34 + 22.23 \cdot \texttt{obamamuslim}  -6.22 \cdot  \texttt{educ_hs} +\\ 0.10 \cdot \texttt{age} + 37.54 \cdot \texttt{republican}$
+
+. . .
+
+&nbsp;
+
+::: {.r-stack}
+Coefficients now need to be interpreted as **marginal means** or **marginal slopes**
+:::
+
+. . .
+
+&nbsp; 
+
+::: {.r-stack}
+These only make sense if you think *at least one variable* is a **focal point**
+:::
+
 ## Interactions
 
 . . .
@@ -1266,7 +1338,7 @@ What if we believed the effect of `obamamuslim` varies depending on attitudes ab
 **Model:** $\widehat{\texttt{ft_trump_post}} = \beta_0 + \beta_1 \texttt{obamamuslim} + \beta_2 \texttt{women_at_home} + \\ \beta_3 \texttt{obamamuslim} \times \texttt{women_at_home}$
 
 ```{r}
-lm_wah = lm(lm(ft_trump_post ~ obamamuslim*women_at_home, data = nes))
+lm_wah = lm(ft_trump_post ~ obamamuslim*women_at_home, data = nes)
 
 tidy(lm_wah) %>% 
   mutate(term = ifelse(term == "obamamuslim:women_at_home", 
@@ -1274,3 +1346,13 @@ tidy(lm_wah) %>%
   select(term, estimate, std.error, p.value) %>% 
   kbl(digits = 2)
 ```
+
+## Summary
+
+- Regression is a way to estimate conditional means
+
+- Multivariate regression needs "everything else constant" interpretation
+
+- Coefficients are now **marginal means** or **marginal slopes**
+
+- Only makes sense from a causal inference perspective
