@@ -1,0 +1,538 @@
+---
+format:
+    revealjs:
+      slide-number: false
+      progress: false
+      chalkboard: true
+      code-overflow: wrap
+      theme: [default, custom.scss]
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+
+opts_chunk$set(echo = FALSE, 
+               message = FALSE, 
+               warning = FALSE,
+               out.width = "100%")
+
+library(tidyverse)
+library(tinytable)
+library(kableExtra)
+library(gt)
+library(modelsummary)
+library(tidyr)
+library(broom)
+library(haven)
+library(rdrobust)
+
+
+# ggplot global options
+theme_set(theme_gray(base_size = 20))
+
+# set NU purple
+nu_purple = "#4E2A84"
+
+```
+
+
+
+::: {style="text-align: center"}
+## Quasi-Experiments {.center}
+
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
+
+
+
+## AI Prompts {background-color="#B6ACD1"}
+
+TBD
+
+
+## So far
+
+- **Two weeks ago:** Experiments as a framework to think about causal inference (potential outcomes)
+
+- **Last week:** Regression as a flexible method to estimate conditional means/slopes
+
+. . . 
+
+- **This week:** 
+
+![](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXk0Z2NwMzgzb2dpaWdldG14OGRmaXo3cHllOXJubXByNG1iaW91YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QqkA9W8xEjKPC/giphy.gif){fig-align="center" width=30%}
+
+## Strategies for causal inference
+
+::: incremental
+- **Strategy 1:** Random assignment
+
+- **Strategy 2:** Ignorability assumption (conditional independence)
+:::
+
+. . .
+
+Ignorability is hard to justify:
+
+::: incremental
+1. Need to account for all relevant confounding variables
+2. Should not include more than 2-3 controls in regression
+:::
+
+## Roadmap
+
+**Quasi-experiments** as research designs for *credible* causal inference in observational studies
+
+. . .
+
+**Tuesday:** Ignorability satisfied by design (regression discontinuity)
+
+[**Thursday:**](#thu) Replace ignorability with a more plausible assumption (difference-in-differences)
+
+## Quasi-experiments
+
+::: incremental
+- *Observational studies*
+
+- Conditions (treatment, control) assigned in a manner that is **sufficiently independent** from potential outcomes
+
+- Enough to satisfly *ignorability* or *conditional independence*
+
+- $\neq$ **Natural experiments** (no random assignment)
+
+- We can *think* of them as experiments but they **are not**
+
+:::
+
+## Regression discontinuity design (RDD)
+
+**Ingredients**
+
+::: incremental
+- $Y$: Outcome
+
+- $X$: **Score** or **running variable** (numerical continuous)
+
+- $c$: **Cutoff** or **threshold**
+
+- $T$: **Treatment** indicator (1, 0)
+:::
+
+. . .
+
+**Potential outcomes**
+
+$$
+Y = (1 - T) Y(0) + T Y(1) = \begin{cases}
+Y(0) & \text{if } X < c\\
+Y(1) & \text{if } X \geq c
+\end{cases}
+$$
+
+## Sharp RDD
+
+![](fig/rd_assign.png){fig-align="center" width=59%}
+
+::: aside
+Called *sharp* because treatment assignment is *deterministic* at the cutoff
+:::
+
+## Interpretation: Two approaches
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+![](fig/rd_assign.png)
+
+:::
+
+::: {.column width="40%"}
+
+
+1. Local randomization
+
+2. Continuity-based
+
+
+:::
+::::
+
+## Local randomization approach
+
+:::: {.columns}
+::: {.column width="60%"}
+![](fig/rd_rand.png)
+:::
+
+::: {.column width="40%"}
+::: incremental
+- Potential outcomes are not random because they depend on the *score*
+
+- But around the *cutoff*, treatment assignment is **as-if random**
+
+
+:::
+
+:::
+
+::::
+
+. . .
+
+We can pretend we have an experiment within a **bandwidth** around the *cutoff*
+
+## Example {.smaller}
+
+![](fig/hoekstra_1.png){fig-align="center" width="65%"}
+
+::: aside
+**Source:** Hoekstra, Mark. 2009. ["The Effect of Attending the Flagship State University on Earnings: A Discontinuity-Based Approach."](https://doi.org/10.1162/rest.91.4.717) *The Review of Economics and Statistics* 91 (4): 717-724
+:::
+
+
+## Local randomization approach
+
+:::: {.columns}
+::: {.column width="60%"}
+![](fig/rd_rand.png)
+:::
+
+::: {.column width="40%"}
+::: incremental
+- Bandwidth $\mathcal{W} = [c−w,c+w]$
+
+- Treatment **as-if** random within $\mathcal{W}$
+
+- ATE *identified* within $\mathcal{W}$
+
+:::
+
+:::
+
+::::
+
+
+## Local randomization approach
+
+:::: {.columns}
+::: {.column width="60%"}
+![](fig/rd_rand.png)
+:::
+
+::: {.column width="40%"}
+
+**Requirements**
+
+::: incremental
+1. Known probability distribution of scores within $\mathcal{W}$ ($\equiv$ random assignment)
+
+2. Potential outcomes **not affected by scores** within $\mathcal{W}$
+
+:::
+
+:::
+
+::::
+
+## Local randomization approach
+
+:::: {.columns}
+::: {.column width="60%"}
+![](fig/rd_rand.png)
+:::
+
+::: {.column width="40%"}
+
+**Estimation**
+
+::: incremental
+- Difference in means within $\mathcal{W}$
+:::
+
+**Inference**
+
+::: incremental
+
+1. CLT approximation (needs a *super-population*)
+
+2. Simulation (*randomization inference*)
+
+:::
+
+:::
+
+::::
+
+## Challenge: choosing a bandwidth
+
+![](fig/rdd_bw.png){fig-align="center" width="83%"}
+
+::: aside
+A narrow bandwidth has low bias but high variance. A wider bandwidth has lower variance but more bias. Narrow makes more sense but may yield wide confidence intervals.
+:::
+
+## Continuity-based approach
+
+:::: {.columns}
+::: {.column width="60%"}
+![](fig/rd_cont.png)
+:::
+
+::: {.column width="40%"}
+::: incremental
+- Treatment assignment **deterministic** at cutoff
+
+- ATE *identified* **exactly** at *cutoff*
+
+- $\tau_{SRD} \equiv E[Y_i(1) - Y_i(0) | X_i = c]$
+
+- But it does not exist!
+
+
+:::
+
+:::
+
+::::
+
+## Example: Evanston school district
+
+```{=html}
+<p align="center"><iframe src="https://www.google.com/maps/d/embed?mid=1mvqxAi6H-pWrBpdD5QwbeWJKPYCl8p9l&hl=en&ehbc=2E312F" width="900" height="500"></iframe></p>
+```
+
+
+## Continuity-based approach
+
+:::: {.columns}
+::: {.column width="60%"}
+![](fig/rd_cont.png)
+:::
+
+::: {.column width="40%"}
+
+- ATE is *identified* but *nonexistent* at cutoff
+
+- Still, we can approximate gap
+
+:::
+
+::::
+
+## Continuity-based approach
+
+:::: {.columns}
+::: {.column width="60%"}
+![](fig/rd_cont.png)
+:::
+
+::: {.column width="40%"}
+
+- ATE is *identified* but *nonexistent* at cutoff
+
+- Still, we can approximate gap
+
+$$
+\lim_{x \downarrow c} E[Y | X = x] -
+\lim_{x \uparrow c} E[Y | X = x]
+$$
+:::
+
+::::
+
+## Continuity-based approach
+
+:::: {.columns}
+::: {.column width="60%"}
+![](fig/rd_cont.png)
+:::
+
+::: {.column width="40%"}
+
+- ATE is *identified* but *nonexistent* at cutoff
+
+- Still, we can approximate gap
+
+$$
+\lim_{x \downarrow c} E[Y | X = x] -
+\lim_{x \uparrow c} E[Y | X = x]
+$$
+
+- This becomes a **line-drawing** problem
+:::
+
+
+
+::::
+
+
+## Local polynomial point estimation
+
+**Steps**
+
+1. Choose polynomial $p$
+
+2. Choose kernel function $K(\cdot)$
+
+2. Choose bandwidth $h$
+
+3. Fit $\widehat \mu_+$ and $\widehat \mu_-$ via *weighted least-squares*
+
+4. Estimate: $\widehat{ATE} = \widehat \mu_+ - \widehat \mu_-$
+
+5. Inference: Correct for adaptive bandwidth selection
+
+
+::: aside
+This a non-parametric procedure since most choices are automated
+:::
+
+## Line drawing: Parametric
+
+![](fig/rdd_poly.png){fig-align="center" width="90%"}
+
+::: aside
+Different functional forms change the size of the gap
+:::
+
+## Line drawing: Nonparametric
+
+![](fig/rdd_loess.png){fig-align="center" width="90%"}
+
+::: aside
+These lines are made by an algorithm that calculates the local average at many windows or bins of data
+:::
+
+## Line drawing: Bandwidth
+
+![](fig/rdd_bw2.png){fig-align="center" width="90%"}
+
+::: aside
+The size of the bandwidth determines the data you use to draw lines
+:::
+
+## Practice
+
+![<https://doi.org/10.3982/ECTA9878>](fig/meyersson.png){fig-align="center"}
+
+## Ingredients
+
+```{r, results = "hide"}
+url = "http://gustavodiaz.org/ps403/data/CIT_2020_CUP_polecon.dta"
+
+tr = read_dta(url)
+
+# Inspect but do not print
+tr
+```
+
+- $Y$: Percentage of young women who had completed high school by 2000 (outcome)
+
+- $X`$: Islamic parties' margin of victory in the 1994 mayoral election (score)
+
+- $c$: Implicit in score being centered at 0
+
+- $T$: Whether a mayor from an Islamic party was elected in the 1994 election (treatment)
+
+## Visualize
+
+```{r}
+ggplot(tr) +
+  aes(x = X, y = Y, color = as.factor(T)) +
+  geom_point(alpha = 0.5) +
+  geom_vline(xintercept = 0, 
+             linewidth = 1,
+             linetype = "dashed") +
+  scale_color_viridis_d(begin = 0.8, end = 0, ) +
+  labs(
+    x = "Islamic party margin of victory (X)",
+    y = "% Women completed HS",
+    color = "Treatment"
+  )
+```
+
+## Visualize
+
+```{r}
+ggplot(tr) +
+  aes(x = X, y = Y, color = as.factor(T)) +
+  geom_point(alpha = 0.5) +
+  geom_vline(xintercept = 0, 
+             linewidth = 1,
+             linetype = "dashed") +
+  scale_color_viridis_d(begin = 0.8, end = 0, ) +
+  labs(
+    x = "Islamic party margin of victory (X)",
+    y = "% Women completed HS",
+    color = "Treatment"
+  ) +
+    geom_smooth(
+    aes(x = X, y = Y, color = as.factor(T)),
+    method = "lm", se = FALSE
+  )
+```
+
+
+## Bin observations
+
+```{r, results='hide', include = FALSE}
+# This is a ggplot object that can be further customized
+p = rdplot(y = tr$Y,x = tr$X, p = 1)
+```
+
+
+```{r}
+p$rdplot +
+   labs(
+    x = "Islamic party margin of victory (X)",
+    y = "% Women completed HS",
+    title = ""
+  ) +
+  theme_gray(base_size = 20)
+```
+
+## Models
+
+**OLS baseline:** $\widehat Y = \beta_0 + \beta_1 T + \beta_2 X $
+
+```{r}
+baseline = lm(Y ~ T + X, data = tr)
+```
+
+
+. . .
+
+**Local randomization:** 5% and 10% bandwidth
+
+```{r}
+bw5 = lm(Y ~ T, 
+         data = tr %>% 
+           filter(X >= -5 & X <= 5))
+
+bw10 = lm(Y ~ T, 
+         data = tr %>% 
+           filter(X >= -5 & X <= 5))
+```
+
+
+. . .
+
+**Continuity-based:** Default automation
+
+[CONTINUE HERE PRESENT SEPARATELY?]
+
+
+
+::: {style="text-align: center"}
+## Quasi-experiments {#thu .center}
+
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
+
