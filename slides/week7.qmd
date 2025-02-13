@@ -497,7 +497,7 @@ p$rdplot +
 
 ## Models
 
-**OLS baseline:** $\widehat Y = \beta_0 + \beta_1 T + \beta_2 X $
+**OLS baseline:** $\widehat Y = \beta_0 + \beta_1 T + \beta_2 X$
 
 ```{r}
 baseline = lm(Y ~ T + X, data = tr)
@@ -531,6 +531,7 @@ rd = rdrobust(
 tidy.rdrobust <- function(model, ...) {
   ret <- data.frame(
     term = row.names(model$coef),
+    estimate = model$coef[, 1],
     std.error = model$se[, 1],
     p.value = model$pv[, 1]
   )
@@ -538,21 +539,79 @@ tidy.rdrobust <- function(model, ...) {
   ret
 }
 
-tidy.rdrobust(rd)
-tidy(bw5)
-tidy(bw10)
 
-tidy(baseline) %>% 
-  filter(term == "T")
-  mutate(Model = "Baseline")
+a = tidy(baseline) %>% 
+  filter(term == "T") %>% 
+  mutate(Approach = "Baseline")
+  
+b = tidy(bw5) %>% 
+  filter(term == "T") %>% 
+  mutate(Approach = "Local randomization",
+         bw = 5)
+
+c = tidy(bw10) %>% 
+  filter(term == "T") %>% 
+  mutate(Approach = "Local randomization",
+         bw = 10)
+
+d = tidy(rd) %>% 
+  filter(term == "Conventional") %>% 
+  mutate(Approach = "Continuity",
+         bw = 17.24)
+
+rd_tab = bind_rows(a, b, c, d) %>% 
+  select(Approach, bw,
+         estimate, std.error, p.value)
 ```
+
+## Results
 
 ```{r}
+rd_tab %>% 
+  tt(digits = 3) %>% 
+  style_tt(i = 1:4,
+            color = "#00000000")
+```
 
+## Results
+
+```{r}
+rd_tab %>% 
+  tt(digits = 3) %>% 
+  style_tt(i = 2:4,
+            color = "#00000000")
+```
+
+## Results
+
+```{r}
+rd_tab %>% 
+  tt(digits = 3) %>% 
+  style_tt(i = 3:4,
+            color = "#00000000")
 ```
 
 
+## Results
 
+```{r}
+rd_tab %>% 
+  tt(digits = 3) %>% 
+  style_tt(i = 4,
+            color = "#00000000")
+```
+
+
+## Results
+
+```{r}
+rd_tab %>% 
+  tt(digits = 3)
+```
+
+## Summary
+
+- RDD as a credible way to justify ignorability assumption
 
 ::: {style="text-align: center"}
 ## Quasi-experiments {#thu .center}
@@ -562,4 +621,330 @@ tidy(baseline) %>%
 Introduction to Empirical Methods in Political Science
 
 :::
+
+## Last time
+
+- RDD as an example of how to justify ignorability by design
+
+- But it is a very specific design!
+
+- **Today:** Take advantage of before/after comparisons to circumvent ignorability assumption
+
+- **Difference-in-differences** design
+
+## Example
+
+```{=html}
+<p align="center"><iframe width="900" height="500" src="https://www.youtube.com/embed/D2DzDDyKjR4?si=nFct16LCYQtLgSAe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+
+```
+
+::: aside
+<https://youtu.be/D2DzDDyKjR4?si=5h2JXBOPXtPZ5bG0>
+:::
+
+## King of the Pump
+
+. . .
+
+**How did John Snow prove that it was the water?**
+
+::: incremental
+- Before/after comparison (1849-1854)
+
+- **In between:** Lambeth water company forced to move upstream (away from dirty water)
+:::
+
+## Results
+
+```{r}
+snow = tribble(
+  ~Supplier, ~`1849`, ~`1854`,
+  "Lambeth (dirty to clean)", 85, 19,
+  "Others (dirty to dirty)", 135, 147
+)
+
+snow %>% 
+  tt() %>% 
+  format_tt(math = TRUE) %>% 
+  group_tt(
+    j = list(
+      "Cholera deaths per 10,000" = 2:3
+    )
+  ) %>%
+  style_tt(i = 1:2,
+            color = "#00000000")
+  
+```
+
+
+::: aside
+**Adapted from:** Coleman, Thomas. 2019. ["Causality in the Time of Cholera: John Snow as a Prototype for Causal Inference."](https://dx.doi.org/10.2139/ssrn.3262234)
+:::
+
+## Results
+
+```{r}
+snow %>% 
+  tt() %>% 
+  format_tt(math = TRUE) %>% 
+  group_tt(
+    j = list(
+      "Cholera deaths per 10,000" = 2:3
+    )
+  ) %>%
+  style_tt(i = 2,
+            color = "#00000000")
+  
+```
+
+
+::: aside
+**Adapted from:** Coleman, Thomas. 2019. ["Causality in the Time of Cholera: John Snow as a Prototype for Causal Inference."](https://dx.doi.org/10.2139/ssrn.3262234)
+:::
+
+## Results
+
+```{r}
+snow %>% 
+  tt() %>% 
+  format_tt(math = TRUE) %>% 
+  group_tt(
+    j = list(
+      "Cholera deaths per 10,000" = 2:3
+    )
+  )
+```
+
+. . .
+
+Moving away from the {{< fa poo >}} certainly helped! 
+
+::: aside
+**Adapted from:** Coleman, Thomas. 2019. ["Causality in the Time of Cholera: John Snow as a Prototype for Causal Inference."](https://dx.doi.org/10.2139/ssrn.3262234)
+:::
+
+## Another example
+
+
+![](fig/card_krueger.png){fig-align="center"}
+
+::: aside
+Card, David and Alan B. Krueger (1994). ["Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania."](https://www.jstor.org/stable/2118030) *American Economic Review* 84 (4): 772-793
+:::
+
+---
+
+![](fig/card_nobel.jpeg){fig-align="center"}
+
+## Minimum wage and employment
+
+::: incremental
+- **Agreement:** Increasing minimum wage reduces employment
+
+- **New Jersey 1992:** \$4.25 $\rightarrow$ \$5.05
+
+- **Pennsylvania:** Stay at \$4.25
+
+- Look at **full time employment** (FTE) in *fast food restaurants*
+
+- Compare February-November 1992
+
+:::
+
+## Results
+
+```{r}
+card = tribble(
+  ~Variable, ~PA, ~NJ, ~`NJ-PA`,
+  "FTE before", 23.30, 20.44, -2.89,
+  "FTE after", 21.147, 21.03, -0.14,
+  "Change", -2.16, 0.59, 2.76
+ )
+```
+
+```{r}
+card %>% 
+  tt() %>% 
+    style_tt(j = 2:4,
+            color = "#00000000")
+```
+
+## Results
+
+```{r}
+card %>% 
+  tt() %>% 
+    style_tt(j = 3:4,
+            color = "#00000000")
+```
+
+## Results
+
+```{r}
+card %>% 
+  tt() %>% 
+    style_tt(j = 4,
+            color = "#00000000")
+```
+
+## Results
+
+```{r}
+card %>% 
+  tt()
+```
+
+. . .
+
+Increasing minimum waged created **more** jobs in NJ!
+
+## Difference-in-differences design
+
+::: incremental
+
+- Time periods: $t = \{1,2\}$ (Before/after treatment)
+
+- Treatment: $D_i = \{0,1\}$
+
+- Potential outcomes: $Y_{i,t}(0) = Y_{i,t}(0, 0)$ and $Y_{i,t}(1) = Y_{i,t}(0, 1)$
+
+:::
+
+. . .
+
+**Switching equation**
+
+$$
+Y_{i,t} = D_i Y_{i,t}(1) + (1-D_i) Y_{i,t}(0)
+$$
+
+
+::: aside
+aka DD, DiD, diff-in-diffs for short
+:::
+
+## Target quantity
+
+. . .
+
+**Average treated effect on the treated (ATT) in $t=2$**
+
+$$
+\tau_2 = E[Y_{i,2}(1) - Y_{i,2}(0) | D_i = 1]
+$$
+
+::: incremental
+- Cannot observe directly
+
+- Cannot avoid *selection bias*
+
+- But before/after setup allows for credible estimation
+:::
+
+## Target quantity
+
+![](fig/dd.png)
+
+## DID estimation
+
+![](fig/dd.png)
+
+
+$$
+\widehat{ATT} =  [\text{Mean}(B) - \text{Mean}(A)] - [\text{Mean}(D) - \text{Mean}(C)]
+$$
+
+
+
+## DID estimation
+
+
+
+![](fig/dd.png)
+
+$$
+\widehat{ATT} =  \underbrace{[\text{Mean}(B) - \text{Mean}(A)]}_\text{Difference} - \underbrace{[\text{Mean}(D) - \text{Mean}(C)]}_\text{Difference}
+$$
+
+## DID estimation
+
+![](fig/dd.png)
+
+$$
+\widehat{ATT} =  \underbrace{\underbrace{[\text{Mean}(B) - \text{Mean}(A)]}_\text{Difference} - \underbrace{[\text{Mean}(D) - \text{Mean}(C)]}_\text{Difference}}_\text{Difference-in-differences}
+$$
+
+## Rewrite as a regression
+
+. . .
+
+**Two time periods**
+
+
+$$
+\begin{align}
+Y = & \beta_0 + \beta_1 \text{Treated} + \beta_2 \text{Post-treatment} + \\
+& {\color{purple}{\beta_3 \text{Treated} \times \text{Post-treatment}}}
+\end{align}
+$$
+
+::: incremental
+- $\beta_0$: Avg. control group, before treatment
+
+- $\beta_0 + \beta_1$: Avg. treatment group, before treatment
+
+- $\beta_0 + \beta_2$: Avg. control group, post-treatment
+
+- $\beta_0 + \beta_1 + \beta_2 + \beta_3$: Avg. treatment group, post-treatment
+:::
+
+. . .
+
+$\beta_3$ gives the **difference-in-differences**
+
+## Rewrite as a regression
+
+**Multiple time periods**
+
+. . .
+
+$$
+Y = \alpha_i + \alpha_t + \color{purple}{\beta_1 \text{Treated}}
+$$
+
+::: incremental
+- $\alpha_i$: Control for variation **within units**
+
+- $\alpha_t$: Control for variation **over time**
+
+- $\alpha_i$ and $\alpha_t$ are called **fixed-effects**
+:::
+
+
+. . .
+
+This is a *two-way fixed-effects* estimator (TWFE)
+
+## Example with multiple periods
+
+<!-- https://github.com/gustavo-diaz/ps403/blob/main/labs/lab8.qmd -->
+
+[CONTINUE HERE COPY FROM PS403 LAB 9]
+
+## Assumption: Parallel trends
+
+![](fig/dd_trend_1.png)
+
+## What if we break parallel trends?
+
+![](fig/dd_trend_2.png)
+
+## What if we break parallel trends?
+
+![](fig/dd_trend_3.png)
+
+## Challenge: Staggered adoption
+
+![](fig/dd_timing.png)
 
