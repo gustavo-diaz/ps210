@@ -1017,7 +1017,7 @@ We **found** that those who believe Obama is a Muslim were, on average, 35 point
 We want to **claim** this is because:
 
 $$
-\text{Belief in conspiracies} \Rightarrow \text{Support for Trump}
+\text{Beliefs about ethnicity} \Rightarrow \text{Support for Trump}
 $$
 
 . . .
@@ -1133,7 +1133,7 @@ Illusion of learning from **empty space**!
 
 . . .
 
-We argue conspiracy beliefs $\Rightarrow$ support Trump
+We argue ethnicity beliefs $\Rightarrow$ support Trump
 
 . . .
 
