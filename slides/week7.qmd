@@ -25,6 +25,7 @@ library(tidyr)
 library(broom)
 library(haven)
 library(rdrobust)
+library(estimatr)
 
 
 # ggplot global options
@@ -50,7 +51,17 @@ Introduction to Empirical Methods in Political Science
 
 ## AI Prompts {background-color="#B6ACD1"}
 
-TBD
+- Regression discontinuity
+
+- Difference-in-differences
+
+- Political science applications of $\uparrow$
+
+- Observational study (vs. natural experiment)
+
+- *Robust* standard errors
+
+- *Clustered* standard errors
 
 
 ## So far
@@ -613,6 +624,14 @@ rd_tab %>%
 
 - RDD as a credible way to justify ignorability assumption
 
+- Because local randomization and continuity-based approach
+
+- Effects are **causal** but **local**
+
+- Do they apply to other cases?
+
+- Do they exist beyond the discontinuity?
+
 ::: {style="text-align: center"}
 ## Quasi-experiments {#thu .center}
 
@@ -930,7 +949,172 @@ This is a *two-way fixed-effects* estimator (TWFE)
 
 <!-- https://github.com/gustavo-diaz/ps403/blob/main/labs/lab8.qmd -->
 
-[CONTINUE HERE COPY FROM PS403 LAB 9]
+```{r}
+library(causaldata)
+
+od = causaldata::organ_donations
+
+od = od %>%
+  mutate(Treatment = State == 'California',
+         Post = Quarter %in% c('Q32011','Q42011','Q12012'),
+         # Alternative version for TWFE
+         Treated = State == 'California' & 
+            Quarter %in% c('Q32011','Q42011','Q12012')
+         )
+```
+
+
+![<https://www.nber.org/papers/w20378>](fig/kessler.png){fig-align="center" width=70%}
+
+---
+
+<!-- Alabama is missing! -->
+
+![](fig/kessler_wording.png)
+
+## Intervention
+
+::: incremental
+- **2011:** California switches from *opt-in* $\rightarrow$ *active choice*
+
+- Compare with states that *remain opt-in* (AZ, DC, MN, NH, TN, SC, SD, VA, WI)
+
+- **Outcome:** Average sign-up rates per quarter per state
+:::
+
+## Comparison over time
+
+```{r}
+over_time = od %>% 
+  group_by(Quarter, Treatment) %>% 
+  summarize(avg_donors = mean(Rate))
+
+over_time$Quarter = fct_relevel(
+  over_time$Quarter,
+  "Q42010",
+  "Q12011",
+  "Q22011",
+  "Q32011",
+  "Q42011",
+  "Q12012"
+)
+
+ggplot(over_time) +
+  aes(x = Quarter, y = avg_donors, 
+      group = Treatment, color = Treatment) +
+  geom_line(linewidth = 1) + geom_point(size = 3) +
+  geom_vline(xintercept = "Q32011") +
+  labs(y = "Organ donation sign up rate") +
+  theme(legend.position = "none") +
+  annotate("text", y = 0.44, x = 6, 
+           label = "California",
+           size = 5, color = "#440154") +
+  annotate("text", y = 0.275, x = 6,
+           label = "Opt-in states",
+           size = 5, color = "#7AD151") +
+  scale_color_viridis_d(begin = 0, end = 0.8)
+```
+
+::: aside
+**Opt-in states:** AZ, DC, MN, NH, TN, SC, SD, VA, WI 
+:::
+
+## Models
+
+. . .
+
+**Two-periods:** $\widehat{\texttt{rate}} = \beta_0 + \beta_1 \texttt{california} + \beta_2 \texttt{post} + \color{purple}{\beta_3 \texttt{california} \times \texttt{post}}$
+
+. . .
+
+**Two-wave fixed-effects:** $\widehat{\texttt{rate}} = \alpha_{\texttt{state}} + \alpha_{\texttt{quarter}} + \color{purple}{\beta_1 \texttt{treated}}$ 
+
+
+## Models
+
+**Two-periods:** $\widehat{\texttt{rate}} = \beta_0 + \beta_1 \texttt{california} + \beta_2 \texttt{post} + \color{purple}{\beta_3 \texttt{california} \times \texttt{post}}$
+
+**Two-wave fixed-effects:** $\widehat{\texttt{rate}} = \beta_0 + \color{purple}{ \beta_1 \texttt{california-post}} + \beta_2 \texttt{state} + \beta_3 \texttt{quarter}$ 
+
+. . .
+
+&nbsp;
+
+Use [**clustered standard errors**](https://doi.org/10.1093/qje/qjac038) for statistical inference
+
+## Results
+
+```{r}
+two_periods = lm_robust(
+  Rate ~ Treatment * Post,
+  se_type = "classical",
+  data = od
+)
+
+two_periods_cluster = lm_robust(
+  Rate ~ Treatment * Post,
+  clusters = State,
+  data = od
+)
+
+twfe = lm_robust(
+  Rate ~ Treated,
+  fixed_effects = ~ State + Quarter,
+  clusters = State,
+  data = od
+)
+
+dd_df = bind_rows(
+  tidy(two_periods) %>% 
+    filter(term == "TreatmentTRUE:PostTRUE") %>% 
+    mutate(Model = "Two-periods (no clustering)"),
+  tidy(two_periods_cluster) %>% 
+    filter(term == "TreatmentTRUE:PostTRUE") %>% 
+    mutate(Model = "Two-periods (clustered)"),
+  tidy(twfe) %>%
+    mutate(Model = "Two-way FE")
+) %>% 
+  select(Model, estimate, conf.low, conf.high, p.value)
+```
+
+
+```{r}
+dd_df %>% 
+  tt(digits = 3) %>% 
+      style_tt(i = 1:3,
+            color = "#00000000")
+```
+
+
+## Results
+
+```{r}
+dd_df %>% 
+  tt(digits = 3) %>% 
+      style_tt(i = 2:3,
+            color = "#00000000")
+```
+
+
+## Results
+
+```{r}
+dd_df %>% 
+  tt(digits = 3) %>% 
+      style_tt(i = 3,
+            color = "#00000000")
+```
+
+## Results
+
+```{r}
+dd_df %>% 
+  tt(digits = 3)
+```
+
+. . .
+
+These estimates are only *valid* under a **BIG assumption**
 
 ## Assumption: Parallel trends
 
@@ -948,3 +1132,12 @@ This is a *two-way fixed-effects* estimator (TWFE)
 
 ![](fig/dd_timing.png)
 
+## Summary
+
+- Difference in difference leverages before-after comparisons between treatment and control group to tease out causal effects
+
+- **Highly local:** Focus on average treatment effect *on the treated*
+
+- Could always change the control group
+
+- Parallel trends assumption is very important!
