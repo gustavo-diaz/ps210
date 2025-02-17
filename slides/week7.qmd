@@ -51,13 +51,13 @@ Introduction to Empirical Methods in Political Science
 
 ## AI Prompts {background-color="#B6ACD1"}
 
+- Quasi-experiment (vs. natural experiment)
+
 - Regression discontinuity
 
 - Difference-in-differences
 
-- Political science applications of $\uparrow$
-
-- Observational study (vs. natural experiment)
+- Political science applications of these designs
 
 - *Robust* standard errors
 
