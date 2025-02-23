@@ -274,14 +274,16 @@ See [Mahoney (2008)](https://doi.org/10.1177/0010414007313115) for more
 **Small N: Causes of effect**
 
 ::: incremental
-- "Why did Y happen?"
+- "Why does Y happen?"
 
 - **Equifinality:** Multiple paths to the same outcome
 
 - Focus on **causal mechanisms**
 :::
 
+::: aside
 See [Mahoney (2008)](https://doi.org/10.1177/0010414007313115) for more
+:::
 
 ## Equifinality
 
@@ -400,7 +402,27 @@ We make assumptions not because they are true, but because they are useful
 
 ## Case selection
 
-[No need to look at many cases, only some at a time to make the right comparisons]
+. . .
+
+We only need to look at a few cases to identify key CPOs
+
+. . .
+
+But how do we choose?
+
+## How not to do it
+
+![](https://sketchplanations.com/_next/image?url=https%3A%2F%2Fimages.prismic.io%2Fsketchplanations%2F54100eae-1fee-40b7-b3d7-c0b9e309da1c_SP%2B711%2B-%2BLooking%2Bunder%2Bthe%2Blamppost.png%3Fauto%3Dcompress%2Cformat&w=1920&q=75){fig-align="center" width="60%"}
+
+::: aside
+[sketchplanations.com/looking-under-the-lamppost](https://sketchplanations.com/looking-under-the-lamppost)
+::: 
+
+## How to do it?
+
+::: {.r-stack}
+Next time
+:::
 
 ::: {style="text-align: center"}
 ## Small N {#thu .center}
