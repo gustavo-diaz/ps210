@@ -1,0 +1,299 @@
+---
+format:
+    revealjs:
+      slide-number: false
+      progress: false
+      chalkboard: true
+      code-overflow: wrap
+      theme: [default, custom.scss]
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+
+opts_chunk$set(echo = FALSE, 
+               message = FALSE, 
+               warning = FALSE,
+               out.width = "100%")
+
+library(tidyverse)
+library(tinytable)
+library(kableExtra)
+library(gt)
+library(modelsummary)
+library(marginaleffects)
+library(tidyr)
+library(broom)
+library(haven)
+
+
+# ggplot global options
+theme_set(theme_gray(base_size = 20))
+
+# set NU purple
+nu_purple = "#4E2A84"
+
+```
+
+
+
+::: {style="text-align: center"}
+## Small N {.center}
+
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
+
+
+
+## AI Prompts {background-color="#B6ACD1"}
+
+TBD
+
+## So far
+
+- Course mostly about **statistical** and **causal inference**
+
+- **This week:** Small N or qualitative methods
+
+- **Tuesday:** Reservations with large N + logic of causation
+
+- [**Thursday:**](#thu) Techniques 
+
+## Questions
+
+What have you learned so far?
+
+. . .
+
+Any reservations with the methods we have discussed?
+
+. . .
+
+Any other methods you would like to learn about?
+
+## Back to regression: QoG 2024
+
+```{r, results = "hide"}
+url = 'https://www.qogdata.pol.gu.se/data/qog_std_cs_jan24.csv'
+
+qog = read.csv(url)
+
+# examine but don't print in pdf
+qog_am = qog %>% 
+  select(cname,
+         mortinf = wdi_mortinf,
+         water = who_dwtot,
+         elec = wdi_acel) %>% 
+  drop_na()
+```
+
+
+```{r}
+p = ggplot(qog_am) +
+  aes(x = water, y = mortinf, label = cname) +
+  geom_text(size = 4 ) +
+  labs(
+    x = "% Access to Clean Water",
+    y = "Infant Mortality\n(per 1,000 births)"
+  )
+
+p
+```
+
+## Fit regression
+
+```{r}
+p + geom_smooth(method = "lm", color = nu_purple)
+```
+
+
+## More questions
+
+::: incremental
+- Can we claim *access to clean water* **reduces** *infant mortality*?
+
+- What do we need to believe?
+
+- Random assignment? Conditional independence? Quasi-experiment?
+
+:::
+
+. . .
+
+**Critique 1:** *Correlation does not imply causation*
+
+. . .
+
+We need more knowledge to make causal claims
+
+## Remove Turkmenistan
+
+```{r}
+p + geom_smooth(method = "lm", color = nu_purple)
+```
+
+## Remove Turkmenistan
+
+```{r}
+ggplot(qog_am %>% filter(cname != "Turkmenistan")) +
+  aes(x = water, y = mortinf, label = cname) +
+  geom_text(size = 4 ) +
+  labs(
+    x = "% Access to Clean Water",
+    y = "Infant Mortality\n(per 1,000 births)"
+  ) +
+  geom_smooth(method = "lm", color = nu_purple)
+```
+
+## Remove high infant mortality
+
+```{r}
+ggplot(qog_am %>% filter(cname != "Turkmenistan")) +
+  aes(x = water, y = mortinf, label = cname) +
+  geom_text(size = 4 ) +
+  labs(
+    x = "% Access to Clean Water",
+    y = "Infant Mortality\n(per 1,000 births)"
+  ) +
+  geom_smooth(method = "lm", color = nu_purple)
+```
+
+## Remove high infant mortality
+
+```{r}
+ggplot(qog_am %>% filter(cname != "Turkmenistan" &
+                           mortinf <= 50)) +
+  aes(x = water, y = mortinf, label = cname) +
+  geom_text(size = 4 ) +
+  labs(
+    x = "% Access to Clean Water",
+    y = "Infant Mortality\n(per 1,000 births)"
+  ) +
+  geom_smooth(method = "lm", color = nu_purple) +
+  ylim(0, 80)
+```
+
+## More more questions
+
+. . .
+
+Let's say you believe this relationship is causal
+
+::: incremental
+- How is it that one thing causes the other?
+
+- Direction of causality?
+
+- Is this true everywhere?
+
+- Are we comparing apples and apples or apples and oranges and pick-up trucks?
+:::
+
+. . .
+
+**Critique 2:** _Large N findings are what happens **on average**_
+
+. . .
+
+Averages are sensitive to **sample composition**
+
+## Another way to think about it
+
+```{r}
+p
+```
+
+## Another way to think about it
+
+```{r}
+p + annotate("rect", fill = nu_purple, alpha = 0.2,
+             xmin = 50, xmax = Inf,
+             ymin = 40, ymax = Inf)
+```
+
+## Another way to think about it
+
+```{r}
+p + annotate("rect", fill = nu_purple, alpha = 0.2,
+             xmin = -Inf, xmax = 50,
+             ymin = -Inf, ymax = Inf)
+```
+
+
+## Causal statements
+
+. . .
+
+**Before:**
+
+. . .
+
+- Access to clean water and infant mortality are negatively correlated
+
+. . .
+
+**Now:**
+
+::: incremental
+- High access to clean water is **sufficient** for low infant mortality
+
+- Low access to water is **necessary** for high infant mortality
+:::
+
+## Necessary and sufficient
+
+[Figures here]
+
+## Logic of causation
+
+**Large N: Effect of causes**
+
+::: incremental
+- "What is the relationship between X and Y?"
+
+- Focus on averages, associations
+
+- Quantify uncertainty
+
+- Impose assumptions for causal interpretation
+:::
+
+**Small N: Causes of effect**
+
+::: incremental
+- "Why did Y happen?"
+
+- **Equifinality:** Multiple paths to the same outcome
+
+- Focus on **causal mechanisms**
+:::
+
+## Equifinality
+
+[INUS and SUIN]
+
+## Causal mechanism
+
+[Definition, then oxymoron]
+
+## Case selection
+
+[No need to look at many cases, only some at a time to make the right comparisons]
+
+::: {style="text-align: center"}
+## Small N {#thu .center}
+
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
+
+
+
+
+
+
