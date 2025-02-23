@@ -243,9 +243,13 @@ p + annotate("rect", fill = nu_purple, alpha = 0.2,
 - Low access to water is **necessary** for high infant mortality
 :::
 
-## Necessary and sufficient
+---
 
-[Figures here]
+![](fig/necessary_sufficient_1.png)
+
+---
+
+![](fig/necessary_sufficient_2.png)
 
 ## Logic of causation
 
@@ -261,6 +265,12 @@ p + annotate("rect", fill = nu_purple, alpha = 0.2,
 - Impose assumptions for causal interpretation
 :::
 
+::: aside
+See [Mahoney (2008)](https://doi.org/10.1177/0010414007313115) for more
+:::
+
+## Logic of causation
+
 **Small N: Causes of effect**
 
 ::: incremental
@@ -271,13 +281,122 @@ p + annotate("rect", fill = nu_purple, alpha = 0.2,
 - Focus on **causal mechanisms**
 :::
 
+See [Mahoney (2008)](https://doi.org/10.1177/0010414007313115) for more
+
 ## Equifinality
 
-[INUS and SUIN]
+. . .
+
+**Example: Paths to high economic growth**
+
+. . .
+
+1. Democracy AND industrialization AND rule of law
+
+. . .
+
+::: {.r-stack}
+OR
+:::
+
+. . .
+
+2. Democracy OR Autocracy AND natural resources
+
+
+
+. . .
+
+Multiple paths also imply **combinations of causes**
+
+## Multiple causation
+
+. . .
+
+**INUS:** **I**nsufficient but **N**ecessary part of an **U**nnecessary but **S**ufficient set of conditions for the outcome
+
+. . .
+
+&nbsp;
+
+**Example:** *Unprotected intercourse* is **insufficient** for *HIV transmission*, but it can be a **necessary** part in one of the ways in which HIV is transmitted
+
+::: aside
+aka **support factors**
+:::
+
+## Multiple causation
+
+**SUIN:** **S**ufficient but **U**nnecessary part of a condition set that is **I**nsufficient but **N**ecessary for the outcome
+
+. . .
+
+&nbsp;
+
+**Example:** *Electoral fraud* is a **sufficient** condition for *democratic erosion*, which in turn is a **neccessary** condition for war
+
+::: aside
+aka **precipitating causes**
+:::
+
 
 ## Causal mechanism
 
-[Definition, then oxymoron]
+. . .
+
+> A process that explains **how** an outcome occurs.
+
+. . .
+
+Explaining **how** or **why** cause and effect are related entails identifying a **causal mechanism**
+
+. . .
+
+Large N relies **data set observations** (DSOs) that do not say much about the **mechanism**
+
+. . .
+
+Small N focuses on **causal process observations** (CPOs) that help us establish causation more directly
+
+::: aside
+See [Brady, Collier, and Seawright (2006)](https://doi.org/10.1093/pan/mpj021) and [Beck (2010)](https://doi.org/10.1093/pan/mpq023) for more
+:::
+
+## Causal Process Observation
+
+. . .
+
+> An insight or piece of data that provides information about context, process, or mechanism, and that contributes distinctive leverage in causal inference.
+
+::: aside
+[Brady and Collier (2004, p. 227)](https://rowman.com/ISBN/9781442203440/Rethinking-Social-Inquiry-Diverse-Tools-Shared-Standards-Second-Edition)
+:::
+
+## Wait a minute
+
+![](fig/lightswitch.jpg){fig-align="center"}
+
+
+## Causal Process Observation
+
+> An insight or piece of data that provides information about context, process, or mechanism, and that contributes distinctive leverage in causal inference.
+
+. . .
+
+CPOs are not a real thing!
+
+. . .
+
+Neither are the assumptions we make in Large N!
+
+. . .
+
+We make assumptions not because they are true, but because they are useful
+
+
+::: aside
+[Brady and Collier (2004, p. 227)](https://rowman.com/ISBN/9781442203440/Rethinking-Social-Inquiry-Diverse-Tools-Shared-Standards-Second-Edition)
+:::
 
 ## Case selection
 
