@@ -342,7 +342,7 @@
 <li><p>Course mostly about <strong>statistical</strong> and <strong>causal inference</strong></p></li>
 <li><p><strong>This week:</strong> Small N or qualitative methods</p></li>
 <li><p><strong>Tuesday:</strong> Reservations with large N + logic of causation</p></li>
-<li><p><a href="#/thu"><strong>Thursday:</strong></a> Techniques</p></li>
+<li><p><a href="#/thu"><strong>Thursday:</strong></a> Case selection + techniques</p></li>
 </ul>
 </section>
 <section id="questions" class="slide level2">
@@ -616,11 +616,418 @@
 <h3 id="poli-sci-210-1">POLI SCI 210</h3>
 <p>Introduction to Empirical Methods in Political Science</p>
 </section>
+<section id="last-time" class="slide level2">
+<h2>Last time</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://sketchplanations.com/_next/image?url=https%3A%2F%2Fimages.prismic.io%2Fsketchplanations%2F54100eae-1fee-40b7-b3d7-c0b9e309da1c_SP%2B711%2B-%2BLooking%2Bunder%2Bthe%2Blamppost.png%3Fauto%3Dcompress%2Cformat&amp;w=1920&amp;q=75" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+</figure>
+</div>
+
+<aside><div>
+<p><a href="https://sketchplanations.com/looking-under-the-lamppost">sketchplanations.com/looking-under-the-lamppost</a></p>
+</div></aside></section>
+<section id="today-case-selection" class="slide level2">
+<h2>Today: Case selection</h2>
+<div class="fragment">
+<p><strong>Large N:</strong> Random sampling</p>
+</div>
+<div class="fragment">
+<p>Does it work here?</p>
+</div>
+<div class="fragment">
+<p><em>Asymptotic properties</em> will not kick in with a few cases</p>
+</div>
+<div class="fragment">
+<p>Randomly chosen cases will not be <em>representative</em></p>
+</div>
+<div class="fragment">
+<p>Need to sample intentionally!</p>
+</div>
+</section>
+<section id="case-selection-methods" class="slide level2">
+<h2>Case selection methods</h2>
+<ol type="1">
+<li><p>Most similar</p></li>
+<li><p>Most different</p></li>
+<li><p>Extreme cases</p></li>
+<li><p>Deviant case</p></li>
+<li><p>Diverse cases</p></li>
+<li><p>Influential cases</p></li>
+</ol>
+
+<aside><div>
+<p>See <a href="https://doi.org/10.1177/1065912907313077">Seawright and Gerring (2008)</a> for more</p>
+</div></aside></section>
+<section id="most-similar" class="slide level2">
+<h2>Most similar</h2>
+<div class="cell">
+<div class="cell-output-display">
+<!-- preamble start -->
+
+    <!-- tinytable mathjax start -->
+    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+    <!-- tinytable mathjax end -->
+
+    <script>
+      function styleCell_8byisovo7ekjffi6q23h(i, j, css_id) {
+        var table = document.getElementById("tinytable_8byisovo7ekjffi6q23h");
+        table.rows[i].cells[j].classList.add(css_id);
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_8byisovo7ekjffi6q23h');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_8byisovo7ekjffi6q23h(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_8byisovo7ekjffi6q23h");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+window.addEventListener('load', function () { styleCell_8byisovo7ekjffi6q23h(0, 0, 'tinytable_css_idrdgr1seqcu9bs2h0mqi1') })
+window.addEventListener('load', function () { styleCell_8byisovo7ekjffi6q23h(0, 1, 'tinytable_css_idrdgr1seqcu9bs2h0mqi1') })
+window.addEventListener('load', function () { styleCell_8byisovo7ekjffi6q23h(0, 2, 'tinytable_css_idrdgr1seqcu9bs2h0mqi1') })
+window.addEventListener('load', function () { styleCell_8byisovo7ekjffi6q23h(0, 3, 'tinytable_css_idrdgr1seqcu9bs2h0mqi1') })
+    </script>
+
+    <style>
+    .table td.tinytable_css_idrdgr1seqcu9bs2h0mqi1, .table th.tinytable_css_idrdgr1seqcu9bs2h0mqi1 {  border-bottom: solid 0.1em #d3d8dc; }
+    </style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_8byisovo7ekjffi6q23h" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        
+              <tr>
+                <th scope="col">Case</th>
+                <th scope="col">$X_1$</th>
+                <th scope="col">$X_2$</th>
+                <th scope="col">$Y$</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>+</td>
+                  <td>+</td>
+                  <td>+</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>-</td>
+                  <td>+</td>
+                  <td>-</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+</div>
+</div>
+<div>
+<ul>
+<li class="fragment"><p>Needs at least two cases</p></li>
+<li class="fragment"><p>Similar in every variable except for key explanatory and outcome variable</p></li>
+<li class="fragment"><p><strong>Example:</strong> Economic development in South Korea and North Korea since the war</p></li>
+</ul>
+</div>
+</section>
+<section id="most-different" class="slide level2">
+<h2>Most different</h2>
+<div class="cell">
+<div class="cell-output-display">
+<!-- preamble start -->
+
+    <!-- tinytable mathjax start -->
+    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+    <!-- tinytable mathjax end -->
+
+    <script>
+      function styleCell_skyr0pimjp052x578vud(i, j, css_id) {
+        var table = document.getElementById("tinytable_skyr0pimjp052x578vud");
+        table.rows[i].cells[j].classList.add(css_id);
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_skyr0pimjp052x578vud');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_skyr0pimjp052x578vud(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_skyr0pimjp052x578vud");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+window.addEventListener('load', function () { styleCell_skyr0pimjp052x578vud(0, 0, 'tinytable_css_ido5r9cn393jeboyz7aftj') })
+window.addEventListener('load', function () { styleCell_skyr0pimjp052x578vud(0, 1, 'tinytable_css_ido5r9cn393jeboyz7aftj') })
+window.addEventListener('load', function () { styleCell_skyr0pimjp052x578vud(0, 2, 'tinytable_css_ido5r9cn393jeboyz7aftj') })
+window.addEventListener('load', function () { styleCell_skyr0pimjp052x578vud(0, 3, 'tinytable_css_ido5r9cn393jeboyz7aftj') })
+    </script>
+
+    <style>
+    .table td.tinytable_css_ido5r9cn393jeboyz7aftj, .table th.tinytable_css_ido5r9cn393jeboyz7aftj {  border-bottom: solid 0.1em #d3d8dc; }
+    </style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_skyr0pimjp052x578vud" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        
+              <tr>
+                <th scope="col">Case</th>
+                <th scope="col">$X_1$</th>
+                <th scope="col">$X_2$</th>
+                <th scope="col">$Y$</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>+</td>
+                  <td>+</td>
+                  <td>+</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>+</td>
+                  <td>-</td>
+                  <td>+</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+</div>
+</div>
+<div>
+<ul>
+<li class="fragment"><p>Cases differ on everything except for key explanatory and outcome variable</p></li>
+<li class="fragment"><p><strong>Example:</strong> Japan and Australia driving on the left</p></li>
+</ul>
+</div>
+</section>
+<section id="typical-case" class="slide level2">
+<h2>Typical case</h2>
+<div>
+<ul>
+<li class="fragment"><p>Common or representative case that a theory explains</p></li>
+<li class="fragment"><p><strong>Representative</strong> by definition</p></li>
+<li class="fragment"><p><strong>Example:</strong> France, Russia, China as <em>typical</em> cases of social revolutions</p></li>
+<li class="fragment"><p>Used to confirm causal mechanism proposed by the theory</p></li>
+<li class="fragment"><p><strong>Trap:</strong> Usually, you don’t want to look at a typical case <strong>only</strong></p></li>
+</ul>
+</div>
+</section>
+<section id="typical-cases-are-on-the-line" class="slide level2">
+<h2>Typical cases are “on the line”</h2>
+
+<img data-src="week8_files/figure-revealjs/unnamed-chunk-13-1.png" style="width:100.0%" class="r-stretch"></section>
+<section id="extreme-case" class="slide level2">
+<h2>Extreme case</h2>
+<div>
+<ul>
+<li class="fragment"><p>Extreme value on explanatory OR outcome variable</p></li>
+<li class="fragment"><p>Far away from the “mean”</p></li>
+<li class="fragment"><p>Valuable because it is <em>rare</em> in one dimension</p></li>
+<li class="fragment"><p><strong>Example:</strong> Qatar and Saudi Arabia as cases of extreme autocracy (Polity score of -10)</p></li>
+</ul>
+</div>
+</section>
+<section id="deviant-case" class="slide level2">
+<h2>Deviant case</h2>
+<div>
+<ul>
+<li class="fragment"><p>Surprising value on some variable</p></li>
+<li class="fragment"><p>Poorly explained by the theory</p></li>
+<li class="fragment"><p>Used to explore potential alternative explanations</p></li>
+<li class="fragment"><p>Once explained, not deviant anymore</p></li>
+<li class="fragment"><p><strong>Example:</strong> Norway as an oil-state that is not an autocracy</p></li>
+</ul>
+</div>
+</section>
+<section id="diverse-cases" class="slide level2">
+<h2>Diverse cases</h2>
+<div>
+<ul>
+<li class="fragment"><p>Choose cases to maximize variance along relevant dimensions</p></li>
+<li class="fragment"><p>At least two cases</p></li>
+<li class="fragment"><p>Represent full range of values characterizing X and Y</p></li>
+<li class="fragment"><p><strong>Example:</strong> Colonial heritage influences economic development. Look at French, Spanish, British colonies</p></li>
+</ul>
+</div>
+</section>
+<section id="influential-case" class="slide level2">
+<h2>Influential case</h2>
+<div>
+<ul>
+<li class="fragment"><p><strong>Concern:</strong> results may be driven by one or a few cases</p></li>
+<li class="fragment"><p>Choose a case to check the assumptions behind proposed causal mechanism</p></li>
+<li class="fragment"><p><strong>Example:</strong> Relationship between mass education and democratization <em>influenced</em> by countries who expanded education before becoming democracies</p></li>
+<li class="fragment"></li>
+</ul>
+</div>
+</section>
+<section id="practice" class="slide level2">
+<h2>Practice</h2>
+
+<img data-src="week8_files/figure-revealjs/unnamed-chunk-14-1.png" style="width:100.0%" class="r-stretch"></section>
+<section id="moving-on" class="slide level2">
+<h2>Moving on</h2>
+<div class="fragment">
+<p>Now we know how to select cases for small N analysis</p>
+</div>
+<div class="fragment">
+<p>But what do we do with these cases?</p>
+</div>
+<div class="fragment">
+<p>Or, what if we can only conduct <strong>within-case analysis</strong>?</p>
+</div>
+</section>
+<section id="qualitative-methods" class="slide level2">
+<h2>Qualitative methods</h2>
+<p>Ordered by increasing <em>embeddedness</em></p>
+<ol type="1">
+<li><p>Process tracing</p></li>
+<li><p>Interviews</p></li>
+<li><p>Focus groups</p></li>
+<li><p>Participant observation</p></li>
+<li><p>Ethnography</p></li>
+</ol>
+</section>
+<section id="becoming-a-detective" class="slide level2">
+<h2>Becoming a detective</h2>
+<p align="center"><iframe width="900" height="500" src="https://www.youtube.com/embed/5Z1hPH3b5RA?si=9sntmHBU5n_Ek1qG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe></p>
+
+<aside><div>
+<p><a href="https://youtu.be/5Z1hPH3b5RA?si=9sntmHBU5n_Ek1qG" class="uri">https://youtu.be/5Z1hPH3b5RA?si=9sntmHBU5n_Ek1qG</a></p>
+</div></aside></section>
+<section id="process-tracing" class="slide level2">
+<h2>Process-tracing</h2>
+<div>
+<ul>
+<li class="fragment"><p>Usually based on <strong>archival research</strong></p></li>
+<li class="fragment"><p>Extensive analysis of <strong>primary</strong> or <strong>secondary</strong> sources</p></li>
+<li class="fragment"><p><strong>Primary:</strong> Original document or first-hand account</p></li>
+<li class="fragment"><p><strong>Secondary:</strong> Summaries, critiques, opinions, analyses of those who did not participate or witness directly</p></li>
+<li class="fragment"><p>Find <em>pieces of evidence</em> that assist on <em>establishing causality</em></p></li>
+</ul>
+</div>
+</section>
+<section id="process-tracing-tests" class="slide level2">
+<h2>Process tracing tests</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="fig/process_tracing.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>See <a href="https://polisci.berkeley.edu/sites/default/files/people/u3827/Understanding%20Process%20Tracing.pdf">Collier (2011)</a> for more</p>
+</div></aside></section>
+<section id="interviews" class="slide level2">
+<h2>Interviews</h2>
+<div>
+<ul>
+<li class="fragment"><p><strong>Structured:</strong> Stick to script. Easy to compare across subjects</p></li>
+<li class="fragment"><p><strong>Semi-structured:</strong> Start with guide, allow for deviations. Somewhat comparable</p></li>
+<li class="fragment"><p><strong>Unstructured:</strong> Let people say whatever they want. Harder to compare and more time consuming to analyze</p></li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Key informants</strong> more important than a <strong>representative sample</strong></p>
+</div>
+</section>
+<section id="random-sampling" class="slide level2">
+<h2>Random sampling?</h2>
+
+<img data-src="fig/sampling_types.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="non-random-sampling" class="slide level2">
+<h2>Non-random sampling?</h2>
+
+<img data-src="fig/nonrandom_sampling.png" class="quarto-figure quarto-figure-center r-stretch"><div class="fragment">
+<p>Places to start:</p>
+<ul>
+<li><p>Key informants</p></li>
+<li><p>Send out call on relevant platform</p></li>
+<li><p>Snowball sampling</p></li>
+</ul>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
+</div>
+</section>
     </div>
   </div>
 

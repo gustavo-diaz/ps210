@@ -60,7 +60,7 @@ TBD
 
 - **Tuesday:** Reservations with large N + logic of causation
 
-- [**Thursday:**](#thu) Techniques 
+- [**Thursday:**](#thu) Case selection + techniques 
 
 ## Questions
 
@@ -132,7 +132,9 @@ We need more knowledge to make causal claims
 ## Remove Turkmenistan
 
 ```{r}
-p + geom_smooth(method = "lm", color = nu_purple)
+p1 = p + geom_smooth(method = "lm", color = nu_purple)
+
+p1
 ```
 
 ## Remove Turkmenistan
@@ -433,8 +435,283 @@ Introduction to Empirical Methods in Political Science
 
 :::
 
+## Last time
+
+![](https://sketchplanations.com/_next/image?url=https%3A%2F%2Fimages.prismic.io%2Fsketchplanations%2F54100eae-1fee-40b7-b3d7-c0b9e309da1c_SP%2B711%2B-%2BLooking%2Bunder%2Bthe%2Blamppost.png%3Fauto%3Dcompress%2Cformat&w=1920&q=75){fig-align="center" width="60%"}
+
+::: aside
+[sketchplanations.com/looking-under-the-lamppost](https://sketchplanations.com/looking-under-the-lamppost)
+:::
+
+## Today: Case selection
+
+. . .
+
+**Large N:** Random sampling
+
+. . .
+
+Does it work here?
+
+. . .
+
+*Asymptotic properties* will not kick in with a few cases
+
+. . .
+
+Randomly chosen cases will not be *representative*
+
+. . .
+
+Need to sample intentionally!
+
+## Case selection methods
+
+1. Most similar
+
+2. Most different
+
+4. Extreme cases
+
+3. Deviant case
+
+5. Diverse cases
+
+6. Influential cases
+
+::: aside
+See [Seawright and Gerring (2008)](https://doi.org/10.1177/1065912907313077) for more
+:::
+
+## Most similar
+
+```{r}
+most_similar = tribble(
+  ~Case, ~`$X_1$`, ~`$X_2$`, ~`$Y$`,
+  1, "+", "+", "+",
+  2, "-", "+", "-"
+)
+
+options(tinytable_html_mathjax = TRUE)
+
+most_similar %>% tt()
+```
+
+::: incremental
+- Needs at least two cases
+
+- Similar in every variable except for key explanatory and outcome variable
+
+- **Example:** Economic development in South Korea and North Korea since the war
+:::
+
+## Most different
+
+```{r}
+most_diff = tribble(
+  ~Case, ~`$X_1$`, ~`$X_2$`, ~`$Y$`,
+  1, "+", "+", "+",
+  2, "+", "-", "+"
+)
+
+options(tinytable_html_mathjax = TRUE)
+
+most_diff %>% tt()
+```
+
+::: incremental
+- Cases differ on everything except for key explanatory and outcome variable
+
+- **Example:** Japan and Australia driving on the left
+:::
+
+## Typical case
+
+::: incremental
+- Common or representative case that a theory explains
+
+- **Representative** by definition
+
+- **Example:** France, Russia, China as *typical* cases of social revolutions
+
+- Used to confirm causal mechanism proposed by the theory
+
+- **Trap:** Usually, you don't want to look at a typical case **only**
+:::
+
+## Typical cases are "on the line"
+
+```{r}
+p1
+```
+
+## Extreme case
+
+::: incremental
+- Extreme value on explanatory OR outcome variable
+
+- Far away from the "mean"
+
+- Valuable because it is *rare* in one dimension
 
 
+- **Example:** Qatar and Saudi Arabia as cases of extreme autocracy (Polity score of -10)
+:::
+
+## Deviant case
+
+::: incremental
+- Surprising value on some variable
+
+- Poorly explained by the theory
+
+- Used to explore potential alternative explanations
+
+- Once explained, not deviant anymore
+
+- **Example:** Norway as an oil-state that is not an autocracy
+:::
+
+## Diverse cases
+
+::: incremental
+- Choose cases to maximize variance along relevant dimensions
+
+- At least two cases 
+
+- Represent full range of values characterizing X and Y
+
+- **Example:** Colonial heritage influences economic development. Look at French, Spanish, British colonies
+:::
+
+## Influential case
+
+::: incremental
+
+- **Concern:** results may be driven by one or a few cases
+
+- Choose a case to check the assumptions behind proposed causal mechanism
+
+- **Example:** Relationship between mass education and democratization *influenced* by countries who expanded education before becoming democracies
+- 
+
+:::
+
+## Practice
+
+```{r}
+p1
+```
+
+## Moving on
+
+. . .
+
+Now we know how to select cases for small N analysis
+
+. . .
+
+But what do we do with these cases?
+
+. . .
+
+Or, what if we can only conduct **within-case analysis**?
+
+## Qualitative methods
+
+Ordered by increasing *embeddedness*
+
+1. Process tracing
+
+2. Interviews
+
+3. Focus groups
+
+4. Participant observation
+
+5. Ethnography
+
+## Becoming a detective
+
+```{=html}
+<p align="center"><iframe width="900" height="500" src="https://www.youtube.com/embed/5Z1hPH3b5RA?si=9sntmHBU5n_Ek1qG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+```
 
 
+::: aside
+<https://youtu.be/5Z1hPH3b5RA?si=9sntmHBU5n_Ek1qG>
+:::
 
+## Process-tracing
+
+::: incremental
+- Usually based on **archival research**
+
+- Extensive analysis of **primary** or **secondary** sources
+
+- **Primary:** Original document or first-hand account
+
+- **Secondary:** Summaries, critiques, opinions, analyses of those who did not participate or witness directly
+
+- Find *pieces of evidence* that assist on *establishing causality*
+:::
+
+## Process tracing tests
+
+![](fig/process_tracing.png){fig-align="center" width="80%"}
+
+::: aside
+See [Collier (2011)](https://polisci.berkeley.edu/sites/default/files/people/u3827/Understanding%20Process%20Tracing.pdf) for more
+:::
+
+## Interviews
+
+::: incremental
+- **Structured:** Stick to script. Easy to compare across subjects
+
+- **Semi-structured:** Start with guide, allow for deviations. Somewhat comparable
+
+- **Unstructured:** Let people say whatever they want. Harder to compare and more time consuming to analyze
+:::
+
+. . .
+
+**Key informants** more important than a **representative sample**
+
+## Random sampling?
+
+![](fig/sampling_types.png){fig-align="center"}
+
+## Non-random sampling?
+
+![](fig/nonrandom_sampling.png){fig-align="center"}
+
+. . .
+
+Places to start:
+
+- Key informants
+
+- Send out call on relevant platform
+
+- Snowball sampling
+
+## Focus groups
+
+## Participant observation
+
+## Ethnography
+
+## Positionality
+
+## Summary
+
+- Only one week on qualitative methods :(
+
+- **Inference:** Necessary and sufficient causes
+
+- Cause of effects vs. effects of causes
+
+- **Case-selection:** Avoid convenience traps!
+
+- **Techniques:** Many, but positionality matters.
