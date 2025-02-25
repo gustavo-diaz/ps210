@@ -50,7 +50,17 @@ Introduction to Empirical Methods in Political Science
 
 ## AI Prompts {background-color="#B6ACD1"}
 
-TBD
+- Necessary vs. sufficient
+
+- INUS, SUIN causes
+
+- Causal mechanism
+
+- Case selection for [study]
+
+- When to use one method/approach over another
+
+- Mixed methods?
 
 ## So far
 
@@ -619,7 +629,7 @@ Or, what if we can only conduct **within-case analysis**?
 
 ## Qualitative methods
 
-Ordered by increasing *embeddedness*
+Ordered by increasing *level of immersion*
 
 1. Process tracing
 
@@ -698,20 +708,100 @@ Places to start:
 
 ## Focus groups
 
+::: incremental
+- Essentially an interview with multiple people in a controlled space
+
+- Interactions in group discussion provide data
+
+- Researcher acts as facilitator
+:::
+
+## Why focus groups?
+
+```{=html}
+<p align="center"><iframe width="900" height="500" src="https://www.youtube.com/embed/TYIh4MkcfJA?si=MEgy4lpGqWUEjCrp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+```
+
+
+::: aside
+<https://youtu.be/TYIh4MkcfJA?si=pucARllaLPgLA3Bo>
+:::
+
 ## Participant observation
+
+::: incremental
+- Researcher acts as an observer for an *extended period* of time
+
+- Unlike focus groups, observe subjects *in their natural habitat*
+
+- Must determine **level of involvement** and **whether to reveal identity**
+
+:::
+
+## Types of participant observation
+
+```{r}
+part_obs = tribble(
+  ~Involvement, ~Overt, ~Covert,
+  "Passive", "City hall meeting", "Public space, hidden camera",
+  "Active", "Visiting rural areas", "Community center"
+)
+
+part_obs %>% tt() %>% 
+  group_tt(
+    j = list(
+      "Identity" = 2:3
+    )
+  )
+```
+
 
 ## Ethnography
 
+::: incremental
+- **Deep immersion** in a culture or community
+
+- Combination of interviews, focus groups, participant observation
+
+- **Thick description:** Produce vast amount of data (notes) to capture the complexity of behavior and its context
+:::
+
+## And I mean THICC
+
+```{=html}
+<p align="center"><iframe width="900" height="500" src="https://www.youtube.com/embed/3AhSNsBs2Y0?si=_R1TGfSgHxumhJ_E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+```
+
+::: aside
+<https://youtu.be/3AhSNsBs2Y0?si=ehUIf9COf9x9KAtz>
+:::
+
+
 ## Positionality
+
+. . .
+
+> A person's social location and how it shapes their perspective
+
+::: incremental
+
+- Affects researcher's relationship with and access to participants
+
+- **Large N:** Same protocol, same results
+
+- **Small N:** Same protocol, *different* results
+
+- Can be an advantage and a disadvantage
+:::
 
 ## Summary
 
-- Only one week on qualitative methods :(
-
-- **Inference:** Necessary and sufficient causes
+- Only one week on qualitative methods {{< fa regular face-sad-tear >}}
 
 - Cause of effects vs. effects of causes
 
+- **Inference:** Necessary and sufficient vs. correlational
+
 - **Case-selection:** Avoid convenience traps!
 
-- **Techniques:** Many, but positionality matters.
+- **Techniques:** Many available, often combined, but *positionality* matters
