@@ -3,7 +3,7 @@ format:
     revealjs:
       slide-number: false
       progress: false
-      chalkboard: true
+      chalkboard: false
       code-overflow: wrap
       theme: [default, custom.scss]
 ---
@@ -25,6 +25,7 @@ library(marginaleffects)
 library(tidyr)
 library(broom)
 library(haven)
+library(patchwork)
 
 
 # ggplot global options
@@ -51,6 +52,12 @@ Introduction to Empirical Methods in Political Science
 ## AI Prompts {background-color="#B6ACD1"}
 
 TBD
+
+## Roadmap
+
+- **Tuesday:** Big picture
+
+- [**Thursday:**](#thu) Simple models, generative AI
 
 ## Summary of the course
 
@@ -113,6 +120,238 @@ Different flavors depending on the field, but methods are the same
 ::: aside
 <https://youtu.be/uHGlCi9jOWY?si=wgfvS9IiV5_FQ2aT>
 :::
+
+## Ok, but how are they different?
+
+. . .
+
+**Statistical inference**
+
+::: incremental
+- Use data we have to learn about a target population
+
+- Or measure a quantify of interest
+
+- *Main product:* Estimates, uncertainty
+:::
+
+**Statistical learning**
+
+::: incremental
+- Use data we have to *predict* how new data will look like
+
+- Minimize *prediction error*
+
+- *Main product:* Rules, error metrics
+:::
+
+## Same stuff, different language
+
+```{r}
+variables = tribble(
+  ~`Statistical inference`, ~`Statistical learning`,
+  "Outcome variable", "Response, output",
+  "Explanatory variable", "Predictor, input, feature",
+  "Model", "Algorithm",
+  "Uncertainty", "Error"
+)
+
+variables %>% tt() %>% 
+  style_tt(
+    i = 1:4,
+    color = "#00000000"
+  )
+```
+
+## Same stuff, different language
+
+```{r}
+variables %>% tt() %>% 
+    style_tt(
+    i = 2:4,
+    color = "#00000000"
+  )
+```
+
+## Same stuff, different language
+
+```{r}
+variables %>% tt() %>% 
+    style_tt(
+    i = 3:4,
+    color = "#00000000"
+  )
+```
+
+## Same stuff, different language
+
+```{r}
+variables %>% tt() %>% 
+    style_tt(
+    i = 4,
+    color = "#00000000"
+  )
+```
+
+## Same stuff, different language
+
+```{r}
+variables %>% tt()
+```
+
+## Flavors of machine learning
+
+```{mermaid}
+%%| fig-width: 10
+%%| mermaid-format: png
+flowchart LR
+  A(Machine Learning) --> B(Supervised Learning)
+  A --> C(Unsupervised Learning)
+  B --> D(Regression)
+  B --> E(Classification)
+```
+
+. . .
+
+**Supervised:** Predict "correct" answer
+
+. . .
+
+**Example:** Was this text written by AI? (yes/no)
+
+
+## Flavors of machine learning
+
+```{mermaid}
+%%| fig-width: 10
+%%| mermaid-format: png
+flowchart LR
+  A(Machine Learning) --> B(Supervised Learning)
+  A --> C(Unsupervised Learning)
+  B --> D(Regression)
+  B --> E(Classification)
+```
+
+**Unsupervised:** No "correct" answer
+
+. . .
+
+*Learn* underlying structure of data (dimensions, clusters)
+
+## Flavors of machine learning
+
+```{mermaid}
+%%| fig-width: 10
+%%| mermaid-format: png
+flowchart LR
+  A(**Machine Learning**) --> B(**Supervised Learning**)
+  A --> C(Unsupervised Learning)
+  B --> D(**Regression**)
+  B --> E(**Classification**)
+```
+
+## Supervised learning
+
+&nbsp;
+
+&nbsp;
+
+![](fig/supervised_learning.jpg){fig-align="center"}
+
+
+## Toy example
+
+```{r cookies-base, fig.align="center"}
+cookies <- tibble(happiness = c(0.5, 2, 1, 2.5, 3, 1.5, 2, 2.5, 2, 3),
+                  cookies = 1:10)
+
+cookies_data <- cookies
+cookies_model <- lm(happiness ~ cookies, data = cookies)
+cookies_fitted <- augment(cookies_model)
+
+cookies_base <- ggplot(cookies_fitted, aes(x = cookies, y = happiness)) +
+  geom_point(size = 3) +
+  coord_cartesian(xlim = c(0, 10), ylim = c(0, 3)) +
+  scale_x_continuous(breaks = 0:10) +
+  labs(x = "Cookies eaten", y = "Level of happiness")
+
+cookies_base
+```
+
+. . .
+
+How happy will the next person be?
+
+## They eat 5 cookies
+
+```{r, fig.align='center'}
+cookies_base +
+  geom_vline(xintercept = 5, 
+             linewidth = 2,
+             linetype = "dashed", 
+             color = nu_purple)
+```
+
+How happy will the next person be?
+
+## They eat 5 cookies
+
+```{r, fig.align='center'}
+cookies_base +
+  geom_vline(xintercept = 5, 
+             linewidth = 2,
+             linetype = "dashed", 
+             color = nu_purple)
+```
+
+We already know one way
+
+## Drawing lines!
+
+```{r cookies-spline}
+c1 = cookies_base +
+  geom_smooth(method = lm, color = nu_purple, formula = y ~ splines::bs(x, 7), se = FALSE)
+
+c1
+```
+
+## Drawing lines!
+
+```{r cookies-loess}
+c2 = cookies_base +
+  geom_smooth(method = "loess", color = nu_purple, se = FALSE)
+
+c2
+```
+
+## Drawing lines!
+
+```{r cookies-lm}
+c3 =cookies_base +
+  geom_smooth(method = "lm", color = nu_purple, se = FALSE)
+
+c3
+```
+
+## Which one seems better?
+
+```{r}
+# CONTINUE HERE MAKE AXIS SHARED
+c1 + c2 + c3
+```
+
+## Need to balance
+
+::: incremental
+
+1. Being as close as possible
+
+2. Avoid relying on specific observations
+:::
+
+## We already have language for this
+
+![](fig/bias_variance.jpg){fig-align="center"}
 
 ::: {style="text-align: center"}
 ## Machine Learning {{< fa robot >}} {#thu .center}
