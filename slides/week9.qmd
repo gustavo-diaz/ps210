@@ -1,0 +1,124 @@
+---
+format:
+    revealjs:
+      slide-number: false
+      progress: false
+      chalkboard: true
+      code-overflow: wrap
+      theme: [default, custom.scss]
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+
+opts_chunk$set(echo = FALSE, 
+               message = FALSE, 
+               warning = FALSE,
+               out.width = "100%")
+
+library(tidyverse)
+library(tinytable)
+library(kableExtra)
+library(gt)
+library(modelsummary)
+library(marginaleffects)
+library(tidyr)
+library(broom)
+library(haven)
+
+
+# ggplot global options
+theme_set(theme_gray(base_size = 20))
+
+# set NU purple
+nu_purple = "#4E2A84"
+
+```
+
+
+
+::: {style="text-align: center"}
+## Machine Learning {{< fa robot >}} {.center}
+
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
+
+
+
+## AI Prompts {background-color="#B6ACD1"}
+
+TBD
+
+## Summary of the course
+
+- Focus on **inference** since it is how political scientists test theories
+
+- **Statistical inference:** summarize data, quantify uncertainty
+
+- **Univariate:** Mean, confidence intervals, standard errors
+
+- **Bivariate:** Difference in means (experiments, potential outcomes)
+
+- **Multivariate:** OLS regression
+
+## Summary of the course
+
+- **Subplot:** *Bivariate* and *multivariate* only make sense if we want to make **causal statements**
+
+- **Causal inference:** Impose some structure to justify assumptions
+
+- **Small N:** Necessary and sufficient as logic of inference
+
+. . .
+
+But *inference* is not the only thing we do with *data*
+
+## These are not statistical inference
+
+. . .
+
+But they all mean (kinda) the same
+
+. . .
+
+::: {style="font-size: 80%;"}
+
+Data science
+
+Machine learning
+
+Statistical learning
+
+Artificial intelligence
+
+Predictive modeling
+
+Big data (?)
+
+:::
+
+. . .
+
+Different flavors depending on the field, but methods are the same
+
+## How are they different?
+
+```{=html}
+<p align="center"><iframe width="900" height="500" src="https://www.youtube.com/embed/uHGlCi9jOWY?si=nhKlbLuU6Zd9sK1u" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+```
+
+::: aside
+<https://youtu.be/uHGlCi9jOWY?si=wgfvS9IiV5_FQ2aT>
+:::
+
+::: {style="text-align: center"}
+## Machine Learning {{< fa robot >}} {#thu .center}
+
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
