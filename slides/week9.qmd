@@ -9,12 +9,10 @@ format:
 ---
 
 ```{r setup, include=FALSE}
-library(knitr)
-
-opts_chunk$set(echo = FALSE, 
-               message = FALSE, 
-               warning = FALSE,
-               out.width = "100%")
+knitr::opts_chunk$set(echo = FALSE, 
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.pos = "center")
 
 library(tidyverse)
 library(tinytable)
@@ -55,9 +53,9 @@ TBD
 
 ## Roadmap
 
-- **Tuesday:** Big picture
+- **Tuesday:** Big picture, simple models
 
-- [**Thursday:**](#thu) Simple models, generative AI
+- [**Thursday:**](#thu) Fancier models, generative AI
 
 ## Summary of the course
 
@@ -336,8 +334,7 @@ c3
 ## Which one seems better?
 
 ```{r}
-# CONTINUE HERE MAKE AXIS SHARED
-c1 + c2 + c3
+c1 + c2 + c3 + plot_layout(axes = "collect")
 ```
 
 ## Need to balance
@@ -353,6 +350,447 @@ c1 + c2 + c3
 
 ![](fig/bias_variance.jpg){fig-align="center"}
 
+---
+
+```{r}
+c1 + labs(subtitle = "Overfitting") +
+  c2 + labs(subtitle = "Compromise") +
+  c3 + labs(subtitle = "Underfitting") +
+  plot_layout(axes = "collect")
+```
+
+. . .
+
+**Overfitting:** Low bias, high variance
+
+. . .
+
+**Underfitting:** High bias, low variance
+
+## Supervised learning methods
+
+. . .
+
+**Parametric:** Functional form can be written as an equation (e.g. OLS)
+
+. . .
+
+**Nonparametric:** Cannot be written as an equation
+
+## Nonparametric cookies
+
+```{r, fig.align='center'}
+cookies_base +
+  geom_vline(xintercept = 5, 
+             linewidth = 2,
+             linetype = "dashed", 
+             color = nu_purple)
+```
+
+What would be a good guess for the new person?
+
+## Nonparametric cookies
+
+```{r, fig.align='center'}
+cookies <- tibble(happiness = c(0.5, 2, 1, 2.5, 3, 1.5, 2, 2.5, 2, 3),
+                  cookies = 1:10)
+
+cookies$nb = c(0, 0, 0, 1, 1, 1, 0, 0, 0, 0)
+
+cookies_nb = ggplot(cookies) +
+  aes(x = cookies, 
+      y = happiness,
+      color = as.factor(nb)) +
+      geom_vline(xintercept = 5, 
+             linewidth = 2,
+             linetype = "dashed", 
+             color = nu_purple) +
+  geom_point(size = 3) +
+  coord_cartesian(xlim = c(0, 10), ylim = c(0, 3)) +
+  scale_x_continuous(breaks = 0:10) +
+  scale_color_manual(values = c("black", "green")) +
+  labs(x = "Cookies eaten", y = "Level of happiness") +
+  theme(legend.position = "none")
+  
+cookies_nb
+```
+
+Observations nearby!
+
+## K-Nearest Neighbors (KNN)
+
+![](fig/knn.png)
+
+## KNN algorithm
+
+For each new observation:
+
+::: incremental
+- Find K closest observations based on observed features
+
+- **Regression:** Predict new value taking the average of all neighbors
+
+- **Classification:** Predict category with highest probability among neighbors
+:::
+
+. . .
+
+**Pros:** Flexible. Works better than what you would think
+
+. . .
+
+**Cons:** Computationally inefficient, struggles with complex data structures
+
+## Classification example
+
+```{r, fig.align='center'}
+library(ISLR)
+
+Default
+
+Default$default01 = ifelse(Default$default == "Yes", 1, 0)
+
+ols = lm(default01 ~ student + balance + income, data = Default)
+
+logit = glm(default01 ~ student + balance + income, 
+            data = Default, family = binomial)
+```
+
+. . .
+
+**Goal:** *predict* whether a customer's credit card will go on default
+
+## Visualize
+
+```{r}
+p_ols = plot_predictions(ols,
+                 condition = "balance",
+                 draw = FALSE)
+
+p_log = plot_predictions(logit,
+                         condition = "balance",
+                         draw = FALSE)
+
+# Combine and label
+pred_df = bind_rows(
+  p_ols %>% mutate(Model = "OLS"),
+  p_log %>% mutate(Model = "Logit")
+)
+
+# Visualize
+ggplot(Default) +
+  aes(x = balance, y = default01) +
+  geom_jitter(alpha = 0.3, height = 0.1) +
+  geom_line(
+    data = pred_df,
+    alpha = 0,
+    aes(x = balance, 
+        y = estimate,
+        color = Model),
+    linewidth = 2) +
+  scale_y_continuous(limits = c(0,1)) +
+  scale_color_viridis_d(begin = 0, end = 0.8) +
+  labs(x = "Balance",
+       y = "Pr(Default)") + 
+  theme(legend.position = "none")
+```
+
+. . .
+
+Tricky to find neighbors
+
+## Visualize
+
+```{r}
+# Visualize
+ggplot(Default) +
+  aes(x = balance, y = default01) +
+  geom_jitter(alpha = 0.3, height = 0.1) +
+  geom_line(
+    data = pred_df,
+    aes(x = balance, 
+        y = estimate,
+        color = Model),
+    linewidth = 2) +
+  scale_y_continuous(limits = c(0,1)) +
+  scale_color_viridis_d(begin = 0, end = 0.8, 
+                        alpha = c(0, 1)) +
+  labs(x = "Balance",
+       y = "Pr(Default)") + 
+  theme(legend.position = "none")
+```
+
+What about OLS regression?
+
+## Predicted probabilities
+
+```{r}
+# Visualize
+ggplot(Default) +
+  aes(x = balance, y = default01) +
+  geom_jitter(alpha = 0.3, height = 0.1) +
+  geom_line(
+    data = pred_df,
+    aes(x = balance, 
+        y = estimate,
+        color = Model),
+    linewidth = 2) +
+  scale_y_continuous(limits = c(0,1)) +
+  scale_color_viridis_d(begin = 0, end = 0.8, 
+                        alpha = c(0, 1)) +
+  labs(x = "Balance",
+       y = "Pr(Default)") + 
+  theme(legend.position = "none")
+```
+
+Not that good at catching those who may default
+
+## Predicted probabilities
+
+```{r}
+# Visualize
+ggplot(Default) +
+  aes(x = balance, y = default01) +
+  geom_jitter(alpha = 0.3, height = 0.1) +
+  geom_line(
+    data = pred_df,
+    aes(x = balance, 
+        y = estimate,
+        color = Model),
+    linewidth = 2) +
+  scale_y_continuous(limits = c(0,1)) +
+  scale_color_viridis_d(begin = 0, end = 0.8, 
+                        alpha = c(0, 1)) +
+  labs(x = "Balance",
+       y = "Pr(Default)") + 
+  theme(legend.position = "none")
+```
+
+Also it can (technically) exceed the 0-1 range!
+
+## What is the problem?
+
+. . .
+
+**Before:** We wanted a single number summary that characterizes the relationship and has good statistical properties
+
+. . .
+
+**Now:** We want a model that predicts new data well, we don't care about producing precise or interpretable estimates
+
+. . .
+
+We also want a model that produces **valid** classifications!
+
+## Logistic regression
+
+::: incremental
+- A variant of regression that respects the laws of probability
+
+- Uses an intermediate step called a **link function**
+:::
+
+## Logistic regression
+
+
+<!-- My old cheatsheet -->
+<!-- https://drive.google.com/drive/folders/1y0SwNYAjG5_uDGj7MaaJJoS3TpZ_5HuL -->
+
+For the logit model, the link is the *logistic function*
+
+$$
+p(X) = \frac{e^{X\beta}}{1+e^{X\beta}}
+$$
+
+. . .
+
+
+```{r, echo = FALSE, fig.width=5, fig.height=4, fig.align='center'}
+library(tidyverse)
+
+ggplot(data = data.frame(x = c(-3,3))) +
+  aes(x) +
+  stat_function(fun = function(x) exp(x)/(1+exp(x)), n = 100, linewidth = 2) +
+  ylim(0,1) +
+  labs(y = "p(X)")
+  
+```
+
+
+## Logistic regression
+
+
+For the logit model, the link is the *logistic function*
+
+$$
+p(X) = \frac{e^{X\beta}}{1+e^{X\beta}}
+$$
+
+. . .
+
+Rearrange to get the *odds ratio*
+
+$$
+\frac{p(X)}{1-p(X)} = e^{{X\beta}}
+$$
+
+## Logistic regression
+
+
+Taking the natural logarithm gives the *log odds*
+
+$$
+log \left (\frac{p(X)}{1-p(X)} \right) = X\beta
+$$
+
+::: incremental
+- It's called *logit* because you need to *log* *it* to compute
+- Estimate with **maximum likelihood estimation**
+- Weird to interpret, but we do not care as long as we get good *classification*
+:::
+
+## What changes?
+
+```{r}
+# Visualize
+ggplot(Default) +
+  aes(x = balance, y = default01) +
+  geom_jitter(alpha = 0.3, height = 0.1) +
+  geom_line(
+    data = pred_df,
+    aes(x = balance, 
+        y = estimate,
+        color = Model),
+    linewidth = 2) +
+  scale_y_continuous(limits = c(0,1)) +
+  scale_color_viridis_d(begin = 0, end = 0.8, 
+                        alpha = c(0, 1)) +
+  labs(x = "Balance",
+       y = "Pr(Default)")
+```
+
+## What changes?
+
+```{r}
+# Visualize
+ggplot(Default) +
+  aes(x = balance, y = default01) +
+  geom_jitter(alpha = 0.3, height = 0.1) +
+  geom_line(
+    data = pred_df,
+    aes(x = balance, 
+        y = estimate,
+        color = Model),
+    linewidth = 2) +
+  scale_y_continuous(limits = c(0,1)) +
+  scale_color_viridis_d(begin = 0, end = 0.8) +
+  labs(x = "Balance",
+       y = "Pr(Default)")
+```
+
+## Great! What next?
+
+. . .
+
+We have baby's first machine learning models
+
+. . .
+
+How do we now if these (or any other fancy model) performs well?
+
+. . .
+
+We need a way to *quantify* **prediction error**
+
+## Error metrics
+
+**Regression**
+
+. . .
+
+Remember this?
+
+$$
+SSR = \sum_{i=1}^n e_i^2
+$$
+
+## Error metrics
+
+**Regression**
+
+Remember this?
+
+$$
+SSR = \sum_{i=1}^n (y_i - \widehat y_i)^2
+$$
+
+. . . 
+
+It's our friend the **Sum of Squared Residuals**!
+
+. . .
+
+You used to be a *criterion* to minimize so that we could draw good lines
+
+. . .
+
+Now you are an **error metric**
+
+## Error metrics
+
+**Regression**
+
+$$
+SSR = \sum_{i=1}^n (y_i - \widehat y_i)^2
+$$
+
+But not with those clothes!
+
+## Error metrics
+
+**Regression**
+
+$$
+MSE = \frac{\sum_{i=1}^n (y_i - \widehat y_i)^2}{N}
+$$
+
+But not with those clothes!
+
+. . .
+
+Now you are a **Mean Squared Error**
+
+. . .
+
+But you could look prettier!
+
+## Error metrics
+
+**Regression**
+
+$$
+RMSE = \sqrt{\frac{\sum_{i=1}^n (y_i - \widehat y_i)^2}{N}} 
+$$
+
+. . .
+
+You are a **Root Mean Squared Error**
+
+. . .
+
+You are now expressed on *response variable* units {{< fa heart >}}
+
+. . .
+
+{{< fa arrow-down >}} RMSE $\Rightarrow$ Better prediction
+
+
+## Error metrics
+
+**Classification**
+
+[CONTINUE HERE]
+
 ::: {style="text-align: center"}
 ## Machine Learning {{< fa robot >}} {#thu .center}
 
@@ -360,4 +798,10 @@ c1 + c2 + c3
 
 Introduction to Empirical Methods in Political Science
 
+:::
+
+## Transformer architecture
+
+::: aside
+<https://youtu.be/ZXiruGOCn9s?si=jtJsAzNs8O5UDlwO>
 :::
