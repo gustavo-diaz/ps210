@@ -31,7 +31,6 @@ theme_set(theme_gray(base_size = 20))
 
 # set NU purple
 nu_purple = "#4E2A84"
-
 ```
 
 
@@ -49,7 +48,15 @@ Introduction to Empirical Methods in Political Science
 
 ## AI Prompts {background-color="#B6ACD1"}
 
-TBD
+- Supervised vs. unsupervised learning
+
+- Overfitting problem [in machine learning]
+
+- Explain how your (AI chatbot) algorithm works
+
+- Explain how [fancy algorithm] works
+
+- How can a [political scientist] use [machine learning/AI] for [application of interest]
 
 ## Roadmap
 
@@ -100,6 +107,8 @@ Statistical learning
 Artificial intelligence
 
 Predictive modeling
+
+Deep learning
 
 Big data (?)
 
@@ -236,25 +245,22 @@ flowchart LR
 
 *Learn* underlying structure of data (dimensions, clusters)
 
-## Flavors of machine learning
-
-```{mermaid}
-%%| fig-width: 10
-%%| mermaid-format: png
-flowchart LR
-  A(**Machine Learning**) --> B(**Supervised Learning**)
-  A --> C(Unsupervised Learning)
-  B --> D(**Regression**)
-  B --> E(**Classification**)
-```
 
 ## Supervised learning
 
-&nbsp;
+**Regression**
 
 &nbsp;
 
 ![](fig/supervised_learning.jpg){fig-align="center"}
+
+## Supervised learning
+
+**Classification**
+
+&nbsp;
+
+![](fig/supervised_learning_2.jpg){fig-align="center"}
 
 
 ## Toy example
@@ -643,6 +649,15 @@ $$
 log \left (\frac{p(X)}{1-p(X)} \right) = X\beta
 $$
 
+## Logistic regression
+
+
+Taking the natural logarithm gives the *log odds*
+
+$$
+log \left (\frac{p(X)}{1-p(X)} \right) = \beta_0 + \beta_1x_1 + \beta_2 x_2 + \ldots + \beta_k x_k + \varepsilon
+$$
+
 ::: incremental
 - It's called *logit* because you need to *log* *it* to compute
 - Estimate with **maximum likelihood estimation**
@@ -789,7 +804,137 @@ You are now expressed on *response variable* units {{< fa heart >}}
 
 **Classification**
 
-[CONTINUE HERE]
+```{r}
+confusion = tribble(
+  ~Predicted, ~`False (0)`, ~`True (1)`,
+  "False (0)", "True Negative (**TN**)", "False Negative (**FN**)",
+  "True (1)", "False Positive (**FP**)", "True Positive (**TP**)"
+  
+)
+
+confusion %>% tt() %>% 
+  format_tt(j = 2:3, markdown = TRUE) %>% 
+  group_tt(
+    j = list(
+      "Actual" = 2:3
+    )
+  )
+```
+
+. . .
+
+We can use these to calculate several metrics
+
+## Error metrics
+
+**Classification**
+
+```{r}
+class_metrics = tribble(
+  ~Name, ~Measurement, ~Note,
+  "Error rate", "$Avg(I(y_i \\neq \\widehat{y}_i))$",
+  "Proportion actual $\\neq$ predicted",
+  "Accuracy", "$1 - \\text{error rate}$", "Proportion correct",
+  "Accuracy", "$(TN + TP)/n$", "Proportion correct",
+  "Sensitivity", "$TP/(TP+FN)$", "Proportion correct positives",
+  "Specificity", "$TN/(TN+FP)$", "Proportion correct negatives"
+  
+  
+)
+
+# Math in tinytable
+options(tinytable_html_mathjax = TRUE)
+
+
+class_metrics %>% 
+  tt() %>% 
+  style_tt(fontsize = 0.8) %>% 
+  style_tt(
+    i = 1:5,
+    color = "#00000000"
+  )
+```
+
+
+## Error metrics
+
+**Classification**
+
+```{r}
+class_metrics %>% 
+  tt() %>% 
+  style_tt(fontsize = 0.8) %>% 
+  style_tt(
+    i = 2:5,
+    color = "#00000000"
+  )
+```
+
+## Error metrics
+
+**Classification**
+
+```{r}
+class_metrics %>% 
+  tt() %>% 
+  style_tt(fontsize = 0.8) %>% 
+  style_tt(
+    i = 3:5,
+    color = "#00000000"
+  )
+```
+
+
+
+## Error metrics
+
+**Classification**
+
+```{r}
+class_metrics %>% 
+  tt() %>% 
+  style_tt(fontsize = 0.8) %>% 
+  style_tt(
+    i = 4:5,
+    color = "#00000000"
+  )
+```
+
+## Error metrics
+
+**Classification**
+
+```{r}
+class_metrics %>% 
+  tt() %>% 
+  style_tt(fontsize = 0.8) %>% 
+  style_tt(
+    i = 5,
+    color = "#00000000"
+  )
+```
+
+## Error metrics
+
+**Classification**
+
+```{r}
+class_metrics %>% 
+  tt() %>% 
+  style_tt(fontsize = 0.8)
+```
+
+## Hold on
+
+Aren't these metrics assuming that we **know** true positives/negatives?
+
+. . .
+
+How do we calculate if we don't know?
+
+. . .
+
+More next time!
 
 ::: {style="text-align: center"}
 ## Machine Learning {{< fa robot >}} {#thu .center}
@@ -800,8 +945,404 @@ Introduction to Empirical Methods in Political Science
 
 :::
 
+## Last time
+
+**Error metrics in machine learning**
+
+**Regression:** Root Mean Squared Error (RMSE)
+
+**Classification:** Error rate, accuracy, sensitivity, specificity
+
+. . .
+
+These require *actual* and *predicted* values
+
+. . .
+
+But why predict if you know *actual* values?
+
+&nbsp;
+
+. . .
+
+**Remember:** We are doing this to learn about *new data*
+
+## Resampling methods
+
+. . .
+
+**General idea:** Use existing data to mimic predicting new data
+
+. . .
+
+**Easiest:** Validation set approach
+
+::: incremental
+- Split data into **training** and **validation** set
+- Normally via random sampling
+- Usually larger training set
+- Generate predictions on training set
+- Evaluate performance on validation set
+:::
+
+## Example: Auto data
+
+```{r}
+ggplot(Auto) +
+  aes(x = horsepower, y = mpg) +
+  geom_point(size = 2, color = nu_purple)
+```
+
+## OLS models
+
+**Linear:** $\widehat{\texttt{mpg}} = \beta_0 + \beta_1 \texttt{horsepower}$
+
+. . .
+
+**Quadratic:** $\widehat{\texttt{mpg}} = \beta_0 + \beta_1 \texttt{horsepower} + \beta_2 \texttt{horsepower}^2$
+
+. . .
+
+**Cubic:** $\widehat{\texttt{mpg}} = \beta_0 + \beta_1 \texttt{horsepower} + \beta_2 \texttt{horsepower}^2 + \beta_3 \texttt{horsepower}^3$
+
+&nbsp;
+
+. . .
+
+More polynomial terms $\rightarrow$ more curvy
+
+. . .
+
+50/50 train/validation split at random
+
+. . .
+
+Choose model that would predict new data better
+
+## Results
+
+```{r}
+# split
+set.seed(1)
+train1 = sample(392 ,196)
+
+set.seed(2)
+train2 = sample(392 ,196)
+
+# fit
+fit1 = lm(mpg ~ horsepower, data=Auto ,subset = train1)
+
+fit2 = lm(mpg ~ poly(horsepower, 2), data=Auto ,subset = train1)
+
+fit3 = lm(mpg ~ poly(horsepower, 3), data=Auto ,subset = train1)
+
+# rmse
+linear = sqrt(mean((Auto$mpg - predict(fit1, Auto))[-train1]^2))
+
+quad = sqrt(mean((Auto$mpg - predict(fit2, Auto))[-train1]^2))
+
+cubic = sqrt(mean((Auto$mpg - predict(fit3, Auto))[-train1]^2))
+```
+
+
+```{r}
+# make table
+auto_lm = data.frame(
+  Fit = c("Linear", "Quadratic", "Cubic"),
+  RMSE = c(linear, quad, cubic)
+)
+
+auto_lm %>% kbl(digits = 2)
+```
+
+
+. . .
+
+Notice how results change based on train/validation split
+
+## Results
+
+```{r}
+# fit
+fit1b = lm(mpg ~ horsepower, data=Auto ,subset = train2)
+
+fit2b = lm(mpg ~ poly(horsepower, 2), data=Auto ,subset = train2)
+
+fit3b = lm(mpg ~ poly(horsepower, 3), data=Auto ,subset = train2)
+
+# rmse
+linearb = sqrt(mean((Auto$mpg - predict(fit1, Auto))[-train2]^2))
+
+quadb = sqrt(mean((Auto$mpg - predict(fit2, Auto))[-train2]^2))
+
+cubicb = sqrt(mean((Auto$mpg - predict(fit3, Auto))[-train2]^2))
+
+auto_lm$RMSEb = c(linearb, quadb, cubicb)
+
+colnames(auto_lm) = c("Fit", "Split 1", "Split 2")
+```
+
+```{r}
+auto_lm %>% 
+  kbl(digits = 2) %>% 
+  add_header_above(c(" " = 1, "RMSE" = 2))
+```
+
+. . .
+
+Fancier *resampling methods* take advantage of this to provide more robust performance
+
+. . .
+
+**Cost:** Increased computing times (but trivial for consumer-level tasks)
+
+## Example: Cross-validation
+
+**Idea:** Do many train-validation splits and then average over their performance
+
+## Example: Cross-validation
+
+**L**eave-**O**ne-**O**ut **C**ross-**V**alidation (LOOCV)
+
+. . .
+
+![](fig/cv_loo.png)
+
+## Example: Cross-validation
+
+_**K-fold**_ cross-validation
+
+. . .
+
+![](fig/cv_k.png)
+
+## Application: credit cards data
+
+```{r}
+Default %>% select(!default01)
+```
+
+. . .
+
+**Goal:** Predict who will default on their credit card
+
+## Algorithms
+
+**Logistic regression:**
+
+$$
+\widehat p(\texttt{default}) = \beta_0 + \beta_1 \texttt{income} + \beta_2 \texttt{balance} + \beta_3 \texttt{student}
+$$
+
+. . .
+
+Compare with **KNN** (5, 10, 20)
+
+. . .
+
+All tuned with *5-fold CV*
+
+## Results
+
+```{r, cache = TRUE}
+library(caret)
+
+Default$default = fct_rev(Default$default)
+
+set.seed(20250303)
+
+logit_cv_acc = train(
+  form = default ~ income + balance + student,
+  data = Default,
+  method = "glm",
+  family = "binomial",
+  trControl = trainControl(method = "cv", number = 5)
+  
+)
+
+logit_cv_roc = train(
+  form = default ~ income + balance + student,
+  data = Default,
+  method = "glm",
+  family = "binomial",
+  trControl = trainControl(method = "cv", number = 5,
+                           classProbs=TRUE,
+                           summaryFunction=twoClassSummary)
+)
+
+knn_grid = expand.grid(k = c(5, 10, 20))
+
+knn_cv_acc = train(
+  form = default ~ income + balance + student,
+  data = Default, 
+  method = "knn",
+  trControl = trainControl(method = "cv", number = 5),
+  tuneGrid = knn_grid
+)
+
+knn_cv_roc = train(
+  form = default ~ income + balance + student,
+  data = Default, 
+  method = "knn",
+  trControl = trainControl(method = "cv", number = 5,
+                           classProbs=TRUE,
+                           summaryFunction=twoClassSummary),
+  tuneGrid = knn_grid
+)
+
+logit_cv = bind_cols(logit_cv_acc$results,
+                     logit_cv_roc$results)
+
+knn_cv = bind_cols(knn_cv_acc$results,
+                   knn_cv_roc$results)
+
+
+default_cv = bind_rows(
+  logit_cv %>% mutate(Algorithm = "Logit"),
+  knn_cv %>% mutate(Algorithm = "KNN")
+) %>% 
+  select(Algorithm,
+         k = k...1, 
+         Accuracy, 
+         Sensitivity = Sens, 
+         Specificity = Spec)
+```
+
+```{r}
+default_cv %>% 
+  tt(digits = 2) %>% 
+  style_tt(
+    j = 3:5,
+    color = "#00000000"
+  )
+```
+
+## Results
+
+```{r}
+default_cv %>% 
+  tt(digits = 2) %>% 
+  style_tt(
+    j = 4:5,
+    color = "#00000000"
+  )
+```
+
+## Results
+
+```{r}
+default_cv %>% 
+  tt(digits = 2) %>% 
+  style_tt(
+    j = 5,
+    color = "#00000000"
+  )
+```
+
+## Results
+
+```{r}
+default_cv %>% 
+  tt(digits = 2)
+```
+
+. . .
+
+Which one seems more appropriate?
+
+## Fancier models
+
+::: incremental
+
+- Achieve even higher performance at the expense of even more computing power
+
+- Can be **parametric** or **nonparametric**
+
+- Technically, they all have *tuning parameters*
+
+- **Difference:** Functional form assumptions
+:::
+
+. . .
+
+These are a few examples at the limits of consumer-level computing power
+
+## Regression/classification trees
+
+![](fig/trees.jpg){fig-align="center"}
+
+## Algorithm: Recursive binary partitioning
+
+![](fig/recursive_1.jpg){fig-align="center"}
+
+## Algorithm: Recursive binary partitioning
+
+![](fig/recursive_2.jpg){fig-align="center"}
+
+## Algorithm: Recursive binary partitioning
+
+![](fig/recursive_3.jpg){fig-align="center"}
+
+## Algorithm: Recursive binary partitioning
+
+![](fig/recursive_4.jpg){fig-align="center"}
+
+## Algorithm: Recursive binary partitioning
+
+![](fig/recursive_5.jpg){fig-align="center"}
+
+## Algorithm: Recursive binary partitioning
+
+![](fig/recursive_6.jpg){fig-align="center"}
+
+## Random forests
+
+![](fig/random_forest.jpg){fig-align="center"}
+
+## Neural networks
+
+```{=html}
+<p align="center"><iframe width="900" height="500" src="https://www.youtube.com/embed/bfmFfD2RIcg?si=xAEVyJ3BKr2JCQzF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+
+```
+
+<https://youtu.be/bfmFfD2RIcg?si=xAEVyJ3BKr2JCQzF>
+
+## Beyond consumer-level
+
+. . .
+
+Mostly **deep learning** models trained on vast amounts of **unstructured** data, then used to create *new* data
+
+. . . 
+
+Combination of **extractive** and **generative** AI
+
+. . .
+
+- **Extractive:** Learns patterns, gives structure (supervised/unsupervised learning)
+
+- **Generative:** Creates new information
+
+. . .
+
+The magic behind *generative AI* as it exists today is the **transformer architecture**
+
 ## Transformer architecture
+
+```{=html}
+<p align="center"><iframe width="900" height="500" src="https://www.youtube.com/embed/ZXiruGOCn9s?si=QWnI4-mQDc_SnoHB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+```
+
 
 ::: aside
 <https://youtu.be/ZXiruGOCn9s?si=jtJsAzNs8O5UDlwO>
+:::
+
+::: {style="text-align: center"}
+## Questions? {.center}
+:::
+
+::: {style="text-align: center"}
+## Bye! {.center}
 :::
