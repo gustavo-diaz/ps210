@@ -829,7 +829,7 @@ We can use these to calculate several metrics
 
 **Classification**
 
-```{r}
+```{r, results='asis'}
 class_metrics = tribble(
   ~Name, ~Measurement, ~Note,
   "Error rate", "$Avg(I(y_i \\neq \\widehat{y}_i))$",
@@ -842,17 +842,13 @@ class_metrics = tribble(
   
 )
 
-# Math in tinytable
-options(tinytable_html_mathjax = TRUE)
 
+tab0 = class_metrics %>% 
+  kbl() %>% 
+  kable_styling(font_size = 35) %>% 
+  row_spec(1:5, color = "#00000000")
 
-class_metrics %>% 
-  tt() %>% 
-  style_tt(fontsize = 0.8) %>% 
-  style_tt(
-    i = 1:5,
-    color = "#00000000"
-  )
+cat(tab0)
 ```
 
 
@@ -860,28 +856,26 @@ class_metrics %>%
 
 **Classification**
 
-```{r}
-class_metrics %>% 
-  tt() %>% 
-  style_tt(fontsize = 0.8) %>% 
-  style_tt(
-    i = 2:5,
-    color = "#00000000"
-  )
+```{r, results='asis'}
+tab1 = class_metrics %>% 
+  kbl() %>% 
+  kable_styling(font_size = 35) %>% 
+  row_spec(2:5, color = "#00000000")
+
+cat(tab1)
 ```
 
 ## Error metrics
 
 **Classification**
 
-```{r}
-class_metrics %>% 
-  tt() %>% 
-  style_tt(fontsize = 0.8) %>% 
-  style_tt(
-    i = 3:5,
-    color = "#00000000"
-  )
+```{r, results='asis'}
+tab2 = class_metrics %>% 
+  kbl() %>% 
+  kable_styling(font_size = 35) %>% 
+  row_spec(3:5, color = "#00000000")
+
+cat(tab2)
 ```
 
 
@@ -890,38 +884,38 @@ class_metrics %>%
 
 **Classification**
 
-```{r}
-class_metrics %>% 
-  tt() %>% 
-  style_tt(fontsize = 0.8) %>% 
-  style_tt(
-    i = 4:5,
-    color = "#00000000"
-  )
+```{r, results='asis'}
+tab3 = class_metrics %>% 
+  kbl() %>% 
+  kable_styling(font_size = 35) %>% 
+  row_spec(4:5, color = "#00000000")
+
+cat(tab3)
 ```
 
 ## Error metrics
 
 **Classification**
 
-```{r}
-class_metrics %>% 
-  tt() %>% 
-  style_tt(fontsize = 0.8) %>% 
-  style_tt(
-    i = 5,
-    color = "#00000000"
-  )
+```{r, results='asis'}
+tab4 = class_metrics %>% 
+  kbl() %>% 
+  kable_styling(font_size = 35) %>% 
+  row_spec(5, color = "#00000000")
+
+cat(tab4)
 ```
 
 ## Error metrics
 
 **Classification**
 
-```{r}
-class_metrics %>% 
-  tt() %>% 
-  style_tt(fontsize = 0.8)
+```{r, results='asis'}
+tab5 = class_metrics %>% 
+  kbl() %>% 
+  kable_styling(font_size = 35)
+
+cat(tab5)
 ```
 
 ## Hold on
