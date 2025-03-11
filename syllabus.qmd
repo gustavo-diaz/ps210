@@ -3,7 +3,7 @@ title: |
        | POLI SCI 210
        | Introduction to
        | Empirical Methods in Political Science
-       | Winter 2025
+       | Spring 2025
 format: 
   typst:
     margin:
@@ -19,26 +19,28 @@ fontsize: 12pt
 <!-- Remember double space for line skip -->
 **Instructor:** Gustavo Diaz (he/him/his)  
 **Email:** <gustavo.diaz@northwestern.edu>  
-**Lecture:**  Tues/Thurs 11:00am -- 12:20pm, University Hall 122     
-**Canvas:** <https://canvas.northwestern.edu/courses/224184>  
-**Student Hours:** Thursday 2:00 -- 4:00pm, Scott Hall 103 or [by appointment](https://calendly.com/gustavo-diaz-nu/meetings)
+**Lecture:**  Tues/Thurs 11:00am -- 12:20pm, University Hall 102     
+**Canvas:** TBD    
+**Student Hours:** Wednesday 2:00 -- 4:00pm, Scott Hall 103 or [by appointment](https://calendly.com/gustavo-diaz-nu/meetings)
 
 **Teaching Assistants:**
 
-|               | **Chloe Bernadaux**   | **Lucas Camara**   |
-|:-|:--------|:--------|
-| **Email**         | <chloebernadaux2028@u.northwestern.edu>  | <lucascamara2028@u.northwestern.edu> |
-| **Office**        | Scott Hall 215 | Scott Hall 219 |
-| **Hours** | Tu 12:30--1:30pm  | Mo 5:00--6:00pm  |
-|           | We 3:30--4:40pm | Th 9:50--10:50am |
+TBD
+
+<!-- |               | **Chloe Bernadaux**   | **TBD**   | -->
+<!-- |:-|:--------|:--------| -->
+<!-- | **Email**         | <chloebernadaux2028@u.northwestern.edu>  | <lucascamara2028@u.northwestern.edu> | -->
+<!-- | **Office**        | Scott Hall 215 | Scott Hall 219 | -->
+<!-- | **Hours** | Tu 12:30--1:30pm  | Mo 5:00--6:00pm  | -->
+<!-- |           | We 3:30--4:40pm | Th 9:50--10:50am | -->
 
 **Discussion Sections:**
 
-| | **Section 60** | **Section 61** | **Section 63** | **Section 65** |
+| | **Section 60** | **Section 61** | **Section 62** | **Section 63** |
 |:----|:-----------|:-----------|:-----------|:-----------|
-| **Time**          | Th 1:00--1:50pm      | Th 1:00--1:50pm      | Fr 2:00--2:50pm      | Fr 3:00--3:50pm      |
-| **Room**      | University Hall 218 | University Hall 318  | University Hall 418  | University Hall 418  |
-| **TA**            | Bernadaux   | Camara    | Camara     | Bernadaux     |
+| **Time**          | Th 2:00--2:50pm      | Th 3:00--3:50pm      | Fr 11:00--11:50am      | Fr 2:00--2:50pm      |
+| **Room**      | Kresge Hall 3-410 | Kresge Hall 2-335  | University Hall 218  | University Hall 418  |
+| **TA**            | TBD   | TBD    | TBD     | TBD    |
 
 {{< pagebreak >}}
 
@@ -60,7 +62,7 @@ This course introduces the empirical methods used by political scientists to ans
 
 # Requirements
 
-There are no requirements to take this course, which is required for Political Science majors. This course also counts toward the Empirical and Deductive Reasoning requirement (formerly known as Formal Studies Distribution Area) at Weinberg College.
+There are no requirements to take this course, which fulfills the methodology requirement for Political Science majors. This course also counts toward the Empirical and Deductive Reasoning requirement (formerly known as Formal Studies Distribution Area) at Weinberg College.
 
 # Required Reading
 
@@ -70,7 +72,7 @@ There are no requirements to take this course, which is required for Political S
 Clipperton, Jean, et al. 2020. [*Empirical Methods in Political Science An Introduction*](https://nulib-oer.github.io/empirical-methods-polisci/). Northwestern University Libraries
 :::
 
-This is a FREE resource available through the link above. The rest of the syllabus will refer to the textbook as **EMPS** for short.
+This is a _FREE_ resource available through the link above. The rest of the syllabus will refer to the textbook as **EMPS** for short.
 
 Any other required material or reading will be linked in the schedule below and available on Canvas. 
 
@@ -79,11 +81,11 @@ Any other required material or reading will be linked in the schedule below and 
 
 This course uses a labor-based grading agreement, commonly known as contract grading. In this course, instead of being given a final grade based on how “good” your submitted assignments are, your final grade will be based on the amount of work you put into the course. The goal is to decouple grades from performance and emphasize learning and effort.
 
-Each assignment is worth a number of points. You need 200 points out of a total of 350 to receive an A. The following table translates points to letter grades. These correspond in ratio to the [Weinberg College grading system](https://weinberg.northwestern.edu/undergraduate/courses-registration-grades/the-grading-system.html).
+Each assignment is worth a number of points. You need 250 points out of a total of 370 to receive an A. The following table translates points to letter grades. These correspond in ratio to the [Weinberg College grading system](https://weinberg.northwestern.edu/undergraduate/courses-registration-grades/the-grading-system.html).
 
 | **Grade** | **A** | **A-** | **B+** | **B**| **B-** | **C+** | **C** | **C-** | **D** | **F** |
 :----|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:----:|:---:|
-| Points | $\geq$ 200 | 185 | 165 | 150 | 135 | 115 | 100 | 85 | 50 | $<$ 50 |
+| Points | $\geq$ 250 | 235 | 215 | 200 | 185 | 165 | 150 | 135 | 100 | $<$ 100 |
 | GPA | 4.0 | 3.7 | 3.3 | 3.0 | 2.7 | 2.3 | 2.0 | 1.7 | 1 | 0 |
 
 There are five types of assignments:
@@ -92,30 +94,32 @@ There are five types of assignments:
 2. **Research design critiques** (10 points each)
 3. **AI memos** (10 points each) 
 4. **Section participation** (10 points each)
-5. **Research proposal** (30 points)
+5. **Research proposal (optional)** (30 points)
 
 With the exception of quizzes, which award points based on correct answers, all assignments are marked as satisfactory or unsatisfactory. You receive full points for every assignment marked as satisfactory.
 
-The weekly assignments will be made available no later than the beginning of the first lecture of the corresponding week. These assignments are due on Fridays at 11:59 PM of the week they are assigned. You can choose which assignments to complete, but you will be deducted 20 points if you have not obtained at least 100 points by Friday, February 14. This requirement is waived if you have officially been approved for accommodations for this course by [AccessibleNU](https://www.northwestern.edu/accessiblenu/).
+The weekly assignments will be made available no later than the beginning of the first lecture of the corresponding week. These assignments are due on Fridays at 11:59 PM of the week they are assigned. You can choose which assignments to complete, but you will be deducted 20 points if you have not obtained at least 100 points by Friday, May 9. This requirement is waived if you have been approved for accommodations for this course by [AccessibleNU](https://www.northwestern.edu/accessiblenu/).
 
-As a point of reference, with eight weeks of assignments in the quarter, you should average 25 points every week to secure an A. If you plan to complete 3 assignments every week, then you can afford to have two weeks without submitting any assignment.
+This course does not formally require attendance, but if every lecture meeting has at least 50% attendance based on the total number of students enrolled in the class at the time of meeting, then every student enrolled in the course will receive **50 extra points** at the end of the term.
+
+As a point of reference, with 8 weeks of available assignments and assuming the collective attendance requirement is met, you should average 25 points every week to secure an A. If you plan complete 3 assignments every week, then you will get an A and have a week to spare.
 
 ## Quizzes (10 points each x 8)
 
-Weekly quizzes on the lecture and textbook material will be available on Canvas each week. These quizzes are brief, untimed, and consist only of multiple choice, matching, and true/false questions. Each quiz may be taken as many times as you want before the deadline to earn 10 points. Quizzes may be taken while referencing notes and course materials.
+Weekly quizzes on the lecture and textbook material will be available on Canvas each week. These quizzes are brief, untimed, and consist only of multiple choice, matching, and true/false questions. Each quiz may be taken as many times as you want before the deadline to earn 10 points. Quizzes may be taken while referencing notes and course materials. The first quiz is due on week 2.
 
 ## Research design critiques (10 points each x 8)
 
-Every week has additional non-textbook readings assigned, these are usually published articles that illustrate the application of the methods we discuss that week. You can choose to write a short form document (around 700-1,000 words) that summarizes the question, relevance, and research design of the study in question, and then use course material to evaluate its design or implementation. 
+Every week has additional non-textbook readings assigned, these are usually published articles that illustrate the application of the methods we discuss that week. You can choose to write a short form document (around 700-1,000 words) that summarizes the question, relevance, and research design of the study in question, and then use course material to evaluate its design or implementation.
 
-Ultimately, your research design critique must answer the question of "what should we change if we were to go back and conduct the study ourselves?"
+Ultimately, your research design critique must answer the question of "what should we change if we were to go back and conduct the study ourselves?" The first research design critique is due on week 3.
 
 
 ## AI memos (10 points each x 8)
 
-On the first class meeting of every week, the instructor will present keywords or prompts. You can use at least one of these prompts to ask a generative AI chatbot to explain the corresponding concept or discussion. You should then ask at least five follow up or clarification questions on the topic. The keywords or prompts for every week are good starting points, but you are welcome to come up with your own questions, as long as they relate to course material for that week.
+On the first class meeting of every week, starting on week 2, the instructor will present keywords or prompts. You can use at least one of these prompts to ask a generative AI chatbot to explain the corresponding concept or discussion. You should then ask at least five follow up or clarification questions on the topic. The keywords or prompts for every week are good starting points, but you are welcome to come up with your own questions, as long as they relate to course material for that week.
 
-Based on your conversation with the AI, you will write a short memo (500-1000 words) summarizing the interaction and evaluating its quality. How does the AI explanation compare to what we discussed in class? Why is it different from the course material? Why is it more/less helpful than what is covered in the textbook or lectures? Do you feel the recommended sources are credible? At the end of the document, you should also attach a transcript of your conversation with the AI (you can directly ask in the chat to export a copy in Word format).
+Based on your conversation with the AI, you will write a short memo (500-1000 words) summarizing the interaction and evaluating its quality. How does the AI explanation compare to what we discussed in class? Why is it different from the course material? Why is it more/less helpful than what is covered in the textbook or lectures? Do you feel the recommended sources (if any) are credible? At the end of the document, you should also attach a transcript of your conversation with the AI (you can directly ask in the chat to export a copy in Word format, include an external URL, or submit a separate file).
 
 Northwestern University recommends students and faculty to use [Microsoft Copilot](https://www.it.northwestern.edu/about/news-events/2024/microsoft-copilot-available-university-community.html) to engage with generative AI. When using Copilot via Office 365 or Bing while logged into your Northwestern email account, your data will not be shared nor used for product improvement or to train other AI models. However, you are welcome to use your favorite generative AI chatbot as long as you are able to include a transcript in your memo.
 
@@ -130,11 +134,11 @@ During sections, we will engage in additional discussion of the week's material,
 
 This course is a good opportunity to start thinking about your own research interests. As an optional assignment, you can write a research grant proposal following the guidelines of the [Office of Undergraduate Research](https://undergradresearch.northwestern.edu) for [academic year](https://undergradresearch.northwestern.edu/funding/ayurg/) or [summer](https://undergradresearch.northwestern.edu/funding/surg/) research grants.
 
-You can only complete this assignment after if you receive prior approval to do so. To receive approval, you must schedule a meeting with a member of the instructional team to discuss your research interests and expectations prior to **Friday, February 21**.
+You can only complete this assignment after if you receive prior approval to do so. To receive approval, you must schedule a meeting with a member of the instructional team to discuss your research interests and expectations prior to **Friday, May 16**.
 
 Note that your research proposal needs to be about a political science topic OR connect with one of the methods covered in the course, but not both necessarily.
 
-If approved to complete it, your research proposal is due on **Wednesday, March 19, 11:59 PM**.
+If approved to complete it, your research proposal is due on **Wednesday, June 11, 11:59 PM**.
 
 # Northwestern University Syllabus Standards
 
@@ -145,14 +149,21 @@ This course follows the [Northwestern University Syllabus Standards](https://www
 
 # Schedule
 
-## Week 1 (January 7/9): Introduction and Overview
+## Week 1 (April 3): Introduction and Overview
 
-**NO DISCUSSION SECTIONS**
+**NO CLASS ON APRIL 1 AND NO DISCUSSION SECTIONS**
+
+## Week 2 (April 10): The Scientific Method
+
+**NO CLASS ON APRIL 8**
 
 EMPS Chapters 1-2
 
+Lange, Matthew, James Mahoney, and Matthias vom Hau. 2006. ["Colonialism and Development: A Comparative Analysis of Spanish and British Colonies."](https://doi.org/10.1086/499510) *American Journal of Sociology* 111 (5): 1412-1462
 
-## Week 2 (January 14/16): Theory and Data
+
+## Week 3 (April 15/17): Theory and Data
+
 
 EMPS Chapters 3-4
 
@@ -163,7 +174,7 @@ EMPS Chapters 3-4
 Krcmaric, Daniel, Stephen C. Nelson, and Andrew Roberts. 2024. ["Billionaire Politicians: A Global Perspective."](https://doi.org/10.1017/S1537592723002761) *Perspectives on Politics* 22 (2): 357-371
 
 
-## Week 3 (January 21/23): Inference
+## Week 4 (April 22/24): Inference
 
 EMPS Chapter 5
 
@@ -171,7 +182,7 @@ EMPS Chapter 5
 
 Baum, Matthew A., James N. Druckman, Matthew D. Simonson, Jennifer Lin, and Roy H. Perlis. 2024. ["The Political Consequences of Depression: How Conspiracy Beliefs, Participatory Inclinations, and Depression Affect Support for Political Violence."](https://doi.org/10.1111/ajps.12827) *American Journal of Political Science* 68 (2):575-594
 
-## Week 4 (January 28/30): Surveys
+## Week 5 (April 29/May 1): Surveys
 
 EMPS Chapter 6
 
@@ -183,7 +194,7 @@ EMPS Chapter 6
 Merseth, Julie Lee. 2018. ["Race-ing solidarity: Asian Americans and support for Black Lives Matter."](https://doi.org/10.1080/21565503.2018.1494015) *Politics, Groups, and Identities* 6 (3): 337-356
 
 
-## Week 5 (February 4/6): Experiments
+## Week 6 (May 6/8): Experiments
 
 EMPS Chapter 7
 
@@ -194,7 +205,7 @@ Naunov, Martin. 2024. ["The Effect of Protesters' Gender on Public Reactions to 
 <!-- https://doi.org/10.1017/S0003055413000488 -->
 
 
-## Week 6 (February 11/13): Large N
+## Week 7 (May 13/15): Large N
 
 EMPS Chapter 8
 
@@ -203,20 +214,7 @@ McGrath, Mary C. 2017. ["Economic Behavior and the Partisan Perceptual Screen."]
 <!-- Ligbober OLS: https://doi.org/10.1017/S1537592723002943 -->
 
 
-## Week 7 (February 18/20): Quasi-Experiments
-
-Huntinton-Klein, Nick. 2022. [*The Effect: An Introduction to Research Design and Causality*](https://theeffectbook.net). Chapman & Hall. Chapter 18
-
-Cattaneo, Matias D., Nicolás Idrobo, and Rocío Titiunik. 2020. [*A Practical Introduction to Regression Discontinuity Designs: Foundations*](https://titiunik.github.io/books/CattaneoIdroboTitiunik2020-CUP-Foundations.pdf). Cambridge University Press. Chapters 1-4
-
-García-Montoya, Laura, Ana Arjona, and Matthew Lacombe. 2022. ["Violence and Voting in the United States: How School Shootings Affect Elections."](https://doi.org/10.1017/S0003055421001179) *American Political Science Review* 116 (3): 807-826
-<!-- Critique: https://doi.org/10.1017/S0003055424000108 -->
-
-Ademi, Ubeydullah and Firat Kimya. 2024. ["Democratic transition and party polarization: A fuzzy regression discontinuity design approach."](https://doi.org/10.1177/13540688231171689) *Party Politics* 30 (4):736-749
-
-<!-- Ademi: https://doi.org/10.1177/13540688231171689 -->
-
-## Week 8 (February 25/27): Small N
+## Week 8 (May 20/22): Small N
 
 EMPS Chapter 9
 
@@ -226,7 +224,7 @@ EMPS Chapter 9
 <!-- Dani Gilbert interviews: https://doi.org/10.1017/S0003055422000041 -->
 Gilbert, Danielle. 2022. ["The Logic of Kidnapping in Civil War: Evidence from Colombia."](https://doi.org/10.1017/S0003055422000041) *American Political Science Review* 116 (4): 1226-1241
 
-## Week 9 (March 4/6): Machine Learning
+## Week 9 (May 27/29): Machine Learning
 
 EMPS Chapter 12
 
@@ -234,7 +232,7 @@ EMPS Chapter 12
 
 Libgober, Brian and Connor T. Jerzak. 2024. ["Linking datasets on organizations using half a billion open-collaborated records."](https://doi.org/10.1017/psrm.2024.55) *Political Science Research and Methods* 
 
-## Week 10 (March 11/13): Weinberg College Reading Period
+## Week 10 (June 3/5): Weinberg College Reading Period
 
 **NO CLASS**
 
