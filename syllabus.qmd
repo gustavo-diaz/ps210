@@ -25,14 +25,12 @@ fontsize: 12pt
 
 **Teaching Assistants:**
 
-TBD
-
-<!-- |               | **Chloe Bernadaux**   | **TBD**   | -->
-<!-- |:-|:--------|:--------| -->
-<!-- | **Email**         | <chloebernadaux2028@u.northwestern.edu>  | <lucascamara2028@u.northwestern.edu> | -->
-<!-- | **Office**        | Scott Hall 215 | Scott Hall 219 | -->
-<!-- | **Hours** | Tu 12:30--1:30pm  | Mo 5:00--6:00pm  | -->
-<!-- |           | We 3:30--4:40pm | Th 9:50--10:50am | -->
+|               | **Chloe Bernadaux**   | **Sara Kayyali**   |
+|:-|:--------|:--------|
+| **Email**         | <chloebernadaux2028@u.northwestern.edu>  | <sarakayyali2022@u.northwestern.edu> |
+| **Office**        | Scott Hall 215 | TBD |
+| **Hours** | Tu 12:30--1:30pm  | TBD  |
+|           | We 3:30--4:40pm | TBD |
 
 **Discussion Sections:**
 
