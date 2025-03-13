@@ -140,6 +140,10 @@ Note that your research proposal needs to be about a political science topic OR 
 
 If approved to complete it, your research proposal is due on **Wednesday, June 11, 11:59 PM**.
 
+# Research Study Participation Requirement
+
+Students enrolled in this course are required to complete a research participation assignment. This will involve taking part in studies conducted by students and faculty from the Department of Political Science, and will include up to 4 hours of research study participation. This will primarily require completing on-line surveys, and in some cases in-person studies at Scott Hall. Students will be able to see how political science studies are conducted and can request information about the studies at the end of the quarter. Students who prefer not to participate in research may opt for an alternative that entails reading a book chapter about political science research and writing a five page reaction paper. The typical chapter is about 20 pages and thus reading it and writing a five-page paper should take approximately four hours. In order to opt for the 5-page paper alternative, please email the lab manager, Jacob Fortier at <jacobfortier2027@u.northwestern.edu>.
+
 # Northwestern University Syllabus Standards
 
 This course follows the [Northwestern University Syllabus Standards](https://www.registrar.northwestern.edu/registration-graduation/northwestern-university-syllabus-standards.html). Students are responsible for familiarizing themselves with this information.
@@ -208,6 +212,8 @@ Naunov, Martin. 2024. ["The Effect of Protesters' Gender on Public Reactions to 
 ## Week 7 (May 13/15): Large N
 
 EMPS Chapter 8
+
+[Replace with something more accessible?]
 
 McGrath, Mary C. 2017. ["Economic Behavior and the Partisan Perceptual Screen."](http://dx.doi.org/10.1561/100.00015100) *Quarterly Journal of Political Science* 11 (4): 363-383
 
