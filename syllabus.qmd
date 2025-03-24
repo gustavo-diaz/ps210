@@ -20,7 +20,7 @@ fontsize: 12pt
 **Instructor:** Gustavo Diaz (he/him/his)  
 **Email:** <gustavo.diaz@northwestern.edu>  
 **Lecture:**  Tues/Thurs 11:00am -- 12:20pm, University Hall 102     
-**Canvas:** TBD    
+**Canvas:** <https://canvas.northwestern.edu/courses/230637>      
 **Student Hours:** Wednesday 2:00 -- 4:00pm, Scott Hall 103 or [by appointment](https://calendly.com/gustavo-diaz-nu/meetings)
 
 **Teaching Assistants:**
@@ -28,9 +28,9 @@ fontsize: 12pt
 |               | **Chloe Bernadaux**   | **Sara Kayyali**   |
 |:-|:--------|:--------|
 | **Email**         | <chloebernadaux2028@u.northwestern.edu>  | <sarakayyali2022@u.northwestern.edu> |
-| **Office**        | Scott Hall 215 | TBD |
-| **Hours** | Tu 12:30--1:30pm  | TBD  |
-|           | We 3:30--4:40pm | TBD |
+| **Office**        | Scott Hall 215 | Scott Hall 213 |
+| **Hours** | Mo 12:00--2:00pm  | Tu 12:30--2:30pm |
+|           | (or by appointment) | (or by appointment) |
 
 **Discussion Sections:**
 
@@ -38,7 +38,7 @@ fontsize: 12pt
 |:----|:-----------|:-----------|:-----------|:-----------|
 | **Time**          | Th 2:00--2:50pm      | Th 3:00--3:50pm      | Fr 11:00--11:50am      | Fr 2:00--2:50pm      |
 | **Room**      | Kresge Hall 3-410 | Kresge Hall 2-335  | University Hall 218  | University Hall 418  |
-| **TA**            | TBD   | TBD    | TBD     | TBD    |
+| **TA**            | Kayyali   | Kayyali    | Bernadaux     | Bernadaux   |
 
 {{< pagebreak >}}
 
