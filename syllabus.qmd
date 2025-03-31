@@ -115,7 +115,7 @@ Ultimately, your research design critique must answer the question of "what shou
 
 ## AI memos (10 points each x 8)
 
-On the first class meeting of every week, starting on week 2, the instructor will present keywords or prompts. You can use at least one of these prompts to ask a generative AI chatbot to explain the corresponding concept or discussion. You should then ask at least five follow up or clarification questions on the topic. The keywords or prompts for every week are good starting points, but you are welcome to come up with your own questions, as long as they relate to course material for that week.
+Starting on week 2, you can ask a generative AI chatbot to explain the a concept, topic, or issue related to the corresponding week's theme. You should then ask at least five follow up or clarification questions on the topic. You are encouraged to be creative in selecting your prompts, as long as they relate to course material for that week.
 
 Based on your conversation with the AI, you will write a short memo (500-1000 words) summarizing the interaction and evaluating its quality. How does the AI explanation compare to what we discussed in class? Why is it different from the course material? Why is it more/less helpful than what is covered in the textbook or lectures? Do you feel the recommended sources (if any) are credible? At the end of the document, you should also attach a transcript of your conversation with the AI (you can directly ask in the chat to export a copy in Word format, include an external URL, or submit a separate file).
 
