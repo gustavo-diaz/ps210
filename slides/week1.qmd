@@ -1,8 +1,8 @@
 ---
 title: "POLI SCI 210"
 subtitle: "Introduction to Empirical Methods in Political Science"
-date: "Winter 2025"
-date-format: "[W]inter 2025"
+date: "Spring 2025"
+date-format: "[S]pring 2025"
 format:
     revealjs:
       slide-number: false
@@ -59,18 +59,33 @@ format:
 . . .
 
 ::: {.r-stack}
-[**Wednesday:** The scientific method](#wed)
+NO CLASS ON TUESDAY, APRIL 8
 :::
-
 
 &nbsp;
 
 . . .
 
-
 ::: {.r-stack}
 NO SECTIONS THIS WEEK
 :::
+
+&nbsp;
+
+. . .
+
+::: {.r-stack}
+**Next Thursday:** The scientific method
+:::
+
+---
+
+![](fig/codex.png)
+
+::: aside
+[codex.northwestern.edu](https://codex.northwestern.edu)
+:::
+
 
 # Who are we and why are we here?
 
@@ -82,7 +97,7 @@ NO SECTIONS THIS WEEK
 
 {{< fa building-columns >}}  Scott Hall 103
 
-{{< fa calendar-check >}} Thursdays 2:00 -- 4:00pm or [by appointment](https://calendly.com/gustavo-diaz-nu/meetings)
+{{< fa calendar-check >}} Wednesdays 2:00 -- 4:00pm or [by appointment](https://calendly.com/gustavo-diaz-nu/meetings)
 
 ## Teaching Assistants
 
@@ -94,11 +109,11 @@ NO SECTIONS THIS WEEK
 
 &nbsp;
 
-{{< fa user >}} [Lucas Camara](https://polisci.northwestern.edu/people/graduate-students/lucas-camara.html)
+{{< fa user >}} [Sara Kayyali](https://mena.northwestern.edu/people/graduate-students/sara-kayyali.html)
 
-{{< fa envelope >}} <lucascamara2028@u.northwestern.edu>  
+{{< fa envelope >}} <sarakayyali2022@u.northwestern.edu>  
 
-{{< fa building-columns >}}  Scott Hall 219
+{{< fa building-columns >}}  Scott Hall 213
 
 ::: aside
 Check the syllabus for discussion sections and TA office hours
@@ -107,7 +122,9 @@ Check the syllabus for discussion sections and TA office hours
 ## About you
 
 ::: incremental
-- Polisci majors?
+- Polisci majors/minors?
+
+- Polisci curious?
 
 - Filling a requirement?
 
@@ -118,7 +135,9 @@ Check the syllabus for discussion sections and TA office hours
 
 ## About you
 
-- Polisci majors?
+- Polisci majors/minors?
+
+- Polisci curious?
 
 - Filling a requirement?
 
@@ -154,7 +173,7 @@ Registration questions or problems? Contact Undergraduate Program Coordinator: <
 <https://nulib-oer.github.io/empirical-methods-polisci/>
 :::
 
-## Canvas [{{< fa link >}}](https://canvas.northwestern.edu/courses/224184){preview-link="false"}
+## Canvas [{{< fa link >}}](https://canvas.northwestern.edu/courses/230637){preview-link="false"}
 
 ::: incremental
 
@@ -171,12 +190,12 @@ Registration questions or problems? Contact Undergraduate Program Coordinator: <
 :::
 
 ::: aside
-[canvas.northwestern.edu/courses/224184](https://canvas.northwestern.edu/courses/224184){preview-link="false"}
+[canvas.northwestern.edu/courses/230637](https://canvas.northwestern.edu/courses/230637){preview-link="false"}
 :::
 
 
 
-## Assignments
+## Assignments (starting on week 2)
 
 ::: incremental
 1. **Quizzes** (10 points each, weekly)
@@ -188,15 +207,25 @@ Registration questions or problems? Contact Undergraduate Program Coordinator: <
 
 . . .
 
-350 points total, need 200 for an A
+370 points total, need 250 for an A
 
 . . .
 
-25 points/week gives you two weeks to spare
+25 points/week to get an A
 
 . . .
 
-**Valentine's rule:** Get *at least* 100 points by February 14 or get 20 points deducted {{< fa heart-crack >}}
+3 assignments/week gives you a week to spare
+
+## Rules
+
+::: incremental
+- **Halfway rule:** Get 100 points by May 9 or get 20 points deduction
+
+- **Collective attendance:** If every lecture has at least 50% attendance, everyone gets 50 extra points
+
+- **Research study participation requirement:** Details to come
+:::
 
 
 # AI memo example
@@ -207,386 +236,13 @@ Registration questions or problems? Contact Undergraduate Program Coordinator: <
 
 - **Before Tuesday:** Check Canvas for updated materials (1-2 chapters + 1 article)
 
-- **Tuesday:** Quizzes and AI memo prompts available at beginning of lecture
+- **Tuesday:** Quizzes available at beginning of lecture
 
-- **Wednesday:** Prepare for discussion sections
+- **Wednesday:** Prepare for discussion sections, instructor open office hours
 
-- **Thursday:** Lecture, discussion sections, instructor open office hours
+- **Thursday:** Lecture, discussion sections
 
 - **Friday:** Discussion sections, weekly assignments due at 11:59 PM
-
-
-
-::: {style="text-align: center"}
-## The Scientific Method {#wed .center}
-
-### POLI SCI 210
-
-Introduction to Empirical Methods in Political Science
-
-:::
-
-## Lingering questions
-
-::: incremental
-- About syllabus?
-- Canvas?
-- Assignments?
-- Grading?
-- Readings?
-- Office hours?
-- Anything?
-
-:::
-
-## Last time
-
-. . .
-
-This is a course about **Political Science** research methods
-
-::: incremental
-1. **Politics:** Power relationships across many subfields
-2. **Science:** Knowledge generation through falsification
-:::
-
-## Informally
-
-. . .
-
-Some philosophers may think "Political Science" is an *oxymoron*
-
-::: incremental
-1. **Politics:** Normative statements about what's good for the *polity*
-2. **Science:** True, unquestionable knowledge
-:::
-
-. . .
-
-Can there be a **SCIENCE** of **POLITICS**?
-
-# [Whiteboard](https://miro.com/app/board/uXjVLxbPeSU=/?share_link_id=628474761690)
-
-![](fig/science_board.png){fig-align="center"}
-
----
-
-```{=html}
-<iframe width="1000" height="800" src="https://miro.com/app/live-embed/uXjVLxbPeSU=/?moveToViewport=-1253,-996,2602,1355&embedId=980138490683" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
-```
-
-
-
----
-
-![](fig/wrongness.jpg){width="60%" fig-align="center"}
-
-::: aside
-[{{< fa brands instagram >}} @nathanwpylestrangeplanet](https://www.instagram.com/p/B9tzu1yl476/?utm_source=ig_web_button_share_sheet&igsh=M2M0Y2JmOTAyOA==){preview-link="false"} 
-:::
-
-## The goal of science
-
-::: incremental
-- **Inference:** Use *what we know* to learn about *what we do not know*
-
-- **Key:** Try to prove ourselves wrong, even if we believe we are right (*falsification*)
-
-- Scientific statements are **falsifiable**
-:::
-
-## Scientific statement
-
-. . .
-
-A **meaningful**
-
-::: aside
-Definition from [Clark, Golder, and Golder (2024). "Principles of Comparative Politics." CQ Press.](https://collegepublishing.sagepub.com/products/principles-of-comparative-politics-4-259276) Chapter 2.
-:::
-
-## Scientific statement
-
-A **meaningful declarative** sentence
-
-::: aside
-Definition from [Clark, Golder, and Golder (2024). "Principles of Comparative Politics." CQ Press.](https://collegepublishing.sagepub.com/products/principles-of-comparative-politics-4-259276) Chapter 2.
-:::
-
-## Scientific statement
-
-A **meaningful declarative** sentence that is **unambiguously true or false**.
-
-::: aside
-Definition from [Clark, Golder, and Golder (2024). "Principles of Comparative Politics." CQ Press.](https://collegepublishing.sagepub.com/products/principles-of-comparative-politics-4-259276) Chapter 2.
-:::
-
-::: incremental
-- **Meaningful:** We agree on its interpretation
-
-- **Declarative:** Claims or asserts something
-
-- **Unambiguously true or false:** One or the other, but not both or neither (therefore refutable or falsifiable)
-:::
-
-## Unscientific statements
-
-::: incremental
-- Triangles have three sides
-
-- Political science is the study of politics
-
-- God created the world
-
-- Edison created the lightbulb
-:::
-
-## Unscientific statements
-
-Two types:
-
-. . .
-
-1. Tautologies
-2. Unobservable phenomena
-
-. . .
-
-**Important:** non-science $\neq$ nonsense
-
-## Reminder
-
-. . .
-
-**Scientific statements** are true or false
-
-**Scientific knowledge/evidence** is neither
-
-. . . 
-
-Why?
-
-. . .
-
-How do you **evaluate** a scientific statement?
-
-## The scientific method
-
-**Step 0:** Puzzle/Question
-
-**Step 1:** Theory/Model
-
-**Step 2:** Hypothesis/Implications
-
-**Step 3:** Observation/Testing
-
-**Step 4:** Conclusion/Evaluation
-
-::: aside
-More details next week!
-:::
-
-## Example
-
-![](fig/weed.png){width=40% fig-align="center"}
-
-::: aside
-[medicine.tulane.edu/news/study-tulane-researcher-suggests-marijuana-can-cause-infertility-men](https://medicine.tulane.edu/news/study-tulane-researcher-suggests-marijuana-can-cause-infertility-men){preview-link="false"}
-:::
-
-## Practice
-
-. . .
-
-**Puzzle/question:**
-
-## Practice
-
-**Puzzle/question:** Does marijuana cause infertility?
-
-## Practice
-
-**Puzzle/question:** Does marijuana cause infertility?
-
-**Theory:** 
-
-## Practice
-
-**Puzzle/question:** Does marijuana cause infertility?
-
-**Theory:** THC kills cells
-
-## Practice
-
-**Puzzle/question:** Does marijuana cause infertility?
-
-**Theory:** THC kills cells
-
-**Hypothesis:**
-
-## Practice
-
-**Puzzle/question:** Does marijuana cause infertility?
-
-**Theory:** THC kills cells
-
-**Hypothesis:** Male smokers have lower semen volume than non-smokers
-
-## Practice
-
-**Puzzle/question:** Does marijuana cause infertility?
-
-**Theory:** THC kills cells
-
-**Hypothesis:** Male smokers have lower semen volume than non-smokers
-
-**Test:**
-
-## Practice
-
-**Puzzle/question:** Does marijuana cause infertility?
-
-**Theory:** THC kills cells
-
-**Hypothesis:** Male smokers have lower semen volume than non-smokers
-
-**Test:**
-
-## Practice
-
-**Puzzle/question:** Does marijuana cause infertility?
-
-**Theory:** THC kills cells
-
-**Hypothesis:** Male smokers have lower semen volume than non-smokers
-
-**Test:** Bring men to lab, ask if they smoke, measure sperm, ask if they smoke, compare
-
-## Practice
-
-**Puzzle/question:** Does marijuana cause infertility?
-
-**Theory:** THC kills cells
-
-**Hypothesis:** Male smokers have lower semen volume than non-smokers
-
-**Test:** Bring men to lab, ask if they smoke, measure sperm, ask if they smoke, compare
-
-**Conclusion:**
-
-## Practice
-
-**Puzzle/question:** Does marijuana cause infertility?
-
-**Theory:** THC kills cells
-
-**Hypothesis:** Male smokers have lower semen volume than non-smokers
-
-**Test:** Bring men to lab, ask if they smoke, measure sperm, ask if they smoke, compare
-
-**Conclusion:** "Study by Tulane researcher **SUGGESTS** marijuana **CAN** cause infertility in men"
-
-## Why the cautious language?
-
-. . .
-
-We want to know the **counterfactual**: Person A's fertility with and without marijuana *consumption*
-
-. . . 
-
-But we can only compare **smokers** to **non-smokers**
-
-. . . 
-
-This is the **fundamental problem of causal inference** (more in week 5)
-
-## Why the cautious language?
-
-Also...
-
-::: incremental
-- Only men
-- Undergoing fertility evaluation
-- In *one* urology clinic in Washington state
-- 409 total, 71 current smokers (17%), 103 past smokers (25%)
-:::
-
-
-
-## Testing theories
-
-::: incremental
-- Cannot test **theories** because they are **statements**
-
-- Need to **believe** theory is true to engage with it scientifically
-
-- Instead, test **arguments** that follow from a theory (hypotheses, implications)
-:::
-
-. . .
-
-**Valid argument:** Accepting it *compels us* to accept conclusion
-
-**Invalid argument:** Accepting premises *frees us* from accepting/rejecting conclusion
-
-## Scientific critiques
-
-. . .
-
-**Valid critiques** to **valid arguments** fall in *three categories*
-
-::: incremental
-1. **Omitted variable:** Stress leads men to smoke marijuana AND to become infertile
-
-2. **Reverse causation:** Infertility causes men to smoke marijuana
-
-3. **Selection bias:** Men who smoke marijuana wait longer before going consulting a doctor
-:::
-
-## Scientific critiques
-
-A valid critique implies:
-
-::: incremental
-1. Observed implications also follow from **alternative theories**
-
-2. **Cannot falsify** theory
-
-3. Need to find **better implications** to distinguish among competing theories
-:::
-
-## Scientific critiques
-
-**Scientist's dilemma:**
-
-::: incremental
-- When evidence supports hypothesis, your theory is ~~accepted~~ **not rejected**
-- When evidence *does not* support hypothesis, your theory is ~~rejected~~ **not accepted**
-- No such thing as *definitive* knowledge
-- Future research can always flip things around!
-:::
-
-
-
-## Takeaways
-
-1. Science differs from other forms of knowledge generation in that we try really hard to prove ourselves wrong
-2. Scientific statements/arguments are falsifiable
-3. We never observe the ideal counterfactual
-4. We can only test a few implications of a theory at a time
-5. Findings can align with many alternative theories
-
-## Next week: Theory and data
-
-**EMPS Chapters 3-4**
-
-- What is a theory? What is a good theory?
-
-- Different types of data/variables
-
-**Application: Billionaire politicians**
-
-- Think about the decisions that were made to define and measure this category
 
 
 
