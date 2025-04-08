@@ -6,11 +6,10 @@
 <script src="week2_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="week2_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="week2_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="week2_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="week2_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="week2_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="week2_files/libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="week2_files/libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.57">
+  <meta name="generator" content="quarto-1.6.42">
 
   <title>week2</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -31,211 +30,13 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="week2_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="week2_files/libs/revealjs/dist/theme/quarto-5e009ffd8c87bff422a8a0234e164180.css">
   <link href="week2_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="week2_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="week2_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
   <link href="week2_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
   <link href="week2_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="week2_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
-
-  .callout {
-    margin-top: 1em;
-    margin-bottom: 1em;  
-    border-radius: .25rem;
-  }
-
-  .callout.callout-style-simple { 
-    padding: 0em 0.5em;
-    border-left: solid #acacac .3rem;
-    border-right: solid 1px silver;
-    border-top: solid 1px silver;
-    border-bottom: solid 1px silver;
-    display: flex;
-  }
-
-  .callout.callout-style-default {
-    border-left: solid #acacac .3rem;
-    border-right: solid 1px silver;
-    border-top: solid 1px silver;
-    border-bottom: solid 1px silver;
-  }
-
-  .callout .callout-body-container {
-    flex-grow: 1;
-  }
-
-  .callout.callout-style-simple .callout-body {
-    font-size: 1rem;
-    font-weight: 400;
-  }
-
-  .callout.callout-style-default .callout-body {
-    font-size: 0.9rem;
-    font-weight: 400;
-  }
-
-  .callout.callout-titled.callout-style-simple .callout-body {
-    margin-top: 0.2em;
-  }
-
-  .callout:not(.callout-titled) .callout-body {
-      display: flex;
-  }
-
-  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
-    padding-left: 1.6em;
-  }
-
-  .callout.callout-titled .callout-header {
-    padding-top: 0.2em;
-    margin-bottom: -0.2em;
-  }
-
-  .callout.callout-titled .callout-title  p {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-  }
-    
-  .callout.callout-titled.callout-style-simple .callout-content  p {
-    margin-top: 0;
-  }
-
-  .callout.callout-titled.callout-style-default .callout-content  p {
-    margin-top: 0.7em;
-  }
-
-  .callout.callout-style-simple div.callout-title {
-    border-bottom: none;
-    font-size: .9rem;
-    font-weight: 600;
-    opacity: 75%;
-  }
-
-  .callout.callout-style-default  div.callout-title {
-    border-bottom: none;
-    font-weight: 600;
-    opacity: 85%;
-    font-size: 0.9rem;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
-
-  .callout.callout-style-default div.callout-content {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
-
-  .callout.callout-style-simple .callout-icon::before {
-    height: 1rem;
-    width: 1rem;
-    display: inline-block;
-    content: "";
-    background-repeat: no-repeat;
-    background-size: 1rem 1rem;
-  }
-
-  .callout.callout-style-default .callout-icon::before {
-    height: 0.9rem;
-    width: 0.9rem;
-    display: inline-block;
-    content: "";
-    background-repeat: no-repeat;
-    background-size: 0.9rem 0.9rem;
-  }
-
-  .callout-title {
-    display: flex
-  }
-    
-  .callout-icon::before {
-    margin-top: 1rem;
-    padding-right: .5rem;
-  }
-
-  .callout.no-icon::before {
-    display: none !important;
-  }
-
-  .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
-  }
-
-  .callout.callout-titled .callout-icon::before {
-    margin-top: .5rem;
-    padding-right: .5rem;
-  }
-
-  .callout:not(.callout-titled) .callout-icon::before {
-    margin-top: 1rem;
-    padding-right: .5rem;
-  }
-
-  /* Callout Types */
-
-  div.callout-note {
-    border-left-color: #4582ec !important;
-  }
-
-  div.callout-note .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
-  }
-
-  div.callout-note.callout-style-default .callout-title {
-    background-color: #dae6fb
-  }
-
-  div.callout-important {
-    border-left-color: #d9534f !important;
-  }
-
-  div.callout-important .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-important.callout-style-default .callout-title {
-    background-color: #f7dddc
-  }
-
-  div.callout-warning {
-    border-left-color: #f0ad4e !important;
-  }
-
-  div.callout-warning .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-warning.callout-style-default .callout-title {
-    background-color: #fcefdc
-  }
-
-  div.callout-tip {
-    border-left-color: #02b875 !important;
-  }
-
-  div.callout-tip .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-tip.callout-style-default .callout-title {
-    background-color: #ccf1e3
-  }
-
-  div.callout-caution {
-    border-left-color: #fd7e14 !important;
-  }
-
-  div.callout-caution .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
-  }
-
-  div.callout-caution.callout-style-default .callout-title {
-    background-color: #ffe5d0
-  }
-
-  </style>
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -329,2317 +130,343 @@
     <div class="slides">
 
 
-<section id="theory-and-data" class="slide level2 center" style="text-align: center">
-<h2>Theory and Data</h2>
+<section id="the-scientific-method" class="slide level2 center" style="text-align: center">
+<h2>The Scientific Method</h2>
 <h3 id="poli-sci-210">POLI SCI 210</h3>
 <p>Introduction to Empirical Methods in Political Science</p>
 </section>
-<section id="teaching-assistants" class="slide level2">
-<h2>Teaching Assistants</h2>
-<p><i class="fa-solid fa-user" aria-label="user"></i> <a href="https://polisci.northwestern.edu/people/graduate-students/chloe-bernadaux.html">Chloe Bernadaux</a></p>
-<p><i class="fa-solid fa-envelope" aria-label="envelope"></i> <a href="mailto:chloebernadaux2028@u.northwestern.edu" class="email">chloebernadaux2028@u.northwestern.edu</a></p>
-<p><i class="fa-solid fa-building-columns" aria-label="building-columns"></i> Scott Hall 215</p>
-<p>&nbsp;</p>
-<p><i class="fa-solid fa-user" aria-label="user"></i> <a href="https://polisci.northwestern.edu/people/graduate-students/lucas-camara.html">Lucas Camara</a></p>
-<p><i class="fa-solid fa-envelope" aria-label="envelope"></i> <a href="mailto:lucascamara2028@u.northwestern.edu" class="email">lucascamara2028@u.northwestern.edu</a></p>
-<p><i class="fa-solid fa-building-columns" aria-label="building-columns"></i> Scott Hall 219</p>
-
-<aside><div>
-<p>Check the syllabus for discussion sections and TA office hours</p>
-</div></aside></section>
-<section id="sections" class="slide level2">
-<h2>Sections</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 9%">
-<col style="width: 22%">
-<col style="width: 22%">
-<col style="width: 22%">
-<col style="width: 22%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: left;"><strong>Section 60</strong></th>
-<th style="text-align: left;"><strong>Section 61</strong></th>
-<th style="text-align: left;"><strong>Section 63</strong></th>
-<th style="text-align: left;"><strong>Section 65</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><strong>Time</strong></td>
-<td style="text-align: left;">Th 1:00–1:50pm</td>
-<td style="text-align: left;">Th 1:00–1:50pm</td>
-<td style="text-align: left;">Fr 2:00–2:50pm</td>
-<td style="text-align: left;">Fr 3:00–3:50pm</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>Room</strong></td>
-<td style="text-align: left;">University Hall 218</td>
-<td style="text-align: left;"><strong>University Hall 318</strong></td>
-<td style="text-align: left;">University Hall 418</td>
-<td style="text-align: left;">University Hall 418</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>TA</strong></td>
-<td style="text-align: left;">Bernadaux</td>
-<td style="text-align: left;">Camara</td>
-<td style="text-align: left;">Camara</td>
-<td style="text-align: left;">Bernadaux</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section>
-<section id="questions" class="title-slide slide level1 center">
-<h1>Questions?</h1>
-
-</section>
-<section id="ai-prompts" class="slide level2" data-background-color="#B6ACD1">
-<h2>AI Prompts</h2>
-<ul>
-<li><p>What is a theory?</p></li>
-<li><p>What makes for a good theory (in social science, political science)?</p></li>
-<li><p>What are some common theories in political science?</p></li>
-<li><p>What is data? What is a variable?</p></li>
-<li><p>Different kids of data/types of variables</p></li>
-<li><p>How do political scientists collect data?</p></li>
-</ul>
-
-<aside><div>
-<p><strong>Reminder:</strong> These are just suggestions, feel free to be creative with your prompts!</p>
-</div></aside></section>
-<section id="general-roadmap" class="slide level2">
-<h2>General roadmap</h2>
+<section id="lingering-questions" class="slide level2">
+<h2>Lingering questions</h2>
 <div>
 <ul>
-<li class="fragment"><p><strong>Weeks 1-2:</strong> Build common language to talk about different methods</p></li>
-<li class="fragment"><p><strong>Week 3 onward:</strong> Talk about different methods and when/why/how they are useful or important</p></li>
+<li class="fragment">About syllabus?</li>
+<li class="fragment">Canvas?</li>
+<li class="fragment">Assignments?</li>
+<li class="fragment">Grading?</li>
+<li class="fragment">Readings?</li>
+<li class="fragment">Office hours?</li>
+<li class="fragment">Anything?</li>
 </ul>
 </div>
 </section>
-<section id="last-week-the-scientific-method" class="slide level2">
-<h2>Last week: The scientific method</h2>
+<section id="last-time" class="slide level2">
+<h2>Last time</h2>
+<div class="fragment">
+<p>This is a course about <strong>Political Science</strong> research methods</p>
+<div>
+<ol type="1">
+<li class="fragment"><strong>Politics:</strong> Power relationships across many subfields</li>
+<li class="fragment"><strong>Science:</strong> Knowledge generation through falsification</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="informally" class="slide level2">
+<h2>Informally</h2>
+<div class="fragment">
+<p>Some philosophers may think “Political Science” is an <em>oxymoron</em></p>
+<div>
+<ol type="1">
+<li class="fragment"><strong>Politics:</strong> Normative statements about what’s good for the <em>polity</em></li>
+<li class="fragment"><strong>Science:</strong> True, unquestionable knowledge</li>
+</ol>
+</div>
+</div>
+<div class="fragment">
+<p>Can there be a <strong>SCIENCE</strong> of <strong>POLITICS</strong>?</p>
+</div>
+</section>
+<section>
+<section id="whiteboard" class="title-slide slide level1 center">
+<h1><a href="https://miro.com/app/board/uXjVLxbPeSU=/?share_link_id=628474761690">Whiteboard</a></h1>
+
+<img data-src="fig/science_board.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section class="slide level2">
+
+<iframe width="1000" height="800" src="https://miro.com/app/live-embed/uXjVLxbPeSU=/?moveToViewport=-1253,-996,2602,1355&amp;embedId=980138490683" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen=""></iframe>
+</section>
+<section class="slide level2">
+
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="fig/wrongness.jpg" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+</figure>
+</div>
+
+<aside><div>
+<p><a href="https://www.instagram.com/p/B9tzu1yl476/?utm_source=ig_web_button_share_sheet&amp;igsh=M2M0Y2JmOTAyOA==" data-preview-link="false"><i class="fa-brands fa-instagram" aria-label="instagram"></i> <span class="citation" data-cites="nathanwpylestrangeplanet">@nathanwpylestrangeplanet</span></a></p>
+</div></aside></section>
+<section id="the-goal-of-science" class="slide level2">
+<h2>The goal of science</h2>
+<div>
+<ul>
+<li class="fragment"><p><strong>Inference:</strong> Use <em>what we know</em> to learn about <em>what we do not know</em></p></li>
+<li class="fragment"><p><strong>Key:</strong> Try to prove ourselves wrong, even if we believe we are right (<em>falsification</em>)</p></li>
+<li class="fragment"><p>Scientific statements are <strong>falsifiable</strong></p></li>
+</ul>
+</div>
+</section>
+<section id="scientific-statement" class="slide level2">
+<h2>Scientific statement</h2>
+<div class="fragment">
+<p>A <strong>meaningful</strong></p>
+
+</div>
+<aside><div>
+<p>Definition from <a href="https://collegepublishing.sagepub.com/products/principles-of-comparative-politics-4-259276">Clark, Golder, and Golder (2024). “Principles of Comparative Politics.” CQ Press.</a> Chapter 2.</p>
+</div></aside></section>
+<section id="scientific-statement-1" class="slide level2">
+<h2>Scientific statement</h2>
+<p>A <strong>meaningful declarative</strong> sentence</p>
+
+<aside><div>
+<p>Definition from <a href="https://collegepublishing.sagepub.com/products/principles-of-comparative-politics-4-259276">Clark, Golder, and Golder (2024). “Principles of Comparative Politics.” CQ Press.</a> Chapter 2.</p>
+</div></aside></section>
+<section id="scientific-statement-2" class="slide level2">
+<h2>Scientific statement</h2>
+<p>A <strong>meaningful declarative</strong> sentence that is <strong>unambiguously true or false</strong>.</p>
+
+<div>
+<ul>
+<li class="fragment"><p><strong>Meaningful:</strong> We agree on its interpretation</p></li>
+<li class="fragment"><p><strong>Declarative:</strong> Claims or asserts something</p></li>
+<li class="fragment"><p><strong>Unambiguously true or false:</strong> One or the other, but not both or neither (therefore refutable or falsifiable)</p></li>
+</ul>
+</div>
+<aside><div>
+<p>Definition from <a href="https://collegepublishing.sagepub.com/products/principles-of-comparative-politics-4-259276">Clark, Golder, and Golder (2024). “Principles of Comparative Politics.” CQ Press.</a> Chapter 2.</p>
+</div></aside></section>
+<section id="unscientific-statements" class="slide level2">
+<h2>Unscientific statements</h2>
+<div>
+<ul>
+<li class="fragment"><p>Triangles have three sides</p></li>
+<li class="fragment"><p>Political science is the study of politics</p></li>
+<li class="fragment"><p>God created the world</p></li>
+<li class="fragment"><p>Edison created the lightbulb</p></li>
+</ul>
+</div>
+</section>
+<section id="unscientific-statements-1" class="slide level2">
+<h2>Unscientific statements</h2>
+<p>Two types:</p>
+<div class="fragment">
+<ol type="1">
+<li>Tautologies</li>
+<li>Unobservable phenomena</li>
+</ol>
+</div>
+<div class="fragment">
+<p><strong>Important:</strong> non-science <span class="math inline">\(\neq\)</span> nonsense</p>
+</div>
+</section>
+<section id="reminder" class="slide level2">
+<h2>Reminder</h2>
+<div class="fragment">
+<p><strong>Scientific statements</strong> are true or false</p>
+<p><strong>Scientific knowledge/evidence</strong> is neither</p>
+</div>
+<div class="fragment">
+<p>Why?</p>
+</div>
+<div class="fragment">
+<p>How do you <strong>evaluate</strong> a scientific statement?</p>
+</div>
+</section>
+<section id="the-scientific-method-1" class="slide level2">
+<h2>The scientific method</h2>
 <p><strong>Step 0:</strong> Puzzle/Question</p>
 <p><strong>Step 1:</strong> Theory/Model</p>
 <p><strong>Step 2:</strong> Hypothesis/Implications</p>
 <p><strong>Step 3:</strong> Observation/Testing</p>
 <p><strong>Step 4:</strong> Conclusion/Evaluation</p>
-</section>
-<section id="this-week" class="slide level2">
-<h2>This week</h2>
-<p><strong>Step 0:</strong> Puzzle/Question</p>
-<p><strong>Step 1:</strong> Theory/Model</p>
-<p><strong>Step 2:</strong> Hypothesis/Implications</p>
-<p><strong>Step 3:</strong> Observation/Testing</p>
-<p><strong>Step 4:</strong> Conclusion/Evaluation</p>
-</section>
-<section id="this-week-1" class="slide level2">
-<h2>This week</h2>
-<p><span style="color:gray;"><strong>Step 0:</strong> Puzzle/Question</span></p>
-<p><strong>Step 1:</strong> Theory/Model <strong>TUESDAY</strong></p>
-<p><span style="color:gray;"><strong>Step 2:</strong> Hypothesis/Implications</span></p>
-<p><span style="color:gray;"><strong>Step 3:</strong> Observation/Testing</span></p>
-<p><span style="color:gray;"><strong>Step 4:</strong> Conclusion/Evaluation</span></p>
-<div class="fragment">
-<p><a href="#/thu"><strong>THURSDAY:</strong></a> Start moving toward the next steps with a conversation about <em>data</em></p>
-</div>
-</section></section>
-<section>
-<section id="part-i-theory" class="title-slide slide level1 center">
-<h1>Part I: Theory</h1>
 
-</section>
-<section id="what-is-a-theory" class="slide level2 center" style="text-align: center">
-<h2>What is a theory?</h2>
-</section>
-<section id="what-is-a-theory-1" class="slide level2 center" style="text-align: center">
-<h2>What is a theory?</h2>
-<h3 id="ツ">¯\<em>(ツ)</em>/¯</h3>
-</section>
-<section id="what-is-a-theory-2" class="slide level2 center" style="text-align: center">
-<h2>What is a theory?</h2>
-<h3 id="ツ-1">¯\<em>(ツ)</em>/¯</h3>
-<p>I have no idea</p>
-</section>
-<section id="what-is-a-theory-3" class="slide level2 center" style="text-align: center">
-<h2>What is a theory?</h2>
-<h3 id="ツ-2">¯\<em>(ツ)</em>/¯</h3>
-<p>I have no idea</p>
-<div style="font-size: 80%;">
-<p>My <em>theory</em> is that no one really knows</p>
-</div>
-</section>
-<section id="what-is-a-theory-4" class="slide level2 center" style="text-align: center">
-<h2>What is a theory?</h2>
-<h3 id="ツ-3">¯\<em>(ツ)</em>/¯</h3>
-<p>I have no idea</p>
-<div style="font-size: 80%;">
-<p>My <em>theory</em> is that no one really knows</p>
-</div>
-<div style="font-size: 60%;">
-<p>so they make it complicated</p>
-</div>
-</section>
-<section id="but-it-sure-is-important" class="slide level2">
-<h2>But it sure is important!</h2>
-<div class="fragment">
-<p>Most common reasons why a peer-reviewed political science journal rejects an article:</p>
-<div>
-<ol type="1">
-<li class="fragment">Having no theory</li>
-<li class="fragment">Weak theory</li>
-<li class="fragment">Insufficient theoretical innovation</li>
-</ol>
-</div>
-</div>
-</section>
-<section class="slide level2">
-
+<aside><div>
+<p>More details next week!</p>
+</div></aside></section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="fig/theory.png" class="quarto-figure quarto-figure-center"></p>
+<p><img data-src="fig/weed.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
 </figure>
 </div>
 
 <aside><div>
-<p><a href="https://www.vocabulary.com/dictionary/theory" data-preview-link="false">vocabulary.com/dictionary/theory</a></p>
+<p><a href="https://medicine.tulane.edu/news/study-tulane-researcher-suggests-marijuana-can-cause-infertility-men" data-preview-link="false">medicine.tulane.edu/news/study-tulane-researcher-suggests-marijuana-can-cause-infertility-men</a></p>
 </div></aside></section>
-<section id="dictionary-definitions" class="slide level2">
-<h2>Dictionary definitions</h2>
-<div>
-<ol type="1">
-<li class="fragment"><p>A <strong>belief</strong> that can <strong>guide behavior</strong></p></li>
-<li class="fragment"><p>A <strong>well-substantiated explanation</strong> of some aspect of the natural world; an <strong>organized system of accepted knowledge</strong> that <strong>applies in a variety of circumstances</strong> to <strong>explain a specific set of phenomena</strong></p></li>
-<li class="fragment"><p>A <strong>tentative insight</strong> into the natural world; a concept that is <strong>not yet verified</strong> but that if true <strong>would explain certain facts or phenomena</strong></p></li>
-</ol>
-</div>
-
-<aside><div>
-<p><a href="https://www.vocabulary.com/dictionary/theory" data-preview-link="false">vocabulary.com/dictionary/theory</a></p>
-</div></aside></section>
-<section id="textbook-definition" class="slide level2">
-<h2>Textbook definition</h2>
-<div class="fragment">
-<p>A <em>scientific theory</em></p>
-</div>
-</section>
-<section id="textbook-definition-1" class="slide level2">
-<h2>Textbook definition</h2>
-<p>A <em>scientific theory</em> is a set of <strong>logically consistent statements</strong></p>
-</section>
-<section id="textbook-definition-2" class="slide level2">
-<h2>Textbook definition</h2>
-<p>A <em>scientific theory</em> is a set of <strong>logically consistent statements</strong> that tell us <strong>why</strong> the empirical social and political phenomena we observe, or the relationships between them, <strong>occur in the way they occur</strong></p>
-<div class="fragment">
-<p>A theory is a <strong>set of interrelated propositions</strong> about empirical reality</p>
-</div>
-<div class="fragment">
-<p>Components:</p>
-<div>
-<ol type="1">
-<li class="fragment"><p><strong>Concepts</strong> that define basic terms</p></li>
-<li class="fragment"><p><strong>Assumptions</strong> that relate concepts to each other</p></li>
-<li class="fragment"><p><strong>Generalizations</strong> that connect statements to observations</p></li>
-</ol>
-</div>
-</div>
-</section>
-<section id="toy-example-democratic-peace" class="slide level2">
-<h2>Toy example: Democratic peace</h2>
-<div class="fragment">
-<p><strong>Proposition:</strong> Democracies are hesitant to fight each other</p>
-</div>
-<div class="fragment">
-<p><strong>Concepts:</strong></p>
-<div>
-<ul>
-<li class="fragment"><em>Democracy</em>: Leaders elected in free-fair elections</li>
-<li class="fragment"><em>Fighting</em>: Militarized Interstate Disputes (MID)</li>
-</ul>
-</div>
-</div>
-<div class="fragment">
-<p><strong>Assumptions:</strong></p>
-<div>
-<ul>
-<li class="fragment">Liberal democratic culture of negotiation and compromise</li>
-<li class="fragment">Democratic publics dislike wars</li>
-</ul>
-</div>
-</div>
-<div class="fragment">
-<p><strong>Generalization:</strong> No war between democracies</p>
-</div>
-</section>
-<section id="good" class="slide level2 center" style="text-align: center">
-<h2>Good?</h2>
-</section>
-<section id="good-1" class="slide level2 center" style="text-align: center">
-<h2>Good?</h2>
-<p>Doesn’t seem that complicated</p>
-</section>
-<section id="good-2" class="slide level2 center" style="text-align: center">
-<h2>Good?</h2>
-<p>Doesn’t seem that complicated</p>
-<div style="font-size: 80%;">
-<p>But many things that look like theory are not</p>
-</div>
-</section>
-<section class="slide level2">
-
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="fig/theory_not.png" class="quarto-figure quarto-figure-center"></p>
-</figure>
-</div>
-
-<aside><div>
-<p>Sutton, Robert I. and Barry M. Staw. 1995. <a href="https://doi.org/10.2307/2393788" data-preview-link="false">“What Theory is Not.”</a> <em>Administrative Science Quarterly</em> 40 (3): 371-384</p>
-</div></aside></section>
-<section id="references-are-not-theory" class="slide level2">
-<h2>References are not theory</h2>
-<div class="fragment">
-<p>Literature A suggests X.</p>
-</div>
-</section>
-<section id="references-are-not-theory-1" class="slide level2">
-<h2>References are not theory</h2>
-<p>Literature A suggests X. Literature B says Y.</p>
-</section>
-<section id="references-are-not-theory-2" class="slide level2">
-<h2>References are not theory</h2>
-<p>Literature A suggests X. Literature B says Y. Borrowing from both, we should expect XYZ.</p>
-<div>
-<ul>
-<li class="fragment">Referencing theories in previous work helps to contextualize new explanations</li>
-<li class="fragment">But often used as a smokescreen for no theory</li>
-</ul>
-</div>
-<div class="fragment">
-<div style="font-size: 80%;">
-<blockquote>
-<p>This pattern is consistent with findings that aggression provokes the ‘fight’ response (Frijda, 1986) and that anger is a contagious emotion (Schacter and Singer, 1962; Baron, 1977).</p>
-</blockquote>
-</div>
-</div>
-</section>
-<section id="data-is-not-theory" class="slide level2">
-<h2>Data is not theory</h2>
-<div class="fragment">
-<div style="font-size: 80%;">
-<blockquote>
-<p>Recent empirical evidence suggests that the collective bargaining process, the union-management contract , and union-management relations in general all have important consequences for the quality of worklife of unionized workers. Moreover, previous work has investigated the relationship between union strength and construction workers’ reactions to their work. She found that union strength (operationalized in terms of workers’ relative wages) was positively related to both pay satisfaction and perceived job security. Finally, the union’s ability to formally increase members’ participation in job-related decisions has been frequently cited as contributing to the unionization of teachers and other professionals.</p>
-</blockquote>
-</div>
-</div>
-<div class="fragment">
-<ul>
-<li>Helps us set expectations, but doesn’t relly explain why things happen</li>
-</ul>
-</div>
-</section>
-<section id="diagrams-are-not-theory" class="slide level2">
-<h2>Diagrams are not theory</h2>
-<div class="fragment">
-<div class="columns">
-<div class="column" style="width:60%;">
-<p><img data-src="fig/sketchplanations-prospect-theory.jpg"></p>
-</div><div class="column" style="width:40%;">
-<div>
-<ul>
-<li class="fragment"><p>Shows connections</p></li>
-<li class="fragment"><p>Does not explain them</p></li>
-</ul>
-</div>
-</div></div>
-
-</div>
-<aside><div>
-<p><a href="https://sketchplanations.com/prospect-theory">sketchplanations.com/prospect-theory</a></p>
-</div></aside></section>
-<section id="also-not-theories" class="slide level2">
-<h2>Also not theories</h2>
-<div>
-<ul>
-<li class="fragment"><p><strong>Lists of variables or concepts:</strong> Do not explain why</p></li>
-<li class="fragment"><p><strong>Models or paradigms:</strong> Simplify, but do not explain (e.g.&nbsp;rational choice)</p></li>
-<li class="fragment"><p><strong>Hypotheses:</strong> Translate theory to expectations</p></li>
-</ul>
-</div>
-</section>
-<section id="honestly" class="slide level2">
-<h2>Honestly</h2>
-<div class="fragment">
-<p>Theory is either:</p>
-<div>
-<ol type="1">
-<li class="fragment">explanation</li>
-<li class="fragment">speculation</li>
-</ol>
-</div>
-</div>
-<div class="fragment">
-<p>We need to sound more sophisticated!</p>
-</div>
-</section>
-<section id="honestly-1" class="slide level2">
-<h2>Honestly</h2>
-<p>Theory is either:</p>
-<ol type="1">
-<li><p>explanation</p></li>
-<li><p>speculation</p></li>
-</ol>
-</section>
-<section id="honestly-2" class="slide level2">
-<h2>Honestly</h2>
-<p>Theory is either:</p>
-<ol type="1">
-<li><p><strong>Logical</strong> explanation</p></li>
-<li><p>speculation</p></li>
-</ol>
-</section>
-<section id="honestly-3" class="slide level2">
-<h2>Honestly</h2>
-<p>Theory is either:</p>
-<ol type="1">
-<li><p><strong>Logical</strong> explanation</p></li>
-<li><p><strong>Informed</strong> speculation</p></li>
-</ol>
-<div class="fragment">
-<p><strong>Real question:</strong> What makes a good theory?</p>
-</div>
-</section>
-<section id="honestly-4" class="slide level2">
-<h2>Honestly</h2>
-<p>Theory is either:</p>
-<ol type="1">
-<li><p><strong>Logical</strong> explanation</p></li>
-<li><p><strong>Informed</strong> speculation</p></li>
-</ol>
-<p><strong>Real question:</strong> What makes a good theory?</p>
-
-<aside><div>
-<p><strong>Content warning:</strong> Video with curse words in the next slide</p>
-</div></aside></section>
-<section class="slide level2">
-
-<p align="center">
-<iframe width="900" height="600" src="https://www.youtube.com/embed/mH9NzJwldok?si=dZ9fb_zss35qCtYR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
-</iframe>
-</p>
-
-<aside><div>
-<p><a href="https://youtu.be/mH9NzJwldok?si=XviVZMs3ZL5Qh4tH" class="uri">https://youtu.be/mH9NzJwldok?si=XviVZMs3ZL5Qh4tH</a></p>
-</div></aside></section>
-<section id="good-theories" class="slide level2">
-<h2>Good theories</h2>
-<div>
-<ul>
-<li class="fragment"><p>Give a <strong>new</strong> explanation</p></li>
-<li class="fragment"><p>Give a <strong>different</strong> explanation</p></li>
-<li class="fragment"><p>Not too different to sound like <strong>non-sense</strong></p></li>
-<li class="fragment"><p>But different enough to try to change your mind</p></li>
-</ul>
-</div>
-<div class="fragment">
-<p><strong>Trap:</strong> Pressure to say something new leads to overly complicated theories</p>
-</div>
-</section>
-<section class="slide level2">
-
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="fig/nuance.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
-</figure>
-</div>
-
-<aside><div>
-<p>Healy, Kieran. 2017. <a href="">“Fuck Nuance.”</a> <em>Sociological Theory</em> 35 (2): 118-127</p>
-</div></aside></section>
-<section id="nuance-traps" class="slide level2">
-<h2>Nuance traps</h2>
-<div class="fragment">
-<ol type="1">
-<li><strong>Nuance of the <em>fine-grain</em></strong></li>
-</ol>
-</div>
-<div class="fragment">
-<p>Theory as <em>extremely detailed</em> description of the world</p>
-</div>
-<div class="fragment">
-<ol start="2" type="1">
-<li><strong>Nuance of the <em>conceptual framework</em></strong></li>
-</ol>
-<!-- e.g. social action theory -->
-</div>
-<div class="fragment">
-<p>Expansion of an <em>irrefutable theoretical system</em></p>
-</div>
-<div class="fragment">
-<ol start="3" type="1">
-<li><strong>Nuance of the <em>connoiseur</em></strong></li>
-</ol>
-</div>
-<div class="fragment">
-<p>Nuanced theory as a sign of <em>sophistication</em></p>
-</div>
-</section>
-<section id="rule-of-thumb" class="slide level2">
-<h2>Rule of thumb</h2>
-<div class="fragment">
-<p>&nbsp;</p>
-<div class="r-stack">
-<p>Good theories explain more than what they assume</p>
-</div>
-
-</div>
-<aside><div>
-<p>See <a href="https://doi.org/10.4135/9781526486387.n4">Clark (2020)</a> for a more eloquent presentation</p>
-</div></aside></section>
-<section id="takeaways" class="slide level2">
-<h2>Takeaways</h2>
-<ol type="1">
-<li><p>Theory is logical explanation or informed speculation</p></li>
-<li><p>Theories explain why we observe what we observe</p></li>
-<li><p>It feels complicated because</p>
-<ul>
-<li>Good theorizing is hard</li>
-<li>Pressure to always say something new</li>
-</ul></li>
-</ol>
-</section>
-<section id="thu" class="slide level2 center" style="text-align: center">
-<h2>Theory and Data</h2>
-<h3 id="poli-sci-210-1">POLI SCI 210</h3>
-<p>Introduction to Empirical Methods in Political Science</p>
-</section></section>
-<section>
-<section id="part-ii-data" class="title-slide slide level1 center">
-<h1>Part II: Data</h1>
-
-</section>
-<section class="slide level2">
-
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="fig/data.png" class="quarto-figure quarto-figure-center" style="width:58.0%"></p>
-</figure>
-</div>
-
-<aside><div>
-<p><a href="https://www.vocabulary.com/dictionary/data" data-preview-link="false">vocabulary.com/dictionary/data</a></p>
-</div></aside></section>
-<section id="in-empirical-research" class="slide level2">
-<h2>In empirical research</h2>
-<p>The term <em>data</em> is used in two ways:</p>
-<div class="fragment">
-<ol type="1">
-<li>Data as <em>information</em></li>
-</ol>
-</div>
-<div class="fragment">
-<div style="font-size: 80%;">
-<blockquote>
-<p>“The data suggests that inflation keeps growing”</p>
-</blockquote>
-</div>
-</div>
-<div class="fragment">
-<ol start="2" type="1">
-<li>Data as the <em>raw material</em> from which we draw inferences</li>
-</ol>
-</div>
-<div class="fragment">
-<div style="font-size: 80%;">
-<blockquote>
-<p>“The data contains 1,000 responses to an online survey”</p>
-</blockquote>
-</div>
-</div>
-</section>
-<section id="in-empirical-research-1" class="slide level2">
-<h2>In empirical research</h2>
-<p>The term <em>data</em> is used in two ways:</p>
-<ol type="1">
-<li>Data as <em>information</em></li>
-</ol>
-<div style="font-size: 80%;">
-<blockquote>
-<p>“The data suggests that inflation keeps growing”</p>
-</blockquote>
-</div>
-<ol start="2" type="1">
-<li><strong>Data as the <em>raw material</em> from which we draw inferences</strong></li>
-</ol>
-<div style="font-size: 80%;">
-<blockquote>
-<p>“The data contains 1,000 responses to an online survey”</p>
-</blockquote>
-</div>
-<div class="fragment">
-<p>The second is more correct since “data doesn’t speak.”</p>
-</div>
-</section>
-<section id="data-usually-comes-as-a-rectangle" class="slide level2">
-<h2>Data usually comes as a rectangle</h2>
-<!-- preamble start -->
-
-    <script>
-      function styleCell_ie6vlc75vtt023iuzlmo(i, j, css_id) {
-        var table = document.getElementById("tinytable_ie6vlc75vtt023iuzlmo");
-        table.rows[i].cells[j].classList.add(css_id);
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_ie6vlc75vtt023iuzlmo');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_ie6vlc75vtt023iuzlmo(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_ie6vlc75vtt023iuzlmo");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-window.addEventListener('load', function () { styleCell_ie6vlc75vtt023iuzlmo(0, 0, 'tinytable_css_id87j1t20huou771qjbo5g') })
-window.addEventListener('load', function () { styleCell_ie6vlc75vtt023iuzlmo(0, 1, 'tinytable_css_id87j1t20huou771qjbo5g') })
-window.addEventListener('load', function () { styleCell_ie6vlc75vtt023iuzlmo(0, 2, 'tinytable_css_id87j1t20huou771qjbo5g') })
-window.addEventListener('load', function () { styleCell_ie6vlc75vtt023iuzlmo(0, 3, 'tinytable_css_id87j1t20huou771qjbo5g') })
-    </script>
-
-    <style>
-    .table td.tinytable_css_id87j1t20huou771qjbo5g, .table th.tinytable_css_id87j1t20huou771qjbo5g {  border-bottom: solid 0.1em #d3d8dc; }
-    </style>
-    <div class="container">
-      <table class="table table-borderless" id="tinytable_ie6vlc75vtt023iuzlmo" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col">country</th>
-                <th scope="col">year</th>
-                <th scope="col">cases</th>
-                <th scope="col">population</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>1999</td>
-                  <td>   745</td>
-                  <td>  19987071</td>
-                </tr>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>2000</td>
-                  <td>  2666</td>
-                  <td>  20595360</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>1999</td>
-                  <td> 37737</td>
-                  <td> 172006362</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>2000</td>
-                  <td> 80488</td>
-                  <td> 174504898</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>1999</td>
-                  <td>212258</td>
-                  <td>1272915272</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>2000</td>
-                  <td>213766</td>
-                  <td>1280428583</td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
-<!-- hack to avoid NA insertion in last line -->
-<div class="fragment">
-<p>We call this a <strong>dataset</strong>, <strong>dataframe</strong>, or <strong>database</strong></p>
-</div>
-</section>
-<section id="elements-of-a-dataset" class="slide level2">
-<h2>Elements of a dataset</h2>
-<div class="fragment">
-<p>A single <em>observation</em> is a scalar</p>
-<p><span class="math display">\[a = 12\]</span></p>
-</div>
-<div class="fragment">
-<p>Several scalars together make a vector</p>
-<p><span class="math display">\[
-\overrightarrow b = \begin{bmatrix}
-  12 &amp; 14 &amp; 15
-\end{bmatrix}
-\]</span></p>
-</div>
-</section>
-<section id="elements-of-a-dataset-1" class="slide level2">
-<h2>Elements of a dataset</h2>
-<p>Vectors have <em>direction</em></p>
-<div class="fragment">
-<p>This is a <strong>row</strong> vector</p>
-<p><span class="math display">\[
-\overrightarrow b = \begin{bmatrix}
-  12 &amp; 14 &amp; 15
-\end{bmatrix}
-\]</span></p>
-</div>
-<div class="fragment">
-<p>This is a <strong>column</strong> vector</p>
-<p><span class="math display">\[
-\overrightarrow c =
-\begin{bmatrix}
-  12 \\
-  14 \\
-  15
-\end{bmatrix}
-\]</span></p>
-</div>
-</section>
-<section id="elements-of-a-dataset-2" class="slide level2">
-<h2>Elements of a dataset</h2>
-<p>Several vectors of equal length make a <strong>matrix</strong></p>
-<p><span class="math display">\[A = \begin{bmatrix}
-12 &amp; 14 &amp; 15 \\
-115 &amp; 22 &amp; 127 \\
-193 &amp; 29 &amp; 219
-\end{bmatrix}\]</span></p>
-<div class="fragment">
-<p>The number of <em>rows</em> and <em>columns</em> are the <strong>dimensions</strong></p>
-</div>
-<div class="fragment">
-<p>This is a <span class="math inline">\(3 \times 3\)</span> matrix (<span class="math inline">\(r \times c\)</span>)</p>
-</div>
-</section>
-<section id="a-dataset-is-just-a-matrix-with-labels" class="slide level2">
-<h2>A dataset is just a matrix with labels</h2>
-<!-- preamble start -->
-
-    <script>
-      function styleCell_7hb90s544v6j3925ifxg(i, j, css_id) {
-        var table = document.getElementById("tinytable_7hb90s544v6j3925ifxg");
-        table.rows[i].cells[j].classList.add(css_id);
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_7hb90s544v6j3925ifxg');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_7hb90s544v6j3925ifxg(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_7hb90s544v6j3925ifxg");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-window.addEventListener('load', function () { styleCell_7hb90s544v6j3925ifxg(0, 0, 'tinytable_css_idvcxrikgay8ruf1ghkc1j') })
-window.addEventListener('load', function () { styleCell_7hb90s544v6j3925ifxg(0, 1, 'tinytable_css_idvcxrikgay8ruf1ghkc1j') })
-window.addEventListener('load', function () { styleCell_7hb90s544v6j3925ifxg(0, 2, 'tinytable_css_idvcxrikgay8ruf1ghkc1j') })
-window.addEventListener('load', function () { styleCell_7hb90s544v6j3925ifxg(0, 3, 'tinytable_css_idvcxrikgay8ruf1ghkc1j') })
-    </script>
-
-    <style>
-    .table td.tinytable_css_idvcxrikgay8ruf1ghkc1j, .table th.tinytable_css_idvcxrikgay8ruf1ghkc1j {  border-bottom: solid 0.1em #d3d8dc; }
-    </style>
-    <div class="container">
-      <table class="table table-borderless" id="tinytable_7hb90s544v6j3925ifxg" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col">country</th>
-                <th scope="col">year</th>
-                <th scope="col">cases</th>
-                <th scope="col">population</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>1999</td>
-                  <td>   745</td>
-                  <td>  19987071</td>
-                </tr>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>2000</td>
-                  <td>  2666</td>
-                  <td>  20595360</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>1999</td>
-                  <td> 37737</td>
-                  <td> 172006362</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>2000</td>
-                  <td> 80488</td>
-                  <td> 174504898</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>1999</td>
-                  <td>212258</td>
-                  <td>1272915272</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>2000</td>
-                  <td>213766</td>
-                  <td>1280428583</td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
-<!-- hack to avoid NA insertion in last line -->
-</section>
-<section id="a-dataset-is-just-a-matrix-with-labels-1" class="slide level2">
-<h2>A dataset is just a matrix with labels</h2>
-<!-- preamble start -->
-
-    <script>
-      function styleCell_ys7gu5af761twemq8xfl(i, j, css_id) {
-        var table = document.getElementById("tinytable_ys7gu5af761twemq8xfl");
-        table.rows[i].cells[j].classList.add(css_id);
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_ys7gu5af761twemq8xfl');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_ys7gu5af761twemq8xfl(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_ys7gu5af761twemq8xfl");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-window.addEventListener('load', function () { styleCell_ys7gu5af761twemq8xfl(0, 0, 'tinytable_css_idm89fnlmhknfgwh13n98d') })
-window.addEventListener('load', function () { styleCell_ys7gu5af761twemq8xfl(0, 1, 'tinytable_css_idm89fnlmhknfgwh13n98d') })
-window.addEventListener('load', function () { styleCell_ys7gu5af761twemq8xfl(0, 2, 'tinytable_css_idm89fnlmhknfgwh13n98d') })
-window.addEventListener('load', function () { styleCell_ys7gu5af761twemq8xfl(0, 3, 'tinytable_css_idm89fnlmhknfgwh13n98d') })
-window.addEventListener('load', function () { styleCell_ys7gu5af761twemq8xfl(1, 0, 'tinytable_css_idgoe09u22mqscoesz9oa0') })
-window.addEventListener('load', function () { styleCell_ys7gu5af761twemq8xfl(1, 1, 'tinytable_css_idgoe09u22mqscoesz9oa0') })
-window.addEventListener('load', function () { styleCell_ys7gu5af761twemq8xfl(1, 2, 'tinytable_css_idgoe09u22mqscoesz9oa0') })
-window.addEventListener('load', function () { styleCell_ys7gu5af761twemq8xfl(1, 3, 'tinytable_css_idgoe09u22mqscoesz9oa0') })
-    </script>
-
-    <style>
-    .table td.tinytable_css_idm89fnlmhknfgwh13n98d, .table th.tinytable_css_idm89fnlmhknfgwh13n98d {  border-bottom: solid 0.1em #d3d8dc; }
-    .table td.tinytable_css_idgoe09u22mqscoesz9oa0, .table th.tinytable_css_idgoe09u22mqscoesz9oa0 {  font-weight: bold; }
-    </style>
-    <div class="container">
-      <table class="table table-borderless" id="tinytable_ys7gu5af761twemq8xfl" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col">country</th>
-                <th scope="col">year</th>
-                <th scope="col">cases</th>
-                <th scope="col">population</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>1999</td>
-                  <td>   745</td>
-                  <td>  19987071</td>
-                </tr>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>2000</td>
-                  <td>  2666</td>
-                  <td>  20595360</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>1999</td>
-                  <td> 37737</td>
-                  <td> 172006362</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>2000</td>
-                  <td> 80488</td>
-                  <td> 174504898</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>1999</td>
-                  <td>212258</td>
-                  <td>1272915272</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>2000</td>
-                  <td>213766</td>
-                  <td>1280428583</td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
-<!-- hack to avoid NA insertion in last line -->
-<p>A row is an <strong>observation</strong> or <strong>unit</strong></p>
-</section>
-<section id="a-dataset-is-just-a-matrix-with-labels-2" class="slide level2">
-<h2>A dataset is just a matrix with labels</h2>
-<!-- preamble start -->
-
-    <script>
-      function styleCell_8jm3tevjl0ie90g88f2e(i, j, css_id) {
-        var table = document.getElementById("tinytable_8jm3tevjl0ie90g88f2e");
-        table.rows[i].cells[j].classList.add(css_id);
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_8jm3tevjl0ie90g88f2e');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_8jm3tevjl0ie90g88f2e(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_8jm3tevjl0ie90g88f2e");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-window.addEventListener('load', function () { styleCell_8jm3tevjl0ie90g88f2e(0, 0, 'tinytable_css_id1by3yulmc563or966gwf') })
-window.addEventListener('load', function () { styleCell_8jm3tevjl0ie90g88f2e(0, 1, 'tinytable_css_id1by3yulmc563or966gwf') })
-window.addEventListener('load', function () { styleCell_8jm3tevjl0ie90g88f2e(0, 2, 'tinytable_css_id1by3yulmc563or966gwf') })
-window.addEventListener('load', function () { styleCell_8jm3tevjl0ie90g88f2e(0, 3, 'tinytable_css_id1by3yulmc563or966gwf') })
-window.addEventListener('load', function () { styleCell_8jm3tevjl0ie90g88f2e(2, 0, 'tinytable_css_idrggww96pyl1q5ghpnfc1') })
-window.addEventListener('load', function () { styleCell_8jm3tevjl0ie90g88f2e(2, 1, 'tinytable_css_idrggww96pyl1q5ghpnfc1') })
-window.addEventListener('load', function () { styleCell_8jm3tevjl0ie90g88f2e(2, 2, 'tinytable_css_idrggww96pyl1q5ghpnfc1') })
-window.addEventListener('load', function () { styleCell_8jm3tevjl0ie90g88f2e(2, 3, 'tinytable_css_idrggww96pyl1q5ghpnfc1') })
-    </script>
-
-    <style>
-    .table td.tinytable_css_id1by3yulmc563or966gwf, .table th.tinytable_css_id1by3yulmc563or966gwf {  border-bottom: solid 0.1em #d3d8dc; }
-    .table td.tinytable_css_idrggww96pyl1q5ghpnfc1, .table th.tinytable_css_idrggww96pyl1q5ghpnfc1 {  font-weight: bold; }
-    </style>
-    <div class="container">
-      <table class="table table-borderless" id="tinytable_8jm3tevjl0ie90g88f2e" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col">country</th>
-                <th scope="col">year</th>
-                <th scope="col">cases</th>
-                <th scope="col">population</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>1999</td>
-                  <td>   745</td>
-                  <td>  19987071</td>
-                </tr>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>2000</td>
-                  <td>  2666</td>
-                  <td>  20595360</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>1999</td>
-                  <td> 37737</td>
-                  <td> 172006362</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>2000</td>
-                  <td> 80488</td>
-                  <td> 174504898</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>1999</td>
-                  <td>212258</td>
-                  <td>1272915272</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>2000</td>
-                  <td>213766</td>
-                  <td>1280428583</td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
-<!-- hack to avoid NA insertion in last line -->
-<p>A row is an <strong>observation</strong> or <strong>unit</strong></p>
-</section>
-<section id="a-dataset-is-just-a-matrix-with-labels-3" class="slide level2">
-<h2>A dataset is just a matrix with labels</h2>
-<!-- preamble start -->
-
-    <script>
-      function styleCell_mkrdm7vqstudo2r1s17v(i, j, css_id) {
-        var table = document.getElementById("tinytable_mkrdm7vqstudo2r1s17v");
-        table.rows[i].cells[j].classList.add(css_id);
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_mkrdm7vqstudo2r1s17v');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_mkrdm7vqstudo2r1s17v(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_mkrdm7vqstudo2r1s17v");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-window.addEventListener('load', function () { styleCell_mkrdm7vqstudo2r1s17v(0, 0, 'tinytable_css_idfp6ainrk4s159ib8tqig') })
-window.addEventListener('load', function () { styleCell_mkrdm7vqstudo2r1s17v(0, 1, 'tinytable_css_idfp6ainrk4s159ib8tqig') })
-window.addEventListener('load', function () { styleCell_mkrdm7vqstudo2r1s17v(0, 2, 'tinytable_css_idfp6ainrk4s159ib8tqig') })
-window.addEventListener('load', function () { styleCell_mkrdm7vqstudo2r1s17v(0, 3, 'tinytable_css_idfp6ainrk4s159ib8tqig') })
-window.addEventListener('load', function () { styleCell_mkrdm7vqstudo2r1s17v(3, 0, 'tinytable_css_id3vkc9uccn2lbxhtn6poi') })
-window.addEventListener('load', function () { styleCell_mkrdm7vqstudo2r1s17v(3, 1, 'tinytable_css_id3vkc9uccn2lbxhtn6poi') })
-window.addEventListener('load', function () { styleCell_mkrdm7vqstudo2r1s17v(3, 2, 'tinytable_css_id3vkc9uccn2lbxhtn6poi') })
-window.addEventListener('load', function () { styleCell_mkrdm7vqstudo2r1s17v(3, 3, 'tinytable_css_id3vkc9uccn2lbxhtn6poi') })
-    </script>
-
-    <style>
-    .table td.tinytable_css_idfp6ainrk4s159ib8tqig, .table th.tinytable_css_idfp6ainrk4s159ib8tqig {  border-bottom: solid 0.1em #d3d8dc; }
-    .table td.tinytable_css_id3vkc9uccn2lbxhtn6poi, .table th.tinytable_css_id3vkc9uccn2lbxhtn6poi {  font-weight: bold; }
-    </style>
-    <div class="container">
-      <table class="table table-borderless" id="tinytable_mkrdm7vqstudo2r1s17v" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col">country</th>
-                <th scope="col">year</th>
-                <th scope="col">cases</th>
-                <th scope="col">population</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>1999</td>
-                  <td>   745</td>
-                  <td>  19987071</td>
-                </tr>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>2000</td>
-                  <td>  2666</td>
-                  <td>  20595360</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>1999</td>
-                  <td> 37737</td>
-                  <td> 172006362</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>2000</td>
-                  <td> 80488</td>
-                  <td> 174504898</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>1999</td>
-                  <td>212258</td>
-                  <td>1272915272</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>2000</td>
-                  <td>213766</td>
-                  <td>1280428583</td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
-<!-- hack to avoid NA insertion in last line -->
-<p>A row is an <strong>observation</strong> or <strong>unit</strong></p>
-</section>
-<section id="a-dataset-is-just-a-matrix-with-labels-4" class="slide level2">
-<h2>A dataset is just a matrix with labels</h2>
-<!-- preamble start -->
-
-    <script>
-      function styleCell_qcrk5a9e7s33fp1iqk9x(i, j, css_id) {
-        var table = document.getElementById("tinytable_qcrk5a9e7s33fp1iqk9x");
-        table.rows[i].cells[j].classList.add(css_id);
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_qcrk5a9e7s33fp1iqk9x');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_qcrk5a9e7s33fp1iqk9x(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_qcrk5a9e7s33fp1iqk9x");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-window.addEventListener('load', function () { styleCell_qcrk5a9e7s33fp1iqk9x(0, 0, 'tinytable_css_idkakrualfpdx59xv1alqq') })
-window.addEventListener('load', function () { styleCell_qcrk5a9e7s33fp1iqk9x(0, 1, 'tinytable_css_idkakrualfpdx59xv1alqq') })
-window.addEventListener('load', function () { styleCell_qcrk5a9e7s33fp1iqk9x(0, 2, 'tinytable_css_idkakrualfpdx59xv1alqq') })
-window.addEventListener('load', function () { styleCell_qcrk5a9e7s33fp1iqk9x(0, 3, 'tinytable_css_idkakrualfpdx59xv1alqq') })
-window.addEventListener('load', function () { styleCell_qcrk5a9e7s33fp1iqk9x(4, 0, 'tinytable_css_id7e6f46wlw6e555tyxnod') })
-window.addEventListener('load', function () { styleCell_qcrk5a9e7s33fp1iqk9x(4, 1, 'tinytable_css_id7e6f46wlw6e555tyxnod') })
-window.addEventListener('load', function () { styleCell_qcrk5a9e7s33fp1iqk9x(4, 2, 'tinytable_css_id7e6f46wlw6e555tyxnod') })
-window.addEventListener('load', function () { styleCell_qcrk5a9e7s33fp1iqk9x(4, 3, 'tinytable_css_id7e6f46wlw6e555tyxnod') })
-    </script>
-
-    <style>
-    .table td.tinytable_css_idkakrualfpdx59xv1alqq, .table th.tinytable_css_idkakrualfpdx59xv1alqq {  border-bottom: solid 0.1em #d3d8dc; }
-    .table td.tinytable_css_id7e6f46wlw6e555tyxnod, .table th.tinytable_css_id7e6f46wlw6e555tyxnod {  font-weight: bold; }
-    </style>
-    <div class="container">
-      <table class="table table-borderless" id="tinytable_qcrk5a9e7s33fp1iqk9x" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col">country</th>
-                <th scope="col">year</th>
-                <th scope="col">cases</th>
-                <th scope="col">population</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>1999</td>
-                  <td>   745</td>
-                  <td>  19987071</td>
-                </tr>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>2000</td>
-                  <td>  2666</td>
-                  <td>  20595360</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>1999</td>
-                  <td> 37737</td>
-                  <td> 172006362</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>2000</td>
-                  <td> 80488</td>
-                  <td> 174504898</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>1999</td>
-                  <td>212258</td>
-                  <td>1272915272</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>2000</td>
-                  <td>213766</td>
-                  <td>1280428583</td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
-<!-- hack to avoid NA insertion in last line -->
-<p>A row is an <strong>observation</strong> or <strong>unit</strong></p>
-</section>
-<section id="a-dataset-is-just-a-matrix-with-labels-5" class="slide level2">
-<h2>A dataset is just a matrix with labels</h2>
-<!-- preamble start -->
-
-    <script>
-      function styleCell_0dbp6kaqc6ol03genwcs(i, j, css_id) {
-        var table = document.getElementById("tinytable_0dbp6kaqc6ol03genwcs");
-        table.rows[i].cells[j].classList.add(css_id);
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_0dbp6kaqc6ol03genwcs');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_0dbp6kaqc6ol03genwcs(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_0dbp6kaqc6ol03genwcs");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-window.addEventListener('load', function () { styleCell_0dbp6kaqc6ol03genwcs(0, 0, 'tinytable_css_idzdk3fyneoaiosrjys4bu') })
-window.addEventListener('load', function () { styleCell_0dbp6kaqc6ol03genwcs(0, 1, 'tinytable_css_idzdk3fyneoaiosrjys4bu') })
-window.addEventListener('load', function () { styleCell_0dbp6kaqc6ol03genwcs(0, 2, 'tinytable_css_idzdk3fyneoaiosrjys4bu') })
-window.addEventListener('load', function () { styleCell_0dbp6kaqc6ol03genwcs(0, 3, 'tinytable_css_idzdk3fyneoaiosrjys4bu') })
-window.addEventListener('load', function () { styleCell_0dbp6kaqc6ol03genwcs(5, 0, 'tinytable_css_idv44580urgsup8bkcou4h') })
-window.addEventListener('load', function () { styleCell_0dbp6kaqc6ol03genwcs(5, 1, 'tinytable_css_idv44580urgsup8bkcou4h') })
-window.addEventListener('load', function () { styleCell_0dbp6kaqc6ol03genwcs(5, 2, 'tinytable_css_idv44580urgsup8bkcou4h') })
-window.addEventListener('load', function () { styleCell_0dbp6kaqc6ol03genwcs(5, 3, 'tinytable_css_idv44580urgsup8bkcou4h') })
-    </script>
-
-    <style>
-    .table td.tinytable_css_idzdk3fyneoaiosrjys4bu, .table th.tinytable_css_idzdk3fyneoaiosrjys4bu {  border-bottom: solid 0.1em #d3d8dc; }
-    .table td.tinytable_css_idv44580urgsup8bkcou4h, .table th.tinytable_css_idv44580urgsup8bkcou4h {  font-weight: bold; }
-    </style>
-    <div class="container">
-      <table class="table table-borderless" id="tinytable_0dbp6kaqc6ol03genwcs" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col">country</th>
-                <th scope="col">year</th>
-                <th scope="col">cases</th>
-                <th scope="col">population</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>1999</td>
-                  <td>   745</td>
-                  <td>  19987071</td>
-                </tr>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>2000</td>
-                  <td>  2666</td>
-                  <td>  20595360</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>1999</td>
-                  <td> 37737</td>
-                  <td> 172006362</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>2000</td>
-                  <td> 80488</td>
-                  <td> 174504898</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>1999</td>
-                  <td>212258</td>
-                  <td>1272915272</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>2000</td>
-                  <td>213766</td>
-                  <td>1280428583</td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
-<!-- hack to avoid NA insertion in last line -->
-<p>A row is an <strong>observation</strong> or <strong>unit</strong></p>
-</section>
-<section id="a-dataset-is-just-a-matrix-with-labels-6" class="slide level2">
-<h2>A dataset is just a matrix with labels</h2>
-<!-- preamble start -->
-
-    <script>
-      function styleCell_1g2j77h09nawre1c3i68(i, j, css_id) {
-        var table = document.getElementById("tinytable_1g2j77h09nawre1c3i68");
-        table.rows[i].cells[j].classList.add(css_id);
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_1g2j77h09nawre1c3i68');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_1g2j77h09nawre1c3i68(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_1g2j77h09nawre1c3i68");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-window.addEventListener('load', function () { styleCell_1g2j77h09nawre1c3i68(0, 0, 'tinytable_css_idzq2ckxn92gtr35oleb2v') })
-window.addEventListener('load', function () { styleCell_1g2j77h09nawre1c3i68(0, 1, 'tinytable_css_idzq2ckxn92gtr35oleb2v') })
-window.addEventListener('load', function () { styleCell_1g2j77h09nawre1c3i68(0, 2, 'tinytable_css_idzq2ckxn92gtr35oleb2v') })
-window.addEventListener('load', function () { styleCell_1g2j77h09nawre1c3i68(0, 3, 'tinytable_css_idzq2ckxn92gtr35oleb2v') })
-window.addEventListener('load', function () { styleCell_1g2j77h09nawre1c3i68(6, 0, 'tinytable_css_idnur0vxa63ibzdxh8zzlb') })
-window.addEventListener('load', function () { styleCell_1g2j77h09nawre1c3i68(6, 1, 'tinytable_css_idnur0vxa63ibzdxh8zzlb') })
-window.addEventListener('load', function () { styleCell_1g2j77h09nawre1c3i68(6, 2, 'tinytable_css_idnur0vxa63ibzdxh8zzlb') })
-window.addEventListener('load', function () { styleCell_1g2j77h09nawre1c3i68(6, 3, 'tinytable_css_idnur0vxa63ibzdxh8zzlb') })
-    </script>
-
-    <style>
-    .table td.tinytable_css_idzq2ckxn92gtr35oleb2v, .table th.tinytable_css_idzq2ckxn92gtr35oleb2v {  border-bottom: solid 0.1em #d3d8dc; }
-    .table td.tinytable_css_idnur0vxa63ibzdxh8zzlb, .table th.tinytable_css_idnur0vxa63ibzdxh8zzlb {  font-weight: bold; }
-    </style>
-    <div class="container">
-      <table class="table table-borderless" id="tinytable_1g2j77h09nawre1c3i68" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col">country</th>
-                <th scope="col">year</th>
-                <th scope="col">cases</th>
-                <th scope="col">population</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>1999</td>
-                  <td>   745</td>
-                  <td>  19987071</td>
-                </tr>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>2000</td>
-                  <td>  2666</td>
-                  <td>  20595360</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>1999</td>
-                  <td> 37737</td>
-                  <td> 172006362</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>2000</td>
-                  <td> 80488</td>
-                  <td> 174504898</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>1999</td>
-                  <td>212258</td>
-                  <td>1272915272</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>2000</td>
-                  <td>213766</td>
-                  <td>1280428583</td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
-<!-- hack to avoid NA insertion in last line -->
-<p>A row is an <strong>observation</strong> or <strong>unit</strong></p>
-</section>
-<section id="a-dataset-is-just-a-matrix-with-labels-7" class="slide level2">
-<h2>A dataset is just a matrix with labels</h2>
-<!-- preamble start -->
-
-    <script>
-      function styleCell_vvt276obj1rhowuz1jj8(i, j, css_id) {
-        var table = document.getElementById("tinytable_vvt276obj1rhowuz1jj8");
-        table.rows[i].cells[j].classList.add(css_id);
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_vvt276obj1rhowuz1jj8');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_vvt276obj1rhowuz1jj8(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_vvt276obj1rhowuz1jj8");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-window.addEventListener('load', function () { styleCell_vvt276obj1rhowuz1jj8(0, 0, 'tinytable_css_idb7x6sjdiwc64bvvpvra4') })
-window.addEventListener('load', function () { styleCell_vvt276obj1rhowuz1jj8(0, 1, 'tinytable_css_idm81pb7qvwjxg5ypdw8ii') })
-window.addEventListener('load', function () { styleCell_vvt276obj1rhowuz1jj8(0, 2, 'tinytable_css_idm81pb7qvwjxg5ypdw8ii') })
-window.addEventListener('load', function () { styleCell_vvt276obj1rhowuz1jj8(0, 3, 'tinytable_css_idm81pb7qvwjxg5ypdw8ii') })
-window.addEventListener('load', function () { styleCell_vvt276obj1rhowuz1jj8(1, 0, 'tinytable_css_idgnq7ikcxfwf2p9km5n9e') })
-window.addEventListener('load', function () { styleCell_vvt276obj1rhowuz1jj8(2, 0, 'tinytable_css_idgnq7ikcxfwf2p9km5n9e') })
-window.addEventListener('load', function () { styleCell_vvt276obj1rhowuz1jj8(3, 0, 'tinytable_css_idgnq7ikcxfwf2p9km5n9e') })
-window.addEventListener('load', function () { styleCell_vvt276obj1rhowuz1jj8(4, 0, 'tinytable_css_idgnq7ikcxfwf2p9km5n9e') })
-window.addEventListener('load', function () { styleCell_vvt276obj1rhowuz1jj8(5, 0, 'tinytable_css_idgnq7ikcxfwf2p9km5n9e') })
-window.addEventListener('load', function () { styleCell_vvt276obj1rhowuz1jj8(6, 0, 'tinytable_css_idgnq7ikcxfwf2p9km5n9e') })
-    </script>
-
-    <style>
-    .table td.tinytable_css_idb7x6sjdiwc64bvvpvra4, .table th.tinytable_css_idb7x6sjdiwc64bvvpvra4 {  font-weight: bold;  border-bottom: solid 0.1em #d3d8dc; }
-    .table td.tinytable_css_idm81pb7qvwjxg5ypdw8ii, .table th.tinytable_css_idm81pb7qvwjxg5ypdw8ii {  border-bottom: solid 0.1em #d3d8dc; }
-    .table td.tinytable_css_idgnq7ikcxfwf2p9km5n9e, .table th.tinytable_css_idgnq7ikcxfwf2p9km5n9e {  font-weight: bold; }
-    </style>
-    <div class="container">
-      <table class="table table-borderless" id="tinytable_vvt276obj1rhowuz1jj8" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col">country</th>
-                <th scope="col">year</th>
-                <th scope="col">cases</th>
-                <th scope="col">population</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>1999</td>
-                  <td>   745</td>
-                  <td>  19987071</td>
-                </tr>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>2000</td>
-                  <td>  2666</td>
-                  <td>  20595360</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>1999</td>
-                  <td> 37737</td>
-                  <td> 172006362</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>2000</td>
-                  <td> 80488</td>
-                  <td> 174504898</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>1999</td>
-                  <td>212258</td>
-                  <td>1272915272</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>2000</td>
-                  <td>213766</td>
-                  <td>1280428583</td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
-<!-- hack to avoid NA insertion in last line -->
-<p>A column is a <strong>variable</strong></p>
-</section>
-<section id="a-dataset-is-just-a-matrix-with-labels-8" class="slide level2">
-<h2>A dataset is just a matrix with labels</h2>
-<!-- preamble start -->
-
-    <script>
-      function styleCell_i3psyolpk94qolh33ct1(i, j, css_id) {
-        var table = document.getElementById("tinytable_i3psyolpk94qolh33ct1");
-        table.rows[i].cells[j].classList.add(css_id);
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_i3psyolpk94qolh33ct1');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_i3psyolpk94qolh33ct1(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_i3psyolpk94qolh33ct1");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-window.addEventListener('load', function () { styleCell_i3psyolpk94qolh33ct1(0, 0, 'tinytable_css_id85nkmhhea6066pxs3s0s') })
-window.addEventListener('load', function () { styleCell_i3psyolpk94qolh33ct1(0, 1, 'tinytable_css_idfyoafy81y2qdozfihvbj') })
-window.addEventListener('load', function () { styleCell_i3psyolpk94qolh33ct1(0, 2, 'tinytable_css_id85nkmhhea6066pxs3s0s') })
-window.addEventListener('load', function () { styleCell_i3psyolpk94qolh33ct1(0, 3, 'tinytable_css_id85nkmhhea6066pxs3s0s') })
-window.addEventListener('load', function () { styleCell_i3psyolpk94qolh33ct1(1, 1, 'tinytable_css_idek5z4gq08gwtqapyowi5') })
-window.addEventListener('load', function () { styleCell_i3psyolpk94qolh33ct1(2, 1, 'tinytable_css_idek5z4gq08gwtqapyowi5') })
-window.addEventListener('load', function () { styleCell_i3psyolpk94qolh33ct1(3, 1, 'tinytable_css_idek5z4gq08gwtqapyowi5') })
-window.addEventListener('load', function () { styleCell_i3psyolpk94qolh33ct1(4, 1, 'tinytable_css_idek5z4gq08gwtqapyowi5') })
-window.addEventListener('load', function () { styleCell_i3psyolpk94qolh33ct1(5, 1, 'tinytable_css_idek5z4gq08gwtqapyowi5') })
-window.addEventListener('load', function () { styleCell_i3psyolpk94qolh33ct1(6, 1, 'tinytable_css_idek5z4gq08gwtqapyowi5') })
-    </script>
-
-    <style>
-    .table td.tinytable_css_id85nkmhhea6066pxs3s0s, .table th.tinytable_css_id85nkmhhea6066pxs3s0s {  border-bottom: solid 0.1em #d3d8dc; }
-    .table td.tinytable_css_idfyoafy81y2qdozfihvbj, .table th.tinytable_css_idfyoafy81y2qdozfihvbj {  font-weight: bold;  border-bottom: solid 0.1em #d3d8dc; }
-    .table td.tinytable_css_idek5z4gq08gwtqapyowi5, .table th.tinytable_css_idek5z4gq08gwtqapyowi5 {  font-weight: bold; }
-    </style>
-    <div class="container">
-      <table class="table table-borderless" id="tinytable_i3psyolpk94qolh33ct1" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col">country</th>
-                <th scope="col">year</th>
-                <th scope="col">cases</th>
-                <th scope="col">population</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>1999</td>
-                  <td>   745</td>
-                  <td>  19987071</td>
-                </tr>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>2000</td>
-                  <td>  2666</td>
-                  <td>  20595360</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>1999</td>
-                  <td> 37737</td>
-                  <td> 172006362</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>2000</td>
-                  <td> 80488</td>
-                  <td> 174504898</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>1999</td>
-                  <td>212258</td>
-                  <td>1272915272</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>2000</td>
-                  <td>213766</td>
-                  <td>1280428583</td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
-<!-- hack to avoid NA insertion in last line -->
-<p>A column is a <strong>variable</strong></p>
-</section>
-<section id="a-dataset-is-just-a-matrix-with-labels-9" class="slide level2">
-<h2>A dataset is just a matrix with labels</h2>
-<!-- preamble start -->
-
-    <script>
-      function styleCell_sk0b1f5kozovnqf1fbed(i, j, css_id) {
-        var table = document.getElementById("tinytable_sk0b1f5kozovnqf1fbed");
-        table.rows[i].cells[j].classList.add(css_id);
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_sk0b1f5kozovnqf1fbed');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_sk0b1f5kozovnqf1fbed(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_sk0b1f5kozovnqf1fbed");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-window.addEventListener('load', function () { styleCell_sk0b1f5kozovnqf1fbed(0, 0, 'tinytable_css_idd3gn3jufafqb3hbqv68a') })
-window.addEventListener('load', function () { styleCell_sk0b1f5kozovnqf1fbed(0, 1, 'tinytable_css_idd3gn3jufafqb3hbqv68a') })
-window.addEventListener('load', function () { styleCell_sk0b1f5kozovnqf1fbed(0, 2, 'tinytable_css_idcofyu4qn0ni25ifr85kp') })
-window.addEventListener('load', function () { styleCell_sk0b1f5kozovnqf1fbed(0, 3, 'tinytable_css_idd3gn3jufafqb3hbqv68a') })
-window.addEventListener('load', function () { styleCell_sk0b1f5kozovnqf1fbed(1, 2, 'tinytable_css_idoe7wsmh5htay7cly4flb') })
-window.addEventListener('load', function () { styleCell_sk0b1f5kozovnqf1fbed(2, 2, 'tinytable_css_idoe7wsmh5htay7cly4flb') })
-window.addEventListener('load', function () { styleCell_sk0b1f5kozovnqf1fbed(3, 2, 'tinytable_css_idoe7wsmh5htay7cly4flb') })
-window.addEventListener('load', function () { styleCell_sk0b1f5kozovnqf1fbed(4, 2, 'tinytable_css_idoe7wsmh5htay7cly4flb') })
-window.addEventListener('load', function () { styleCell_sk0b1f5kozovnqf1fbed(5, 2, 'tinytable_css_idoe7wsmh5htay7cly4flb') })
-window.addEventListener('load', function () { styleCell_sk0b1f5kozovnqf1fbed(6, 2, 'tinytable_css_idoe7wsmh5htay7cly4flb') })
-    </script>
-
-    <style>
-    .table td.tinytable_css_idd3gn3jufafqb3hbqv68a, .table th.tinytable_css_idd3gn3jufafqb3hbqv68a {  border-bottom: solid 0.1em #d3d8dc; }
-    .table td.tinytable_css_idcofyu4qn0ni25ifr85kp, .table th.tinytable_css_idcofyu4qn0ni25ifr85kp {  font-weight: bold;  border-bottom: solid 0.1em #d3d8dc; }
-    .table td.tinytable_css_idoe7wsmh5htay7cly4flb, .table th.tinytable_css_idoe7wsmh5htay7cly4flb {  font-weight: bold; }
-    </style>
-    <div class="container">
-      <table class="table table-borderless" id="tinytable_sk0b1f5kozovnqf1fbed" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col">country</th>
-                <th scope="col">year</th>
-                <th scope="col">cases</th>
-                <th scope="col">population</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>1999</td>
-                  <td>   745</td>
-                  <td>  19987071</td>
-                </tr>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>2000</td>
-                  <td>  2666</td>
-                  <td>  20595360</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>1999</td>
-                  <td> 37737</td>
-                  <td> 172006362</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>2000</td>
-                  <td> 80488</td>
-                  <td> 174504898</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>1999</td>
-                  <td>212258</td>
-                  <td>1272915272</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>2000</td>
-                  <td>213766</td>
-                  <td>1280428583</td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
-<!-- hack to avoid NA insertion in last line -->
-<p>A column is a <strong>variable</strong></p>
-</section>
-<section id="a-dataset-is-just-a-matrix-with-labels-10" class="slide level2">
-<h2>A dataset is just a matrix with labels</h2>
-<!-- preamble start -->
-
-    <script>
-      function styleCell_takb4zxfyr6nmjouarj4(i, j, css_id) {
-        var table = document.getElementById("tinytable_takb4zxfyr6nmjouarj4");
-        table.rows[i].cells[j].classList.add(css_id);
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_takb4zxfyr6nmjouarj4');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_takb4zxfyr6nmjouarj4(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_takb4zxfyr6nmjouarj4");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-window.addEventListener('load', function () { styleCell_takb4zxfyr6nmjouarj4(0, 0, 'tinytable_css_idlsjs35sy4aseepzbv2px') })
-window.addEventListener('load', function () { styleCell_takb4zxfyr6nmjouarj4(0, 1, 'tinytable_css_idlsjs35sy4aseepzbv2px') })
-window.addEventListener('load', function () { styleCell_takb4zxfyr6nmjouarj4(0, 2, 'tinytable_css_idlsjs35sy4aseepzbv2px') })
-window.addEventListener('load', function () { styleCell_takb4zxfyr6nmjouarj4(0, 3, 'tinytable_css_id84s7mpgzjwsvctnztv9n') })
-window.addEventListener('load', function () { styleCell_takb4zxfyr6nmjouarj4(1, 3, 'tinytable_css_id66pofld03lkyiuvtgisi') })
-window.addEventListener('load', function () { styleCell_takb4zxfyr6nmjouarj4(2, 3, 'tinytable_css_id66pofld03lkyiuvtgisi') })
-window.addEventListener('load', function () { styleCell_takb4zxfyr6nmjouarj4(3, 3, 'tinytable_css_id66pofld03lkyiuvtgisi') })
-window.addEventListener('load', function () { styleCell_takb4zxfyr6nmjouarj4(4, 3, 'tinytable_css_id66pofld03lkyiuvtgisi') })
-window.addEventListener('load', function () { styleCell_takb4zxfyr6nmjouarj4(5, 3, 'tinytable_css_id66pofld03lkyiuvtgisi') })
-window.addEventListener('load', function () { styleCell_takb4zxfyr6nmjouarj4(6, 3, 'tinytable_css_id66pofld03lkyiuvtgisi') })
-    </script>
-
-    <style>
-    .table td.tinytable_css_idlsjs35sy4aseepzbv2px, .table th.tinytable_css_idlsjs35sy4aseepzbv2px {  border-bottom: solid 0.1em #d3d8dc; }
-    .table td.tinytable_css_id84s7mpgzjwsvctnztv9n, .table th.tinytable_css_id84s7mpgzjwsvctnztv9n {  font-weight: bold;  border-bottom: solid 0.1em #d3d8dc; }
-    .table td.tinytable_css_id66pofld03lkyiuvtgisi, .table th.tinytable_css_id66pofld03lkyiuvtgisi {  font-weight: bold; }
-    </style>
-    <div class="container">
-      <table class="table table-borderless" id="tinytable_takb4zxfyr6nmjouarj4" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col">country</th>
-                <th scope="col">year</th>
-                <th scope="col">cases</th>
-                <th scope="col">population</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>1999</td>
-                  <td>   745</td>
-                  <td>  19987071</td>
-                </tr>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>2000</td>
-                  <td>  2666</td>
-                  <td>  20595360</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>1999</td>
-                  <td> 37737</td>
-                  <td> 172006362</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>2000</td>
-                  <td> 80488</td>
-                  <td> 174504898</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>1999</td>
-                  <td>212258</td>
-                  <td>1272915272</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>2000</td>
-                  <td>213766</td>
-                  <td>1280428583</td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
-<!-- hack to avoid NA insertion in last line -->
-<p>A column is a <strong>variable</strong></p>
-</section>
-<section id="a-dataset-is-just-a-matrix-with-labels-11" class="slide level2">
-<h2>A dataset is just a matrix with labels</h2>
-<!-- preamble start -->
-
-    <script>
-      function styleCell_ihj94rri133wxloqjhrc(i, j, css_id) {
-        var table = document.getElementById("tinytable_ihj94rri133wxloqjhrc");
-        table.rows[i].cells[j].classList.add(css_id);
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_ihj94rri133wxloqjhrc');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_ihj94rri133wxloqjhrc(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_ihj94rri133wxloqjhrc");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-window.addEventListener('load', function () { styleCell_ihj94rri133wxloqjhrc(0, 0, 'tinytable_css_idakujsgqbuz7h48jiky9c') })
-window.addEventListener('load', function () { styleCell_ihj94rri133wxloqjhrc(0, 1, 'tinytable_css_idakujsgqbuz7h48jiky9c') })
-window.addEventListener('load', function () { styleCell_ihj94rri133wxloqjhrc(0, 2, 'tinytable_css_idakujsgqbuz7h48jiky9c') })
-window.addEventListener('load', function () { styleCell_ihj94rri133wxloqjhrc(0, 3, 'tinytable_css_idakujsgqbuz7h48jiky9c') })
-    </script>
-
-    <style>
-    .table td.tinytable_css_idakujsgqbuz7h48jiky9c, .table th.tinytable_css_idakujsgqbuz7h48jiky9c {  border-bottom: solid 0.1em #d3d8dc; }
-    </style>
-    <div class="container">
-      <table class="table table-borderless" id="tinytable_ihj94rri133wxloqjhrc" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col">country</th>
-                <th scope="col">year</th>
-                <th scope="col">cases</th>
-                <th scope="col">population</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>1999</td>
-                  <td>   745</td>
-                  <td>  19987071</td>
-                </tr>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>2000</td>
-                  <td>  2666</td>
-                  <td>  20595360</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>1999</td>
-                  <td> 37737</td>
-                  <td> 172006362</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>2000</td>
-                  <td> 80488</td>
-                  <td> 174504898</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>1999</td>
-                  <td>212258</td>
-                  <td>1272915272</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>2000</td>
-                  <td>213766</td>
-                  <td>1280428583</td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
-<!-- hack to avoid NA insertion in last line -->
-<p>What does the third row, fourth column represent?</p>
-</section>
-<section id="a-dataset-is-just-a-matrix-with-labels-12" class="slide level2">
-<h2>A dataset is just a matrix with labels</h2>
-<!-- preamble start -->
-
-    <script>
-      function styleCell_ozfpaawh3mhz62sid51k(i, j, css_id) {
-        var table = document.getElementById("tinytable_ozfpaawh3mhz62sid51k");
-        table.rows[i].cells[j].classList.add(css_id);
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_ozfpaawh3mhz62sid51k');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_ozfpaawh3mhz62sid51k(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_ozfpaawh3mhz62sid51k");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-window.addEventListener('load', function () { styleCell_ozfpaawh3mhz62sid51k(0, 0, 'tinytable_css_id7bqwolwfxtgfr3gg0ylj') })
-window.addEventListener('load', function () { styleCell_ozfpaawh3mhz62sid51k(0, 1, 'tinytable_css_id7bqwolwfxtgfr3gg0ylj') })
-window.addEventListener('load', function () { styleCell_ozfpaawh3mhz62sid51k(0, 2, 'tinytable_css_id7bqwolwfxtgfr3gg0ylj') })
-window.addEventListener('load', function () { styleCell_ozfpaawh3mhz62sid51k(0, 3, 'tinytable_css_id7bqwolwfxtgfr3gg0ylj') })
-window.addEventListener('load', function () { styleCell_ozfpaawh3mhz62sid51k(3, 3, 'tinytable_css_idedn00hn7cihdsxaf5tja') })
-    </script>
-
-    <style>
-    .table td.tinytable_css_id7bqwolwfxtgfr3gg0ylj, .table th.tinytable_css_id7bqwolwfxtgfr3gg0ylj {  border-bottom: solid 0.1em #d3d8dc; }
-    .table td.tinytable_css_idedn00hn7cihdsxaf5tja, .table th.tinytable_css_idedn00hn7cihdsxaf5tja {  font-weight: bold; }
-    </style>
-    <div class="container">
-      <table class="table table-borderless" id="tinytable_ozfpaawh3mhz62sid51k" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col">country</th>
-                <th scope="col">year</th>
-                <th scope="col">cases</th>
-                <th scope="col">population</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>1999</td>
-                  <td>   745</td>
-                  <td>  19987071</td>
-                </tr>
-                <tr>
-                  <td>Afghanistan</td>
-                  <td>2000</td>
-                  <td>  2666</td>
-                  <td>  20595360</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>1999</td>
-                  <td> 37737</td>
-                  <td> 172006362</td>
-                </tr>
-                <tr>
-                  <td>Brazil     </td>
-                  <td>2000</td>
-                  <td> 80488</td>
-                  <td> 174504898</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>1999</td>
-                  <td>212258</td>
-                  <td>1272915272</td>
-                </tr>
-                <tr>
-                  <td>China      </td>
-                  <td>2000</td>
-                  <td>213766</td>
-                  <td>1280428583</td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
-<!-- hack to avoid NA insertion in last line -->
-<p>What does the third row, fourth column represent?</p>
-</section>
-<section id="types-of-variables" class="slide level2">
-<h2>Types of variables</h2>
-<div>
-<ol type="1">
-<li class="fragment"><strong>Nominal/categorical:</strong> Cannot be ordered in any way</li>
-<li class="fragment"><strong>Ordinal:</strong> Ordered</li>
-<li class="fragment"><strong>Numerical:</strong> Ordered + equidistant</li>
-</ol>
-</div>
-<div class="fragment">
-<p>EMPS further distinguishes numerical variables:</p>
-<div>
-<ol type="1">
-<li class="fragment"><strong>Discrete:</strong> Countable integers</li>
-<li class="fragment"><strong>Continuous:</strong> Infinitesimally uncountable, real numbers</li>
-</ol>
-</div>
-</div>
-<div class="fragment">
-<p>But technically everything numerical is discrete!</p>
-</div>
-</section>
 <section id="practice" class="slide level2">
 <h2>Practice</h2>
 <div class="fragment">
-<p><strong><a href="https://www.v-dem.net">Varieties of Democracy</a>’s <em>regime type</em> measure:</strong></p>
-</div>
-<div class="fragment">
-<p>0: Closed autocracy – No multiparty elections</p>
-</div>
-<div class="fragment">
-<p>1: Electoral autocracy – De-jure elections but not free and fair</p>
-</div>
-<div class="fragment">
-<p>2: Electoral democracy – Free and fair elections with some flaws</p>
-</div>
-<div class="fragment">
-<p>3: Liberal democracy – Free and fair elections guaranteed</p>
-</div>
-<div class="fragment">
-
-</div>
-<aside><div>
-<p>More at <a href="https://www.v-dem.net">v-dem.net</a></p>
-</div></aside></section>
-<section class="slide level2">
-
-<iframe src="https://ourworldindata.org/grapher/political-regime?tab=map" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>
-
-<aside><div>
-<p><a href="https://ourworldindata.org/regimes-of-the-world-data" class="uri">https://ourworldindata.org/regimes-of-the-world-data</a></p>
-</div></aside></section>
-<section id="practice-2" class="slide level2">
-<h2>Practice 2</h2>
-<p><img data-src="week2_files/figure-revealjs/unnamed-chunk-15-1.png" style="width:100.0%"></p>
-
-<aside><div>
-<p>How many different variables do you see? What type are they?</p>
-</div></aside></section>
-<section id="reminder" class="slide level2 center">
-<h2>Reminder</h2>
-<div class="fragment">
-<div class="r-stack">
-<p>Variable types depend on what we are <strong>willing to assume</strong></p>
-</div>
+<p><strong>Puzzle/question:</strong></p>
 </div>
 </section>
-<section id="variables-vs.-concepts" class="slide level2">
-<h2>Variables vs.&nbsp;concepts</h2>
+<section id="practice-1" class="slide level2">
+<h2>Practice</h2>
+<p><strong>Puzzle/question:</strong> Does marijuana cause infertility?</p>
+</section>
+<section id="practice-2" class="slide level2">
+<h2>Practice</h2>
+<p><strong>Puzzle/question:</strong> Does marijuana cause infertility?</p>
+<p><strong>Theory:</strong></p>
+</section>
+<section id="practice-3" class="slide level2">
+<h2>Practice</h2>
+<p><strong>Puzzle/question:</strong> Does marijuana cause infertility?</p>
+<p><strong>Theory:</strong> THC kills cells</p>
+</section>
+<section id="practice-4" class="slide level2">
+<h2>Practice</h2>
+<p><strong>Puzzle/question:</strong> Does marijuana cause infertility?</p>
+<p><strong>Theory:</strong> THC kills cells</p>
+<p><strong>Hypothesis:</strong></p>
+</section>
+<section id="practice-5" class="slide level2">
+<h2>Practice</h2>
+<p><strong>Puzzle/question:</strong> Does marijuana cause infertility?</p>
+<p><strong>Theory:</strong> THC kills cells</p>
+<p><strong>Hypothesis:</strong> Male smokers have lower semen volume than non-smokers</p>
+</section>
+<section id="practice-6" class="slide level2">
+<h2>Practice</h2>
+<p><strong>Puzzle/question:</strong> Does marijuana cause infertility?</p>
+<p><strong>Theory:</strong> THC kills cells</p>
+<p><strong>Hypothesis:</strong> Male smokers have lower semen volume than non-smokers</p>
+<p><strong>Test:</strong></p>
+</section>
+<section id="practice-7" class="slide level2">
+<h2>Practice</h2>
+<p><strong>Puzzle/question:</strong> Does marijuana cause infertility?</p>
+<p><strong>Theory:</strong> THC kills cells</p>
+<p><strong>Hypothesis:</strong> Male smokers have lower semen volume than non-smokers</p>
+<p><strong>Test:</strong></p>
+</section>
+<section id="practice-8" class="slide level2">
+<h2>Practice</h2>
+<p><strong>Puzzle/question:</strong> Does marijuana cause infertility?</p>
+<p><strong>Theory:</strong> THC kills cells</p>
+<p><strong>Hypothesis:</strong> Male smokers have lower semen volume than non-smokers</p>
+<p><strong>Test:</strong> Bring men to lab, ask if they smoke, measure sperm, ask if they smoke, compare</p>
+</section>
+<section id="practice-9" class="slide level2">
+<h2>Practice</h2>
+<p><strong>Puzzle/question:</strong> Does marijuana cause infertility?</p>
+<p><strong>Theory:</strong> THC kills cells</p>
+<p><strong>Hypothesis:</strong> Male smokers have lower semen volume than non-smokers</p>
+<p><strong>Test:</strong> Bring men to lab, ask if they smoke, measure sperm, ask if they smoke, compare</p>
+<p><strong>Conclusion:</strong></p>
+</section>
+<section id="practice-10" class="slide level2">
+<h2>Practice</h2>
+<p><strong>Puzzle/question:</strong> Does marijuana cause infertility?</p>
+<p><strong>Theory:</strong> THC kills cells</p>
+<p><strong>Hypothesis:</strong> Male smokers have lower semen volume than non-smokers</p>
+<p><strong>Test:</strong> Bring men to lab, ask if they smoke, measure sperm, ask if they smoke, compare</p>
+<p><strong>Conclusion:</strong> “Study by Tulane researcher <strong>SUGGESTS</strong> marijuana <strong>CAN</strong> cause infertility in men”</p>
+</section>
+<section id="why-the-cautious-language" class="slide level2">
+<h2>Why the cautious language?</h2>
+<div class="fragment">
+<p>We want to know the <strong>counterfactual</strong>: Person A’s fertility with and without marijuana <em>consumption</em></p>
+</div>
+<div class="fragment">
+<p>But we can only compare <strong>smokers</strong> to <strong>non-smokers</strong></p>
+</div>
+<div class="fragment">
+<p>This is the <strong>fundamental problem of causal inference</strong> (more in week 5)</p>
+</div>
+</section>
+<section id="why-the-cautious-language-1" class="slide level2">
+<h2>Why the cautious language?</h2>
+<p>Also…</p>
 <div>
 <ul>
-<li class="fragment"><p>A <strong>concept</strong> is an element defined by a theory</p></li>
-<li class="fragment"><p>A <strong>variable</strong> is the measurement of a concept</p></li>
-<li class="fragment"><p>The translation from concept to measurement is called <strong>operationalization</strong></p></li>
-<li class="fragment"><p>Because concepts are abstract, there is room for <strong>measurement error</strong></p></li>
+<li class="fragment">Only men</li>
+<li class="fragment">Undergoing fertility evaluation</li>
+<li class="fragment">In <em>one</em> urology clinic in Washington state</li>
+<li class="fragment">409 total, 71 current smokers (17%), 103 past smokers (25%)</li>
 </ul>
 </div>
 </section>
-<section id="measurement-error" class="slide level2">
-<h2>Measurement error</h2>
-
-<img data-src="fig/board.png" class="r-stretch"><div>
+<section id="testing-theories" class="slide level2">
+<h2>Testing theories</h2>
+<div>
 <ul>
-<li class="fragment"><p><strong>Reliable:</strong> Hypothetical repeated measurements are close to each other</p></li>
-<li class="fragment"><p><strong>Valid:</strong> Distance from center averages to zero</p></li>
+<li class="fragment"><p>Cannot test <strong>theories</strong> because they are <strong>statements</strong></p></li>
+<li class="fragment"><p>Need to <strong>believe</strong> theory is true to engage with it scientifically</p></li>
+<li class="fragment"><p>Instead, test <strong>arguments</strong> that follow from a theory (hypotheses, implications)</p></li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Valid argument:</strong> Accepting it <em>compels us</em> to accept conclusion</p>
+<p><strong>Invalid argument:</strong> Accepting premises <em>frees us</em> from accepting/rejecting conclusion</p>
+</div>
+</section>
+<section id="scientific-critiques" class="slide level2">
+<h2>Scientific critiques</h2>
+<div class="fragment">
+<p><strong>Valid critiques</strong> to <strong>valid arguments</strong> fall in <em>three categories</em></p>
+<div>
+<ol type="1">
+<li class="fragment"><p><strong>Omitted variable:</strong> Stress leads men to smoke marijuana AND to become infertile</p></li>
+<li class="fragment"><p><strong>Reverse causation:</strong> Infertility causes men to smoke marijuana</p></li>
+<li class="fragment"><p><strong>Selection bias:</strong> Men who smoke marijuana wait longer before going consulting a doctor</p></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="scientific-critiques-1" class="slide level2">
+<h2>Scientific critiques</h2>
+<p>A valid critique implies:</p>
+<div>
+<ol type="1">
+<li class="fragment"><p>Observed implications also follow from <strong>alternative theories</strong></p></li>
+<li class="fragment"><p><strong>Cannot falsify</strong> theory</p></li>
+<li class="fragment"><p>Need to find <strong>better implications</strong> to distinguish among competing theories</p></li>
+</ol>
+</div>
+</section>
+<section id="scientific-critiques-2" class="slide level2">
+<h2>Scientific critiques</h2>
+<p><strong>Scientist’s dilemma:</strong></p>
+<div>
+<ul>
+<li class="fragment">When evidence supports hypothesis, your theory is <del>accepted</del> <strong>not rejected</strong></li>
+<li class="fragment">When evidence <em>does not</em> support hypothesis, your theory is <del>rejected</del> <strong>not accepted</strong></li>
+<li class="fragment">No such thing as <em>definitive</em> knowledge</li>
+<li class="fragment">Future research can always flip things around!</li>
 </ul>
 </div>
 </section>
-<section id="another-way-to-look-at-it" class="slide level2">
-<h2>Another way to look at it</h2>
-
-<img data-src="week2_files/figure-revealjs/unnamed-chunk-16-1.png" style="width:100.0%" class="r-stretch"></section>
-<section id="takeaways-1" class="slide level2">
+<section id="takeaways" class="slide level2">
 <h2>Takeaways</h2>
+<ol type="1">
+<li>Science differs from other forms of knowledge generation in that we try really hard to prove ourselves wrong</li>
+<li>Scientific statements/arguments are falsifiable</li>
+<li>We never observe the ideal counterfactual</li>
+<li>We can only test a few implications of a theory at a time</li>
+<li>Findings can align with many alternative theories</li>
+</ol>
+</section>
+<section id="next-week-theory-and-data" class="slide level2">
+<h2>Next week: Theory and data</h2>
+<p><strong>EMPS Chapters 3-4</strong></p>
 <ul>
-<li><p>Variables are how we measure concepts</p></li>
-<li><p>A variable can be categorical, ordinal, numerical</p></li>
-<li><p>Depends mostly on what we are willing to assume</p></li>
-<li><p>Gap between concept and variable produces measurement error</p></li>
+<li><p>What is a theory? What is a good theory?</p></li>
+<li><p>Different types of data/variables</p></li>
 </ul>
-</section>
-<section id="next-week" class="slide level2 center" style="text-align: center">
-<h2>Next week</h2>
-<h3 id="inference">Inference</h3>
-<p>How do we summarize data?</p>
-<p>How do we use summaries to evaluate hypotheses?</p>
-</section>
-<div class="quarto-auto-generated-content">
+<p><strong>Application: Billionaire politicians</strong></p>
+<ul>
+<li>Think about the decisions that were made to define and measure this category</li>
+</ul>
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
 
 </div>
-</div></section>
-    </div>
-  </div>
+</div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="week2_files/libs/revealjs/dist/reveal.js"></script>
@@ -2669,7 +496,8 @@ window.addEventListener('load', function () { styleCell_ozfpaawh3mhz62sid51k(3, 
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
 'smaller': false,
  
@@ -2824,7 +652,7 @@ window.addEventListener('load', function () { styleCell_ozfpaawh3mhz62sid51k(3, 
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -2850,44 +678,6 @@ window.addEventListener('load', function () { styleCell_ozfpaawh3mhz62sid51k(3, 
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
@@ -2967,8 +757,6 @@ window.addEventListener('load', function () { styleCell_ozfpaawh3mhz62sid51k(3, 
       });
       clipboard.on('success', onCopySuccess);
       if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        // For code content inside modals, clipBoardJS needs to be initialized with a container option
-        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
         const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
           text: getTextToCopy,
           container: window.document.getElementById('quarto-embedded-source-code-modal')
