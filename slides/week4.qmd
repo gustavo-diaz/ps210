@@ -19,27 +19,21 @@ opts_chunk$set(echo = FALSE,
 library(tidyverse)
 library(tinytable)
 library(kableExtra)
-library(DeclareDesign)
-# library(infer)
+library(infer)
 library(tidyr)
 library(broom)
-library(future)
-library(future.apply)
-# library(gganimate)
+library(gganimate)
 # remotes::install_github("kjhealy/gssr")
 library(gssr)
 
 # ggplot global options
 theme_set(theme_gray(base_size = 20))
-
-# future global options
-options(future.globals.maxSize= 891289600)
 ```
 
 
 
 ::: {style="text-align: center"}
-## Surveys {.center}
+## Inference {.center}
 
 ### POLI SCI 210
 
@@ -50,541 +44,905 @@ Introduction to Empirical Methods in Political Science
 
 ## AI Prompts {background-color="#B6ACD1"}
 
-- *Sampling*: Mode, frame, size, procedure, oversampling
+- Central limit theorem
 
-- Independent, identically distributed (i.i.d. assumption in statistics)
+- Weak law of large numbers
 
-- Total survey error framework
+- Confidence interval
 
-- How to ask *good* survey questions?
+- Standard deviation vs. standard error
 
-- What *happens* if people lie in surveys?
+- What is a p-value? How to interpret it?
 
-- What *to do* if people lie in surveys?
-
-- *Indirect questioning techniques:* Randomized response, list experiment, others not mentioned in lecture
-
-
+::: aside
+**Reminder:** These are just suggestions, feel free to be creative with your prompts!
+:::
 
 ## Last week
 
-Ingredients for **statistical inference**
+- Theory as explanation
 
-- Data summary (point estimate, test statistic)
+- Elements of a good theory
 
-- Uncertainty quantification (confidence intervals, p-values)
+- Data as the raw material from which we draw inferences
 
-- **Keep in mind:** Statistical properties that enable inference (finite sample, asymptotic)
-
-## This week: Surveys
-
-**Survey research:** Study of public opinion
+- Types of data (variables)
 
 . . .
 
-Not really a *method*, more of a *data collection tool*
+::: {.r-stack}
+Why do we care so much about data?
+:::
 
-. . .
-
-**Tuesday:** Sampling
+## This week: Inference
 
 ::: incremental
-1. Why random sampling?
+- We use data to conduct **inference**
 
-2. Sources of error
-:::
+- **Inference:** Using what we know to understand something we do not know
 
-. . .
+- **_Statistical_ inference:** Using the *data* we have to understand something for which we do *not* have data
 
-[**Thursday:**](#thu) Survey design
+- Data alone does not help unless we **summarize** it
 
-::: incremental
-1. Asking good questions
+- **TUESDAY:** *Estimation* and *uncertainty*
 
-2. Asking sensitive questions
-:::
-
----
-
-![](fig/public_opinion.png){fig-align="center"}
-
-::: aside
-[vocabulary.com/dictionary/public%20opinion](https://www.vocabulary.com/dictionary/public%20opinion)
-:::
-
-## Public opinion
-
-::: incremental
-- The study of *self-reported* **attitudes** and **behaviors**
-
-- **Self-report:** What people *say*
-
-- **Attitude:** What people *think* or *feel*
-
-- **Behavior:** What people *do*
-
-- Primarily among the *general public*
-
-- Increasingly on specific *target populations*
-:::
-
-. . .
-
- **Goal:** Mapping **self-reports** to **actual** attitudes and behaviors
-
-::: {style="text-align: center"}
-## Open question {.center}
-
-. . .
-
-Should political scientist care about **attitudes** on their own?
-
-. . .
-
-Do we only care about **behaviors**?
+- [**THURSDAY:**](#thu) Hypothesis testing
 
 :::
 
-## Challenge
-
-. . .
-
-There is a gap between *self-reports* and *actual* attitudes/behaviors
-
-. . . 
-
-Two things get in the way:
-
-::: incremental
-
-1. Asking the right people
-
-2. Asking the right questions
-
-:::
-
-## Challenge
-
-
-
-There is a gap between *self-reports* and *actual* attitudes/behaviors
-
-
-
-Two things get in the way:
-
-
-1. **Asking the right people**
-
-2. Asking the right questions
-
-## Key sampling decisions
-
-::: incremental
-1. Mode
-
-2. Sampling frame
-
-3. Sample size
-
-4. Sampling procedure
-
-5. Oversampling
-:::
-
-## Key sampling decisions
-
-
-1. **Mode**
-
-2. **Sampling frame**
-
-3. ~~Sample size~~
-
-4. **Sampling procedure**
-
-5. ~~Oversampling~~
-
-
-## Survey mode
-
-::: incremental
-- **Face-to-face:** Oldest, most common method in US national and cross-national surveys
-
-- **Laboratory:** Few people, more intricate tasks
-
-- **Phone:** Groundbreaking at the time, but less reliable nowadays
-
-- **Internet:** Online panels ([CloudResearch Connect](https://www.cloudresearch.com/products/connect-for-researchers/), [Mturk](https://www.mturk.com), [Prolific](https://www.prolific.com/researchers)), social media ads, message app chains
-:::
-
-. . .
-
-National representative surveys usually combine many modes
-
----
-
-**ANES evaluation of survey modes**
-
-. . .
-
-![](fig/ANES_mode.png){fig-align="center" width="60%"}
-
-::: aside
-**Source:** Hillygus et al (2017). ["Assessing the Implications of a Mode Change."](https://electionstudies.org/wp-content/uploads/2021/08/anes_board_2017_mode_report.pdf)
-:::
-
-
-## Sampling frame
-
-. . .
-
-List of all the elements within the population *from which a sample is selected*
-
-. . .
+## Running example
 
 :::: {.columns}
 
 ::: {.column width="40%"}
 
-![](fig/sampling_frame.png)
+```{r}
+heights = tribble(
+  ~Position, ~`Height (inches)`,
+  1, 62.5,
+  2, 63.0,
+  3, 63.0,
+  4, 66.0,
+  5, 66.0,
+  6, 67.0,
+  7, 68.5,
+  8, 70.0,
+  9, 70.0,
+  10, 70.5,
+  11, 70.7
+)
+
+heights %>% tt() %>% style_tt(fontsize = 0.7)
+```
+
 :::
 
 ::: {.column width="60%"}
 
 ::: incremental
+- How would you describe this group of people?
 
-- *Common sampling frames:* Phone books, electoral rolls, employee databases, household directories
+- Taller/shorter than most?
 
-- *Ideal case:* [Danish Civil Registry](https://ncrr.au.dk/danish-registers/the-danish-civil-registration-system-cpr)
+- How do we summarize this data?
+:::
 
-- *{{< fa fire >}} take:* We neve *really* know what the *target population* is
+:::
+
+
+::::
+
+## Running example
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+```{r}
+heights %>% tt() %>% style_tt(fontsize = 0.7)
+```
+
+:::
+
+::: {.column width="60%"}
+**Measures of central tendency**
+
+::: incremental
+- **Mean:** $\frac{1}{n}\sum x_i$
+
+- **Median:** Value in the middle (after ordering)
+
+- **Mode:** Value most often repeated
 :::
 
 :::
 
 ::::
 
-## Sampling procedure
+## Running example
 
-. . .
+:::: {.columns}
 
-**_Ideal case_: Random sampling**
+::: {.column width="40%"}
 
-. . .
+```{r}
+heights %>% tt() %>% style_tt(fontsize = 0.7)
 
-**Simple random sampling:** All units have the same inclusion probability ($\approx$ flipping a coin for each)
+inches = heights$`Height (inches)`
+```
 
-. . .
-
-**Complete random sampling:**  *Exactly* $n$ out of $N$ units are selected at random ($\approx$ arrange in random order and then survey the first $n$)
-
-. . .
-
-&nbsp;
-
-::: {.r-stack}
-How are these different?
 :::
 
-## Why is random sampling important?
+::: {.column width="60%"}
+**Measures of central tendency**
 
-. . .
+- **Mean = **  `r round(mean(inches), 1)`
 
-**Informally:** So that our sample is (in expectation) *representative* of the target population
+- **Median =** 67.0
 
-. . . 
+- **Mode =** 63.0, 66.0, 70.0
 
-**Formally:** To justify statistical inference via CLT
-
-. . .
-
-We need to assume that the observations in our sample are drawn from...
-
-. . . 
-
-::: {.r-stack}
-**I**ndependent
 :::
 
-## Why is random sampling important?
+::::
 
+## Running example
 
+:::: {.columns}
 
-**Informally:** So that our sample is (in expectation) *representative* of the target population
+::: {.column width="40%"}
 
+```{r}
+heights %>% tt() %>% style_tt(fontsize = 0.7)
+```
 
-
-**Formally:** To justify statistical inference via CLT
-
-We need to assume that the observations in our sample are drawn from...
-
-::: {.r-stack}
-**I**ndependent and **I**dentically
 :::
 
-## Why is random sampling important?
+::: {.column width="60%"}
+**Measures of central tendency**
 
+- **Mean = **  `r round(mean(inches), 1)`
 
+- **Median =** 67.0
 
-**Informally:** So that our sample is (in expectation) *representative* of the target population
+- **Mode =** 63.0, 66.0, 70.0
 
+Which is a better summary?
 
-
-**Formally:** To justify statistical inference via CLT
-
-We need to assume that the observations in our sample are drawn from...
-
-::: {.r-stack}
-**I**ndependent and **I**dentically **D**istributed 
 :::
 
+::::
+
+## Running example
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+```{r}
+heights %>% tt() %>% style_tt(fontsize = 0.7)
+```
+
+:::
+
+::: {.column width="60%"}
+**Measures of central tendency**
+
+- **Mean = **  `r round(mean(inches), 1)`
+
+- **Median =** 67.0
+
+- **Mode =** 63.0, 66.0, 70.0
+
+Which is a better summary?
+
+**Short answer:** The **mean** because it has some nice statistical properties
+
+:::
+
+::::
+
+## Long answer: Take a step back
+
+**Question from the [2022 General Social Survey](https://gss.norc.org)**
+
 . . .
 
-... data generation processes
+In 2020, you remember that Joe Biden ran for President on the Democratic ticket against Donald Trump for the Republicans.
 
-. . .
+:::aside
+Learn more about the GSS at [gss.norc.org](https://gss.norc.org)
+:::
 
-This is known as the **i.i.d assumption**
 
-## i.i.d. implications
+## Long answer: Take a step back
 
-. . . 
+**Question from the [2022 General Social Survey](https://gss.norc.org)**
 
-Each survey respondent has an internal, unobservable **function** that draws different survey responses with some probability
-
-. . .
-
-**Independent:** How *I* come up with answers does not affect how *you* come up with answers
-
-. . .
-
-**Identically distributed:** 
+In 2020, you remember that Joe Biden ran for President on the Democratic ticket against Donald Trump for the Republicans. *Do you remember for sure whether or not you voted in that election?*
 
 ::: incremental
-- Do not know how responses are drawn
-
-- Assume is the same process for everyone
+- Yes, I voted
+- No, I did not vote
+- I was not eligible to vote
 :::
 
-::: aside
-We call these *unobservable functions* [random variables](https://en.wikipedia.org/wiki/Random_variable)
+:::aside
+Learn more about the GSS at [gss.norc.org](https://gss.norc.org)
 :::
 
 
-## i.i.d. implications
+## Dataset
 
-This is equivalent to assuming that individual units are sampled at random **with replacement** 
 
----
-
-![](fig/sampling_replacement.webp){fig-align="center"}
-
-## i.i.d. implications
-
-This is equivalent to assuming that individual units are sampled at random **with replacement** 
-
-. . .
-
-But we can only do random sampling *without replacement*
-
-. . .
-
-$\rightarrow$ A decent approximation if sample size is large enough
-
-. . . 
-
-::: {.callout-important}
-
-**Random sampling** lets us justify the **i.i.d. assumption**, which in turn allows using the standard formula for **confidence intervals** and **p-values**.
-:::
-
-::: {style="text-align: center"}
-## Problems with random sampling? {.center}
-
-. . .
-
-It's expensive and can go wrong!
-
-:::
-
-## Back to GSS data
 
 ```{r, cache = TRUE}
 gss22 = gss_get_yr(2022)
 
-# gss22 %>% select(sexnow1). 1 male, 2 women, only 14 trans
-# gss22 %>% select(hispanic). 1 not, else some category
-# gss22 %>% select(degree). 1 HS, 2 or more some post-sec
-
 # Question: 
 # Do you remember for sure whether or not you voted in the last election?
 gss = gss22 %>% 
-  select(vote20, sexnow1, hispanic, degree) %>% 
-  mutate(vote = ifelse(vote20 == 1, "yes", "no"),
-         sex = case_when(
-           sexnow1 == 1 ~ "man",
-           sexnow1 == 2 ~ "woman", 
-           .default = NA 
-         ),
-         hispanic = ifelse(hispanic == 1, "no", "yes"),
-         college = ifelse(degree <= 1, "no", "yes")) %>% 
+  select(vote20) %>% 
+  mutate(vote = ifelse(vote20 == 1, "yes", "no")) %>% 
   drop_na() %>% 
-  select(vote, sex, hispanic, college)
+  select(vote)
 ```
+
+
 
 ```{r}
 gss %>% print(n = 5000)
 ```
 
-. . .
-
-$\rightarrow$ Take this as a population and compare different sampling procedures
-
-## 500 simulations
-
-```{r}
-simple = 
-  declare_model(data = gss) +
-  declare_measurement(Y = vote == "yes") +
-  declare_inquiry(Y_bar = mean(Y)) +
-  declare_sampling(S = simple_rs(N, prob = 0.025)) +
-  declare_estimator(Y ~ 1, inquiry = "Y_bar")
-
-complete =
-  declare_model(data = gss) +
-  declare_measurement(Y = vote == "yes") +
-  declare_inquiry(Y_bar = mean(Y)) +
-  declare_sampling(S = complete_rs(N, n = 100)) +
-  declare_estimator(Y ~ 1, inquiry = "Y_bar")
-```
 
 
-```{r, cache = TRUE}
-simp_df = simulate_design(simple)
-comp_df = simulate_design(complete) 
-```
+## Dataset
 
+:::: {.columns}
+
+::: {.column width="40%"}
 
 ```{r}
-rand0 = bind_rows(
-  simp_df %>% 
-    mutate(design = "Simple randomization (p = 0.025)"),
-  comp_df %>% 
-    mutate(design = "Complete randomization (n = 100)"))
-
-rand0$design = fct_rev(rand0$design)
-
-ggplot(rand0) +
-  aes(x = estimate) +
-  geom_vline(xintercept = 0.74, linetype = "dashed") +
-  geom_density(linewidth = 2, color = "#4E2A84") +
-  facet_grid(~design) +
-  labs(
-    x = "Proportion who remember voting",
-    y = "Density"
-  )
+gss %>% group_by(vote) %>% tally() %>% tt()
 ```
 
+:::
 
-
-## Variants of random sampling
+::: {.column width="60%"}
 
 ::: incremental
-- **Stratified random sampling:** Complete random simpling within groups/strata
+- Proportion yes = `r mean(gss$vote == "yes") %>% round(2)`
 
-- **Cluster random sampling:** Whole groups brought into sample together
+- Pretend this is the entire population
 
-- **Stratified cluster sampling:** First make groups, then sample clusters within each groups
-
-- **Multi-stage random sampling:** First clusters, then units within clusters
 :::
+
+:::
+
+::::
+
+::: incremental
+
+- But we cannot ask almost 4,000 people directly
+
+- We only have time for 10
+
+- So let's take a *random sample* and see what happens
+
+:::
+
+## Asking 10 people
+
+```{r}
+sample_mean = function(n){
+  mean(sample(gss$vote == "yes", size = n), replace = FALSE)
+}
+
+set.seed(20250115)
+means = replicate(10, sample_mean(10))
+
+```
+
+::: incremental
+- Attempt 1: `r means[1] %>% round(2)`
+
+- Attempt 2: `r means[2] %>% round(2)`
+
+- Attempt 3: `r means[2] %>% round(2)`
+
+- Attempt 4: `r means[3] %>% round(2)`
+
+- Attempt 5: `r means[4] %>% round(2)`
+:::
+
+. . .
+
+Average: `r mean(means[1:5]) %>% round(2)`
+
+. . .
+
+What if we tried more and more attempts?
 
 ---
 
-![](fig/sampling_types.png){fig-align="center"}
+```{r, cache = TRUE}
+rep_means = function(reps){
+  means = replicate(reps, sample_mean(10))
+  out = mean(means)
+  return(out)
+}
 
-## What changes?
+set.seed(20250115)
+
+obs = seq(10, 500, by = 10) %>% 
+  map(~rep_means(.)) %>% 
+  unlist()
+
+weak_law = data.frame(
+  reps = seq(10, 500, by = 10),
+  avg_prop = obs
+)
+```
 
 ```{r}
-strat = 
-  declare_model(data = gss) +
-  declare_measurement(Y = vote == "yes") +
-  declare_inquiry(Y_bar = mean(Y)) +
-  declare_sampling(S = strata_rs(strata = sex, n = 50)) +
-  declare_estimator(Y ~ 1, inquiry = "Y_bar")
+wl_plot = ggplot(weak_law) +
+  aes(x = reps, y = obs) +
+  geom_hline(yintercept = 0.74,
+             linetype = "dashed") +
+  geom_point(color = "#4E2A84", size = 2) +
+  labs(x = "Number of attempts",
+       y = "Avgerage proportion") +
+  scale_x_continuous(breaks = seq(0, 500, by = 100))
 ```
 
 ```{r, cache = TRUE}
-set.seed(20250127)
-strat_df = simulate_design(strat, future.seed = FALSE)
+wl_plot +
+  transition_manual(reps, cumulative = TRUE)
 ```
 
 
+---
+
 ```{r}
-rand1 = bind_rows(
-  strat_df %>% 
-    mutate(design = "Stratified (50/50 by sex)"),
-  comp_df %>% 
-    mutate(design = "Complete (n = 100)"))
+ggplot(weak_law) +
+  aes(x = reps, y = obs) +
+  geom_hline(yintercept = 0.74,
+             linetype = "dashed") +
+  geom_point(color = "#4E2A84", size = 2) +
+  geom_path(color = "#4E2A84") +
+  labs(x = "Number of attempts",
+       y = "Avgerage proportion") +
+  scale_x_continuous(breaks = seq(0, 500, by = 100))
+```
+
+. . .
+
+**Weak law of large numbers:** Sample mean *approximates* the true population mean over many repeated measurements
+
+## So what?
+
+. . .
+
+If we have time to ask 10 people many times...
+
+. . .
+
+Maybe we also have time to ask many people one time?
+
+. . .
+
+
+How many people would be enough?
+
+&nbsp;
+
+. . .
+
+**Another exercise:**
+
+::: incremental
+- Pick a sample size
+
+- Repeat the study with a new sample many times
+
+- Calculate proportion who recall voting every time
+
+:::
+
+## 100 samples of 10 people each
+
+```{r}
+draw_sample = function(data, n) {
+  out = data %>% 
+    sample_n(size = n) %>% 
+    summarize(
+      estimate = mean(vote == "yes")
+    ) %>% .$estimate
+  
+  return(out)
+}
+
+draw_many = function(reps, data, n){
+  temp = replicate(reps, draw_sample(data, n)) %>% 
+    unlist()
+  
+  out = data.frame(
+    n = n,
+    prop = temp
+  )
+  
+  return(out)
+}
+
+samples = c(10, 100, 500)
+
+set.seed(20150115)
+df = samples %>% 
+  map(~draw_many(reps = 100, data = gss, n = .)) %>% 
+  bind_rows %>% 
+  mutate(n = n)
+
 ```
 
 ```{r}
-ggplot(rand1) +
-  aes(x = estimate) +
-  geom_vline(xintercept = 0.74, linetype = "dashed") +
-  geom_density(linewidth = 2, color = "#4E2A84") +
-  facet_grid(~design) +
-  labs(
-    x = "Proportion who remember voting",
-    y = "Density"
+ggplot(df %>% filter(n == 10)) +
+  aes(x = prop) + 
+  geom_line(
+    stat = "density",
+    linewidth = 2,
+    color = "#4E2A84",
+    alpha = 0) +
+  labs(y = "Density",
+       x = "Proportion who recall voting") +
+  xlim(0.4, 1)
+```
+
+## 100 samples of 10 people each
+
+```{r}
+ggplot(df %>% filter(n == 10)) +
+  aes(x = prop) + 
+  geom_line(
+    stat = "density",
+    linewidth = 2,
+    color = "#4E2A84") +
+  labs(y = "Density",
+       x = "Proportion who recall voting") +
+  xlim(0.4, 1)
+```
+
+## What about more people?
+
+```{r, fig.align='center'}
+df = df %>% 
+  mutate(samp = paste(n, "people 100 times"))
+
+ggplot(df) +
+  aes(x = prop) + 
+  geom_line(
+    stat = "density",
+    linewidth = 2,
+    color = "#4E2A84") +
+  labs(y = "Density",
+       x = "Proportion who recall voting") +
+  xlim(0.4, 1) +
+  facet_wrap(~samp)
+```
+
+. . .
+
+**Central limit theorem:** Mean converges to a [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) as the sample size increases
+
+## Statistical properties
+
+. . .
+
+The mean is *usually* a good summary of the data because it has good **finite sample** and **asymptotic** properties
+
+. . .
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+**Finite sample properties**
+
+::: incremental
+- Over many repetitions with a fixed sample size
+
+- **Example:** Weak law of large numbers
+:::
+
+:::
+
+::: {.column width="50%"}
+
+**Asymptotic properties**
+
+::: incremental
+- As sample size grows to infinity
+
+- **Example:** Central limit theorem (CLT)
+:::
+
+:::
+
+::::
+
+::: aside
+This is also true for fancier mean-like things that we will learn about this term
+:::
+
+::: {style="text-align: center"}
+## The mean is a good summary {.center}
+
+:::
+
+::: {style="text-align: center"}
+## The mean is a good summary {.center}
+
+Ok, but how good?
+:::
+
+::: {style="text-align: center"}
+## The mean is a good summary {.center}
+
+Ok, but how good?
+
+Are we cooking or are we cooked?
+:::
+
+::: {style="text-align: center"}
+## The mean is a good summary {.center}
+
+Ok, but how good?
+
+Are we cooking or are we cooked?
+
+We want to *quantify* our **confidence** or **uncertainty**
+:::
+
+## Back to heights
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+```{r}
+heights %>% 
+  rename(Height = `Height (inches)`) %>% 
+  tt() %>%
+  style_tt(fontsize = 0.7)
+```
+
+:::
+
+::: {.column width="60%"}
+
+::: incremental
+- The mean was `r mean(inches) %>% round(1)`
+
+- The *range* is [62.5, 70.7]
+
+- Is that informative?
+:::
+
+:::
+
+::::
+
+---
+
+![Some extremes of height. Angus McAskill (1825-1863) and Charles Sherwood Stratton (1838-1883). McAskill was 7 feet 9 inches tall. Stratton, also known as Tom Thumb, was 2 feet 6 inches in height.](fig/short_tall.jpg)
+
+
+## Maybe remove extremes?
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+```{r}
+heights %>% 
+  rename(Height = `Height (inches)`) %>% 
+  tt() %>%
+  style_tt(fontsize = 0.7) %>% 
+  style_tt(
+    i = c(1, 11),
+    color = "gray"
   )
 ```
 
-. . .
-
-$\rightarrow$ Less likely to get unlucky!
-
-## Non-random sampling
-
-::: incremental
-- **Convenience sampling:** Easy, inexpensive access
-
-- **Quota sampling:** Search until target group count is met
-
-- **Respondent-driven:** Ask respondents for contacts
 :::
 
+::: {.column width="60%"}
+
+::: incremental
+- Original range is [62.5, 70.7]
+
+- Taking out extremes gives [63.0, 70.5]
+
+- We can't keep doing this with a large sample!
+
+- Is there a more principled way?
+:::
+
+:::
+
+::::
+
+## Use percentiles
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+```{r}
+heights %>% 
+  rename(Height = `Height (inches)`) %>% 
+  mutate(Percentile = seq(0, 100, by = 10)) %>% 
+  tt() %>%
+  style_tt(fontsize = 0.7) %>% 
+  style_tt(
+    i = c(1, 11),
+    color = "gray"
+  )
+```
+
+:::
+
+::: {.column width="60%"}
+
+::: incremental
+- Taking away 10% on each side gives [63.0, 70.5]
+
+- 90% of the observations lie in this range
+
+- For the sample mean, this has a special name
+:::
+:::
+
+::::
+
+## Confidence interval
+
+```{r}
+ggplot(df %>% filter(n == 500)) +
+  aes(x = prop) + 
+  geom_line(
+    stat = "density",
+    linewidth = 2,
+    color = "#4E2A84") +
+  labs(y = "Density",
+       x = "Proportion who recall voting") +
+  facet_wrap(~samp)
+
+avg = mean(df %>% filter(n == 500) %>% .$prop)
+lo = quantile(df %>% filter(n == 500) %>% .$prop, 0.025)
+hi = quantile(df %>% filter(n == 500) %>% .$prop, 0.975)
+```
+
+
+## Confidence interval
+
+```{r}
+ggplot(df %>% filter(n == 500)) +
+  aes(x = prop) + 
+  geom_line(
+    stat = "density",
+    linewidth = 2,
+    color = "#4E2A84") +
+  labs(y = "Density",
+       x = "Proportion who recall voting") +
+  facet_wrap(~samp) +
+  geom_vline(
+    xintercept = avg,
+    linetype = "dashed"
+    ) +
+  annotate("text", y = -1, x = avg + 0.003, label = "Mean")
+```
+
+## Confidence interval
+
+```{r}
+ggplot(df %>% filter(n == 500)) +
+  aes(x = prop) + 
+  geom_line(
+    stat = "density",
+    linewidth = 2,
+    color = "#4E2A84") +
+  labs(y = "Density",
+       x = "Proportion who recall voting") +
+  facet_wrap(~samp) +
+  geom_vline(
+    xintercept = avg,
+    linetype = "dashed"
+    ) +
+  annotate("text", y = -1, x = avg + 0.003, label = "Mean") +
+    geom_vline(
+    xintercept = lo,
+    linetype = "dotted"
+    ) +
+  annotate("text", y = -1, x = lo + 0.007, label = "2.5% percentile") +
+    geom_vline(
+    xintercept = hi,
+    linetype = "dotted"
+    ) +
+  annotate("text", y = -1, x = hi - 0.007, label = "97.5% percentile")
+  
+```
+
+## Confidence interval
+
+```{r}
+ggplot(df %>% filter(n == 500)) +
+  aes(x = prop) + 
+  geom_line(
+    stat = "density",
+    linewidth = 2,
+    color = "#4E2A84") +
+  labs(y = "Density",
+       x = "Proportion who recall voting") +
+  facet_wrap(~samp) +
+  geom_vline(
+    xintercept = avg,
+    linetype = "dashed"
+    ) +
+  annotate("text", y = -1, x = avg + 0.003, label = "Mean") +
+    geom_vline(
+    xintercept = lo,
+    linetype = "dotted"
+    ) +
+  annotate("text", y = -1, x = lo + 0.007, label = "2.5% percentile") +
+    geom_vline(
+    xintercept = hi,
+    linetype = "dotted"
+    ) +
+  annotate("text", y = -1, x = hi - 0.007, label = "97.5% percentile")
+  
+```
+
+::: aside
+**Mean =** `r round(avg, 2)`. **95% confidence interval =**  `r paste0("[",round(lo, 2), ",", round(hi,2), "]")`
+:::
+
+## More formally
+
 . . .
 
-![](fig/nonrandom_sampling.png){fig-align="center" width="80%"}
+**Confidence interval:** Range of values in which X% of the estimates would fall
 
-# Sources of error
+## More formally
 
-## Return to measurement error
-
-![](fig/board.png)
+**Confidence interval:** Range of values in which X% of the estimates would fall **over many repetitions with a fixed sample size**
 
 . . .
 
- Many different forms of measurement error!
+**Informally:** We are X% confident that our estimate falls in this range
 
-## Total survey error framework
+. . .
 
-![](fig/total_survey_error.png){fig-align="center"}
+How to calculate:
+
+::: incremental
+1. Non-parametric approximation (percentile method)
+
+2. Analytic derivation (shortcut via aymptotic properties)
+:::
+
+::: aside
+The 95% is an arbitrary yet useful convention in the social sciences
+:::
+
+## Analytic derivation
+
+. . .
+
+The percentile method would require us to *actually* repeat the study many times or *simulate*
+
+. . .
+
+The **CLT** lets us use *measures of dispersion* as shortcuts
+
+. . .
+
+
+$$
+\text{Sample mean: }\overline{X} = \frac{1}{n} \sum x_i
+$$
+
+. . .
+
+
+$$
+\text{Sample variance: } V[X] = \frac{1}{(n-1)} \sum(x_i - \overline{X})^2
+$$
+
+
+
+## Analytic derivation
+
+
+
+The percentile method would require us to *actually* repeat the study many times or *simulate*
+
+
+The **CLT** lets us use *measures of dispersion* as shortcuts
+
+
+$$
+\text{Variance of sample mean: } V[\overline{X}] = \frac{V[X]}{n}
+$$
+
+. . .
+
+$$
+\text{Standard error: } SE[\overline{X}] = \sqrt {V[\overline X]}
+$$
+
+
+. . .
+
+The **standard error** is a measure of dispersion for the **sample mean**
+
+## Calculate confidence intervals
+
+. . .
+
+![](fig/normal_conf.webp){fig-align="center" width="80%"}
+
+
+## Back to vote recall
+
+```{r}
+
+ci_df = bind_rows(
+  t.test(gss$vote == "yes", conf.level = 0.90) %>% tidy() %>% mutate(level = "90%"),
+  t.test(gss$vote == "yes") %>% tidy() %>% mutate(level = "95%"),
+  t.test(gss$vote == "yes", conf.level = 0.99) %>% tidy() %>% mutate(level = "99%")  
+)
+```
+
+. . .
+
+```{r}
+ci_df %>% 
+  select(level, estimate, conf.low, conf.high) %>% 
+  tt(digits = 3) %>% 
+  style_tt(fontsize = 0.7)
+```
+
+. . .
+
+```{r, fig.height=4}
+ggplot(ci_df) +
+  aes(x = level, y = estimate) +
+  geom_point(size = 3, color = "#4E2A84") +
+  geom_linerange(aes(x = level,
+                     ymin = conf.low,
+                     ymax = conf.high),
+                 color = "#4E2A84",
+                 linewidth = 1) +
+  labs(x = "Confidence level",
+       y = "Proportion recall")
+```
+
 
 ## Summary
 
-- We conduct surveys to understand attitudes and behaviors
+- We summarize data to conduct statistical inference
 
-- Gap between *self-reports* and *actual* attitudes behaviors opens the door for measurement error
+- The mean is *usually* good because of its statistical properties
 
-- Many sources of error (Mode, frame, procedure)
+- We use confidence intervals to convey uncertainty around the sample mean
 
-- *Random sampling* important assumption to enable statistical inference
+- 95% confidence intervals are the convention in the social sciences
+
+
 
 ::: {style="text-align: center"}
-## Surveys {#thu .center}
+## Inference {#thu .center}
 
 ### POLI SCI 210
 
@@ -594,573 +952,361 @@ Introduction to Empirical Methods in Political Science
 
 ## Last time
 
-- Gap between *self-reports* and *actual* attitudes/behaviors opens the door for measurement error
+- We summarize data to conduct statistical inference
 
-- **Tuesday:** Sample design concerns
+- The mean is *usually* a good summary
 
-- **Today:** Questionnaire design concerns
-
-. . .
-
-1. Asking good questions
-
-2. Asking sensitive questions
-
-
-## Practice
-
-![](fig/tv_watching.png){fig-align="center"}
-
-::: aside
-**Source:** Schwarz, Norbert. 1999. ["Self-reports: How the questions shape the answers."](https://dornsife.usc.edu/norbert-schwarz/wp-content/uploads/sites/231/2023/11/99_ap_schwarz_self-reports.pdf) *American Psychologist* 54 (2): 97
-:::
-
-## More practice
+- We compute confidence intervals to *quantify uncertainty* around the mean
 
 . . . 
 
-Q: *What is the most important thing to teach children to prepare them for life?*
+**TODAY:** *Hypothesis testing* as an alternative approach
+
+## Example: [Fisher (1935)](https://mimno.infosci.cornell.edu/info3350/readings/fisher.pdf) Chapter 2
+
+![](fig/fisher_book.png){fig-align="center"}
+
+## The lady tasting tea
 
 . . . 
 
-A: **To think for themselves**
-
-. . .
-
-- 61.5% multiple choice
-- 4.6% open-ended
-
-
-## What makes a good survey question?
-
-. . . 
-
-No definitive answer!
-
-. . . 
-
-- We want some validity and reliability, but those are hard to gauge
-
-. . . 
-
-- Consistency over time is good
-
-. . .
-
-Here are some vague principles
-
-## Literal vs. pragmatic meaning
-
-. . .
-
-What the words mean vs. what we think the question is asking
-
-. . .
-
-Follow the *maxims of conversation*:
-
-::: incremental
-1. **Maxim of relation:** Answers are relevant *relative* to context
-
-2. **Maxim of quantity:** Answer are informative, but no more informative than required
-
-3. **Maxim of manner:** Most obvious meaning should be the correct one
-
-4. **Maxim of quality:** Not to say anything false or inaccurate
-:::
-
-. . .
-
-Try to approximate everyday language!
-
-## Open-ended vs. closed response
-
-. . .
-
-Q: *What have you done today?*
-
-. . . 
-
-What to say if **open-ended**:
-
-::: incremental
-- I went to class
-
-- I took a shower
-
-- I read the newspaper
-
-- I wrote to my representative
-:::
-
-## Open-ended vs. closed response
-
-
-
-Q: *What have you done today?*
-
-
-What to say if **multiple choice**:
-
-- I went to class
-
-- I took a shower
-
-- I read the newspaper
-
-- I wrote to my representative
-
-
-## Frequency scales
-
-Q: *How frequently have you felt really irritated?*
-
-. . .
-
-What does *really irritated* mean?
-
-. . .
-
-Maybe look at the options:
-
-. . .
-
-- Less than once a year
-
-- About twice per year
-
-- Every other month
-
-- About once a month
-
-- More than once a month
-
-
-
-## Reference periods
-
-. . .
-
-Q: _How many times have you felt really irritated **this year**_
-
-. . .
-
-::: {.r-stack}
-vs.
-:::
-
-. . .
-
-Q: _How many times have you felt really irritated **last week?**_
+*A lady declares that by tasting a cup of tea made with milk she can discriminate whether the milk or the tea infusion was first added to the cup*
 
 . . .
 
 &nbsp;
-
-::: {.r-stack}
-Reference periods also convey meaning!
-:::
-
-
-## Rating scales
-
-. . .
-
-Q: *How successful would you say you have been in life?*
-
-. . .
-
-**Scale 1**
-
-0 (Not at all successful) - 10 (extremely successful)
-
-. . .
-
-**Scale 2**
-
--5 (Not at all successful) - 5 (extremely succesful)
-
-## Rating scales
-
-
-Q: *How successful would you say you have been in life?*
-
-**Scale 1** (13% between 0 and 5)
-
-0 (Not at all successful) - 10 (extremely successful)
-
-
-**Scale 2** (34% between -5 and 0)
-
--5 (Not at all successful) - 5 (extremely succesful)
-
-&nbsp;
-
-
-::: incremental
-- 0 at the beginning is a *minimum*
-
-- 0 in the middle is a *baseline*
-:::
-
-## Demand effects
-
-. . .
-
-**Preamble 1**
-
-. . .
-
-*You will now be asked to consider some hypothetical (not real) online news items and to indicate which news item you would most prefer to read*
-
-::: aside
-Adapted from [Mummolo and Peterson (2019)](https://doi.org/10.1017/S0003055418000837)
-:::
-
-
-## Demand effects
-
-**Preamble 2**
-
-_You will now be asked to consider some hypothetical (not real) online news items and to indicate which news item you would most prefer to read. **The purpose of this exercise is so we can measure whether the news outlet offering an article influences how likely people are to read the article**_
-
-::: aside
-Adapted from [Mummolo and Peterson (2019)](https://doi.org/10.1017/S0003055418000837)
-:::
-
-## Demand effects
-
-**Preamble 3**
-
-_You will now be asked to consider some hypothetical (not real) online news items and to indicate which news item you would most prefer to read. **The purpose of this exercise is so we can measure whether the news outlet offering an article influences how likely people are to read the article.** [We expect that people will be more likely to choose an article if the news source offering it is known to favor their preferred political party, since people tend to seek out information that is consistent with their personal views]{style="color: #4E2A84;"}_
-
-::: aside
-Adapted from [Mummolo and Peterson (2019)](https://doi.org/10.1017/S0003055418000837)
-:::
-
-## Demand effects
-
-- Respondents' tendency to try use *context* clues to find the *"right" answer*
-
-. . .
-
-Small bits convey **researcher's epistemic interest**
-
-::: incremental
-- Affiliation
-
-- Description of study
-
-- Question-wording
-:::
-
-## Priming effects
-
-![](fig/lasorsa.png){fig-align="center" width="70%"}
-
-::: aside
-Lasorsa, Dominic L. 2003. ["Question-Order Effects in Surveys: The Case of Political Interest, News Attention, and Knowledge."](https://doi.org/10.1177/107769900308000302) *Journalism & Mass Communication Quarterly* 80 (3): 499-512
-:::
-
-## Priming effects
-
-. . .
-
-**Three question groups**
-
-. . .
-
-1. Political interest (How often follow govt news)
-
-2. Political knowledge (Texas politics)
-
-3. News coverage evaluation (Excuse knowledge gaps)
-
-. . .
-
-Shuffle order, and compare frequency for each combination
-
-## Priming effects
-
-![](fig/lasorsa_findings.png){fig-align="center"}
-
-## Priming effects
-
-Questions are affected by their **placement in the survey flow**
-
-. . .
-
-Preceding questions may influence how respondents interpret current question
 
 ::: {style="text-align: center"}
-## What if... {.center}
-
-. . .
-
-The problem is *not* how to craft questions
-
-
-. . .
-
-But the questions *themselves*?
-
+How do you **evaluate** this statement?
 :::
 
-
-
-## Some examples
+## An experiment
 
 ::: incremental
-- Have you lied about having COVID symptoms?
+- Grab eight milk-tea cups
 
-- Would you bribe a police officer to avoid a traffic ticket?
+- 4 milk first, 4 tea first
 
-- Have you had sex after drinking alcohol?
+- We arrange them in random order and ask lady to guess
 
-- Have you been offered goods or favors for your vote?
-
-- Do you know anyone with links to a militant organization?
-
-- Would you oppose a black family moving next door?
-
-- Would you allow muslim immigrants to become citizens?
-
+- Lady knows there are 4 of each, but not which ones
 :::
 
-## What do these have in common?
+## Results
+
+```{r}
+tea = tribble(
+  ~Lady, ~Tea, ~Milk,
+  "Tea", 3, 1,
+  "Milk", 1, 3
+)
+
+tea = tea %>% mutate(
+  Lady = ifelse(Lady == "Tea", 
+                "Tea First",
+                "Milk First"))
+
+colnames(tea) = c("Lady's Guesses", "Tea First", "Milk First")
+
+tea %>% 
+  kbl() %>% 
+  add_header_above(c(" " = 1, "True Order" = 2))
+```
 
 ::: incremental
-- They are **sensitive questions**
+- She gets it right $6/8$ times
 
-- We can only learn about them through surveys
-
-- Asking about them directly leads to **misreporting**
-
-- This kind of *measurement error is called* **social desirability bias** or **sensitivity bias**
+- What can we conclude?
 :::
 
-## How to reduce sensitivity bias?
+## Problem
+
+::: incremental
+- How does "being able to discriminate" look like?
+
+- We **do know** how a person *without* the ability to discriminate milk/tea order looks like
+
+- Random guessing!
+
+- This is our **null hypothesis** ($H_0$)
+
+- Which lets us make **probability statements** about how the world look like **if the null hypothesis was true** 
+:::
+
+## A person with no ability
+
+```{r}
+nulldist = tribble(
+  ~count, ~combinations, ~number,
+  0, "xxxx", "\\(1 \\times 1 = 1\\)",
+  1, "xxxo, xxox, xoxx, oxxx", "\\(4 \\times 4 = 16\\)", 
+  2, "xxoo, xoxo, xoox, oxox, ooxx, oxxo", "\\(6 \\times 6 = 36\\)",
+  3, "xooo, oxoo, ooxo, ooox", "\\(4 \\times 4 = 16\\)",
+  4, "oooo", "\\(1 \\times 1 = 1\\)"
+)
+
+colnames(nulldist) = c("Count", "Possible combinations", "Total")
+
+nulldist %>% 
+  kbl(escape = FALSE) %>% 
+  column_spec(3, color = "white")
+  
+```
+
+::: aside
+Ways of getting a number of tea-first cups right
+:::
+
+. . .
+
+- This is a symmetrical problem!
+
+## A person with no ability {visiblity="uncounted"}
+
+```{r}
+nulldist = tribble(
+  ~count, ~combinations, ~number,
+  0, "xxxx", "\\(1 \\times 1 = 1\\)",
+  1, "xxxo, xxox, xoxx, oxxx", "\\(4 \\times 4 = 16\\)", 
+  2, "xxoo, xoxo, xoox, oxox, ooxx, oxxo", "\\(6 \\times 6 = 36\\)",
+  3, "xooo, oxoo, ooxo, ooox", "\\(4 \\times 4 = 16\\)",
+  4, "oooo", "\\(1 \\times 1 = 1\\)"
+)
+
+colnames(nulldist) = c("Count", "Possible combinations", "Total")
+
+nulldist %>% 
+  kbl(escape = FALSE) %>% 
+  column_spec(3, color = "white")
+  
+```
+
+::: aside
+Ways of getting a number of milk-first cups right
+:::
+
+
+## A person with no ability {visiblity="uncounted"}
+
+```{r}
+nulldist %>% 
+  kbl(escape = FALSE)
+```
+
+. . .
+
+- A person guessing at random gets $6/8$ cups right with probability $\frac{16}{70} \approx 0.23$
+
+
+::: aside
+Ways of getting a number of tea-first **and** milk-first cups right
+:::
+
+## A person with no ability {visiblity="uncounted"}
+
+```{r}
+nulldist %>% 
+  kbl(escape = FALSE)
+```
+
+- And **at least** $6/8$ cups with $\frac{16 + 1}{70} \approx 0.24$
+
+
+::: aside
+Ways of getting a number of tea-first **and** milk-first cups right
+:::
+
+## Another way to look at it
+
+
+
+```{r}
+milk_tea = data.frame(
+  Count = 0:4,
+  Correct = c("0/8", "2/8", "4/8", "6/8", "8/8"),
+  Combinations = c("1/70", "16/70", "36/70", "16/70", "1/70"),
+  Probability = c(1/70, 16/70, 36/70, 16/70, 1/70)
+)
+
+milk_tea %>% tt(digits = 1)
+```
+
+. . .
+
+**Random guesser:** pick 0-8 right with corresponding probability
+
+. . .
+
+Simulate 1000 times to make a **probability distribution**
+
+---
+
+```{r}
+set.seed(20250116)
+
+sims = sample(milk_tea$Count, 
+              size = 1000,
+              replace = TRUE,
+              prob = milk_tea$Probability)
+
+sims_df = data.frame(sims) %>% 
+  group_by(sims) %>% 
+  tally() %>% 
+  mutate(signif = ifelse(sims >= 3, 1, 0),
+         correct = recode(sims,
+                          `0` = "0/8",
+                          `1` = "2/8",
+                          `2` = "4/8",
+                          `3` = "6/8",
+                          `4` = "8/8"))
+
+ggplot(sims_df) +
+  aes(x = correct, y = n) +
+  labs(
+    x = "Correct cups",
+    y = "Frequency"
+  ) +
+  geom_col(alpha = 0)
+```
+
+---
+
+```{r}
+ggplot(sims_df) +
+  aes(x = correct, y = n) +
+  labs(
+    x = "Correct cups",
+    y = "Frequency"
+  ) +
+  geom_col() +
+  geom_text(
+    aes(
+      x = correct,
+      y = n + 20,
+      label = n)
+    )
+```
+
+---
+
+```{r}
+ggplot(sims_df) +
+  aes(x = correct, y = n, fill = as.factor(signif)) +
+  labs(
+    x = "Correct cups",
+    y = "Frequency"
+  ) +
+  geom_col() +
+  theme(legend.position = "none") +
+  scale_fill_manual(
+    values = c("grey35", "#4E2A84")
+  ) +
+  geom_text(
+    aes(
+      x = correct,
+      y = n + 20,
+      label = n)
+    )
+```
+
+. . .
+
+Random guesser gets *at least* 6/8 cups right $\frac{(199+12)}{1000} \approx 0.21$ of the time
+
+
+## p-values
+
+::: incremental
+- If the lady is **not** able to discriminate milk-tea order, the probability of observing $6/8$ correct guesses or better is $0.24$
+
+- A **p-value** is the probability of observing a result *equal or more extreme* than what is originally observed...
+
+- ... *when* the **null hypothesis** is true
+
+- Smaller p-values give more evidence **against** the null
+
+- Implying observed value is *less likely to have emerged by chance*
+:::
+
+::: aside
+This is Fisher's interpetation of p-values, which is the most common. [Neyman and Pearson had different ideas](https://pmc.ncbi.nlm.nih.gov/articles/PMC4347431/)
+:::
+
+## Another way to say it
+
+. . .
+
+A **probability statement**
+
+## Another way to say it
+
+A **probability statement** of **how rare our observed _test statistic_** is 
+
+## Another way to say it
+
+A **probability statement** of **how rare our observed _test statistic_** is if the **null hypothesis were to be true**
+
+. . .
+
+Smaller p-value $\rightarrow$ $H_0$ less credible
+
+. . .
+
+But we never say anything about the **hypothesis** we actually want to evaluate!
+
+## Another way to say it
+
+A **probability statement** of **how rare our observed _test statistic_** is if the **null hypothesis were to be true**
+
+
+
+Smaller p-value $\rightarrow$ $H_0$ less credible
+
+
+But we never say anything about the **hypothesis** we actually want to evaluate!
+
+::: aside
+The informal usage in political science articles of listing $H_1, H_2, H_3, \ldots$ is different.
+:::
+
+## Rules of thumb
 
 ::: incremental
 
-- Purposefully deviate from *maxims of conversation*
+- A convention in the social sciences is to claim that something with $p < 0.05$ is *statistically significant*
 
-- By adding noise to the question
+- Meaning we have "enough" evidence to reject the null 
 
-- Two approaches:
+- This is known as **Null Hypothesis Significance Testing** (NHST)
 
-1. Distract from the sensitive attitude/behavior
+- Committing to a **significance level** $\alpha$ implies accepting that sometimes we will get $p < 0.05$ by chance
 
-2. Guarantee anonymity
+- This is a **false positive** result
 
-- Different techniques vary on how they combine the two
-
-- Broadly known as **indirect questioning techniques**
+::: aside
+No good reason for $\alpha = 0.05$ other than path dependency.
 :::
-
-## Randomized response
-
-For this question, I want you to answer *yes* or *no*.
-
-## Randomized response {visibility="uncounted"}
-
-For this question, I want you to answer *yes* or *no*. But I want you to consider the number of your dice throw.
-
-## Randomized response {visibility="uncounted"}
-
-For this question, I want you to answer *yes* or *no*. But I want you to consider the number of your dice throw. If {{< fa dice-one >}} shows on the dice, tell me *no*.
-
-## Randomized response {visibility="uncounted"}
-
-For this question, I want you to answer *yes* or *no*. But I want you to consider the number of your dice throw. If {{< fa dice-one >}} shows on the dice, tell me *no*. If {{< fa dice-six >}} shows, tell me *yes*.
-
-## Randomized response {visibility="uncounted"}
-
-For this question, I want you to answer *yes* or *no*. But I want you to consider the number of your dice throw. If {{< fa dice-one >}} shows on the dice, tell me *no*. If {{< fa dice-six >}} shows, tell me *yes*. But if another number shows, tell me your own opinion about the question.
-
-. . .
-
-&nbsp;
-
-[TURN AWAY FROM RESPONDENT]
-
-. . .
-
-&nbsp;
-
-Now you throw the dice so that I cannot see what comes out.
-
-## Randomized response {visibility="uncounted"}
-
-For this question, I want you to answer *yes* or *no*. But I want you to consider the number of your dice throw. If {{< fa dice-one >}} shows on the dice, tell me *no*. If {{< fa dice-six >}} shows, tell me *yes*. But if another number shows, tell me your own opinion about the question.
-
-&nbsp;
-
-[TURN AWAY FROM RESPONDENT]
-
-&nbsp;
-
-Have you thrown the dice?
-
-## Randomized response {visibility="uncounted"}
-
-For this question, I want you to answer *yes* or *no*. But I want you to consider the number of your dice throw. If {{< fa dice-one >}} shows on the dice, tell me *no*. If {{< fa dice-six >}} shows, tell me *yes*. But if another number shows, tell me your own opinion about the question.
-
-&nbsp;
-
-[TURN AWAY FROM RESPONDENT]
-
-&nbsp;
-
-Have you picked it up?
-
-## Randomized response {visibility="uncounted"}
-
-For this question, I want you to answer *yes* or *no*. But I want you to consider the number of your dice throw. If {{< fa dice-one >}} shows on the dice, tell me *no*. If {{< fa dice-six >}} shows, tell me *yes*. But if another number shows, tell me your own opinion about the question.
-
-&nbsp;
-
-Now, during the height of the conflict in 2007 and 2008 *(in Afghanistan)*, did you know any militants, like a family member, a friend, or someone you talked to on a regular basis? 
-
-. . .
-
-Please, before you answer, take note of the number you rolled on the dice.
-
-## How does it work?
-
-::: incremental
-
-- We know that about $1/6 \approx 0.17$ respondents said *yes* because they rolled a {{< fa dice-six >}}
-
-- So if $30\%$ in total said *yes*
-
-- We have $\widehat{Y} = 0.3 - 0.17 = 0.13$ as our *population estimate*
-
-- But we **do not know** who they are in our survey!
 
 :::
 
-## Assumptions
+## Types of error
 
-. . .
-
-::: {.callout-warning}
-### 1. Honesty given protection
-
-People respond honestly when guaranteed anonymity.
-
-:::
-
-. . .
-
-::: {.callout-warning}
-### 2. One-sided lying
-
-Those who **do not** hold the sensitive trait **never** falsely claim to bear it.
-
-:::
-
-. . .
-
-- These cannot be verified with data!
-
-## List experiment
-
-Now I am going to read you three things that make people angry or upset.
-
-## List experiment {visibility="uncounted"}
-
-Now I am going to read you three things that make people angry or upset. After I read all three, just tell me HOW MANY of them upset you.
-
-## List experiment {visibility="uncounted"}
-
-Now I am going to read you three things that make people angry or upset. After I read all three, just tell me HOW MANY of them upset you. I don't want to know which ones, just HOW MANY.
-
-. . .
-
-### Control group
-
-::: incremental
-1. The federal government increasing the tax on gasoline
-2. Professional athletes getting million-dollar contracts
-3. Large corporations polluting the environment
-:::
-
-## List experiment {visibility="uncounted"}
-
-Now I am going to read you three things that make people angry or upset. After I read all three, just tell me HOW MANY of them upset you. I don't want to know which ones, just HOW MANY.
-
-### Treatment group
-
-1. The federal government increasing the tax on gasoline
-2. Professional athletes getting million-dollar contracts
-3. Large corporations polluting the environment
-4. **A black family moving next door**
-
-## How does it work?
-
-::: incremental
-
-- Respondents are randomly assigned to conditions
-
-- Differences in responses can only be attributed to the presence/absence of the sensitive item (more on this in next week)
-
-- So $\widehat{Y} = \text{Mean(treatment)} - \text{Mean(control)}$ gives a  *population prevalence rate*
-
-- But we **do not know** who they are in our survey!
-
-:::
-
-## Assumptions
-
-. . .
-
-::: {.callout-warning}
-### 1. No liars
-
-Those who **do not** hold the sensitive item **never** falsely claim to bear it.
-
-:::
-
-. . .
-
-::: {.callout-warning}
-### 2. No design effects
-
-Including the sensitive item **does not change** how participants respond to the baseline items
-
-:::
-
-. . .
-
-- These can only be evaluated **indirectly**
+```{r}
+error_types = tribble(
+  ~Decision, ~`\\(H_0\\) true`, ~`\\(H_0\\) not true`,
+  "Don't reject \\(H_0\\)", "True negative", "False negative (type II error)",
+  "Reject \\(H_0\\)", "False positive (type I error)", "True positive"
+)
 
 
 
-## Other techniques
+error_types %>% 
+  kbl(escape = FALSE) %>% 
+  column_spec(1, bold = TRUE, border_right = TRUE) %>% 
+  column_spec(2:3, width = "8cm") %>% 
+  add_header_above(c(" ", "Unobserved reality" = 2))
+```
 
-::: incremental
 
-- [Survey administration protections](https://graemeblair.com/papers/sensitive.pdf)
 
-- [Wisdom of the crowds](https://doi.org/10.1016/j.electstud.2018.09.012)
 
-- [Endorsement experiments](https://doi.org/10.1093/pan/mpr031)
-
-- [Conjoint experiments](https://doi.org/10.1017/pan.2021.30)
-
-- [Network scale-up method](https://doi.org/10.1080/01621459.2021.1935267)
-
-- Variants of the randomized response and list experiment
-
-:::
-
-## Summary
-
-- Asking good survey questions is challenging!
-
-- Ideally, we want to follow the *maxims of conversation*
-
-- But often, getting precise answers means asking *weird* questions
-
-- **Example:** Techniques for sensitive questions

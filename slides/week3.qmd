@@ -4,7 +4,7 @@ format:
       slide-number: false
       progress: false
       chalkboard: true
-      code-overflow: wrap
+      preview-links: true
       theme: [default, custom.scss]
 ---
 
@@ -13,27 +13,20 @@ library(knitr)
 
 opts_chunk$set(echo = FALSE, 
                message = FALSE, 
-               warning = FALSE,
+               warning = FALSE, 
+               results = "asis", 
                out.width = "100%")
 
 library(tidyverse)
-library(tinytable)
-library(kableExtra)
-library(infer)
 library(tidyr)
-library(broom)
-library(gganimate)
-# remotes::install_github("kjhealy/gssr")
-library(gssr)
-
-# ggplot global options
-theme_set(theme_gray(base_size = 20))
+library(tinytable)
+library(palmerpenguins)
 ```
 
 
 
 ::: {style="text-align: center"}
-## Inference {.center}
+## Theory and Data {.center}
 
 ### POLI SCI 210
 
@@ -42,1271 +35,952 @@ Introduction to Empirical Methods in Political Science
 :::
 
 
-## AI Prompts {background-color="#B6ACD1"}
 
-- Central limit theorem
+# Questions?
 
-- Weak law of large numbers
 
-- Confidence interval
+## General roadmap
 
-- Standard deviation vs. standard error
+::: incremental
+- **Weeks 2-3:** Build common language to talk about different methods
 
-- What is a p-value? How to interpret it?
-
-::: aside
-**Reminder:** These are just suggestions, feel free to be creative with your prompts!
+- **Week 4 onward:** Talk about different methods and when/why/how they are useful or important
 :::
 
-## Last week
+## Last week: The scientific method
 
-- Theory as explanation
+**Step 0:** Puzzle/Question
 
-- Elements of a good theory
+**Step 1:** Theory/Model
 
-- Data as the raw material from which we draw inferences
+**Step 2:** Hypothesis/Implications
 
-- Types of data (variables)
+**Step 3:** Observation/Testing
+
+**Step 4:** Conclusion/Evaluation
+
+## This week
+
+**Step 0:** Puzzle/Question
+
+**Step 1:** Theory/Model
+
+**Step 2:** Hypothesis/Implications
+
+**Step 3:** Observation/Testing
+
+**Step 4:** Conclusion/Evaluation
+
+## This week
+
+[**Step 0:** Puzzle/Question]{style="color:gray;"}
+
+**Step 1:** Theory/Model **TUESDAY**
+
+[**Step 2:** Hypothesis/Implications]{style="color:gray;"}
+
+[**Step 3:** Observation/Testing]{style="color:gray;"}
+
+[**Step 4:** Conclusion/Evaluation]{style="color:gray;"}
+
+. . .
+
+[**THURSDAY:**](#thu) Start moving toward the next steps with a conversation about *data*
+
+# Part I: Theory
+
+::: {style="text-align: center"}
+## What is a theory? {.center}
+
+
+:::
+
+::: {style="text-align: center"}
+## What is a theory? {.center}
+
+### ¯\\_(ツ)_/¯
+
+:::
+
+::: {style="text-align: center"}
+## What is a theory? {.center}
+
+### ¯\\_(ツ)_/¯
+
+I have no idea
+
+:::
+
+::: {style="text-align: center"}
+## What is a theory? {.center}
+
+### ¯\\_(ツ)_/¯
+
+I have no idea
+
+::: {style="font-size: 80%;"}
+My *theory* is that no one really knows
+:::
+
+:::
+
+::: {style="text-align: center"}
+## What is a theory? {.center}
+
+### ¯\\_(ツ)_/¯
+
+I have no idea
+
+::: {style="font-size: 80%;"}
+My *theory* is that no one really knows
+:::
+
+::: {style="font-size: 60%;"}
+so they make it complicated
+:::
+
+:::
+
+
+## But it sure is important!
+
+. . .
+
+Most common reasons why a peer-reviewed political science journal rejects an article:
+
+::: incremental
+1. Having no theory
+2. Weak theory
+3. Insufficient theoretical innovation
+:::
+
+---
+
+![](fig/theory.png){fig-align="center"}
+
+::: aside
+[vocabulary.com/dictionary/theory](https://www.vocabulary.com/dictionary/theory){preview-link="false"}
+:::
+
+## Dictionary definitions
+
+::: incremental
+1. A **belief** that can **guide behavior**
+
+2. A **well-substantiated explanation** of some aspect of the natural world; an **organized system of accepted knowledge** that **applies in a variety of circumstances** to **explain a specific set of phenomena**
+
+3. A **tentative insight** into the natural world; a concept that is **not yet verified** but that if true **would explain certain facts or phenomena**
+:::
+
+::: aside
+[vocabulary.com/dictionary/theory](https://www.vocabulary.com/dictionary/theory){preview-link="false"}
+:::
+
+## Textbook definition
+
+. . .
+
+A *scientific theory* 
+
+## Textbook definition
+
+A *scientific theory* is a set of **logically consistent statements** 
+
+## Textbook definition
+
+A *scientific theory* is a set of **logically consistent statements** that tell us **why** the empirical social and political phenomena we observe, or the relationships between them, **occur in the way they occur**
+
+. . . 
+
+A theory is a **set of interrelated propositions** about empirical reality
+
+. . .
+
+Components:
+
+::: incremental
+1. **Concepts** that define basic terms
+
+2. **Assumptions** that relate concepts to each other
+
+3. **Generalizations** that connect statements to observations
+:::
+
+
+
+## Toy example: Democratic peace
+
+. . .
+
+**Proposition:** Democracies are hesitant to fight each other
+
+. . . 
+
+**Concepts:**
+
+::: incremental
+- *Democracy*: Leaders elected in free-fair elections
+- *Fighting*: Militarized Interstate Disputes (MID)
+:::
+
+. . .
+
+**Assumptions:**
+
+::: incremental
+- Liberal democratic culture of negotiation and compromise
+- Democratic publics dislike wars
+:::
+. . .
+
+**Generalization:** No war between democracies
+
+::: {style="text-align: center"}
+## Good? {.center}
+:::
+
+::: {style="text-align: center"}
+## Good? {.center}
+
+Doesn't seem that complicated
+:::
+
+::: {style="text-align: center"}
+## Good? {.center}
+
+Doesn't seem that complicated
+
+::: {style="font-size: 80%;"}
+But many things that look like theory are not
+:::
+
+:::
+
+---
+
+![](fig/theory_not.png){fig-align="center"}
+
+::: aside
+Sutton, Robert I. and Barry M. Staw. 1995. ["What Theory is Not."
+](https://doi.org/10.2307/2393788){preview-link="false"} *Administrative Science Quarterly* 40 (3): 371-384
+:::
+
+## References are not theory
+
+. . .
+
+Literature A suggests X.
+
+## References are not theory
+
+Literature A suggests X. Literature B says Y.
+
+## References are not theory
+
+Literature A suggests X. Literature B says Y. Borrowing from both, we should expect XYZ.
+
+::: incremental
+- Referencing theories in previous work helps to contextualize new explanations
+- But often used as a smokescreen for no theory
+:::
+
+. . .
+
+::: {style="font-size: 80%;"}
+> This pattern is consistent with findings that aggression
+provokes the 'fight' response (Frijda, 1986) and that anger is
+a contagious emotion (Schacter and Singer, 1962; Baron,
+1977).
+
+:::
+
+## Evidence  is not theory
+
+. . .
+
+::: {style="font-size: 80%;"}
+> Recent empirical evidence suggests that the collective bargaining process, the union-management contract , and union-management relations in general all have important consequences for the quality of worklife of unionized workers. Moreover, previous work has investigated the relationship between union strength and construction workers' reactions to their work. She found that union strength (operationalized in terms of workers' relative wages) was positively related to both pay satisfaction and perceived job security. Finally, the union's ability to formally increase members' participation in job-related decisions has been frequently cited as contributing to the unionization of teachers and other professionals.
+
+:::
+
+. . .
+
+- Helps us set expectations, but doesn't relly explain why things happen
+
+## Diagrams are not theory
+
+. . .
+
+:::: columns
+
+::: {.column width="60%"}
+
+![](fig/sketchplanations-prospect-theory.jpg)
+
+:::
+
+::: {.column width="40%"}
+
+::: incremental
+
+- Shows connections
+
+- Does not explain them
+
+:::
+:::
+
+::::
+
+::: aside
+[sketchplanations.com/prospect-theory](https://sketchplanations.com/prospect-theory)
+:::
+
+## Also not theories
+
+::: incremental
+- **Lists of variables or concepts:** Do not explain why
+
+- **Models or paradigms:** Simplify, but do not explain (e.g. rational choice)
+
+- **Hypotheses:** Translate theory to expectations
+:::
+
+## Honestly
+
+. . .
+
+Theory is either:
+
+::: incremental
+1. explanation
+2. speculation
+:::
+
+. . .
+
+We need to sound more sophisticated!
+
+## Honestly
+
+Theory is either:
+
+1. explanation
+
+2. speculation
+
+
+## Honestly
+
+Theory is either:
+
+1. **Logical** explanation
+
+2. speculation
+
+## Honestly
+
+Theory is either:
+
+1. **Logical** explanation
+
+2. **Informed** speculation
+
+. . .
+
+**Real question:** What makes a good theory?
+
+## Honestly
+
+Theory is either:
+
+1. **Logical** explanation
+
+2. **Informed** speculation
+
+**Real question:** What makes a good theory?
+
+::: aside
+**Content warning:** Video with curse words in the next slide
+:::
+
+---
+
+<p align="center"><iframe width="900" height="600" src="https://www.youtube.com/embed/mH9NzJwldok?si=dZ9fb_zss35qCtYR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+
+::: aside
+<https://youtu.be/mH9NzJwldok?si=XviVZMs3ZL5Qh4tH>
+:::
+
+## Good theories
+
+::: incremental
+- Give a **new** explanation
+
+- Give a **different** explanation
+
+- Not too different to sound like **non-sense**
+
+- But different enough to try to change your mind
+
+:::
+
+. . .
+
+**Trap:** Pressure to say something new leads to overly complicated theories
+
+---
+
+![](fig/nuance.png){fig-align="center" width="90%"}
+
+::: aside
+Healy, Kieran. 2017. ["Fuck Nuance."]() *Sociological Theory* 35 (2): 118-127
+:::
+
+## Nuance traps
+
+. . .
+
+1. **Nuance of the _fine-grain_**
+
+. . .
+
+Theory as *extremely detailed* description of the world
+
+. . .
+
+2. **Nuance of the _conceptual framework_**
+
+<!-- e.g. social action theory -->
+
+. . .
+
+Expansion of an *irrefutable theoretical system*
+
+. . .
+
+3. **Nuance of the _connoiseur_**
+
+. . .
+
+Nuanced theory as a sign of *sophistication*
+
+## Rule of thumb
+
+. . .
+
+
+&nbsp;
+
+
+::: {.r-stack}
+
+Good theories explain more than what they assume
+
+:::
+
+::: aside
+See [Clark (2020)](https://doi.org/10.4135/9781526486387.n4) for a more eloquent presentation
+:::
+
+## Takeaways
+
+1. Theory is logical explanation or informed speculation
+
+2. Theories explain why we observe what we observe
+
+3. It feels complicated because
+
+    - Good theorizing is hard
+    - Pressure to always say something new
+
+
+
+::: {style="text-align: center"}
+## Theory and Data {#thu .center}
+
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
+
+
+# Part II: Data
+
+--- 
+
+![](fig/data.png){fig-align="center" width="58%"}
+
+::: aside
+[vocabulary.com/dictionary/data](https://www.vocabulary.com/dictionary/data){preview-link="false"}
+:::
+
+## In empirical research
+
+The term *data* is used in two ways:
+
+. . .
+
+1. Data as *information*
+
+. . .
+
+::: {style="font-size: 80%;"}
+> "The data suggests that inflation keeps growing"
+:::
+
+. . . 
+
+
+2. Data as the *raw material* from which we draw inferences
+
+
+. . .
+
+::: {style="font-size: 80%;"}
+> "The data contains 1,000 responses to an online survey"
+:::
+
+## In empirical research
+
+The term *data* is used in two ways:
+
+
+1. Data as *information*
+
+
+
+::: {style="font-size: 80%;"}
+> "The data suggests that inflation keeps growing"
+:::
+
+
+
+
+2. **Data as the *raw material* from which we draw inferences**
+
+
+::: {style="font-size: 80%;"}
+> "The data contains 1,000 responses to an online survey"
+:::
+
+. . .
+
+The second is more correct since "data doesn't speak."
+
+## Data usually comes as a rectangle
+
+```{r}
+table1 %>% tt()
+```
+
+. . .
+
+We call this a **dataset**, **dataframe**, or **database**
+
+## Elements of a dataset
+
+. . .
+
+A single *observation* is a scalar
+
+$$a = 12$$
+
+. . .
+
+Several scalars together make a vector
+
+
+$$
+\overrightarrow b = \begin{bmatrix}
+  12 & 14 & 15
+\end{bmatrix}
+$$
+
+## Elements of a dataset
+
+Vectors have *direction*
+
+. . .
+
+This is a **row** vector
+
+$$
+\overrightarrow b = \begin{bmatrix}
+  12 & 14 & 15
+\end{bmatrix}
+$$
+
+. . .
+
+This is a **column** vector
+
+$$
+\overrightarrow c = 
+\begin{bmatrix}
+  12 \\
+  14 \\
+  15
+\end{bmatrix}
+$$
+
+
+## Elements of a dataset
+
+Several vectors of equal length make a **matrix**
+
+$$A = \begin{bmatrix}
+12 & 14 & 15 \\
+115 & 22 & 127 \\
+193 & 29 & 219
+\end{bmatrix}$$
+
+. . .
+
+The number of *rows* and *columns* are the **dimensions**
+
+. . .
+
+This is a $3 \times 3$ matrix ($r \times c$)
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt()
+```
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    i = 1,
+    bold = TRUE
+  )
+```
+
+A row is an **observation** or **unit**
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    i = 2,
+    bold = TRUE
+  )
+```
+
+A row is an **observation** or **unit**
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    i = 3,
+    bold = TRUE
+  )
+```
+
+A row is an **observation** or **unit**
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    i = 4,
+    bold = TRUE
+  )
+```
+
+A row is an **observation** or **unit**
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    i = 5,
+    bold = TRUE
+  )
+```
+
+A row is an **observation** or **unit**
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    i = 6,
+    bold = TRUE
+  )
+```
+
+A row is an **observation** or **unit**
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    j = 1,
+    bold = TRUE
+  )
+```
+
+A column is a **variable**
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    j = 2,
+    bold = TRUE
+  )
+```
+
+A column is a **variable**
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    j = 3,
+    bold = TRUE
+  )
+```
+
+A column is a **variable**
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    j = 4,
+    bold = TRUE
+  )
+```
+
+A column is a **variable**
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt()
+```
+
+What does the third row, fourth column represent?
+
+## A dataset is just a matrix with labels
+
+```{r}
+table1 %>% tt() %>% 
+  style_tt(
+    i = 3,
+    j = 4,
+    bold = TRUE
+  )
+```
+
+What does the third row, fourth column represent?
+
+## Types of variables
+
+
+::: incremental
+1. **Nominal/categorical:** Cannot be ordered in any way
+2. **Ordinal:** Ordered
+3. **Numerical:** Ordered + equidistant
+:::
+
+. . .
+
+EMPS further distinguishes numerical variables:
+
+::: incremental
+1. **Discrete:** Countable integers
+2. **Continuous:** Infinitesimally uncountable, real numbers
+:::
+
+. . .
+
+But technically everything numerical is discrete!
+
+## Practice
+
+. . .
+
+**[Varieties of Democracy](https://www.v-dem.net)'s _regime type_ measure:**
+
+. . .
+
+0: Closed autocracy -- No multiparty elections
+
+. . .
+
+1: Electoral autocracy -- De-jure elections but not free and fair
+
+. . .
+
+2: Electoral democracy -- Free and fair elections with some flaws
+
+. . .
+
+3: Liberal democracy -- Free and fair elections guaranteed
+
+. . .
+
+::: aside
+More at [v-dem.net](https://www.v-dem.net)
+:::
+
+
+---
+
+```{=html}
+<iframe src="https://ourworldindata.org/grapher/political-regime?tab=map" loading="lazy" style="width: 100%; height: 600px; border: 0px none;" allow="web-share; clipboard-write"></iframe>
+```
+
+::: aside
+<https://ourworldindata.org/regimes-of-the-world-data>
+:::
+
+---
+
+## Practice 2
+
+```{r}
+ggplot(penguins) +
+  aes(x = flipper_length_mm,
+      y = body_mass_g) +
+  geom_point(aes(color = species, 
+                 shape = species),
+             size = 3,
+             alpha = 0.8) +
+  scale_color_manual(values = c("darkorange","purple","cyan4")) +
+  labs(title = "Penguin size, Palmer Station LTER",
+       subtitle = "Flipper length and body mass for Adelie, Chinstrap and Gentoo Penguins",
+       x = "Flipper length (mm)",
+       y = "Body mass (g)",
+       color = "Penguin species",
+       shape = "Penguin species") +
+  theme(legend.position = c(0.2, 0.7),
+        plot.title.position = "plot",
+        plot.caption = element_text(hjust = 0, face= "italic"),
+        plot.caption.position = "plot")
+```
+
+::: aside
+How many different variables do you see? What type are they?
+:::
+
+## Reminder {.center}
 
 . . .
 
 ::: {.r-stack}
-Why do we care so much about data?
+Variable types depend on what we are **willing to assume**
 :::
 
-## This week: Inference
+
+## Variables vs. concepts
 
 ::: incremental
-- We use data to conduct **inference**
+- A **concept** is an element defined by a theory
 
-- **Inference:** Using what we know to understand something we do not know
+- A **variable** is the measurement of a concept
 
-- **_Statistical_ inference:** Using the *data* we have to understand something for which we do *not* have data
+- The translation from concept to measurement is called **operationalization**
 
-- Data alone does not help unless we **summarize** it
-
-- **TUESDAY:** *Estimation* and *uncertainty*
-
-- [**THURSDAY:**](#thu) Hypothesis testing
-
+- Because concepts are abstract, there is room for **measurement error**
 :::
 
-## Running example
+## Measurement error
 
-:::: {.columns}
-
-::: {.column width="40%"}
-
-```{r}
-heights = tribble(
-  ~Position, ~`Height (inches)`,
-  1, 62.5,
-  2, 63.0,
-  3, 63.0,
-  4, 66.0,
-  5, 66.0,
-  6, 67.0,
-  7, 68.5,
-  8, 70.0,
-  9, 70.0,
-  10, 70.5,
-  11, 70.7
-)
-
-heights %>% tt() %>% style_tt(fontsize = 0.7)
-```
-
-:::
-
-::: {.column width="60%"}
-
-::: incremental
-- How would you describe this group of people?
-
-- Taller/shorter than most?
-
-- How do we summarize this data?
-:::
-
-:::
-
-
-::::
-
-## Running example
-
-:::: {.columns}
-
-::: {.column width="40%"}
-
-```{r}
-heights %>% tt() %>% style_tt(fontsize = 0.7)
-```
-
-:::
-
-::: {.column width="60%"}
-**Measures of central tendency**
-
-::: incremental
-- **Mean:** $\frac{1}{n}\sum x_i$
-
-- **Median:** Value in the middle (after ordering)
-
-- **Mode:** Value most often repeated
-:::
-
-:::
-
-::::
-
-## Running example
-
-:::: {.columns}
-
-::: {.column width="40%"}
-
-```{r}
-heights %>% tt() %>% style_tt(fontsize = 0.7)
-
-inches = heights$`Height (inches)`
-```
-
-:::
-
-::: {.column width="60%"}
-**Measures of central tendency**
-
-- **Mean = **  `r round(mean(inches), 1)`
-
-- **Median =** 67.0
-
-- **Mode =** 63.0, 66.0, 70.0
-
-:::
-
-::::
-
-## Running example
-
-:::: {.columns}
-
-::: {.column width="40%"}
-
-```{r}
-heights %>% tt() %>% style_tt(fontsize = 0.7)
-```
-
-:::
-
-::: {.column width="60%"}
-**Measures of central tendency**
-
-- **Mean = **  `r round(mean(inches), 1)`
-
-- **Median =** 67.0
-
-- **Mode =** 63.0, 66.0, 70.0
-
-Which is a better summary?
-
-:::
-
-::::
-
-## Running example
-
-:::: {.columns}
-
-::: {.column width="40%"}
-
-```{r}
-heights %>% tt() %>% style_tt(fontsize = 0.7)
-```
-
-:::
-
-::: {.column width="60%"}
-**Measures of central tendency**
-
-- **Mean = **  `r round(mean(inches), 1)`
-
-- **Median =** 67.0
-
-- **Mode =** 63.0, 66.0, 70.0
-
-Which is a better summary?
-
-**Short answer:** The **mean** because it has some nice statistical properties
-
-:::
-
-::::
-
-## Long answer: Take a step back
-
-**Question from the [2022 General Social Survey](https://gss.norc.org)**
-
-. . .
-
-In 2020, you remember that Joe Biden ran for President on the Democratic ticket against Donald Trump for the Republicans.
-
-:::aside
-Learn more about the GSS at [gss.norc.org](https://gss.norc.org)
-:::
-
-
-## Long answer: Take a step back
-
-**Question from the [2022 General Social Survey](https://gss.norc.org)**
-
-In 2020, you remember that Joe Biden ran for President on the Democratic ticket against Donald Trump for the Republicans. *Do you remember for sure whether or not you voted in that election?*
-
-::: incremental
-- Yes, I voted
-- No, I did not vote
-- I was not eligible to vote
-:::
-
-:::aside
-Learn more about the GSS at [gss.norc.org](https://gss.norc.org)
-:::
-
-
-## Dataset
-
-
-
-```{r, cache = TRUE}
-gss22 = gss_get_yr(2022)
-
-# Question: 
-# Do you remember for sure whether or not you voted in the last election?
-gss = gss22 %>% 
-  select(vote20) %>% 
-  mutate(vote = ifelse(vote20 == 1, "yes", "no")) %>% 
-  drop_na() %>% 
-  select(vote)
-```
-
-
-
-```{r}
-gss %>% print(n = 5000)
-```
-
-
-
-## Dataset
-
-:::: {.columns}
-
-::: {.column width="40%"}
-
-```{r}
-gss %>% group_by(vote) %>% tally() %>% tt()
-```
-
-:::
-
-::: {.column width="60%"}
-
-::: incremental
-- Proportion yes = `r mean(gss$vote == "yes") %>% round(2)`
-
-- Pretend this is the entire population
-
-:::
-
-:::
-
-::::
+![](fig/board.png)
 
 ::: incremental
 
-- But we cannot ask almost 4,000 people directly
+- **Reliable:** Hypothetical repeated measurements are close to each other
 
-- We only have time for 10
-
-- So let's take a *random sample* and see what happens
-
-:::
-
-## Asking 10 people
-
-```{r}
-sample_mean = function(n){
-  mean(sample(gss$vote == "yes", size = n), replace = FALSE)
-}
-
-set.seed(20250115)
-means = replicate(10, sample_mean(10))
-
-```
-
-::: incremental
-- Attempt 1: `r means[1] %>% round(2)`
-
-- Attempt 2: `r means[2] %>% round(2)`
-
-- Attempt 3: `r means[2] %>% round(2)`
-
-- Attempt 4: `r means[3] %>% round(2)`
-
-- Attempt 5: `r means[4] %>% round(2)`
-:::
-
-. . .
-
-Average: `r mean(means[1:5]) %>% round(2)`
-
-. . .
-
-What if we tried more and more attempts?
-
----
-
-```{r, cache = TRUE}
-rep_means = function(reps){
-  means = replicate(reps, sample_mean(10))
-  out = mean(means)
-  return(out)
-}
-
-set.seed(20250115)
-
-obs = seq(10, 500, by = 10) %>% 
-  map(~rep_means(.)) %>% 
-  unlist()
-
-weak_law = data.frame(
-  reps = seq(10, 500, by = 10),
-  avg_prop = obs
-)
-```
-
-```{r}
-wl_plot = ggplot(weak_law) +
-  aes(x = reps, y = obs) +
-  geom_hline(yintercept = 0.74,
-             linetype = "dashed") +
-  geom_point(color = "#4E2A84", size = 2) +
-  labs(x = "Number of attempts",
-       y = "Avgerage proportion") +
-  scale_x_continuous(breaks = seq(0, 500, by = 100))
-```
-
-```{r, cache = TRUE}
-wl_plot +
-  transition_manual(reps, cumulative = TRUE)
-```
-
-
----
-
-```{r}
-ggplot(weak_law) +
-  aes(x = reps, y = obs) +
-  geom_hline(yintercept = 0.74,
-             linetype = "dashed") +
-  geom_point(color = "#4E2A84", size = 2) +
-  geom_path(color = "#4E2A84") +
-  labs(x = "Number of attempts",
-       y = "Avgerage proportion") +
-  scale_x_continuous(breaks = seq(0, 500, by = 100))
-```
-
-. . .
-
-**Weak law of large numbers:** Sample mean *approximates* the true population mean over many repeated measurements
-
-## So what?
-
-. . .
-
-If we have time to ask 10 people many times...
-
-. . .
-
-Maybe we also have time to ask many people one time?
-
-. . .
-
-
-How many people would be enough?
-
-&nbsp;
-
-. . .
-
-**Another exercise:**
-
-::: incremental
-- Pick a sample size
-
-- Repeat the study with a new sample many times
-
-- Calculate proportion who recall voting every time
-
-:::
-
-## 100 samples of 10 people each
-
-```{r}
-draw_sample = function(data, n) {
-  out = data %>% 
-    sample_n(size = n) %>% 
-    summarize(
-      estimate = mean(vote == "yes")
-    ) %>% .$estimate
-  
-  return(out)
-}
-
-draw_many = function(reps, data, n){
-  temp = replicate(reps, draw_sample(data, n)) %>% 
-    unlist()
-  
-  out = data.frame(
-    n = n,
-    prop = temp
-  )
-  
-  return(out)
-}
-
-samples = c(10, 100, 500)
-
-set.seed(20150115)
-df = samples %>% 
-  map(~draw_many(reps = 100, data = gss, n = .)) %>% 
-  bind_rows %>% 
-  mutate(n = n)
-
-```
-
-```{r}
-ggplot(df %>% filter(n == 10)) +
-  aes(x = prop) + 
-  geom_line(
-    stat = "density",
-    linewidth = 2,
-    color = "#4E2A84",
-    alpha = 0) +
-  labs(y = "Density",
-       x = "Proportion who recall voting") +
-  xlim(0.4, 1)
-```
-
-## 100 samples of 10 people each
-
-```{r}
-ggplot(df %>% filter(n == 10)) +
-  aes(x = prop) + 
-  geom_line(
-    stat = "density",
-    linewidth = 2,
-    color = "#4E2A84") +
-  labs(y = "Density",
-       x = "Proportion who recall voting") +
-  xlim(0.4, 1)
-```
-
-## What about more people?
-
-```{r, fig.align='center'}
-df = df %>% 
-  mutate(samp = paste(n, "people 100 times"))
-
-ggplot(df) +
-  aes(x = prop) + 
-  geom_line(
-    stat = "density",
-    linewidth = 2,
-    color = "#4E2A84") +
-  labs(y = "Density",
-       x = "Proportion who recall voting") +
-  xlim(0.4, 1) +
-  facet_wrap(~samp)
-```
-
-. . .
-
-**Central limit theorem:** Mean converges to a [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) as the sample size increases
-
-## Statistical properties
-
-. . .
-
-The mean is *usually* a good summary of the data because it has good **finite sample** and **asymptotic** properties
-
-. . .
-
-:::: {.columns}
-
-::: {.column width="50%"}
-
-**Finite sample properties**
-
-::: incremental
-- Over many repetitions with a fixed sample size
-
-- **Example:** Weak law of large numbers
-:::
-
-:::
-
-::: {.column width="50%"}
-
-**Asymptotic properties**
-
-::: incremental
-- As sample size grows to infinity
-
-- **Example:** Central limit theorem (CLT)
-:::
-
-:::
-
-::::
-
-::: aside
-This is also true for fancier mean-like things that we will learn about this term
-:::
-
-::: {style="text-align: center"}
-## The mean is a good summary {.center}
-
-:::
-
-::: {style="text-align: center"}
-## The mean is a good summary {.center}
-
-Ok, but how good?
-:::
-
-::: {style="text-align: center"}
-## The mean is a good summary {.center}
-
-Ok, but how good?
-
-Are we cooking or are we cooked?
-:::
-
-::: {style="text-align: center"}
-## The mean is a good summary {.center}
-
-Ok, but how good?
-
-Are we cooking or are we cooked?
-
-We want to *quantify* our **confidence** or **uncertainty**
-:::
-
-## Back to heights
-
-:::: {.columns}
-
-::: {.column width="40%"}
-
-```{r}
-heights %>% 
-  rename(Height = `Height (inches)`) %>% 
-  tt() %>%
-  style_tt(fontsize = 0.7)
-```
-
-:::
-
-::: {.column width="60%"}
-
-::: incremental
-- The mean was `r mean(inches) %>% round(1)`
-
-- The *range* is [62.5, 70.7]
-
-- Is that informative?
-:::
-
-:::
-
-::::
-
----
-
-![Some extremes of height. Angus McAskill (1825-1863) and Charles Sherwood Stratton (1838-1883). McAskill was 7 feet 9 inches tall. Stratton, also known as Tom Thumb, was 2 feet 6 inches in height.](fig/short_tall.jpg)
-
-
-## Maybe remove extremes?
-
-:::: {.columns}
-
-::: {.column width="40%"}
-
-```{r}
-heights %>% 
-  rename(Height = `Height (inches)`) %>% 
-  tt() %>%
-  style_tt(fontsize = 0.7) %>% 
-  style_tt(
-    i = c(1, 11),
-    color = "gray"
-  )
-```
-
-:::
-
-::: {.column width="60%"}
-
-::: incremental
-- Original range is [62.5, 70.7]
-
-- Taking out extremes gives [63.0, 70.5]
-
-- We can't keep doing this with a large sample!
-
-- Is there a more principled way?
-:::
-
-:::
-
-::::
-
-## Use percentiles
-
-:::: {.columns}
-
-::: {.column width="40%"}
-
-```{r}
-heights %>% 
-  rename(Height = `Height (inches)`) %>% 
-  mutate(Percentile = seq(0, 100, by = 10)) %>% 
-  tt() %>%
-  style_tt(fontsize = 0.7) %>% 
-  style_tt(
-    i = c(1, 11),
-    color = "gray"
-  )
-```
-
-:::
-
-::: {.column width="60%"}
-
-::: incremental
-- Taking away 10% on each side gives [63.0, 70.5]
-
-- 90% of the observations lie in this range
-
-- For the sample mean, this has a special name
-:::
-:::
-
-::::
-
-## Confidence interval
-
-```{r}
-ggplot(df %>% filter(n == 500)) +
-  aes(x = prop) + 
-  geom_line(
-    stat = "density",
-    linewidth = 2,
-    color = "#4E2A84") +
-  labs(y = "Density",
-       x = "Proportion who recall voting") +
-  facet_wrap(~samp)
-
-avg = mean(df %>% filter(n == 500) %>% .$prop)
-lo = quantile(df %>% filter(n == 500) %>% .$prop, 0.025)
-hi = quantile(df %>% filter(n == 500) %>% .$prop, 0.975)
-```
-
-
-## Confidence interval
-
-```{r}
-ggplot(df %>% filter(n == 500)) +
-  aes(x = prop) + 
-  geom_line(
-    stat = "density",
-    linewidth = 2,
-    color = "#4E2A84") +
-  labs(y = "Density",
-       x = "Proportion who recall voting") +
-  facet_wrap(~samp) +
-  geom_vline(
-    xintercept = avg,
-    linetype = "dashed"
-    ) +
-  annotate("text", y = -1, x = avg + 0.003, label = "Mean")
-```
-
-## Confidence interval
-
-```{r}
-ggplot(df %>% filter(n == 500)) +
-  aes(x = prop) + 
-  geom_line(
-    stat = "density",
-    linewidth = 2,
-    color = "#4E2A84") +
-  labs(y = "Density",
-       x = "Proportion who recall voting") +
-  facet_wrap(~samp) +
-  geom_vline(
-    xintercept = avg,
-    linetype = "dashed"
-    ) +
-  annotate("text", y = -1, x = avg + 0.003, label = "Mean") +
-    geom_vline(
-    xintercept = lo,
-    linetype = "dotted"
-    ) +
-  annotate("text", y = -1, x = lo + 0.007, label = "2.5% percentile") +
-    geom_vline(
-    xintercept = hi,
-    linetype = "dotted"
-    ) +
-  annotate("text", y = -1, x = hi - 0.007, label = "97.5% percentile")
-  
-```
-
-## Confidence interval
-
-```{r}
-ggplot(df %>% filter(n == 500)) +
-  aes(x = prop) + 
-  geom_line(
-    stat = "density",
-    linewidth = 2,
-    color = "#4E2A84") +
-  labs(y = "Density",
-       x = "Proportion who recall voting") +
-  facet_wrap(~samp) +
-  geom_vline(
-    xintercept = avg,
-    linetype = "dashed"
-    ) +
-  annotate("text", y = -1, x = avg + 0.003, label = "Mean") +
-    geom_vline(
-    xintercept = lo,
-    linetype = "dotted"
-    ) +
-  annotate("text", y = -1, x = lo + 0.007, label = "2.5% percentile") +
-    geom_vline(
-    xintercept = hi,
-    linetype = "dotted"
-    ) +
-  annotate("text", y = -1, x = hi - 0.007, label = "97.5% percentile")
-  
-```
-
-::: aside
-**Mean =** `r round(avg, 2)`. **95% confidence interval =**  `r paste0("[",round(lo, 2), ",", round(hi,2), "]")`
-:::
-
-## More formally
-
-. . .
-
-**Confidence interval:** Range of values in which X% of the estimates would fall
-
-## More formally
-
-**Confidence interval:** Range of values in which X% of the estimates would fall **over many repetitions with a fixed sample size**
-
-. . .
-
-**Informally:** We are X% confident that our estimate falls in this range
-
-. . .
-
-How to calculate:
-
-::: incremental
-1. Non-parametric approximation (percentile method)
-
-2. Analytic derivation (shortcut via aymptotic properties)
-:::
-
-::: aside
-The 95% is an arbitrary yet useful convention in the social sciences
-:::
-
-## Analytic derivation
-
-. . .
-
-The percentile method would require us to *actually* repeat the study many times or *simulate*
-
-. . .
-
-The **CLT** lets us use *measures of dispersion* as shortcuts
-
-. . .
-
-
-$$
-\text{Sample mean: }\overline{X} = \frac{1}{n} \sum x_i
-$$
-
-. . .
-
-
-$$
-\text{Sample variance: } V[X] = \frac{1}{(n-1)} \sum(x_i - \overline{X})^2
-$$
-
-
-
-## Analytic derivation
-
-
-
-The percentile method would require us to *actually* repeat the study many times or *simulate*
-
-
-The **CLT** lets us use *measures of dispersion* as shortcuts
-
-
-$$
-\text{Variance of sample mean: } V[\overline{X}] = \frac{V[X]}{n}
-$$
-
-. . .
-
-$$
-\text{Standard error: } SE[\overline{X}] = \sqrt {V[\overline X]}
-$$
-
-
-. . .
-
-The **standard error** is a measure of dispersion for the **sample mean**
-
-## Calculate confidence intervals
-
-. . .
-
-![](fig/normal_conf.webp){fig-align="center" width="80%"}
-
-
-## Back to vote recall
-
-```{r}
-
-ci_df = bind_rows(
-  t.test(gss$vote == "yes", conf.level = 0.90) %>% tidy() %>% mutate(level = "90%"),
-  t.test(gss$vote == "yes") %>% tidy() %>% mutate(level = "95%"),
-  t.test(gss$vote == "yes", conf.level = 0.99) %>% tidy() %>% mutate(level = "99%")  
-)
-```
-
-. . .
-
-```{r}
-ci_df %>% 
-  select(level, estimate, conf.low, conf.high) %>% 
-  tt(digits = 3) %>% 
-  style_tt(fontsize = 0.7)
-```
-
-. . .
-
-```{r, fig.height=4}
-ggplot(ci_df) +
-  aes(x = level, y = estimate) +
-  geom_point(size = 3, color = "#4E2A84") +
-  geom_linerange(aes(x = level,
-                     ymin = conf.low,
-                     ymax = conf.high),
-                 color = "#4E2A84",
-                 linewidth = 1) +
-  labs(x = "Confidence level",
-       y = "Proportion recall")
-```
-
-
-## Summary
-
-- We summarize data to conduct statistical inference
-
-- The mean is *usually* good because of its statistical properties
-
-- We use confidence intervals to convey uncertainty around the sample mean
-
-- 95% confidence intervals are the convention in the social sciences
-
-
-
-::: {style="text-align: center"}
-## Inference {#thu .center}
-
-### POLI SCI 210
-
-Introduction to Empirical Methods in Political Science
-
-:::
-
-## Last time
-
-- We summarize data to conduct statistical inference
-
-- The mean is *usually* a good summary
-
-- We compute confidence intervals to *quantify uncertainty* around the mean
-
-. . . 
-
-**TODAY:** *Hypothesis testing* as an alternative approach
-
-## Example: [Fisher (1935)](https://mimno.infosci.cornell.edu/info3350/readings/fisher.pdf) Chapter 2
-
-![](fig/fisher_book.png){fig-align="center"}
-
-## The lady tasting tea
-
-. . . 
-
-*A lady declares that by tasting a cup of tea made with milk she can discriminate whether the milk or the tea infusion was first added to the cup*
-
-. . .
-
-&nbsp;
-
-::: {style="text-align: center"}
-How do you **evaluate** this statement?
-:::
-
-## An experiment
-
-::: incremental
-- Grab eight milk-tea cups
-
-- 4 milk first, 4 tea first
-
-- We arrange them in random order and ask lady to guess
-
-- Lady knows there are 4 of each, but not which ones
-:::
-
-## Results
-
-```{r}
-tea = tribble(
-  ~Lady, ~Tea, ~Milk,
-  "Tea", 3, 1,
-  "Milk", 1, 3
-)
-
-tea = tea %>% mutate(
-  Lady = ifelse(Lady == "Tea", 
-                "Tea First",
-                "Milk First"))
-
-colnames(tea) = c("Lady's Guesses", "Tea First", "Milk First")
-
-tea %>% 
-  kbl() %>% 
-  add_header_above(c(" " = 1, "True Order" = 2))
-```
-
-::: incremental
-- She gets it right $6/8$ times
-
-- What can we conclude?
-:::
-
-## Problem
-
-::: incremental
-- How does "being able to discriminate" look like?
-
-- We **do know** how a person *without* the ability to discriminate milk/tea order looks like
-
-- Random guessing!
-
-- This is our **null hypothesis** ($H_0$)
-
-- Which lets us make **probability statements** about how the world look like **if the null hypothesis was true** 
-:::
-
-## A person with no ability
-
-```{r}
-nulldist = tribble(
-  ~count, ~combinations, ~number,
-  0, "xxxx", "\\(1 \\times 1 = 1\\)",
-  1, "xxxo, xxox, xoxx, oxxx", "\\(4 \\times 4 = 16\\)", 
-  2, "xxoo, xoxo, xoox, oxox, ooxx, oxxo", "\\(6 \\times 6 = 36\\)",
-  3, "xooo, oxoo, ooxo, ooox", "\\(4 \\times 4 = 16\\)",
-  4, "oooo", "\\(1 \\times 1 = 1\\)"
-)
-
-colnames(nulldist) = c("Count", "Possible combinations", "Total")
-
-nulldist %>% 
-  kbl(escape = FALSE) %>% 
-  column_spec(3, color = "white")
-  
-```
-
-::: aside
-Ways of getting a number of tea-first cups right
-:::
-
-. . .
-
-- This is a symmetrical problem!
-
-## A person with no ability {visiblity="uncounted"}
-
-```{r}
-nulldist = tribble(
-  ~count, ~combinations, ~number,
-  0, "xxxx", "\\(1 \\times 1 = 1\\)",
-  1, "xxxo, xxox, xoxx, oxxx", "\\(4 \\times 4 = 16\\)", 
-  2, "xxoo, xoxo, xoox, oxox, ooxx, oxxo", "\\(6 \\times 6 = 36\\)",
-  3, "xooo, oxoo, ooxo, ooox", "\\(4 \\times 4 = 16\\)",
-  4, "oooo", "\\(1 \\times 1 = 1\\)"
-)
-
-colnames(nulldist) = c("Count", "Possible combinations", "Total")
-
-nulldist %>% 
-  kbl(escape = FALSE) %>% 
-  column_spec(3, color = "white")
-  
-```
-
-::: aside
-Ways of getting a number of milk-first cups right
-:::
-
-
-## A person with no ability {visiblity="uncounted"}
-
-```{r}
-nulldist %>% 
-  kbl(escape = FALSE)
-```
-
-. . .
-
-- A person guessing at random gets $6/8$ cups right with probability $\frac{16}{70} \approx 0.23$
-
-
-::: aside
-Ways of getting a number of tea-first **and** milk-first cups right
-:::
-
-## A person with no ability {visiblity="uncounted"}
-
-```{r}
-nulldist %>% 
-  kbl(escape = FALSE)
-```
-
-- And **at least** $6/8$ cups with $\frac{16 + 1}{70} \approx 0.24$
-
-
-::: aside
-Ways of getting a number of tea-first **and** milk-first cups right
+- **Valid:** Distance from center averages to zero
 :::
 
 ## Another way to look at it
 
-
-
 ```{r}
-milk_tea = data.frame(
-  Count = 0:4,
-  Correct = c("0/8", "2/8", "4/8", "6/8", "8/8"),
-  Combinations = c("1/70", "16/70", "36/70", "16/70", "1/70"),
-  Probability = c(1/70, 16/70, 36/70, 16/70, 1/70)
+set.seed(20250113)
+reliable_valid = rnorm(500, 0, 1)
+reliable_invalid = rnorm(500, 5, 1)
+unreliable_valid = rnorm(500, 0, 4)
+unreliable_invalid = rnorm(500, 5, 4)
+
+a = data.frame(
+  obs = reliable_valid,
+  rel = "Reliable",
+  val = "Valid"
 )
 
-milk_tea %>% tt(digits = 1)
-```
-
-. . .
-
-**Random guesser:** pick 0-8 right with corresponding probability
-
-. . .
-
-Simulate 1000 times to make a **probability distribution**
-
----
-
-```{r}
-set.seed(20250116)
-
-sims = sample(milk_tea$Count, 
-              size = 1000,
-              replace = TRUE,
-              prob = milk_tea$Probability)
-
-sims_df = data.frame(sims) %>% 
-  group_by(sims) %>% 
-  tally() %>% 
-  mutate(signif = ifelse(sims >= 3, 1, 0),
-         correct = recode(sims,
-                          `0` = "0/8",
-                          `1` = "2/8",
-                          `2` = "4/8",
-                          `3` = "6/8",
-                          `4` = "8/8"))
-
-ggplot(sims_df) +
-  aes(x = correct, y = n) +
-  labs(
-    x = "Correct cups",
-    y = "Frequency"
-  ) +
-  geom_col(alpha = 0)
-```
-
----
-
-```{r}
-ggplot(sims_df) +
-  aes(x = correct, y = n) +
-  labs(
-    x = "Correct cups",
-    y = "Frequency"
-  ) +
-  geom_col() +
-  geom_text(
-    aes(
-      x = correct,
-      y = n + 20,
-      label = n)
-    )
-```
-
----
-
-```{r}
-ggplot(sims_df) +
-  aes(x = correct, y = n, fill = as.factor(signif)) +
-  labs(
-    x = "Correct cups",
-    y = "Frequency"
-  ) +
-  geom_col() +
-  theme(legend.position = "none") +
-  scale_fill_manual(
-    values = c("grey35", "#4E2A84")
-  ) +
-  geom_text(
-    aes(
-      x = correct,
-      y = n + 20,
-      label = n)
-    )
-```
-
-. . .
-
-Random guesser gets *at least* 6/8 cups right $\frac{(199+12)}{1000} \approx 0.21$ of the time
-
-
-## p-values
-
-::: incremental
-- If the lady is **not** able to discriminate milk-tea order, the probability of observing $6/8$ correct guesses or better is $0.24$
-
-- A **p-value** is the probability of observing a result *equal or more extreme* than what is originally observed...
-
-- ... *when* the **null hypothesis** is true
-
-- Smaller p-values give more evidence **against** the null
-
-- Implying observed value is *less likely to have emerged by chance*
-:::
-
-::: aside
-This is Fisher's interpetation of p-values, which is the most common. [Neyman and Pearson had different ideas](https://pmc.ncbi.nlm.nih.gov/articles/PMC4347431/)
-:::
-
-## Another way to say it
-
-. . .
-
-A **probability statement**
-
-## Another way to say it
-
-A **probability statement** of **how rare our observed _test statistic_** is 
-
-## Another way to say it
-
-A **probability statement** of **how rare our observed _test statistic_** is if the **null hypothesis were to be true**
-
-. . .
-
-Smaller p-value $\rightarrow$ $H_0$ less credible
-
-. . .
-
-But we never say anything about the **hypothesis** we actually want to evaluate!
-
-## Another way to say it
-
-A **probability statement** of **how rare our observed _test statistic_** is if the **null hypothesis were to be true**
-
-
-
-Smaller p-value $\rightarrow$ $H_0$ less credible
-
-
-But we never say anything about the **hypothesis** we actually want to evaluate!
-
-::: aside
-The informal usage in political science articles of listing $H_1, H_2, H_3, \ldots$ is different.
-:::
-
-## Rules of thumb
-
-::: incremental
-
-- A convention in the social sciences is to claim that something with $p < 0.05$ is *statistically significant*
-
-- Meaning we have "enough" evidence to reject the null 
-
-- This is known as **Null Hypothesis Significance Testing** (NHST)
-
-- Committing to a **significance level** $\alpha$ implies accepting that sometimes we will get $p < 0.05$ by chance
-
-- This is a **false positive** result
-
-::: aside
-No good reason for $\alpha = 0.05$ other than path dependency.
-:::
-
-:::
-
-## Types of error
-
-```{r}
-error_types = tribble(
-  ~Decision, ~`\\(H_0\\) true`, ~`\\(H_0\\) not true`,
-  "Don't reject \\(H_0\\)", "True negative", "False negative (type II error)",
-  "Reject \\(H_0\\)", "False positive (type I error)", "True positive"
+b = data.frame(
+  obs = reliable_invalid,
+  rel = "Reliable",
+  val = "Invalid"
 )
 
+c = data.frame(
+  obs = unreliable_valid,
+  rel = "Unreliable",
+  val = "Valid"
+)
 
+d = data.frame(
+  obs = unreliable_invalid,
+  rel = "Unreliable",
+  val = "Invalid"
+)
 
-error_types %>% 
-  kbl(escape = FALSE) %>% 
-  column_spec(1, bold = TRUE, border_right = TRUE) %>% 
-  column_spec(2:3, width = "8cm") %>% 
-  add_header_above(c(" ", "Unobserved reality" = 2))
+dat = rbind(a, b, c, d)
+
+dat$val = fct_relevel(dat$val,
+                      "Valid", "Invalid")
+
+ggplot(dat) +
+  aes(x = obs) +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  geom_density(linewidth = 2, color = "purple") +
+  facet_grid(rel ~ val) +
+  labs(
+    x = "Repeated measures",
+    y = "Density"
+  ) +
+  theme_gray(base_size = 20)
 ```
 
 
+## Takeaways
 
+- Variables are how we measure concepts
 
+- A variable can be categorical, ordinal, numerical
+
+- Depends mostly on what we are willing to assume
+
+- Gap between concept and variable produces measurement error
+
+::: {style="text-align: center"}
+## Next week {.center}
+
+### Inference
+
+How do we summarize data?
+
+How do we use summaries to evaluate hypotheses?
+
+:::

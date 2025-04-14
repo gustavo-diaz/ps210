@@ -20,19 +20,26 @@ library(tidyverse)
 library(tinytable)
 library(kableExtra)
 library(DeclareDesign)
+# library(infer)
 library(tidyr)
 library(broom)
-
+library(future)
+library(future.apply)
+# library(gganimate)
+# remotes::install_github("kjhealy/gssr")
+library(gssr)
 
 # ggplot global options
 theme_set(theme_gray(base_size = 20))
 
+# future global options
+options(future.globals.maxSize= 891289600)
 ```
 
 
 
 ::: {style="text-align: center"}
-## Experiments {.center}
+## Surveys {.center}
 
 ### POLI SCI 210
 
@@ -43,803 +50,541 @@ Introduction to Empirical Methods in Political Science
 
 ## AI Prompts {background-color="#B6ACD1"}
 
-- (Fundamental problem of) causal inference
+- *Sampling*: Mode, frame, size, procedure, oversampling
 
-- Potential outcomes framework
+- Independent, identically distributed (i.i.d. assumption in statistics)
 
-- Average treatment effect
+- Total survey error framework
 
-- "Help me design a [survey/field/laboratory] experiment about X"
+- How to ask *good* survey questions?
 
-- Internal vs. external validity
+- What *happens* if people lie in surveys?
+
+- What *to do* if people lie in surveys?
+
+- *Indirect questioning techniques:* Randomized response, list experiment, others not mentioned in lecture
 
 
 
 ## Last week
 
-- Surveys and how to make them good
+Ingredients for **statistical inference**
 
-- Importance of random sampling to justify statistical inference via asymptotic properties (CLT)
+- Data summary (point estimate, test statistic)
 
-- **So far:** Mostly about *descriptive statistics*
+- Uncertainty quantification (confidence intervals, p-values)
 
-## This week
+- **Keep in mind:** Statistical properties that enable inference (finite sample, asymptotic)
 
-- Moving from *statistical inference* to *causal inference*
+## This week: Surveys
 
-- Experiments as the *gold standard*
+**Survey research:** Study of public opinion
 
-- **Tuesday:** Logic of experimentation
+. . .
 
-- [**Thursday:**](#thu) Learning from experiments
+Not really a *method*, more of a *data collection tool*
 
-## Return to counterfactuals
+. . .
 
-![](fig/weed.png){width=40% fig-align="center"}
-
-::: aside
-[medicine.tulane.edu/news/study-tulane-researcher-suggests-marijuana-can-cause-infertility-men](https://medicine.tulane.edu/news/study-tulane-researcher-suggests-marijuana-can-cause-infertility-men)
-:::
-
-## Making causal statements
+**Tuesday:** Sampling
 
 ::: incremental
-- Why were we using cautious language?
+1. Why random sampling?
 
-- **Ideal study:** Compare the same man with and without smoking
-
-- **Actual study:** Compare two *different* groups of men
+2. Sources of error
 :::
+
+. . .
+
+[**Thursday:**](#thu) Survey design
+
+::: incremental
+1. Asking good questions
+
+2. Asking sensitive questions
+:::
+
+---
+
+![](fig/public_opinion.png){fig-align="center"}
+
+::: aside
+[vocabulary.com/dictionary/public%20opinion](https://www.vocabulary.com/dictionary/public%20opinion)
+:::
+
+## Public opinion
+
+::: incremental
+- The study of *self-reported* **attitudes** and **behaviors**
+
+- **Self-report:** What people *say*
+
+- **Attitude:** What people *think* or *feel*
+
+- **Behavior:** What people *do*
+
+- Primarily among the *general public*
+
+- Increasingly on specific *target populations*
+:::
+
+. . .
+
+ **Goal:** Mapping **self-reports** to **actual** attitudes and behaviors
+
+::: {style="text-align: center"}
+## Open question {.center}
+
+. . .
+
+Should political scientist care about **attitudes** on their own?
+
+. . .
+
+Do we only care about **behaviors**?
+
+:::
+
+## Challenge
+
+. . .
+
+There is a gap between *self-reports* and *actual* attitudes/behaviors
+
+. . . 
+
+Two things get in the way:
+
+::: incremental
+
+1. Asking the right people
+
+2. Asking the right questions
+
+:::
+
+## Challenge
+
+
+
+There is a gap between *self-reports* and *actual* attitudes/behaviors
+
+
+
+Two things get in the way:
+
+
+1. **Asking the right people**
+
+2. Asking the right questions
+
+## Key sampling decisions
+
+::: incremental
+1. Mode
+
+2. Sampling frame
+
+3. Sample size
+
+4. Sampling procedure
+
+5. Oversampling
+:::
+
+## Key sampling decisions
+
+
+1. **Mode**
+
+2. **Sampling frame**
+
+3. ~~Sample size~~
+
+4. **Sampling procedure**
+
+5. ~~Oversampling~~
+
+
+## Survey mode
+
+::: incremental
+- **Face-to-face:** Oldest, most common method in US national and cross-national surveys
+
+- **Laboratory:** Few people, more intricate tasks
+
+- **Phone:** Groundbreaking at the time, but less reliable nowadays
+
+- **Internet:** Online panels ([CloudResearch Connect](https://www.cloudresearch.com/products/connect-for-researchers/), [Mturk](https://www.mturk.com), [Prolific](https://www.prolific.com/researchers)), social media ads, message app chains
+:::
+
+. . .
+
+National representative surveys usually combine many modes
+
+---
+
+**ANES evaluation of survey modes**
+
+. . .
+
+![](fig/ANES_mode.png){fig-align="center" width="60%"}
+
+::: aside
+**Source:** Hillygus et al (2017). ["Assessing the Implications of a Mode Change."](https://electionstudies.org/wp-content/uploads/2021/08/anes_board_2017_mode_report.pdf)
+:::
+
+
+## Sampling frame
+
+. . .
+
+List of all the elements within the population *from which a sample is selected*
+
+. . .
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+![](fig/sampling_frame.png)
+:::
+
+::: {.column width="60%"}
+
+::: incremental
+
+- *Common sampling frames:* Phone books, electoral rolls, employee databases, household directories
+
+- *Ideal case:* [Danish Civil Registry](https://ncrr.au.dk/danish-registers/the-danish-civil-registration-system-cpr)
+
+- *{{< fa fire >}} take:* We neve *really* know what the *target population* is
+:::
+
+:::
+
+::::
+
+## Sampling procedure
+
+. . .
+
+**_Ideal case_: Random sampling**
+
+. . .
+
+**Simple random sampling:** All units have the same inclusion probability ($\approx$ flipping a coin for each)
+
+. . .
+
+**Complete random sampling:**  *Exactly* $n$ out of $N$ units are selected at random ($\approx$ arrange in random order and then survey the first $n$)
 
 . . .
 
 &nbsp;
 
 ::: {.r-stack}
-What would allow us to make more confident **causal** claims?
+How are these different?
 :::
 
-## Causal inference
+## Why is random sampling important?
+
+. . .
+
+**Informally:** So that our sample is (in expectation) *representative* of the target population
 
 . . . 
 
-Imagine we want to establish whether a medical **treatment** improves people's lives
+**Formally:** To justify statistical inference via CLT
 
 . . .
 
-We want to make sure that the treatment *actually* works
+We need to assume that the observations in our sample are drawn from...
 
-. . .
+. . . 
 
-In other words, we want to *attribute* the treatment as the **cause** of health improvement
+::: {.r-stack}
+**I**ndependent
+:::
 
-. . .
+## Why is random sampling important?
 
-Can we just show that people who receive the treatment get better?
 
-. . .
 
-No! we need some kind of **control**
+**Informally:** So that our sample is (in expectation) *representative* of the target population
 
-## Potential outcomes framework
 
-. . .
 
-**Ingredients**
+**Formally:** To justify statistical inference via CLT
 
-. . .
+We need to assume that the observations in our sample are drawn from...
 
-::: incremental
-- $D = \{0,1\}$ condition (0: control, 1: treatment)
+::: {.r-stack}
+**I**ndependent and **I**dentically
+:::
 
-- $Y(D)$ is the individual **potential outcome**
+## Why is random sampling important?
+
+
+
+**Informally:** So that our sample is (in expectation) *representative* of the target population
+
+
+
+**Formally:** To justify statistical inference via CLT
+
+We need to assume that the observations in our sample are drawn from...
+
+::: {.r-stack}
+**I**ndependent and **I**dentically **D**istributed 
 :::
 
 . . .
 
-$$
-Y = \begin{cases}
-Y(0) & \text{if} & D = 0 \\
-Y(1) & \text{if} & D = 1
-\end{cases}
-$$
+... data generation processes
 
 . . .
 
-Switching equation
+This is known as the **i.i.d assumption**
 
-$$
-Y = Y(1) \cdot D + Y(0) \cdot (1 - D)
-$$
+## i.i.d. implications
 
-## Toy example
+. . . 
 
-```{r}
-pop = declare_population(
-  N = 4,
-  female = c(0, 0, 1, 1),
-  Y0 = c(0, 0, 0, 1),
-  Y1 = c(0, 1, 1, 1)
-)
-
-pot = declare_potential_outcomes(Y ~ Y1 * Z + Y0 * (1-Z))
-
-estimand = declare_inquiry(ATE = mean(Y1 - Y0))
-
-assign = declare_assignment(Z = complete_ra(N, m = 2))
-
-reveal = declare_measurement(Y = reveal_outcomes(Y ~ Z))
-
-estimator = declare_estimator(Y ~ Z, inquiry = "ATE")
-
-design_1 = pop + pot + estimand + assign + reveal + estimator
-```
-
-```{r}
-set.seed(142)
-
-dat = draw_data(design_1)
-
-dat_0 = dat %>% select(ID, Y1, Y0)
-
-colnames(dat_0) = c("ID", "\\(Y(1)\\)", "\\(Y(0)\\)")
-
-dat_0 %>% kbl(escape = FALSE)
-```
+Each survey respondent has an internal, unobservable **function** that draws different survey responses with some probability
 
 . . .
 
-$\tau_i = Y(1) - Y(0)$ is the **individual treatment effect**
-
-&nbsp;
-
-## Toy example
-
-```{r}
-dat_1 = dat %>% 
-  select(ID, Y1, Y0) %>% 
-  mutate(tau = Y1 - Y0)
-
-colnames(dat_1) = c("ID", "\\(Y(1)\\)", "\\(Y(0)\\)", "\\(\\tau_i\\)")
-
-dat_1 %>% kbl(escape = FALSE)
-```
-
-$\tau_i = Y(1) - Y(0)$ is the **individual treatment effect**
-
-&nbsp;
+**Independent:** How *I* come up with answers does not affect how *you* come up with answers
 
 . . .
 
+**Identically distributed:** 
 
+::: incremental
+- Do not know how responses are drawn
 
-$\tau = \frac{1}{n} \sum_{i=1}^n \tau_i$ is the  **average treatment effect** (ATE)
-
-## Challenge
-
-
-```{r}
-dat_1 %>% 
-  kbl(escape = FALSE)
-```
-
-
-## Challenge
-
-```{r}
-dat_1 %>% 
-  kbl(escape = FALSE) %>% 
-  add_header_above(c(" ", "Unobserved" = 3))
-```
-
-. . .
-
-Assign condition $D$ (0: control, 1: treatment)
-
-## Challenge
-
-```{r}
-dat_2 = dat %>% 
-  select(ID, Y1, Y0, Z, Y) %>% 
-  mutate(tau = Y1 - Y0) %>% 
-  relocate(tau, .after = "Y0")
-
-colnames(dat_2) = c("ID", "\\(Y(1)\\)", "\\(Y(0)\\)", "\\(\\tau_i\\)",
-                    "\\(D\\)", "\\(Y\\)")
-
-dat_2 %>% 
-  kbl(escape = FALSE) %>%
-  add_header_above(c(" ", "Unobserved" = 3,  "Observed" = 2))
-```
-
-. . .
-
-To know the ATE we need $(Y(1) - Y(0))$
-
-. . .
-
-But we only observe one at a time for each unit
-
-## Challenge
-
-```{r}
-dat_2 %>% 
-  kbl(escape = FALSE) %>%
-  add_header_above(c(" ", "Unobserved" = 3,  "Observed" = 2))
-```
-
-This is the **FUNDAMENTAL PROBLEM OF CAUSAL INFERENCE**
-
+- Assume is the same process for everyone
+:::
 
 ::: aside
-The term comes from: Holland, Paul W. 1986. ["Statistics and Causal Inference."](https://doi.org/10.2307/2289064) *Journal of the American Statistical Association* 81 (396): 945-960
+We call these *unobservable functions* [random variables](https://en.wikipedia.org/wiki/Random_variable)
 :::
 
-## What can we do?
+
+## i.i.d. implications
+
+This is equivalent to assuming that individual units are sampled at random **with replacement** 
+
+---
+
+![](fig/sampling_replacement.webp){fig-align="center"}
+
+## i.i.d. implications
+
+This is equivalent to assuming that individual units are sampled at random **with replacement** 
 
 . . .
 
-We can rewrite the ATE as $\tau = E[\tau_i]$
+But we can only do random sampling *without replacement*
+
+. . .
+
+$\rightarrow$ A decent approximation if sample size is large enough
 
 . . . 
 
-And then expand since $\tau_i = Y(1) - Y(0)$ 
+::: {.callout-important}
 
-. . .
-
-$$
-\tau = E[Y(1) - Y(0)]
-$$
-
-## What can we do?
-
-We can rewrite the ATE as $\tau = E[\tau_i]$
-
-And then expand since $\tau_i = Y(1) - Y(0)$ 
-
-$$
-\underbrace{\tau = E[Y(1) - Y(0)]}_\text{Average individual treatment effect}
-$$
-
-. . .
-
-Which is equivalent to
-
-. . .
-
-$$
-\tau = E[Y(1)] - E[Y(0)] 
-$$
-
-## What can we do?
-
-
-We can rewrite the ATE as $\tau = E[\tau_i]$
-
-
-And then expand since $\tau_i = Y(1) - Y(0)$ 
-
-
-$$
-\underbrace{\tau = E[Y(1) - Y(0)]}_\text{Average individual treatment effect}
-$$
-
-
-Which is equivalent to
-
-
-$$
-\underbrace{\tau = E[Y(1)] - E[Y(0)] }_{\text{Difference in average potential outcomes}}
-$$
-
-. . .
-
-::: {style="font-size: 60%;"}
-(because the sum of the averages = average of the sums)
+**Random sampling** lets us justify the **i.i.d. assumption**, which in turn allows using the standard formula for **confidence intervals** and **p-values**.
 :::
-
-## What can we do?
-
-We want to know
-
-$$
-\underbrace{\tau = E[Y(1)] - E[Y(0)]}_{\text{Difference in average potential outcomes}} 
-$$
-
-. . .
-
-But we can only calculate
-
-. . .
-
-$$
-\widehat \tau = E[Y(1) | D = 1] - E[Y(0) | D = 0]
-$$
-
-## What can we do?
-
-We want to know
-
-$$
-\underbrace{\tau = E[Y(1)] - E[Y(0)]}_{\text{Difference in average potential outcomes}} 
-$$
-
-
-But we can only calculate
-
-
-$$
-\widehat \tau = E[Y(1) | D = 1] - E[Y(0) | D = 0]
-$$
-
-
-## Aside on notation
-
-:::: {.columns}
-
-::: {.column width="50%"}
-### Greek
-
-- Letters like $\mu$ denote **estimands** (unobserved quantities of interest)
-
-- A hat $\widehat{\mu}$ denotes **estimators** (rules to calculate a quantity)
-
-:::
-
-::: {.column width="50%"}
-### Latin
-
-- Letters like $X$ denote **actual variables** in our data
-
-- A bar $\overline{X}$  denotes an **estimate** calculated from our data
-
-:::
-
-::::
-
-. . .
 
 ::: {style="text-align: center"}
-$X \rightarrow \overline{X} \rightarrow \widehat{\mu} \xrightarrow{\text{hopefully!}} \mu$
-::: 
-
-## Aside on notation
-
-:::: {.columns}
-
-::: {.column width="50%"}
-### Greek
-
-- Letters like $\mu$ denote **estimands** (unobserved quantities of interest)
-
-- A hat $\widehat{\mu}$ denotes **estimators** (rules to calculate a quantity)
-
-:::
-
-::: {.column width="50%"}
-### Latin
-
-- Letters like $X$ denote **actual variables** in our data
-
-- A bar $\overline{X}$  denotes an **estimate** calculated from our data
-
-:::
-
-::::
-
-::: {style="text-align: center"}
-$\text{Data} \rightarrow \text{Estimate} \rightarrow \text{Estimator} \xrightarrow{\text{hopefully!}} \text{Estimand}$
-::: 
-
-## Aside on notation
-
-:::: {.columns}
-
-::: {.column width="50%"}
-### Greek $\rightarrow$ conceptual
-
-- Letters like $\mu$ denote **estimands** (unobserved quantities of interest)
-
-- A hat $\widehat{\mu}$ denotes **estimators** (rules to calculate a quantity)
-
-:::
-
-::: {.column width="50%"}
-### Latin $\rightarrow$ practical
-
-- Letters like $X$ denote **actual variables** in our data
-
-- A bar $\overline{X}$  denotes an **estimate** calculated from our data
-
-:::
-
-::::
-
-::: {style="text-align: center"}
-$\text{Data} \rightarrow \text{Estimate} \rightarrow \text{Estimator} \xrightarrow{\text{hopefully!}} \text{Estimand}$
-::: 
-
-## What can we do?
-
-We want to know
-
-$$
-\underbrace{\tau = E[Y(1)] - E[Y(0)]}_{\text{Difference in average potential outcomes}}
-$$
-
-But we can only calculate
-
-
-$$
-\widehat \tau = E[Y(1) | D = 1] - E[Y(0) | D = 0]
-$$
-
-## What can we do?
-
-We want to know
-
-$$
-\underbrace{\tau = E[Y(1)] - E[Y(0)]}_{\text{Difference in average potential outcomes}}
-$$
-
-But we can only calculate
-
-
-$$
-\underbrace{\widehat \tau = E[Y(1) | D = 1] - E[Y(0) | D = 0]}_\text{Difference in (observed) means between treatment and control groups}
-$$
+## Problems with random sampling? {.center}
 
 . . .
 
-What would make these two equivalent?
-
-## What can we do?
-
-We want to know
-
-$$
-\underbrace{\tau = E[Y(1)] - E[Y(0)]}_{\text{Difference in average potential outcomes}}
-$$
-
-
-But we can only calculate
-
-
-$$
-\underbrace{\widehat \tau = E[Y(1) \color{purple}{| D = 1}] - E[Y(0) \color{purple}{| D = 0}]}_\text{Difference in (observed) means between treatment and control groups}
-$$
-
-
-What would make these two equivalent?
-
-## What can we do?
-
-We want to know
-
-$$
-\underbrace{\tau = E[Y(1)] - E[Y(0)]}_{\text{Difference in average potential outcomes}}
-$$
-
-
-But we can only calculate
-
-
-$$
-\underbrace{\widehat \tau = E[Y(1) \color{purple}{| D = 1}] - E[Y(0) \color{purple}{| D = 0}]}_\text{Difference in (observed) means between treatment and control groups}
-$$
-
-We want **treatment assignment** to be **ignorable**
-
-
-## Random assignment
-
-::: incremental
-- If we can claim that units are assigned to conditions $D$ **independently** from potential outcomes
-
-- Then we can claim that $\widehat \tau$ is a *valid* approximation of $\tau$
-
-- So that the *difference in means* is an **unbiased estimator** of the *ATE*
-
-- Random assignment guarantees this **in expectation**
-:::
-
-## Implications
-
-If random assignment works:
-
-::: incremental
-- No reverse causation
-
-- No selection bias
-
-- No omitted variable bias
-:::
-
-. . .
-
-But you can always get unlucky!
-
-## Example
-
-```{r}
-declaration = 
-  declare_model(N = 100, U = rnorm(N),
-                potential_outcomes(Y ~ 0.25 * Z + U)) +
-  declare_inquiry(ATE = mean(Y_Z_1 - Y_Z_0)) +
-  declare_assignment(Z = complete_ra(N, prob = 0.5)) +
-  declare_measurement(Y = reveal_outcomes(Y ~ Z)) +
-  declare_estimator(Y ~ Z, model = difference_in_means, 
-                    inquiry = "ATE")
-
-set.seed(20241108)
-experiment = draw_data(declaration) %>% 
-  rename(D = Z,
-         Y0 = Y_Z_0,
-         Y1 = Y_Z_1) %>% 
-  select(ID, Y0, Y1, D, Y)
-```
-
-
-```{r}
-experiment
-```
-
-```{r}
-obs = difference_in_means(Y ~ D, data = experiment)
-```
-::: incremental
-
-- **True ATE:** 0.25
-
-- **Estimate:** `r round(obs$coefficients, 3)` (p = `r round(obs$p.value, 3)`)
+It's expensive and can go wrong!
 
 :::
 
-## Redo experiment 1,000 times
+## Back to GSS data
 
 ```{r, cache = TRUE}
-set.seed(20250130)
-sim_exp = simulate_design(declaration, future.seed = FALSE)
+gss22 = gss_get_yr(2022)
+
+# gss22 %>% select(sexnow1). 1 male, 2 women, only 14 trans
+# gss22 %>% select(hispanic). 1 not, else some category
+# gss22 %>% select(degree). 1 HS, 2 or more some post-sec
+
+# Question: 
+# Do you remember for sure whether or not you voted in the last election?
+gss = gss22 %>% 
+  select(vote20, sexnow1, hispanic, degree) %>% 
+  mutate(vote = ifelse(vote20 == 1, "yes", "no"),
+         sex = case_when(
+           sexnow1 == 1 ~ "man",
+           sexnow1 == 2 ~ "woman", 
+           .default = NA 
+         ),
+         hispanic = ifelse(hispanic == 1, "no", "yes"),
+         college = ifelse(degree <= 1, "no", "yes")) %>% 
+  drop_na() %>% 
+  select(vote, sex, hispanic, college)
 ```
 
-
 ```{r}
-ggplot(sim_exp) +
-  aes(x = estimate) +
-  geom_density(linewidth = 2, color = "#4E2A84") +
-  labs(x = "Estimated ATE",
-       y = "Density")
-```
-
-## Redo experiment 1,000 times
-
-```{r}
-ggplot(sim_exp) +
-  aes(x = estimate) +
-  geom_density(linewidth = 2, color = "#4E2A84") +
-  labs(x = "Estimated ATE",
-       y = "Density") +
-  geom_vline(xintercept = 0.25,
-             linetype = "dashed") +
-  annotate("text", y = -0.01, 
-           x = 0.3,
-           label = "True ATE")
-```
-
-## Redo experiment 1,000 times
-
-```{r}
-ggplot(sim_exp) +
-  aes(x = estimate) +
-  geom_density(linewidth = 2, color = "#4E2A84") +
-  labs(x = "Estimated ATE",
-       y = "Density") +
-  geom_vline(xintercept = 0.25,
-             linetype = "dashed") +
-  annotate("text", y = -0.01, 
-           x = 0.3,
-           label = "True ATE") +
-  geom_vline(xintercept = obs$conf.low,
-             linetype = "dotted") +
-  geom_vline(xintercept = obs$conf.high,
-             linetype = "dotted")
-```
-
-
-## Redo experiment 1,000 times
-
-```{r}
-ggplot(sim_exp) +
-  aes(x = estimate) +
-  geom_density(linewidth = 2, color = "#4E2A84") +
-  labs(x = "Estimated ATE",
-       y = "Density") +
-  geom_vline(xintercept = 0.25,
-             linetype = "dashed") +
-  annotate("text", y = -0.01, 
-           x = 0.3,
-           label = "True ATE") +
-  geom_vline(xintercept = obs$conf.low,
-             linetype = "dotted") +
-  geom_vline(xintercept = obs$conf.high,
-             linetype = "dotted")
-```
-
-**95% confidence interval:** `r paste("[", round(obs$conf.low, 2), ",", round(obs$conf.high, 2), "]")`
-
-## Types of experiment
-
-- Survey experiments
-
-- Field experiments
-
-- Laboratory experiments
-
-. . .
-
-Depends on *how treatments are delivered*
-
-# Examples
-
-## Tomz and Weeks (2013): "Public Opinion and the Democratic Peace"
-
-::: incremental
-
-- Surveys in the UK ($n = 762$) and US ($n = 1273$)
-
-- April-May 2010
-
-- **Outcome:** Support for military strike
-
-- 2x2x2 survey experiment
-
-:::
-
-::: aside
-Tomz, Michael R. and Jessica L.P. Weeks. 2013. ["Public Opinion and the Democratic Peace."](https://doi.org/10.1017/S0003055413000488) *American Political Science Review* 107 (4): 849-865
-:::
-
-## Vignette design
-
-. . .
-
-:::: columns
-
-::: {.column width="50%"}
-### UK
-
-::: incremental
-- **Political regime:** Democracy/not a democracy
-
-- **Military alliances:** Ally/not an ally
-
-- **Military power:** As strong/half as strong
-
-:::
-
-:::
-
-::: {.column width="50%"}
-
-### US
-
-::: incremental
-
-- **Political regime:** Democracy/not a democracy
-
-- **Military alliances:** Ally/not an ally
-
-- **Trade:** High level/not high level
-
-:::
-
-:::
-
-::::
-
-## Results for democracy
-
-![](fig/tomz_weeks_1.png){fig-align="center"}
-
-## Kalla et al (2018): Are You My Mentor?
-
-::: incremental
-- Correspondence experiment with $N = 8189$ legislators in the US
-
-- Also known as *audit* experiments
-
-- Send email about fake student seeking advice to become politician
-
-- Cue gender with student's name
-:::
-
-::: aside
-Kalla, Joshua, Frances Rosenbluth, and Dawn Langan Teele. 2018. ["Are You My Mentor? A Field Experiment on Gender, Ethnicity, and Political Self-Starters."](https://doi.org/10.1086/693984) *Journal of Politics* 80 (1): 337-341
-:::
-
-## Sample email
-
-![](fig/kalla_0.png){fig-align="center"}
-
-
-## Findings {.smaller}
-
-```{r}
-kalla = tribble(
-  ~Outcome, ~Male, ~Female, ~p,
-  "Received reply", 0.25, 0.27, 0.15,
-  "Meaningful response", 0.11, 0.13, 0.47,
-  "Praised", 0.05, 0.06, 0.17,
-  "Offer to help", 0.03, 0.05, 0.09,
-  "Warned against running", 0.01, 0.02, 0.14,
-  "Substantive advice", 0.07, 0.08, 0.33,
-  "Word count (logged)", 1, 1.1, 0.06,
-  "Character count", 145, 170, 0.04
-)
-
-colnames(kalla) = c("Outcome", "Male Sender", "Female Sender", "p-value")
-
-kalla %>% kbl()
+gss %>% print(n = 5000)
 ```
 
 . . .
 
-Why not much difference by gender?
+$\rightarrow$ Take this as a population and compare different sampling procedures
 
-::: aside
-Adapted from Table 1
-:::
+## 500 simulations
 
-## Schnall et al (2008): "Disgust as Embodied Moral Judgment"
+```{r}
+simple = 
+  declare_model(data = gss) +
+  declare_measurement(Y = vote == "yes") +
+  declare_inquiry(Y_bar = mean(Y)) +
+  declare_sampling(S = simple_rs(N, prob = 0.025)) +
+  declare_estimator(Y ~ 1, inquiry = "Y_bar")
+
+complete =
+  declare_model(data = gss) +
+  declare_measurement(Y = vote == "yes") +
+  declare_inquiry(Y_bar = mean(Y)) +
+  declare_sampling(S = complete_rs(N, n = 100)) +
+  declare_estimator(Y ~ 1, inquiry = "Y_bar")
+```
+
+
+```{r, cache = TRUE}
+simp_df = simulate_design(simple)
+comp_df = simulate_design(complete) 
+```
+
+
+```{r}
+rand0 = bind_rows(
+  simp_df %>% 
+    mutate(design = "Simple randomization (p = 0.025)"),
+  comp_df %>% 
+    mutate(design = "Complete randomization (n = 100)"))
+
+rand0$design = fct_rev(rand0$design)
+
+ggplot(rand0) +
+  aes(x = estimate) +
+  geom_vline(xintercept = 0.74, linetype = "dashed") +
+  geom_density(linewidth = 2, color = "#4E2A84") +
+  facet_grid(~design) +
+  labs(
+    x = "Proportion who remember voting",
+    y = "Density"
+  )
+```
+
+
+
+## Variants of random sampling
 
 ::: incremental
-- Students at University of Virginia (n = 43, 18 male)
+- **Stratified random sampling:** Complete random simpling within groups/strata
 
-- Offered to participate in study for course credit
+- **Cluster random sampling:** Whole groups brought into sample together
 
-- **Outcome:** Moral judgment questions (several scenarios)
+- **Stratified cluster sampling:** First make groups, then sample clusters within each groups
 
-- **Treatment:** Extraneous disgust (dirty room)
-
-- **Control:** No disgust (clean room)
+- **Multi-stage random sampling:** First clusters, then units within clusters
 :::
 
-::: aside
-Schnall, Simone, Jonathan Haidt, Gerald L. Clore, and Alexander H. Jordan. 2008. ["Disgust as Embodied Moral Judgment."](https://doi.org/10.1177/0146167208317771) *Personality and Social Psychology Bulletin* 34 (8): 1023-1153
+---
+
+![](fig/sampling_types.png){fig-align="center"}
+
+## What changes?
+
+```{r}
+strat = 
+  declare_model(data = gss) +
+  declare_measurement(Y = vote == "yes") +
+  declare_inquiry(Y_bar = mean(Y)) +
+  declare_sampling(S = strata_rs(strata = sex, n = 50)) +
+  declare_estimator(Y ~ 1, inquiry = "Y_bar")
+```
+
+```{r, cache = TRUE}
+set.seed(20250127)
+strat_df = simulate_design(strat, future.seed = FALSE)
+```
+
+
+```{r}
+rand1 = bind_rows(
+  strat_df %>% 
+    mutate(design = "Stratified (50/50 by sex)"),
+  comp_df %>% 
+    mutate(design = "Complete (n = 100)"))
+```
+
+```{r}
+ggplot(rand1) +
+  aes(x = estimate) +
+  geom_vline(xintercept = 0.74, linetype = "dashed") +
+  geom_density(linewidth = 2, color = "#4E2A84") +
+  facet_grid(~design) +
+  labs(
+    x = "Proportion who remember voting",
+    y = "Density"
+  )
+```
+
+. . .
+
+$\rightarrow$ Less likely to get unlucky!
+
+## Non-random sampling
+
+::: incremental
+- **Convenience sampling:** Easy, inexpensive access
+
+- **Quota sampling:** Search until target group count is met
+
+- **Respondent-driven:** Ask respondents for contacts
 :::
 
-## Conditions
+. . .
 
-> On the desk there was a transparent plastic cup with the dried up remnants of a smoothie and a pen that was chewed up. Next to the desk was a trash can overflowing with garbage including greasy pizza boxes and dirty-looking tissues. For the no-disgust condition, the same desk was used, but it was covered up with a clean white tablecloth. A new chair was provided, and none of the disgusting objects were present. A new and unchewed pen was provided for filling out the questionnaires.
+![](fig/nonrandom_sampling.png){fig-align="center" width="80%"}
 
-## Findings
+# Sources of error
 
-![](fig/disgust.png){fig-align="center"}
+## Return to measurement error
 
-::: aside
-*Private body consciousness* is a person's general attention to internal physical states
-:::
+![](fig/board.png)
+
+. . .
+
+ Many different forms of measurement error!
+
+## Total survey error framework
+
+![](fig/total_survey_error.png){fig-align="center"}
 
 ## Summary
 
-. . .
+- We conduct surveys to understand attitudes and behaviors
 
-**Last week:**
+- Gap between *self-reports* and *actual* attitudes behaviors opens the door for measurement error
 
-- Random **sampling** enables inference from sample to population because of *asymptotic properties* (central limit theorem)
+- Many sources of error (Mode, frame, procedure)
 
-. . .
-
-**This week:**
-
-- Random **assignment** enables causal inference in experiments because of *finite-sample properties* (weak law of large numbers)
-
-. . . 
-
-Can combine both, but often do not need to
+- *Random sampling* important assumption to enable statistical inference
 
 ::: {style="text-align: center"}
-## Experiments {#thu .center}
+## Surveys {#thu .center}
 
 ### POLI SCI 210
 
@@ -847,382 +592,575 @@ Introduction to Empirical Methods in Political Science
 
 :::
 
-
 ## Last time
 
-- Experiments as the **gold standard** for causal inference
+- Gap between *self-reports* and *actual* attitudes/behaviors opens the door for measurement error
 
-- Thanks to random assignment, we can rule out:
+- **Tuesday:** Sample design concerns
 
-1. Reverse causation
-
-2. Selection bias
-
-3. Omitted variable bias
+- **Today:** Questionnaire design concerns
 
 . . .
 
-What exactly can we learn from experiments?
+1. Asking good questions
 
-## Learning from experiments
-
-How do you prove that a policy intervention works?
-
-. . .
-
-We want to make statements about *causation*
-
-- **Example:** *Universal income improves political participation*
-
-. . .
-
-To back up those statements, we need to rule out **confounding factors**
-
-- *Those who enroll on universal income programs are already more inclined to participate*
-    
-. . .
-
-What kind of critique is this?
-
-## Ruling out confounders
-
-We learned that **random assignment** allows us to rule out potential confounders
-
-. . .
-
-We can claim that treatment assignment is **ignorable** or **independent** from other factors
-
-. . .
-
- **Challenge:** This is only true *in expectation*
- 
-## A small experiment
+2. Asking sensitive questions
 
 
-```{r}
-pop = declare_population(
-  N = 4,
-  female = c(0, 0, 1, 1),
-  Y0 = c(0, 0, 0, 1),
-  Y1 = c(0, 1, 1, 1)
-)
-pot = declare_potential_outcomes(Y ~ Y1 * Z + Y0 * (1-Z))
-estimand = declare_inquiry(ATE = mean(Y1 - Y0))
-assign = declare_assignment(Z = complete_ra(N, m = 2))
-reveal = declare_measurement(Y = reveal_outcomes(Y ~ Z))
-estimator = declare_estimator(Y ~ Z, inquiry = "ATE")
-design_1 = pop + pot + estimand + assign + reveal + estimator
-```
+## Practice
 
-
-```{r}
-set.seed(141)
-dat = draw_data(design_1)
-dat_0 = dat %>% select(ID, female, Y0, Y1)
-colnames(dat_0) = c("ID", "Female", "Y(0)", "Y(1)")
-dat_0 %>% kbl()
-```
-
-. . .
-
-- $Y(*)$ are the **potential outcomes** under control `(0)`  and treatment `(1)`, respectively
-
-- $Y(*) = 1$ means person's life improves, $Y(*) = 0$ means life stays the same
-
-## A small experiment {visibility="uncounted"}
-
-
-```{r}
-set.seed(141)
-dat = draw_data(design_1)
-dat_0 = dat %>% select(ID, female, Y0, Y1)
-colnames(dat_0) = c("ID", "Female", "Y(0)", "Y(1)")
-dat_0 %>% kbl()
-```
-
-- We have:
-
-    - One person for which the policy would do nothing
-    - Two people for which the policy improves life
-    - One person who improves their life either way
-    
-## Assign treatment at random
-
-```{r}
-dat_1 = dat %>% select(ID, female, Y0, Y1, Z)
-colnames(dat_1) = c("ID", "Female", "Y(0)", "Y(1)", "Z")
-dat_1 %>% kbl()
-```
-
-. . .
-
-- We happened to randomly assign the policy to the two women
-
-- We only observe the potential outcomes that corresponds to the treatment status
-
-## Revealing outcomes
-
-```{r}
-dat_2 = dat %>% select(ID, female, Y0, Y1, Z, Y)
-colnames(dat_2) = c("ID", "Female", "Y(0)", "Y(1)", "Z", "Y obs")
-dat_2 %>% kbl()
-```
-
-. . .
-
-- The **true** treatment effect is 
-
-$$ATE = E[Y(1)] - E[Y(0)] = 3/4 - 1/4 = 1/2$$
-
-- Which we **cannot observe in the real world**
-
-## Revealing outcomes {visibility="uncounted"}
-
-```{r}
-dat_2 = dat %>% select(ID, female, Y0, Y1, Z, Y)
-colnames(dat_2) = c("ID", "Female", "Y(0)", "Y(1)", "Z", "Y obs")
-dat_2 %>% kbl()
-```
-
-- We can **approximate** the ATE with $\widehat{ATE} = 2/2 - 0/2 = 1$
-
-- We are off the mark! What happens if we redo the experiment?
-
-## Redoing the experiment
-
-```{r}
-set.seed(142)
-redo = draw_data(design_1)
-dat_3 = redo %>% select(ID, female, Y0, Y1, Z, Y)
-colnames(dat_3) = c("ID", "Female", "Y(0)", "Y(1)", "Z", "Y obs")
-dat_3 %>% kbl()
-```
-
-. . .
-
-- We still have $ATE = 1/2$
-
-- But now $\widehat{ATE} = 1/2 - 1/2 = 0$
-
-- Off the mark in the opposite direction
-
-## Why does this happen?
-
-```{r}
-dat_4 = dat %>% select(ID, female, Y0, Y1, Z, Y)
-dat_4$Z2 = dat_3[, 5]
-dat_4$Y2 = dat_3[, 6]
-colnames(dat_4) = c("ID", "Female", "Y(0)", "Y(1)", "Z", "Y obs", "Z", "Y obs")
-dat_4 %>% kbl() %>% add_header_above(c(" " = 4, "Experiment 1" = 2, "Experiment 2" = 2))
-```
-
-. . .
-
-- Perhaps men and women react to treatment differently
-
-- We want results to not depend on whether we assign treatments to men or women
-
-## Why does this happen? {visibility="uncounted"}
-
-- **Experiment 1:** 2/2 women in treatment and 0/2 in control `(imbalanced)`
-
-- **Experiment 2:** 1/2 woman in treatment and 1/2 in control `(balanced)`
-
-. . .
-
-- Does that mean that experiment 2 is free from **random confounding**?
-
-
-## Redo 1,000 experiments
-
-
-```{r, fig.pos = "center", cache = TRUE}
-set.seed(20220425)
-sims = simulate_design(design_1, sims = 1000)
-ggplot(sims) +
-  aes(x = estimate) +
-  geom_vline(xintercept = mean(sims$estimand), linetype = "dashed", size = 2) +
-  geom_density(size = 2, color = "#4E2A84") +
-  labs(x = "Observed ATEs", y = "Density") +
-  annotate("text", x = mean(sims$estimand) + 0.1, y = 1.5, label = "True ATE", 
-           size = 6)
-```
+![](fig/tv_watching.png){fig-align="center"}
 
 ::: aside
-Half of the time we are spot on, half of the time we are wrong in either direction
+**Source:** Schwarz, Norbert. 1999. ["Self-reports: How the questions shape the answers."](https://dornsife.usc.edu/norbert-schwarz/wp-content/uploads/sites/231/2023/11/99_ap_schwarz_self-reports.pdf) *American Psychologist* 54 (2): 97
 :::
 
-## What does this mean?
+## More practice
+
+. . . 
+
+Q: *What is the most important thing to teach children to prepare them for life?*
+
+. . . 
+
+A: **To think for themselves**
 
 . . .
 
-- Experiments only rule out the role of potential confounders **IN EXPECTATION**
+- 61.5% multiple choice
+- 4.6% open-ended
 
-- We can sustain this claim in two ways
+
+## What makes a good survey question?
+
+. . . 
+
+No definitive answer!
+
+. . . 
+
+- We want some validity and reliability, but those are hard to gauge
+
+. . . 
+
+- Consistency over time is good
 
 . . .
 
-1. **CLT:** With a sufficiently large sample `(But how large is large enough?)`
-    
-2. **WLLN:** By repeating the same experiment multiple times `(Nobody does this)`
+Here are some vague principles
 
-## In practice
+## Literal vs. pragmatic meaning
+
+. . .
+
+What the words mean vs. what we think the question is asking
+
+. . .
+
+Follow the *maxims of conversation*:
 
 ::: incremental
-- We only know statitiscal properties in our simulations
+1. **Maxim of relation:** Answers are relevant *relative* to context
 
-- Need a lot of domain expertise to attribute ATE to policy
+2. **Maxim of quantity:** Answer are informative, but no more informative than required
 
-- This involves **explaining why it works**
+3. **Maxim of manner:** Most obvious meaning should be the correct one
 
-- First step toward knowing whether it would **work somewhere else**
+4. **Maxim of quality:** Not to say anything false or inaccurate
 :::
-
-## Generalization and extrapolation
-
-- **Critique:** Experiments invest in *internal validity* at the expense of *external validity*
 
 . . .
 
-- **Internal validity:** We can `(probabilistically)` attribute effect to policy intervention
+Try to approximate everyday language!
 
-- **External validity:** Whether effect *extrapolates* or *generalizes*
+## Open-ended vs. closed response
 
 . . .
 
-- **Extrapolation:** Whether it works *elsewhere*
+Q: *What have you done today?*
 
-- **Generalization:** Whether it works *everywhere*
+. . . 
 
-## Thinking about external validity
-
-<p align="center"><iframe width="900" height="500" src="https://www.youtube.com/embed/9wmvZH5lX_U?si=M_SbCDBTcWHh_elr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
-
-::: aside
-<https://youtu.be/9wmvZH5lX_U?si=pSNn03CKvYLH4SNm>
-:::
-
-## Questions
+What to say if **open-ended**:
 
 ::: incremental
-1. What are these monkeys representative of?
+- I went to class
 
-2. To what other contexts would this apply?
+- I took a shower
 
-3. Are the treatments realistic?
+- I read the newspaper
 
-4. Is this behavior common/expected?
+- I wrote to my representative
 :::
 
-## External validity concerns
-
-```{r}
-concerns = tribble(
-  ~Type, ~Concern,
-  "Samples", "Does this apply to a different population?",
-  "Contexts", "Does this apply in a different setting?",
-  "Treatments", "Do they resemble real-world phenomena?",
-  "Outcomes", "Do they reflect actual behaviors?"
-)
-
-kbl(concerns) %>% 
-  column_spec(2, italic = TRUE) %>% 
-    row_spec(1:4, color = "white")
-```
-
-::: aside
-See [Shadish et al (2002)](https://psycnet.apa.org/record/2002-17373-000) and [Egami and Hartmant (2023)](https://doi.org/10.1017/S0003055422000880) for details
-:::
-
-## External validity concerns
-
-```{r}
-kbl(concerns) %>% 
-  column_spec(2, italic = TRUE) %>% 
-  row_spec(2:4, color = "white")
-```
-
-::: aside
-See [Shadish et al (2002)](https://psycnet.apa.org/record/2002-17373-000) and [Egami and Hartmant (2023)](https://doi.org/10.1017/S0003055422000880) for details
-:::
-
-## External validity concerns
-
-```{r}
-kbl(concerns) %>% 
-  column_spec(2, italic = TRUE) %>% 
-  row_spec(3:4, color = "white")
-```
-
-::: aside
-See [Shadish et al (2002)](https://psycnet.apa.org/record/2002-17373-000) and [Egami and Hartmant (2023)](https://doi.org/10.1017/S0003055422000880) for details
-:::
-
-## External validity concerns
-
-```{r}
-kbl(concerns) %>% 
-  column_spec(2, italic = TRUE) %>% 
-  row_spec(4, color = "white")
-```
-
-::: aside
-See [Shadish et al (2002)](https://psycnet.apa.org/record/2002-17373-000) and [Egami and Hartmant (2023)](https://doi.org/10.1017/S0003055422000880) for details
-:::
-
-## External validity concerns
-
-```{r}
-kbl(concerns) %>% 
-  column_spec(2, italic = TRUE)
-```
-
-::: aside
-See [Shadish et al (2002)](https://psycnet.apa.org/record/2002-17373-000) and [Egami and Hartmant (2023)](https://doi.org/10.1017/S0003055422000880) for details
-:::
+## Open-ended vs. closed response
 
 
 
-## Support factors
+Q: *What have you done today?*
 
-::: incremental
-- **Example:** A house burns down because the television was left on
 
-- Not all houses with TVs left on burn down, but sometimes they do, perhaps because the wiring was poor
+What to say if **multiple choice**:
 
-- A **support factor** is one part of the **causal pie**
+- I went to class
 
-- **Causal pie:** A set of causes that are jointly but not separately sufficient for a contribution to an effect `(INUS causation)`
-:::
+- I took a shower
 
-::: aside
-These ideas come from qualitative methods!
-:::
+- I read the newspaper
 
-## Scales and drills
+- I wrote to my representative
+
+
+## Frequency scales
+
+Q: *How frequently have you felt really irritated?*
 
 . . .
 
-- **Scaling up:** Whether we can apply intervention to broader area 
+What does *really irritated* mean?
 
-    - Small scale interventions can become **unfeasible** or **cost-prohibitive** in a larger scale
+. . .
 
-    - Some policies only work at a small scale!
-    
-## Scales and drills {visibility="uncounted"}
+Maybe look at the options:
 
-- **Drilling down:** Can we apply the results of an intervention to individual units?
+. . .
 
-    - Just because it works **on average**, it does not mean that everyone will benefit from it
+- Less than once a year
 
-    - May waste money on people for whom the policy does not work
+- About twice per year
 
-    - This can be **unethical**
-    
+- Every other month
+
+- About once a month
+
+- More than once a month
+
+
+
+## Reference periods
+
+. . .
+
+Q: _How many times have you felt really irritated **this year**_
+
+. . .
+
+::: {.r-stack}
+vs.
+:::
+
+. . .
+
+Q: _How many times have you felt really irritated **last week?**_
+
+. . .
+
+&nbsp;
+
+::: {.r-stack}
+Reference periods also convey meaning!
+:::
+
+
+## Rating scales
+
+. . .
+
+Q: *How successful would you say you have been in life?*
+
+. . .
+
+**Scale 1**
+
+0 (Not at all successful) - 10 (extremely successful)
+
+. . .
+
+**Scale 2**
+
+-5 (Not at all successful) - 5 (extremely succesful)
+
+## Rating scales
+
+
+Q: *How successful would you say you have been in life?*
+
+**Scale 1** (13% between 0 and 5)
+
+0 (Not at all successful) - 10 (extremely successful)
+
+
+**Scale 2** (34% between -5 and 0)
+
+-5 (Not at all successful) - 5 (extremely succesful)
+
+&nbsp;
+
+
+::: incremental
+- 0 at the beginning is a *minimum*
+
+- 0 in the middle is a *baseline*
+:::
+
+## Demand effects
+
+. . .
+
+**Preamble 1**
+
+. . .
+
+*You will now be asked to consider some hypothetical (not real) online news items and to indicate which news item you would most prefer to read*
+
+::: aside
+Adapted from [Mummolo and Peterson (2019)](https://doi.org/10.1017/S0003055418000837)
+:::
+
+
+## Demand effects
+
+**Preamble 2**
+
+_You will now be asked to consider some hypothetical (not real) online news items and to indicate which news item you would most prefer to read. **The purpose of this exercise is so we can measure whether the news outlet offering an article influences how likely people are to read the article**_
+
+::: aside
+Adapted from [Mummolo and Peterson (2019)](https://doi.org/10.1017/S0003055418000837)
+:::
+
+## Demand effects
+
+**Preamble 3**
+
+_You will now be asked to consider some hypothetical (not real) online news items and to indicate which news item you would most prefer to read. **The purpose of this exercise is so we can measure whether the news outlet offering an article influences how likely people are to read the article.** [We expect that people will be more likely to choose an article if the news source offering it is known to favor their preferred political party, since people tend to seek out information that is consistent with their personal views]{style="color: #4E2A84;"}_
+
+::: aside
+Adapted from [Mummolo and Peterson (2019)](https://doi.org/10.1017/S0003055418000837)
+:::
+
+## Demand effects
+
+- Respondents' tendency to try use *context* clues to find the *"right" answer*
+
+. . .
+
+Small bits convey **researcher's epistemic interest**
+
+::: incremental
+- Affiliation
+
+- Description of study
+
+- Question-wording
+:::
+
+## Priming effects
+
+![](fig/lasorsa.png){fig-align="center" width="70%"}
+
+::: aside
+Lasorsa, Dominic L. 2003. ["Question-Order Effects in Surveys: The Case of Political Interest, News Attention, and Knowledge."](https://doi.org/10.1177/107769900308000302) *Journalism & Mass Communication Quarterly* 80 (3): 499-512
+:::
+
+## Priming effects
+
+. . .
+
+**Three question groups**
+
+. . .
+
+1. Political interest (How often follow govt news)
+
+2. Political knowledge (Texas politics)
+
+3. News coverage evaluation (Excuse knowledge gaps)
+
+. . .
+
+Shuffle order, and compare frequency for each combination
+
+## Priming effects
+
+![](fig/lasorsa_findings.png){fig-align="center"}
+
+## Priming effects
+
+Questions are affected by their **placement in the survey flow**
+
+. . .
+
+Preceding questions may influence how respondents interpret current question
+
+::: {style="text-align: center"}
+## What if... {.center}
+
+. . .
+
+The problem is *not* how to craft questions
+
+
+. . .
+
+But the questions *themselves*?
+
+:::
+
+
+
+## Some examples
+
+::: incremental
+- Have you lied about having COVID symptoms?
+
+- Would you bribe a police officer to avoid a traffic ticket?
+
+- Have you had sex after drinking alcohol?
+
+- Have you been offered goods or favors for your vote?
+
+- Do you know anyone with links to a militant organization?
+
+- Would you oppose a black family moving next door?
+
+- Would you allow muslim immigrants to become citizens?
+
+:::
+
+## What do these have in common?
+
+::: incremental
+- They are **sensitive questions**
+
+- We can only learn about them through surveys
+
+- Asking about them directly leads to **misreporting**
+
+- This kind of *measurement error is called* **social desirability bias** or **sensitivity bias**
+:::
+
+## How to reduce sensitivity bias?
+
+::: incremental
+
+- Purposefully deviate from *maxims of conversation*
+
+- By adding noise to the question
+
+- Two approaches:
+
+1. Distract from the sensitive attitude/behavior
+
+2. Guarantee anonymity
+
+- Different techniques vary on how they combine the two
+
+- Broadly known as **indirect questioning techniques**
+:::
+
+## Randomized response
+
+For this question, I want you to answer *yes* or *no*.
+
+## Randomized response {visibility="uncounted"}
+
+For this question, I want you to answer *yes* or *no*. But I want you to consider the number of your dice throw.
+
+## Randomized response {visibility="uncounted"}
+
+For this question, I want you to answer *yes* or *no*. But I want you to consider the number of your dice throw. If {{< fa dice-one >}} shows on the dice, tell me *no*.
+
+## Randomized response {visibility="uncounted"}
+
+For this question, I want you to answer *yes* or *no*. But I want you to consider the number of your dice throw. If {{< fa dice-one >}} shows on the dice, tell me *no*. If {{< fa dice-six >}} shows, tell me *yes*.
+
+## Randomized response {visibility="uncounted"}
+
+For this question, I want you to answer *yes* or *no*. But I want you to consider the number of your dice throw. If {{< fa dice-one >}} shows on the dice, tell me *no*. If {{< fa dice-six >}} shows, tell me *yes*. But if another number shows, tell me your own opinion about the question.
+
+. . .
+
+&nbsp;
+
+[TURN AWAY FROM RESPONDENT]
+
+. . .
+
+&nbsp;
+
+Now you throw the dice so that I cannot see what comes out.
+
+## Randomized response {visibility="uncounted"}
+
+For this question, I want you to answer *yes* or *no*. But I want you to consider the number of your dice throw. If {{< fa dice-one >}} shows on the dice, tell me *no*. If {{< fa dice-six >}} shows, tell me *yes*. But if another number shows, tell me your own opinion about the question.
+
+&nbsp;
+
+[TURN AWAY FROM RESPONDENT]
+
+&nbsp;
+
+Have you thrown the dice?
+
+## Randomized response {visibility="uncounted"}
+
+For this question, I want you to answer *yes* or *no*. But I want you to consider the number of your dice throw. If {{< fa dice-one >}} shows on the dice, tell me *no*. If {{< fa dice-six >}} shows, tell me *yes*. But if another number shows, tell me your own opinion about the question.
+
+&nbsp;
+
+[TURN AWAY FROM RESPONDENT]
+
+&nbsp;
+
+Have you picked it up?
+
+## Randomized response {visibility="uncounted"}
+
+For this question, I want you to answer *yes* or *no*. But I want you to consider the number of your dice throw. If {{< fa dice-one >}} shows on the dice, tell me *no*. If {{< fa dice-six >}} shows, tell me *yes*. But if another number shows, tell me your own opinion about the question.
+
+&nbsp;
+
+Now, during the height of the conflict in 2007 and 2008 *(in Afghanistan)*, did you know any militants, like a family member, a friend, or someone you talked to on a regular basis? 
+
+. . .
+
+Please, before you answer, take note of the number you rolled on the dice.
+
+## How does it work?
+
+::: incremental
+
+- We know that about $1/6 \approx 0.17$ respondents said *yes* because they rolled a {{< fa dice-six >}}
+
+- So if $30\%$ in total said *yes*
+
+- We have $\widehat{Y} = 0.3 - 0.17 = 0.13$ as our *population estimate*
+
+- But we **do not know** who they are in our survey!
+
+:::
+
+## Assumptions
+
+. . .
+
+::: {.callout-warning}
+### 1. Honesty given protection
+
+People respond honestly when guaranteed anonymity.
+
+:::
+
+. . .
+
+::: {.callout-warning}
+### 2. One-sided lying
+
+Those who **do not** hold the sensitive trait **never** falsely claim to bear it.
+
+:::
+
+. . .
+
+- These cannot be verified with data!
+
+## List experiment
+
+Now I am going to read you three things that make people angry or upset.
+
+## List experiment {visibility="uncounted"}
+
+Now I am going to read you three things that make people angry or upset. After I read all three, just tell me HOW MANY of them upset you.
+
+## List experiment {visibility="uncounted"}
+
+Now I am going to read you three things that make people angry or upset. After I read all three, just tell me HOW MANY of them upset you. I don't want to know which ones, just HOW MANY.
+
+. . .
+
+### Control group
+
+::: incremental
+1. The federal government increasing the tax on gasoline
+2. Professional athletes getting million-dollar contracts
+3. Large corporations polluting the environment
+:::
+
+## List experiment {visibility="uncounted"}
+
+Now I am going to read you three things that make people angry or upset. After I read all three, just tell me HOW MANY of them upset you. I don't want to know which ones, just HOW MANY.
+
+### Treatment group
+
+1. The federal government increasing the tax on gasoline
+2. Professional athletes getting million-dollar contracts
+3. Large corporations polluting the environment
+4. **A black family moving next door**
+
+## How does it work?
+
+::: incremental
+
+- Respondents are randomly assigned to conditions
+
+- Differences in responses can only be attributed to the presence/absence of the sensitive item (more on this in next week)
+
+- So $\widehat{Y} = \text{Mean(treatment)} - \text{Mean(control)}$ gives a  *population prevalence rate*
+
+- But we **do not know** who they are in our survey!
+
+:::
+
+## Assumptions
+
+. . .
+
+::: {.callout-warning}
+### 1. No liars
+
+Those who **do not** hold the sensitive item **never** falsely claim to bear it.
+
+:::
+
+. . .
+
+::: {.callout-warning}
+### 2. No design effects
+
+Including the sensitive item **does not change** how participants respond to the baseline items
+
+:::
+
+. . .
+
+- These can only be evaluated **indirectly**
+
+
+
+## Other techniques
+
+::: incremental
+
+- [Survey administration protections](https://graemeblair.com/papers/sensitive.pdf)
+
+- [Wisdom of the crowds](https://doi.org/10.1016/j.electstud.2018.09.012)
+
+- [Endorsement experiments](https://doi.org/10.1093/pan/mpr031)
+
+- [Conjoint experiments](https://doi.org/10.1017/pan.2021.30)
+
+- [Network scale-up method](https://doi.org/10.1080/01621459.2021.1935267)
+
+- Variants of the randomized response and list experiment
+
+:::
+
 ## Summary
 
-- Experiments help in establishing *cause and effect*
+- Asking good survey questions is challenging!
 
-- But do not explain how/why/where
+- Ideally, we want to follow the *maxims of conversation*
 
-- Need more knowledge to draw definitive conclusions
+- But often, getting precise answers means asking *weird* questions
+
+- **Example:** Techniques for sensitive questions

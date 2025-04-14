@@ -23,9 +23,6 @@ library(gt)
 library(modelsummary)
 library(tidyr)
 library(broom)
-library(haven)
-library(rdrobust)
-library(estimatr)
 
 
 # ggplot global options
@@ -39,601 +36,791 @@ nu_purple = "#4E2A84"
 
 
 ::: {style="text-align: center"}
-## Quasi-Experiments {.center}
+## Large N {.center}
 
 ### POLI SCI 210
 
 Introduction to Empirical Methods in Political Science
 
 :::
+
+## Be ready for next week! {.smaller background-color="#FDBF57"}
+
+**NO EMPS CHAPTER ASSIGNED**
+
+**Lecture reading**
+
+- Huntinton-Klein, Nick. 2022. [*The Effect: An Introduction to Research Design and Causality*](https://theeffectbook.net). Chapman & Hall. Chapter 18
+
+- Cattaneo, Matias D., Nicolás Idrobo, and Rocío Titiunik. 2020. [*A Practical Introduction to Regression Discontinuity Designs: Foundations*](https://titiunik.github.io/books/CattaneoIdroboTitiunik2020-CUP-Foundations.pdf). Cambridge University Press. Chapters 1-4
+
+**Discussion section (read at least on very carefully)**
+
+- García-Montoya, Laura, Ana Arjona, and Matthew Lacombe. 2022. ["Violence and Voting in the United States: How School Shootings Affect Elections."](https://doi.org/10.1017/S0003055421001179) *American Political Science Review* 116 (3): 807-826
+<!-- Critique: https://doi.org/10.1017/S0003055424000108 -->
+
+- Ademi, Ubeydullah and Firat Kimya. 2024. ["Democratic transition and party polarization: A fuzzy regression discontinuity design approach."](https://doi.org/10.1177/13540688231171689) *Party Politics* 30 (4):736-749
 
 
 
 ## AI Prompts {background-color="#B6ACD1"}
 
-- Quasi-experiment (vs. natural experiment)
+- (Linear) regression
 
-- Regression discontinuity
+- Bivariate vs. multivariate regression
 
-- Difference-in-differences
+- Ordinary least squares (OLS)
 
-- Political science applications of these designs
+- OLS regression assumptions (ask me why I did not mention them in class)
 
-- *Robust* standard errors
+- How to choose what variables to include
 
-- *Clustered* standard errors
+- Covariance vs. correlation vs. regression
 
 
-## So far
+## Last week
 
-- **Two weeks ago:** Experiments as a framework to think about causal inference (potential outcomes)
+- Experiments to learn about *cause and effect*
 
-- **Last week:** Regression as a flexible method to estimate conditional means/slopes
+- **Broadly:** Summarizing relationships between two variables (difference in means between treatment and control)
+
+- **This week:** A more general method to summarize relationships between two (or more) variables
+
+- **Tuesday:** *Bivariate* relationships
+
+- [**Thursday:**](#thu) *Multivariate* relationships
+
+## An experiment has two variables
+
+::: incremental
+- **Y:** Observed outcome
+
+- **D:** Treatment assignment (0: control, 1: treatment)
+:::
 
 . . . 
 
-- **This week:** 
-
-![](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXk0Z2NwMzgzb2dpaWdldG14OGRmaXo3cHllOXJubXByNG1iaW91YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QqkA9W8xEjKPC/giphy.gif){fig-align="center" width=30%}
-
-## Strategies for causal inference
-
-::: incremental
-- **Strategy 1:** Random assignment
-
-- **Strategy 2:** Ignorability assumption (conditional independence)
-:::
+**Y** can be any kind of variable (numerical, categorical)
 
 . . .
 
-Ignorability is hard to justify:
+**D** is categorical because it denotes group membership 
 
-::: incremental
-1. Need to account for all relevant confounding variables
-2. Should not include more than 2-3 controls in regression
-:::
 
-## Roadmap
-
-**Quasi-experiments** as research designs for *credible* causal inference in observational studies
+## More general names
 
 . . .
 
-**Tuesday:** Ignorability satisfied by design (regression discontinuity)
+```{r}
+variables = tribble(
+  ~Y, ~X,
+  "Outcome variable", "Explanatory variable",
+  "Response variable", "Predictor variable",
+  "Dependent variable", "Independent variable",
+  "Thing you **_want_** to explain", "Thing you **_use_** to explain"
+)
+```
 
-[**Thursday:**](#thu) Replace ignorability with a more plausible assumption (difference-in-differences)
+```{r}
+variables %>% 
+  tt() %>% 
+  format_tt(i = 4, markdown = TRUE) %>% 
+  style_tt(j = 1:2, align = "c") %>% 
+  style_tt(i = 4, fontsize = 0.6) %>% 
+  style_tt(j = 2, color = "white")
+```
 
-## Quasi-experiments
+## More general names
 
-::: incremental
-- *Observational studies*
+```{r}
+variables %>% 
+  tt() %>% 
+  format_tt(i = 4, markdown = TRUE) %>% 
+  style_tt(j = 1:2, align = "c") %>% 
+  style_tt(i = 4, fontsize = 0.6)
+```
 
-- Conditions (treatment, control) assigned in a manner that is **sufficiently independent** from potential outcomes
-
-- Enough to satisfly *ignorability* or *conditional independence*
-
-- $\neq$ **Natural experiments** (no random assignment)
-
-- We can *think* of them as experiments but they **are not**
-
-:::
-
-## Regression discontinuity design (RDD)
-
-**Ingredients**
-
-::: incremental
-- $Y$: Outcome
-
-- $X$: **Score** or **running variable** (numerical continuous)
-
-- $c$: **Cutoff** or **threshold**
-
-- $T$: **Treatment** indicator (1, 0)
-:::
 
 . . .
 
-**Potential outcomes**
+**X** and **Y** can now be any type (numerical, categorical)
+
+. . .
+
+That means we can't just compare means
+
+
+
+## Example
+
+```{r make-cookies, include=FALSE}
+cookies <- tibble(happiness = c(0.5, 2, 1, 2.5, 3, 1.5, 2, 2.5, 2, 3),
+                  cookies = 1:10)
+
+cookies_data <- cookies
+cookies_model <- lm(happiness ~ cookies, data = cookies)
+cookies_fitted <- augment(cookies_model)
+```
+
+```{r cookies-base}
+cookies_base <- ggplot(cookies_fitted, aes(x = cookies, y = happiness)) +
+  geom_point(size = 3) +
+  coord_cartesian(xlim = c(0, 10), ylim = c(0, 3)) +
+  scale_x_continuous(breaks = 0:10) +
+  labs(x = "Cookies eaten", y = "Level of happiness")
+
+cookies_base
+```
+
+## How to summarize?
+
+```{r}
+cookies_base
+```
+
+
+## Connect with a line
+
+```{r cookies-spline}
+cookies_base +
+  geom_smooth(method = lm, color = nu_purple, formula = y ~ splines::bs(x, 7), se = FALSE)
+```
+
+## Maybe smoother?
+
+```{r cookies-loess}
+cookies_base +
+  geom_smooth(method = "loess", color = nu_purple, se = FALSE)
+```
+
+## A straight line?
+
+```{r cookies-lm}
+cookies_base +
+  geom_smooth(method = "lm", color = nu_purple, se = FALSE)
+```
+
+## Straight lines are good
+
+. . .
+
+They can be written as a **linear equation**
+
+. . .
 
 $$
-Y = (1 - T) Y(0) + T Y(1) = \begin{cases}
-Y(0) & \text{if } X < c\\
-Y(1) & \text{if } X \geq c
-\end{cases}
+y = mx + b
 $$
 
-## Sharp RDD
-
-![](fig/rd_assign.png){fig-align="center" width=59%}
-
-::: aside
-Called *sharp* because treatment assignment is *deterministic* at the cutoff
-:::
-
-## Interpretation: Two approaches
-
-:::: {.columns}
-
-::: {.column width="60%"}
-
-![](fig/rd_assign.png)
-
-:::
-
-::: {.column width="40%"}
-
-
-1. Local randomization
-
-2. Continuity-based
-
-
-:::
-::::
-
-## Local randomization approach
-
-:::: {.columns}
-::: {.column width="60%"}
-![](fig/rd_rand.png)
-:::
-
-::: {.column width="40%"}
-::: incremental
-- Potential outcomes are not random because they depend on the *score*
-
-- But around the *cutoff*, treatment assignment is **as-if random**
-
-
-:::
-
-:::
-
-::::
-
 . . .
-
-We can pretend we have an experiment within a **bandwidth** around the *cutoff*
-
-## Example {.smaller}
-
-![](fig/hoekstra_1.png){fig-align="center" width="65%"}
-
-::: aside
-**Source:** Hoekstra, Mark. 2009. ["The Effect of Attending the Flagship State University on Earnings: A Discontinuity-Based Approach."](https://doi.org/10.1162/rest.91.4.717) *The Review of Economics and Statistics* 91 (4): 717-724
-:::
-
-
-## Local randomization approach
-
-:::: {.columns}
-::: {.column width="60%"}
-![](fig/rd_rand.png)
-:::
-
-::: {.column width="40%"}
-::: incremental
-- Bandwidth $\mathcal{W} = [c−w,c+w]$
-
-- Treatment **as-if** random within $\mathcal{W}$
-
-- ATE *identified* within $\mathcal{W}$
-
-:::
-
-:::
-
-::::
-
-
-## Local randomization approach
-
-:::: {.columns}
-::: {.column width="60%"}
-![](fig/rd_rand.png)
-:::
-
-::: {.column width="40%"}
-
-**Requirements**
-
-::: incremental
-1. Known probability distribution of scores within $\mathcal{W}$ ($\equiv$ random assignment)
-
-2. Potential outcomes **not affected by scores** within $\mathcal{W}$
-
-:::
-
-:::
-
-::::
-
-## Local randomization approach
-
-:::: {.columns}
-::: {.column width="60%"}
-![](fig/rd_rand.png)
-:::
-
-::: {.column width="40%"}
-
-**Estimation**
-
-::: incremental
-- Difference in means within $\mathcal{W}$
-:::
-
-**Inference**
-
-::: incremental
-
-1. CLT approximation (needs a *super-population*)
-
-2. Simulation (*randomization inference*)
-
-:::
-
-:::
-
-::::
-
-## Challenge: choosing a bandwidth
-
-![](fig/rdd_bw.png){fig-align="center" width="83%"}
-
-::: aside
-A narrow bandwidth has low bias but high variance. A wider bandwidth has lower variance but more bias. Narrow makes more sense but may yield wide confidence intervals.
-:::
-
-## Continuity-based approach
-
-:::: {.columns}
-::: {.column width="60%"}
-![](fig/rd_cont.png)
-:::
-
-::: {.column width="40%"}
-::: incremental
-- Treatment assignment **deterministic** at cutoff
-
-- ATE *identified* **exactly** at *cutoff*
-
-- $\tau_{SRD} \equiv E[Y_i(1) - Y_i(0) | X_i = c]$
-
-- But it does not exist!
-
-
-:::
-
-:::
-
-::::
-
-## Example: Evanston school district
 
 ```{=html}
-<p align="center"><iframe src="https://www.google.com/maps/d/embed?mid=1mvqxAi6H-pWrBpdD5QwbeWJKPYCl8p9l&hl=en&ehbc=2E312F" width="900" height="500"></iframe></p>
+<table>
+  <tr>
+    <td class="cell-center">\(y\)</td>
+    <td class="cell-left">&ensp;Outcome variable</td>
+  </tr>
+  <tr>
+    <td class="cell-center">\(x\)</td>
+    <td class="cell-left">&ensp;Explanatory variable</td>
+  </tr>
+  <tr>
+    <td class="cell-center">\(m\)</td>
+    <td class="cell-left">&ensp;Slope (\(\frac{\text{rise}}{\text{run}}\))</td>
+  </tr>
+  <tr>
+    <td class="cell-center">\(b\)</td>
+    <td class="cell-left">&ensp;y-intercept</td>
+  </tr>
+</table>
 ```
-
-
-## Continuity-based approach
-
-:::: {.columns}
-::: {.column width="60%"}
-![](fig/rd_cont.png)
-:::
-
-::: {.column width="40%"}
-
-- ATE is *identified* but *nonexistent* at cutoff
-
-- Still, we can approximate gap
-
-:::
-
-::::
-
-## Continuity-based approach
-
-:::: {.columns}
-::: {.column width="60%"}
-![](fig/rd_cont.png)
-:::
-
-::: {.column width="40%"}
-
-- ATE is *identified* but *nonexistent* at cutoff
-
-- Still, we can approximate gap
-
-$$
-\lim_{x \downarrow c} E[Y | X = x] -
-\lim_{x \uparrow c} E[Y | X = x]
-$$
-:::
-
-::::
-
-## Continuity-based approach
-
-:::: {.columns}
-::: {.column width="60%"}
-![](fig/rd_cont.png)
-:::
-
-::: {.column width="40%"}
-
-- ATE is *identified* but *nonexistent* at cutoff
-
-- Still, we can approximate gap
-
-$$
-\lim_{x \downarrow c} E[Y | X = x] -
-\lim_{x \uparrow c} E[Y | X = x]
-$$
-
-- This becomes a **line-drawing** problem
-:::
-
-
-
-::::
-
-
-## Local polynomial point estimation
-
-**Steps**
-
-1. Choose polynomial $p$
-
-2. Choose kernel function $K(\cdot)$
-
-2. Choose bandwidth $h$
-
-3. Fit $\widehat \mu_+$ and $\widehat \mu_-$ via *weighted least-squares*
-
-4. Estimate: $\widehat{ATE} = \widehat \mu_+ - \widehat \mu_-$
-
-5. Inference: Correct for adaptive bandwidth selection
-
-
-::: aside
-This a non-parametric procedure since most choices are automated
-:::
-
-## Line drawing: Parametric
-
-![](fig/rdd_poly.png){fig-align="center" width="90%"}
-
-::: aside
-Different functional forms change the size of the gap
-:::
-
-## Line drawing: Nonparametric
-
-![](fig/rdd_loess.png){fig-align="center" width="90%"}
-
-::: aside
-These lines are made by an algorithm that calculates the local average at many windows or bins of data
-:::
-
-## Line drawing: Bandwidth
-
-![](fig/rdd_bw2.png){fig-align="center" width="90%"}
-
-::: aside
-The size of the bandwidth determines the data you use to draw lines
-:::
-
-## Practice
-
-![<https://doi.org/10.3982/ECTA9878>](fig/meyersson.png){fig-align="center"}
-
-## Ingredients
-
-```{r, results = "hide"}
-url = "http://gustavodiaz.org/ps403/data/CIT_2020_CUP_polecon.dta"
-
-tr = read_dta(url)
-
-# Inspect but do not print
-tr
-```
-
-- $Y$: Percentage of young women who had completed high school by 2000 (outcome)
-
-- $X`$: Islamic parties' margin of victory in the 1994 mayoral election (score)
-
-- $c$: Implicit in score being centered at 0
-
-- $T$: Whether a mayor from an Islamic party was elected in the 1994 election (treatment)
-
-## Visualize
-
-```{r}
-ggplot(tr) +
-  aes(x = X, y = Y, color = as.factor(T)) +
-  geom_point(alpha = 0.5) +
-  geom_vline(xintercept = 0, 
-             linewidth = 1,
-             linetype = "dashed") +
-  scale_color_viridis_d(begin = 0.8, end = 0, ) +
-  labs(
-    x = "Islamic party margin of victory (X)",
-    y = "% Women completed HS",
-    color = "Treatment"
-  )
-```
-
-## Visualize
-
-```{r}
-ggplot(tr) +
-  aes(x = X, y = Y, color = as.factor(T)) +
-  geom_point(alpha = 0.5) +
-  geom_vline(xintercept = 0, 
-             linewidth = 1,
-             linetype = "dashed") +
-  scale_color_viridis_d(begin = 0.8, end = 0, ) +
-  labs(
-    x = "Islamic party margin of victory (X)",
-    y = "% Women completed HS",
-    color = "Treatment"
-  ) +
-    geom_smooth(
-    aes(x = X, y = Y, color = as.factor(T)),
-    method = "lm", se = FALSE
-  )
-```
-
-
-## Bin observations
-
-```{r, results='hide', include = FALSE}
-# This is a ggplot object that can be further customized
-p = rdplot(y = tr$Y,x = tr$X, p = 1)
-```
-
-
-```{r}
-p$rdplot +
-   labs(
-    x = "Islamic party margin of victory (X)",
-    y = "% Women completed HS",
-    title = ""
-  ) +
-  theme_gray(base_size = 20)
-```
-
-## Models
-
-**OLS baseline:** $\widehat Y = \beta_0 + \beta_1 T + \beta_2 X$
-
-```{r}
-baseline = lm(Y ~ T + X, data = tr)
-```
-
 
 . . .
 
-**Local randomization:** 5% and 10% bandwidth
+This is the *smallest number of parameters* to draw a line
 
-```{r}
-bw5 = lm(Y ~ T, 
-         data = tr %>% 
-           filter(X >= -5 & X <= 5))
+## Slopes and intercepts
 
-bw10 = lm(Y ~ T, 
-         data = tr %>% 
-           filter(X >= -10 & X <= 10))
+:::: {.columns}
+
+::: {.column width="50%"}
+$y = 2x - 1$
+
+```{r simple-line-1, echo=FALSE, fig.dim=c(4.8, 3.5), out.width="100%"}
+ggplot(data = tibble(x = 0:5), aes(x = x)) +
+  stat_function(fun = function(x) 2 * x - 1, 
+                color = nu_purple, size = 1.5) +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) +
+  scale_x_continuous(breaks = 0:5) +
+  scale_y_continuous(breaks = -1:9)
 ```
+:::
 
+:::
+
+## Slopes and intercepts
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$y = 2x - 1$
+
+```{r simple-line-1b, echo=FALSE, fig.dim=c(4.8, 3.5), out.width="100%"}
+ggplot(data = tibble(x = 0:5), aes(x = x)) +
+  stat_function(fun = function(x) 2 * x - 1, 
+                color = nu_purple, size = 1.5) +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) +
+  scale_x_continuous(breaks = 0:5) +
+  scale_y_continuous(breaks = -1:9)
+```
+:::
+
+::: {.column width="50%"}
+$y = -0.5x + 6$
+
+```{r simple-line-2, echo=FALSE, fig.dim=c(4.8, 3.5), out.width="100%"}
+ggplot(data = tibble(x = 0:14), aes(x = x)) +
+  stat_function(fun = function(x) -0.5 * x + 6, 
+                color = nu_purple, size = 1.5) +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) +
+  scale_x_continuous(breaks = 0:14) +
+  scale_y_continuous(breaks = -1:9) +
+  theme(panel.grid.minor = element_blank())
+```
+:::
+
+:::
 
 . . .
 
-**Continuity-based:** Default automation
+We can think of *intercept* and *slope* as **estimands** or **inferential targets**
 
-```{r}
-rd = rdrobust(
-  y = tr$Y,
-  x = tr$X)
+## Drawing lines in statistics
 
-tidy.rdrobust <- function(model, ...) {
-  ret <- data.frame(
-    term = row.names(model$coef),
-    estimate = model$coef[, 1],
-    std.error = model$se[, 1],
-    p.value = model$pv[, 1]
-  )
-  row.names(ret) <- NULL
-  ret
-}
+. . .
 
+$$
+y = mx + b
+$$
 
-a = tidy(baseline) %>% 
-  filter(term == "T") %>% 
-  mutate(Approach = "Baseline")
-  
-b = tidy(bw5) %>% 
-  filter(term == "T") %>% 
-  mutate(Approach = "Local randomization",
-         bw = 5)
+## Drawing lines in statistics
 
-c = tidy(bw10) %>% 
-  filter(term == "T") %>% 
-  mutate(Approach = "Local randomization",
-         bw = 10)
+$$
+\widehat{y} = \widehat{\beta}_0 + \widehat{\beta}_1 x_1
+$$
 
-d = tidy(rd) %>% 
-  filter(term == "Conventional") %>% 
-  mutate(Approach = "Continuity",
-         bw = 17.24)
+. . .
 
-rd_tab = bind_rows(a, b, c, d) %>% 
-  select(Approach, bw,
-         estimate, std.error, p.value)
+```{=html}
+<table>
+  <tr>
+    <td class="cell-center">\(y\)</td>
+    <td class="cell-center">\(\widehat{y}\)</td>
+    <td class="cell-left">&ensp;Outcome variable</td>
+  </tr>
+  <tr>
+    <td class="cell-center">\(x\)</td>
+    <td class="cell-center">\(x_1\)</td>
+    <td class="cell-left">&ensp;Explanatory variable</td>
+  </tr>
+  <tr>
+    <td class="cell-center">\(m\)</td>
+    <td class="cell-center">\(\widehat{\beta}_1\)</td>
+    <td class="cell-left">&ensp;Slope</td>
+  </tr>
+  <tr>
+    <td class="cell-center">\(b\)</td>
+    <td class="cell-center">\(\widehat{\beta}_0\)</td>
+    <td class="cell-left">&ensp;y-intercept</td>
+  </tr>
+</table>
 ```
 
-## Results
+::: aside
+You may see this equation with an extra error term $\varepsilon$ in some textbooks
+:::
+
+## What are we doing?
+
+::: incremental
+- **Before:** Assume there is a *true parameter* that we do not observe (e.g. population mean, ATE)
+
+- **Now:** Assume there is a *true line* that best describes the relationship between X and Y
+
+- There is a **best linear predictor** that we want to *estimate*
+:::
+
+## Which line is a better summary?
+
+![](https://scholar.harvard.edu/sites/scholar.harvard.edu/files/styles/os_files_xxlarge/public/ellaudet/files/the_least_squares_method_new.gif)
+
+## More formally
+
+::: incremental
+- The **best linear predictor** is the line that minimizes the distance of each observation to the line
+
+- That distance is known as **residual** or **error**
+:::
+
+## Visualizing residuals
 
 ```{r}
-rd_tab %>% 
-  tt(digits = 3) %>% 
-  style_tt(i = 1:4,
-            color = "#00000000")
+cookies_base +
+  geom_smooth(method = "lm", color = nu_purple, se = FALSE)
 ```
 
-## Results
+## Visualizing residuals
 
 ```{r}
-rd_tab %>% 
-  tt(digits = 3) %>% 
-  style_tt(i = 2:4,
-            color = "#00000000")
-```
+cookies_with_residual <- cookies_base +
+  geom_smooth(method = "lm", color = nu_purple, se = FALSE) +
+  geom_segment(aes(xend = cookies, yend = .fitted), color = "#FF851B", size = 1)
 
-## Results
-
-```{r}
-rd_tab %>% 
-  tt(digits = 3) %>% 
-  style_tt(i = 3:4,
-            color = "#00000000")
+cookies_with_residual
 ```
 
 
-## Results
+## More formally
+
+- The **best linear predictor** is the line that minimizes the distance of each observation to to the line
+
+- That distance is know as a **residual** or **error**
+
+. . .
+
+$$
+e_i = (y_i - \widehat y_i)
+$$
+
+## More formally
+
+- The **best linear predictor** is the line that minimizes the distance of each observation to to the line
+
+- That distance is know as a **residual** or **error**
+
+
+$$
+e_i = (y_i - (b_0 + b_1 x_{1i}))
+$$
+
+## Minimizing residuals
+
+We want to find a **vector of coefficients** ($\widehat \beta_0$, $\widehat \beta_1$) that minimizes the **sum of squared residuals**
+
+. . .
+
+$$
+SSR = \sum_{i=1}^n e_i^2
+$$
+
+. . .
+
+We could try many lines until we find the the smallest SSR
+
+. . .
+
+Or use a method called **Ordinary Least Squares** (OLS)
+
+## OLS regression
+
+. . .
+
+**Estimand**
+
+$\alpha = E[Y] - \frac{\text{Cov}[X,Y]}{V[X]}E[X] \qquad \beta = \frac{\text{Cov}[X,Y]}{V[X]}$
+
+&nbsp;
+
+. . .
+
+**Estimator**
+
+$\widehat\alpha = \overline Y - \frac{\overline{XY} - \overline{X} \cdot \overline{Y}}{\overline{X^2} - \overline{X}^2} \overline{X} \qquad \widehat{\beta} = \frac{\overline{XY} - \overline{X} \cdot \overline{Y}}{\overline{X^2} - \overline{X}^2}$
+
+
+
+::: aside
+$\widehat{\alpha}$: intercept; $\widehat{\beta}$: slope
+:::
+
+## Back to cookies
+
+. . .
+
+$$
+\widehat{y} = \widehat \beta_0 + \widehat \beta_1 x_1
+$$
+
+## Back to cookies
+
+$$
+\widehat{\text{happiness}} = \beta_0 + \beta
+_1 \text{cookies}
+$$
+
+## Back to cookies
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$\widehat{\text{happiness}} = \beta_0 + \beta_1 \text{cookies}$
+:::
+::::
+
+## Back to cookies
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$\widehat{\text{happiness}} = \beta_0 + \beta_1 \text{cookies}$
+
+```{r fig.dim=c(4.8, 4.2), out.width="100%"}
+cookies_base +
+  geom_smooth(method = "lm", color = nu_purple) +
+  coord_cartesian(xlim = c(0, 10), ylim = c(0, 4))
+```
+:::
+::::
+
+## Back to cookies
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$\widehat{\text{happiness}} = \beta_0 + \beta_1 \text{cookies}$
+
+```{r fig.dim=c(4.8, 4.2), out.width="100%"}
+cookies_base +
+  geom_smooth(method = "lm", color = nu_purple) +
+  coord_cartesian(xlim = c(0, 10), ylim = c(0, 4))
+```
+:::
+
+::: {.column width="50%"}
 
 ```{r}
-rd_tab %>% 
-  tt(digits = 3) %>% 
-  style_tt(i = 4,
-            color = "#00000000")
+happiness_model <- 
+  lm(happiness ~ cookies,
+     data = cookies_data)
+
+mod = modelsummary(list("happinness" = happiness_model),
+             gof_map = c("nobs", "r.squared"),
+             stars = TRUE,
+             output = "kableExtra")
+
+mod %>% 
+  kable_styling(font_size = 25)
 ```
 
 
-## Results
+:::
+
+::::
+
+## Back to cookies
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$\widehat{\text{happiness}} = \beta_0 + \beta_1 \text{cookies}$
+
+```{r fig.dim=c(4.8, 4.2), out.width="100%"}
+cookies_base +
+  geom_smooth(method = "lm", color = nu_purple) +
+  coord_cartesian(xlim = c(0, 10), ylim = c(0, 4))
+```
+:::
+
+::: {.column width="50%"}
 
 ```{r}
-rd_tab %>% 
-  tt(digits = 3)
+happiness_model <- 
+  lm(happiness ~ cookies,
+     data = cookies_data)
+
+mod = modelsummary(list("happinness" = happiness_model),
+             gof_map = c("nobs", "r.squared"),
+             stars = c('*' = .05),
+             output = "kableExtra")
+
+mod %>% 
+  kable_styling(font_size = 25)
+```
+
+
+:::
+
+::::
+
+## Back to cookies
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$\widehat{\text{happiness}} = 1.10 + 0.16 \cdot \text{cookies}$
+
+```{r fig.dim=c(4.8, 4.2), out.width="100%"}
+cookies_base +
+  geom_smooth(method = "lm", color = nu_purple) +
+  coord_cartesian(xlim = c(0, 10), ylim = c(0, 4))
+```
+:::
+
+::: {.column width="50%"}
+
+```{r}
+happiness_model <- 
+  lm(happiness ~ cookies,
+     data = cookies_data)
+
+mod = modelsummary(list("happinness" = happiness_model),
+             gof_map = c("nobs", "r.squared"),
+             stars = c('*' = .05),
+             output = "kableExtra")
+
+mod %>% 
+  kable_styling(font_size = 25)
+```
+
+
+:::
+
+::::
+
+## Back to cookies
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$\widehat{\text{happiness}} = 1.10 + 0.16 \cdot \text{cookies}$
+
+```{r fig.dim=c(4.8, 4.2), out.width="100%"}
+cookies_base +
+  geom_smooth(method = "lm", color = nu_purple) +
+  coord_cartesian(xlim = c(0, 10), ylim = c(0, 4))
+```
+:::
+
+::: {.column width="50%"}
+
+```{r}
+happiness_model <- 
+  lm(happiness ~ cookies,
+     data = cookies_data)
+
+mod = modelsummary(list("happinness" = happiness_model),
+             gof_map = c("nobs", "r.squared"),
+             stars = c('*' = .05),
+             output = "kableExtra")
+
+mod %>% 
+  kable_styling(font_size = 25)
+```
+
+**On average**
+
+:::
+
+::::
+
+## Back to cookies
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$\widehat{\text{happiness}} = 1.10 + 0.16 \cdot \text{cookies}$
+
+```{r fig.dim=c(4.8, 4.2), out.width="100%"}
+cookies_base +
+  geom_smooth(method = "lm", color = nu_purple) +
+  coord_cartesian(xlim = c(0, 10), ylim = c(0, 4))
+```
+:::
+
+::: {.column width="50%"}
+
+```{r}
+happiness_model <- 
+  lm(happiness ~ cookies,
+     data = cookies_data)
+
+mod = modelsummary(list("happinness" = happiness_model),
+             gof_map = c("nobs", "r.squared"),
+             stars = c('*' = .05),
+             output = "kableExtra")
+
+mod %>% 
+  kable_styling(font_size = 25)
+```
+
+
+**On average**, one additional cookie
+
+:::
+
+::::
+
+## Back to cookies
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$\widehat{\text{happiness}} = 1.10 + 0.16 \cdot \text{cookies}$
+
+```{r fig.dim=c(4.8, 4.2), out.width="100%"}
+cookies_base +
+  geom_smooth(method = "lm", color = nu_purple) +
+  coord_cartesian(xlim = c(0, 10), ylim = c(0, 4))
+```
+:::
+
+::: {.column width="50%"}
+
+```{r}
+happiness_model <- 
+  lm(happiness ~ cookies,
+     data = cookies_data)
+
+mod = modelsummary(list("happinness" = happiness_model),
+             gof_map = c("nobs", "r.squared"),
+             stars = c('*' = .05),
+             output = "kableExtra")
+
+mod %>% 
+  kable_styling(font_size = 25)
+```
+
+
+**On average**, one additional cookie increases happiness by 0.16 points
+
+:::
+
+::::
+
+## Regression and correlation
+
+. . .
+
+Informally, we use regression coefficients (slopes) to determine whether two variables are **correlated**
+
+. . .
+
+Technically, they are related but on a different scale
+
+. . .
+
+**Regression coefficient:** $\beta = \frac{\text{Cov}[X,Y]}{V[X]}$
+
+. . .
+
+**Correlation:** $\rho = \frac{\text{Cov}[X,Y]}{SD[X] SD[Y]}$
+
+::: aside
+By the way, $\text{Cov}[X,Y] = E[(X-E[X])(Y-E[Y])]$
+:::
+
+## Regression and correlation
+
+Informally, we use regression coefficients (slopes) to determine whether two variables are **correlated**
+
+Technically, they are related but on a different scale
+
+**Regression coefficient:** $\beta = \frac{\text{Cov}[X,Y]}{V[X]}$ $\Rightarrow$ in units of Y (happiness)
+
+**Correlation:** $\rho = \frac{\text{Cov}[X,Y]}{SD[X] SD[Y]}$
+
+::: aside
+By the way, $\text{Cov}[X,Y] = E[(X-E[X])(Y-E[Y])]$
+:::
+
+## Regression and correlation
+
+Informally, we use regression coefficients (slopes) to determine whether two variables are **correlated**
+
+Technically, they are related but on a different scale
+
+**Regression coefficient:** $\beta = \frac{\text{Cov}[X,Y]}{V[X]}$ $\Rightarrow$ in units of Y (happiness)
+
+**Correlation:** $\rho = \frac{\text{Cov}[X,Y]}{SD[X] SD[Y]}$ $\Rightarrow$ [-1, 1] scale
+
+::: aside
+By the way, $\text{Cov}[X,Y] = E[(X-E[X])(Y-E[Y])]$
+:::
+
+## With cookies again
+
+:::: {.columns}
+
+::: {.column width="50%"}
+$\widehat{\text{happiness}} = 1.10 + 0.16 \cdot \text{cookies}$
+
+```{r fig.dim=c(4.8, 4.2), out.width="100%"}
+cookies_base +
+  geom_smooth(method = "lm", color = nu_purple) +
+  coord_cartesian(xlim = c(0, 10), ylim = c(0, 4))
+```
+:::
+
+::: {.column width="50%"}
+
+&nbsp;
+
+::: incremental
+
+- **On average**, one additional cookie increases happiness by 0.16 points
+
+- Corresponds to a correlation of `r round(cor(cookies$cookies, cookies$happiness), 2)`
+
+:::
+
+:::
+
+::::
+
+## Helpful for comparison
+
+. . .
+
+Is 0.16 happiness points per cookie a lot?
+
+. . .
+
+We cannot tell without a point of reference
+
+. . .
+
+But correlation is a reference on its own:
+
+```{r, echo = FALSE}
+correlation = tribble(
+  ~`Absolute magnitude`, ~Effect,
+  .1, "Small",
+  .3, "Moderate",
+  .5, "Large"
+)
+
+correlation %>% 
+  tt()
+
 ```
 
 ## Summary
 
-- RDD as a credible way to justify ignorability assumption
+- Lines are a convenient way to summarize bivariate relationships
 
-- Because local randomization and continuity-based approach
+- We can treat line-fitting as an estimation problem
 
-- Effects are **causal** but **local**
+- OLS regression has good statistical properties (minimizes SSR)
 
-- Do they apply to other cases?
+- Regression and correlation are related but different
 
-- Do they exist beyond the discontinuity?
+- Many different kinds of regression models!
 
 ::: {style="text-align: center"}
-## Quasi-experiments {#thu .center}
+## Large N {#thu .center}
 
 ### POLI SCI 210
 
@@ -641,503 +828,531 @@ Introduction to Empirical Methods in Political Science
 
 :::
 
-## Last time
 
-- RDD as an example of how to justify ignorability by design
+```{r}
+# remotes::install_github("jamesmartherus/anesr")
+library(anesr)
 
-- But it is a very specific design!
 
-- **Today:** Take advantage of before/after comparisons to circumvent ignorability assumption
+data(timeseries_2016)
 
-- **Difference-in-differences** design
+nes16 = timeseries_2016 %>% 
+  select(
+    V162079, # Feeling thermometer for TRUMP [POST]
+    V162230x, # Better if man works and woman takes care of home [POST]
+    V162255, # Is Barack Obama Muslim (yes/no) [POST]
+    V161267, # Respondent Age [PRE]
+    V161270, # Highest level of Education (Years) [PRE]
+    V161158x # Party ID [PRE]
+  )
 
-## Example
+nes16 = nes16 %>% 
+  mutate(
+    ft_trump_post = ifelse(V162079 < 0 | V162079 == 998, NA, V162079),
+    women_at_home = case_when(V162230x < 0 ~ NA,
+                              V162230x <= 3 ~ 1,
+                              V162230x <= 7 ~ 0),
+    obamamuslim = ifelse(V162255 == 1, 1, 0),
+    age = ifelse(V161267 < 0, NA, V161267),
+    age0 = age - 18,
+    educ_hs = case_when(V161270 < 0 ~ NA,
+                        V161270 >= 90 ~ NA,
+                        V161270 >= 9 ~ 1,
+                        V161270 <= 8 ~ 0),
+    republican = case_when(V161158x < 0 ~ NA,
+                           V161158x <= 4 ~ 0,
+                           V161158x <= 7 ~ 1)
+  )
 
-```{=html}
-<p align="center"><iframe width="900" height="500" src="https://www.youtube.com/embed/D2DzDDyKjR4?si=nFct16LCYQtLgSAe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+nes = nes16 %>% 
+  select(ft_trump_post,
+         women_at_home, obamamuslim,
+         age, age0,
+         educ_hs, republican)
 
 ```
 
-::: aside
-<https://youtu.be/D2DzDDyKjR4?si=5h2JXBOPXtPZ5bG0>
+
+## Last time
+
+::: incremental
+- **Bivariate regression** as a method to understand relationship between X and Y
+
+- **Today:** More variables! (and why you would want that)
+
+- **Multivariate regression**
+
 :::
 
-## King of the Pump
+## Running example: ANES 2016 data
 
 . . .
 
-**How did John Snow prove that it was the water?**
+**Outcome variable** 
+
+- `ft_trump_post`: Post-election feeling thermometer toward Trump
+
+. . .
+
+```{r, out.width="80%", fig.align='center'}
+ggplot(nes) +
+  aes(x = ft_trump_post) +
+  geom_histogram(bins = 10, fill = nu_purple)
+```
+
+
+## Running example: ANES 2016 data
+
+**Explanatory variables**
 
 ::: incremental
-- Before/after comparison (1849-1854)
-
-- **In between:** Lambeth water company forced to move upstream (away from dirty water)
+- `women_at_home`: Believe women should stay home
+- `obamamuslim`: Believe Obama is a Muslim
+- `age`: Age in years
+- `age0`: Age in years (starting with 18 = 0)
+- `educ_hs`: Any kind of post-secondary education
+- `republican`: Identifies with Republican party (including leaners)
 :::
 
-## Results
+## Running example: ANES 2016 data
+
+
+```{r, echo = FALSE}
+nes
+```
+
+## Main relationship
 
 ```{r}
-snow = tribble(
-  ~Supplier, ~`1849`, ~`1854`,
-  "Lambeth (dirty to clean)", 85, 19,
-  "Others (dirty to dirty)", 135, 147
-)
-
-snow %>% 
-  tt() %>% 
-  format_tt(math = TRUE) %>% 
-  group_tt(
-    j = list(
-      "Cholera deaths per 10,000" = 2:3
-    )
-  ) %>%
-  style_tt(i = 1:2,
-            color = "#00000000")
-  
+ggplot(nes) +
+  aes(x = obamamuslim,
+      y = ft_trump_post) +
+  geom_jitter(size = 1, 
+              width = 0.3,
+              alpha = 0.8,
+              color = nu_purple) +
+  scale_x_continuous(breaks = c(0, 1))
 ```
 
 
-::: aside
-**Adapted from:** Coleman, Thomas. 2019. ["Causality in the Time of Cholera: John Snow as a Prototype for Causal Inference."](https://dx.doi.org/10.2139/ssrn.3262234)
-:::
+## Regression as conditional means
 
-## Results
+. . .
+
+$\widehat{\texttt{ft_trump_post}} = \beta_0 + \beta_1 \cdot \texttt{obamamuslim}$
+
+. . .
 
 ```{r}
-snow %>% 
-  tt() %>% 
-  format_tt(math = TRUE) %>% 
-  group_tt(
-    j = list(
-      "Cholera deaths per 10,000" = 2:3
-    )
-  ) %>%
-  style_tt(i = 2,
-            color = "#00000000")
-  
+lm_race = lm(ft_trump_post ~ obamamuslim, data = nes)
+
+lm_race %>% 
+  tidy() %>% 
+  select(term, estimate, std.error, p.value) %>% 
+  kbl(digits = 2)
 ```
 
+## Regression as conditional means
+
+$\widehat{\texttt{ft_trump_post}} = 32.17 + 35.04 \cdot \texttt{obamamuslim}$
+
+```{r}
+lm_race = lm(ft_trump_post ~ obamamuslim, data = nes)
+
+lm_race %>% 
+  tidy() %>% 
+  select(term, estimate, std.error, p.value) %>% 
+  kbl(digits = 2)
+```
+
+::: incremental
+- What is the average feeling thermometer for someone who *does not* believe Obama is a Muslim?
+
+- What is the average feeling thermometer for someone who *does* believe Obama is a Muslim?
+:::
+
+## What can we say with regression?
+
+::: incremental
+- **Level 1:** Description of *conditional means*
+
+- **Level 2:** Statistical inference (needs CIs or p-values)
+
+- **Level 3:** Causal inference (needs **assumptions**)
+:::
+
+. . .
+
+What do we need to assume to make causal claims?
 
 ::: aside
-**Adapted from:** Coleman, Thomas. 2019. ["Causality in the Time of Cholera: John Snow as a Prototype for Causal Inference."](https://dx.doi.org/10.2139/ssrn.3262234)
+Berk, Richard. 2010. ["What You Can and Can't Properly do with Regression."](https://doi.org/10.1007/s10940-010-9116-4) *Journal of Quantitative Criminology* 26: 481-487
 :::
+
+## Strategy 1: Random assignment
+
+. . .
+
+If treatment $D$ is *randomly assigned*
+
+::: incremental
+- Potential outcomes are *independent* from treatment: $(Y(0), Y(1)) \perp \!\!\! \perp D$
+- ATE $E[\tau_i]$ is **point-identified**
+- Estimate with *difference in means* between treatment and control
+- Bivariate regression yields the same result
+:::
+
+. . .
+
+What if random assignment is not possible?
+
+## Return to ANES 2016
+
+. . .
+
+We **found** that those who believe Obama is a Muslim were, on average, 35 points more favorable toward Trump
+
+. . .
+
+We want to **claim** this is because:
+
+$$
+\text{Beliefs about ethnicity} \Rightarrow \text{Support for Trump}
+$$
+
+. . .
+
+What prevents us from making such a claim?
+
+::: incremental
+- Reverse causation
+- Omitted variable bias
+- Selection bias
+:::
+
+## Strategy 2: Ignorability
+
+
+. . .
+
+We want to be able to **ignore** the role of *potential confounders*
+
+. . .
+
+We usually do this by presenting a **controlled** comparison
+
+. . .
+
+So we can say that our *explanatory variable* is distributed in a way that is **conditionally independent**
+
+. . .
+
+**Conditional independence:** $(Y(0), Y(1)) \perp \!\!\! \perp D | \mathbf{X}$
+
+. . .
+
+We now distinguish between:
+
+::: incremental
+- *Explanatory* variable (D) 
+- *Control* variables or *covariates* (X)
+:::
+
+
+::: aside
+There is strong and weak ignorability. For our purposes they are the same
+:::
+
+## Another way to think about it
+
+There *is* a causal effect to be found in **observational data**
+
+. . .
+
+But without random assignment, the effect is *contaminated* by potential confounders
+
+. . .
+
+We want to **adjust** or **control** for these variables
+
+## Multivariate regression
+
+. . .
+
+The linear model setup is flexible
+
+. . .
+
+ $$\widehat{y} = \widehat \beta_0 + \widehat \beta_1 x_1 + \widehat \beta_2 x_2 + \ldots + \widehat \beta_K x_K$$
+
+. . .
+
+You can technically put *whatever* you want in a regression as long as $\text{observations} > \text{variables}$
+
+. . .
+
+But for *statistical* or *causal inference*, anything with more than 2-3 control variables doesn't make much sense
+
+## Increasing dimensions
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](fig/3d.webp)
+:::
+
+::::
+
+## Increasing dimensions
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](fig/3d.webp)
+:::
+
+::: {.column width="50%"}
+More dimensions $\rightarrow$ more likely to see:
+
+::: incremental
+- **Extrapolation:** Fitting line beyond actual range
+
+- **Interpolation:** Gaps within actual range
+
+:::
+
+:::
+
+::::
+
+. . .
+
+Illusion of learning from **empty space**!
+
+## Practice
+
+. . .
+
+We argue ethnicity beliefs $\Rightarrow$ support Trump
+
+. . .
+
+Some alternative explanations:
+
+::: incremental
+- Differences in education
+- Differences in age
+- Partisan motivated reasoning
+:::
+
+## Models
+
+Estimate the following models:
+
+. . .
+
+$\widehat{\texttt{ft_trump_post}} = \beta_0 + \beta_1 \texttt{obamamuslim}$ (Baseline)
+
+. . .
+
+$\widehat{\texttt{ft_trump_post}} = \beta_0 + \beta_1 \texttt{obamamuslim} + \beta_2 \texttt{educ_hs}$
+
+. . .
+
+$\widehat{\texttt{ft_trump_post}} = \beta_0 + \beta_1 \texttt{obamamuslim} + \beta_2 \texttt{age}$
+
+. . .
+
+$\widehat{\texttt{ft_trump_post}} = \beta_0 + \beta_1 \texttt{obamamuslim} + \beta_2 \texttt{republican}$
+
+. . .
+
+$\widehat{\texttt{ft_trump_post}} = \beta_0 + \beta_1 \texttt{obamamuslim} + \beta_2  \texttt{educ_hs} +\\ \beta_3 \texttt{age} + \beta_4 \texttt{republican}$
 
 ## Results
 
 ```{r}
-snow %>% 
-  tt() %>% 
-  format_tt(math = TRUE) %>% 
-  group_tt(
-    j = list(
-      "Cholera deaths per 10,000" = 2:3
-    )
+lm0 = lm(ft_trump_post ~ obamamuslim, data = nes)
+
+lm1 = lm(ft_trump_post ~ obamamuslim + educ_hs, data = nes)
+
+lm2 = lm(ft_trump_post ~ obamamuslim + age, data = nes)
+
+lm3 = lm(ft_trump_post ~ obamamuslim + republican, data = nes)
+
+lm4 = lm(ft_trump_post ~ obamamuslim + educ_hs +
+           age + republican, data = nes)
+```
+
+```{r}
+models = list(lm0, lm1, lm2, lm3, lm4)
+
+mods = modelsummary(models,
+             gof_map = c("nobs", "r.squared"),
+             stars = c('*' = .05),
+             output = "gt")
+
+mods %>% 
+  tab_style(
+    style = cell_text(color = "#00000000"),
+    locations = cells_body(columns = 2:6)) %>% 
+    tab_style(
+    style = cell_fill(color = "#B6ACD1"),
+    locations = cells_body(rows = 3:4)
   )
 ```
 
-. . .
+## Results
 
-Moving away from the {{< fa poo >}} certainly helped! 
+```{r}
+mods %>% 
+  tab_style(
+    style = cell_text(color = "#00000000"),
+    locations = cells_body(columns = 3:6)) %>% 
+  tab_style(
+    style = cell_fill(color = "#B6ACD1"),
+    locations = cells_body(rows = 3:4)
+  )
+```
 
-::: aside
-**Adapted from:** Coleman, Thomas. 2019. ["Causality in the Time of Cholera: John Snow as a Prototype for Causal Inference."](https://dx.doi.org/10.2139/ssrn.3262234)
-:::
-
-## Another example
-
-
-![](fig/card_krueger.png){fig-align="center"}
-
-::: aside
-Card, David and Alan B. Krueger (1994). ["Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania."](https://www.jstor.org/stable/2118030) *American Economic Review* 84 (4): 772-793
-:::
-
----
-
-![](fig/card_nobel.jpeg){fig-align="center"}
-
-## Minimum wage and employment
-
-::: incremental
-- **Agreement:** Increasing minimum wage reduces employment
-
-- **New Jersey 1992:** \$4.25 $\rightarrow$ \$5.05
-
-- **Pennsylvania:** Stay at \$4.25
-
-- Look at **full time employment** (FTE) in *fast food restaurants*
-
-- Compare February-November 1992
-
-:::
 
 ## Results
 
 ```{r}
-card = tribble(
-  ~Variable, ~PA, ~NJ, ~`NJ-PA`,
-  "FTE before", 23.30, 20.44, -2.89,
-  "FTE after", 21.147, 21.03, -0.14,
-  "Change", -2.16, 0.59, 2.76
- )
-```
-
-```{r}
-card %>% 
-  tt() %>% 
-    style_tt(j = 2:4,
-            color = "#00000000")
+mods %>% 
+  tab_style(
+    style = cell_text(color = "#00000000"),
+    locations = cells_body(columns = 4:6)) %>% 
+    tab_style(
+    style = cell_fill(color = "#B6ACD1"),
+    locations = cells_body(rows = 3:4)
+  )
 ```
 
 ## Results
 
 ```{r}
-card %>% 
-  tt() %>% 
-    style_tt(j = 3:4,
-            color = "#00000000")
+mods %>% 
+  tab_style(
+    style = cell_text(color = "#00000000"),
+    locations = cells_body(columns = 5:6)) %>% 
+    tab_style(
+    style = cell_fill(color = "#B6ACD1"),
+    locations = cells_body(rows = 3:4)
+  )
 ```
 
 ## Results
 
 ```{r}
-card %>% 
-  tt() %>% 
-    style_tt(j = 4,
-            color = "#00000000")
+mods %>% 
+  tab_style(
+    style = cell_text(color = "#00000000"),
+    locations = cells_body(columns = 6)) %>% 
+    tab_style(
+    style = cell_fill(color = "#B6ACD1"),
+    locations = cells_body(rows = 3:4)
+  )
 ```
 
 ## Results
 
 ```{r}
-card %>% 
-  tt()
+mods %>% 
+    tab_style(
+    style = cell_fill(color = "#B6ACD1"),
+    locations = cells_body(rows = 3:4)
+  )
 ```
 
-. . .
-
-Increasing minimum waged created **more** jobs in NJ!
-
-## Difference-in-differences design
-
-::: incremental
-
-- Time periods: $t = \{1,2\}$ (Before/after treatment)
-
-- Treatment: $D_i = \{0,1\}$
-
-- Potential outcomes: $Y_{i,t}(0) = Y_{i,t}(0, 0)$ and $Y_{i,t}(1) = Y_{i,t}(0, 1)$
-
-:::
-
-. . .
-
-**Switching equation**
-
-$$
-Y_{i,t} = D_i Y_{i,t}(1) + (1-D_i) Y_{i,t}(0)
-$$
-
-
-::: aside
-aka DD, DiD, diff-in-diffs for short
-:::
-
-## Target quantity
-
-. . .
-
-**Average treated effect on the treated (ATT) in $t=2$**
-
-$$
-\tau_2 = E[Y_{i,2}(1) - Y_{i,2}(0) | D_i = 1]
-$$
-
-::: incremental
-- Cannot observe directly
-
-- Cannot avoid *selection bias*
-
-- But before/after setup allows for credible estimation
-:::
-
-## Target quantity
-
-![](fig/dd.png)
-
-## DID estimation
-
-![](fig/dd.png)
-
-
-$$
-\widehat{ATT} =  [\text{Mean}(B) - \text{Mean}(A)] - [\text{Mean}(D) - \text{Mean}(C)]
-$$
-
-
-
-## DID estimation
-
-
-
-![](fig/dd.png)
-
-$$
-\widehat{ATT} =  \underbrace{[\text{Mean}(B) - \text{Mean}(A)]}_\text{Difference} - \underbrace{[\text{Mean}(D) - \text{Mean}(C)]}_\text{Difference}
-$$
-
-## DID estimation
-
-![](fig/dd.png)
-
-$$
-\widehat{ATT} =  \underbrace{\underbrace{[\text{Mean}(B) - \text{Mean}(A)]}_\text{Difference} - \underbrace{[\text{Mean}(D) - \text{Mean}(C)]}_\text{Difference}}_\text{Difference-in-differences}
-$$
-
-## Rewrite as a regression
-
-. . .
-
-**Two time periods**
-
-
-$$
-\begin{align}
-Y = & \beta_0 + \beta_1 \text{Treated} + \beta_2 \text{Post-treatment} + \\
-& {\color{purple}{\beta_3 \text{Treated} \times \text{Post-treatment}}}
-\end{align}
-$$
-
-::: incremental
-- $\beta_0$: Avg. control group, before treatment
-
-- $\beta_0 + \beta_1$: Avg. treatment group, before treatment
-
-- $\beta_0 + \beta_2$: Avg. control group, post-treatment
-
-- $\beta_0 + \beta_1 + \beta_2 + \beta_3$: Avg. treatment group, post-treatment
-:::
-
-. . .
-
-$\beta_3$ gives the **difference-in-differences**
-
-## Rewrite as a regression
-
-**Multiple time periods**
-
-. . .
-
-$$
-Y = \alpha_i + \alpha_t + \color{purple}{\beta_1 \text{Treated}}
-$$
-
-::: incremental
-- $\alpha_i$: Control for variation **within units**
-
-- $\alpha_t$: Control for variation **over time**
-
-- $\alpha_i$ and $\alpha_t$ are called **fixed-effects**
-:::
-
-
-. . .
-
-This is a *two-way fixed-effects* estimator (TWFE)
-
-## Example with multiple periods
-
-<!-- https://github.com/gustavo-diaz/ps403/blob/main/labs/lab8.qmd -->
+## Visualizing
 
 ```{r}
-library(causaldata)
+names(models) = c("none",
+                  "educ_hs",
+                  "age",
+                  "republican",
+                  "all")
 
-od = causaldata::organ_donations
-
-od = od %>%
-  mutate(Treatment = State == 'California',
-         Post = Quarter %in% c('Q32011','Q42011','Q12012'),
-         # Alternative version for TWFE
-         Treated = State == 'California' & 
-            Quarter %in% c('Q32011','Q42011','Q12012')
-         )
+modelplot(models, coef_map = "obamamuslim") +
+  labs(color = "Controls") +
+  theme(legend.position = "bottom", 
+        axis.text.y = element_text(
+          angle = 90, hjust = 0.5)
+        ) +
+  geom_vline(xintercept = 0, linetype = "dashed")
 ```
 
+## Everything else constant {.smaller}
 
-![<https://www.nber.org/papers/w20378>](fig/kessler.png){fig-align="center" width=70%}
-
----
-
-<!-- Alabama is missing! -->
-
-![](fig/kessler_wording.png)
-
-## Intervention
-
-::: incremental
-- **2011:** California switches from *opt-in* $\rightarrow$ *active choice*
-
-- Compare with states that *remain opt-in* (AZ, DC, MN, NH, TN, SC, SD, VA, WI)
-
-- **Outcome:** Average sign-up rates per quarter per state
-:::
-
-## Comparison over time
-
-```{r}
-over_time = od %>% 
-  group_by(Quarter, Treatment) %>% 
-  summarize(avg_donors = mean(Rate))
-
-over_time$Quarter = fct_relevel(
-  over_time$Quarter,
-  "Q42010",
-  "Q12011",
-  "Q22011",
-  "Q32011",
-  "Q42011",
-  "Q12012"
-)
-
-ggplot(over_time) +
-  aes(x = Quarter, y = avg_donors, 
-      group = Treatment, color = Treatment) +
-  geom_line(linewidth = 1) + geom_point(size = 3) +
-  geom_vline(xintercept = "Q32011") +
-  labs(y = "Organ donation sign up rate") +
-  theme(legend.position = "none") +
-  annotate("text", y = 0.44, x = 6, 
-           label = "California",
-           size = 5, color = "#440154") +
-  annotate("text", y = 0.275, x = 6,
-           label = "Opt-in states",
-           size = 5, color = "#7AD151") +
-  scale_color_viridis_d(begin = 0, end = 0.8)
-```
-
-::: aside
-**Opt-in states:** AZ, DC, MN, NH, TN, SC, SD, VA, WI 
-:::
-
-## Models
+Plug-in coefficients in equations:
 
 . . .
 
-**Two-periods:** $\widehat{\texttt{rate}} = \beta_0 + \beta_1 \texttt{california} + \beta_2 \texttt{post} + \color{purple}{\beta_3 \texttt{california} \times \texttt{post}}$
+$\widehat{\texttt{ft_trump_post}} = 32.17 + 35.04 \cdot \texttt{obamamuslim}$
 
 . . .
 
-**Two-wave fixed-effects:** $\widehat{\texttt{rate}} = \alpha_{\texttt{state}} + \alpha_{\texttt{quarter}} + \color{purple}{\beta_1 \texttt{treated}}$ 
+$\widehat{\texttt{ft_trump_post}} =  32.76 + 34.85 \cdot \texttt{obamamuslim}  -0.56 \cdot \texttt{educ_hs}$
 
+. . .
 
-## Models
+$\widehat{\texttt{ft_trump_post}} = 23.09 + 34.72 \cdot \texttt{obamamuslim} + 0.19 \cdot \texttt{age}$
 
-**Two-periods:** $\widehat{\texttt{rate}} = \beta_0 + \beta_1 \texttt{california} + \beta_2 \texttt{post} + \color{purple}{\beta_3 \texttt{california} \times \texttt{post}}$
+. . .
 
-**Two-wave fixed-effects:** $\widehat{\texttt{rate}} = \beta_0 + \color{purple}{ \beta_1 \texttt{california-post}} + \beta_2 \texttt{state} + \beta_3 \texttt{quarter}$ 
+$\widehat{\texttt{ft_trump_post}} = 20.367 + 22.74 \cdot \texttt{obamamuslim} + 37.53 \cdot \texttt{republican}$
+
+. . .
+
+$\widehat{\texttt{ft_trump_post}} = 21.34 + 22.23 \cdot \texttt{obamamuslim}  -6.22 \cdot  \texttt{educ_hs} +\\ 0.10 \cdot \texttt{age} + 37.54 \cdot \texttt{republican}$
 
 . . .
 
 &nbsp;
 
-Use [**clustered standard errors**](https://doi.org/10.1093/qje/qjac038) for statistical inference
-
-## Results
-
-```{r}
-two_periods = lm_robust(
-  Rate ~ Treatment * Post,
-  se_type = "classical",
-  data = od
-)
-
-two_periods_cluster = lm_robust(
-  Rate ~ Treatment * Post,
-  clusters = State,
-  data = od
-)
-
-twfe = lm_robust(
-  Rate ~ Treated,
-  fixed_effects = ~ State + Quarter,
-  clusters = State,
-  data = od
-)
-
-dd_df = bind_rows(
-  tidy(two_periods) %>% 
-    filter(term == "TreatmentTRUE:PostTRUE") %>% 
-    mutate(Model = "Two-periods (no clustering)"),
-  tidy(two_periods_cluster) %>% 
-    filter(term == "TreatmentTRUE:PostTRUE") %>% 
-    mutate(Model = "Two-periods (clustered)"),
-  tidy(twfe) %>%
-    mutate(Model = "Two-way FE")
-) %>% 
-  select(Model, estimate, conf.low, conf.high, p.value)
-```
-
-
-```{r}
-dd_df %>% 
-  tt(digits = 3) %>% 
-      style_tt(i = 1:3,
-            color = "#00000000")
-```
-
-
-## Results
-
-```{r}
-dd_df %>% 
-  tt(digits = 3) %>% 
-      style_tt(i = 2:3,
-            color = "#00000000")
-```
-
-
-## Results
-
-```{r}
-dd_df %>% 
-  tt(digits = 3) %>% 
-      style_tt(i = 3,
-            color = "#00000000")
-```
-
-## Results
-
-```{r}
-dd_df %>% 
-  tt(digits = 3)
-```
+::: {.r-stack}
+Coefficients now need to be interpreted as **marginal means** or **marginal slopes**
+:::
 
 . . .
 
-These estimates are only *valid* under a **BIG assumption**
+&nbsp; 
 
-## Assumption: Parallel trends
+::: {.r-stack}
+These only make sense if you think *at least one variable* is a **focal point**
+:::
 
-![](fig/dd_trend_1.png)
+## Interactions
 
-## What if we break parallel trends?
+. . .
 
-![](fig/dd_trend_2.png)
+What if we believed the effect of `obamamuslim` varies depending on attitudes about gender roles?
 
-## What if we break parallel trends?
+. . .
 
-![](fig/dd_trend_3.png)
+**Model:** $\widehat{\texttt{ft_trump_post}} = \beta_0 + \beta_1 \texttt{obamamuslim} + \beta_2 \texttt{women_at_home} + \\ \beta_3 \texttt{obamamuslim} \times \texttt{women_at_home}$
 
-## Challenge: Staggered adoption
+## Interactions
 
-![](fig/dd_timing.png)
+**Model:** $\widehat{\texttt{ft_trump_post}} = \beta_0 + \beta_1 \texttt{obamamuslim} + \beta_2 \texttt{women_at_home} + \\ \beta_3 \texttt{obamamuslim} \times \texttt{women_at_home}$
+
+```{r}
+lm_wah = lm(ft_trump_post ~ obamamuslim*women_at_home, data = nes)
+
+tidy(lm_wah) %>% 
+  mutate(term = ifelse(term == "obamamuslim:women_at_home", 
+                       "interaction", term)) %>% 
+  select(term, estimate, std.error, p.value) %>% 
+  kbl(digits = 2)
+```
 
 ## Summary
 
-- Difference in difference leverages before-after comparisons between treatment and control group to tease out causal effects
+- Regression is a way to estimate conditional means
 
-- **Highly local:** Focus on average treatment effect *on the treated*
+- Multivariate regression needs "everything else constant" interpretation
 
-- Could always change the control group
+- Coefficients are now **marginal means** or **marginal slopes**
 
-- Parallel trends assumption is very important!
+- Only makes sense from a causal inference perspective
