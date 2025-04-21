@@ -42,21 +42,6 @@ Introduction to Empirical Methods in Political Science
 :::
 
 
-## AI Prompts {background-color="#B6ACD1"}
-
-- Central limit theorem
-
-- Weak law of large numbers
-
-- Confidence interval
-
-- Standard deviation vs. standard error
-
-- What is a p-value? How to interpret it?
-
-::: aside
-**Reminder:** These are just suggestions, feel free to be creative with your prompts!
-:::
 
 ## Last week
 
@@ -444,7 +429,7 @@ How many people would be enough?
 ::: incremental
 - Pick a sample size
 
-- Repeat the study with a new sample many times
+- Repeat the study with the new sample many times
 
 - Calculate proportion who recall voting every time
 
@@ -828,7 +813,7 @@ How to calculate:
 ::: incremental
 1. Non-parametric approximation (percentile method)
 
-2. Analytic derivation (shortcut via aymptotic properties)
+2. Analytic derivation (shortcut via asymptotic properties)
 :::
 
 ::: aside
