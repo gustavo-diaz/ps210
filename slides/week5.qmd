@@ -48,23 +48,6 @@ Introduction to Empirical Methods in Political Science
 :::
 
 
-## AI Prompts {background-color="#B6ACD1"}
-
-- *Sampling*: Mode, frame, size, procedure, oversampling
-
-- Independent, identically distributed (i.i.d. assumption in statistics)
-
-- Total survey error framework
-
-- How to ask *good* survey questions?
-
-- What *happens* if people lie in surveys?
-
-- What *to do* if people lie in surveys?
-
-- *Indirect questioning techniques:* Randomized response, list experiment, others not mentioned in lecture
-
-
 
 ## Last week
 
@@ -132,18 +115,6 @@ Not really a *method*, more of a *data collection tool*
 
  **Goal:** Mapping **self-reports** to **actual** attitudes and behaviors
 
-::: {style="text-align: center"}
-## Open question {.center}
-
-. . .
-
-Should political scientist care about **attitudes** on their own?
-
-. . .
-
-Do we only care about **behaviors**?
-
-:::
 
 ## Challenge
 
@@ -258,7 +229,7 @@ List of all the elements within the population *from which a sample is selected*
 
 - *Ideal case:* [Danish Civil Registry](https://ncrr.au.dk/danish-registers/the-danish-civil-registration-system-cpr)
 
-- *{{< fa fire >}} take:* We neve *really* know what the *target population* is
+- *{{< fa fire >}} take:* We never *really* know what the *target population* is
 :::
 
 :::
@@ -273,11 +244,11 @@ List of all the elements within the population *from which a sample is selected*
 
 . . .
 
-**Simple random sampling:** All units have the same inclusion probability ($\approx$ flipping a coin for each)
+- **Simple random sampling:** All units have the same inclusion probability
 
 . . .
 
-**Complete random sampling:**  *Exactly* $n$ out of $N$ units are selected at random ($\approx$ arrange in random order and then survey the first $n$)
+- **Complete random sampling:**  *Exactly* $n$ out of $N$ units are selected at random
 
 . . .
 
@@ -491,7 +462,7 @@ ggplot(rand0) +
 ## Variants of random sampling
 
 ::: incremental
-- **Stratified random sampling:** Complete random simpling within groups/strata
+- **Stratified random sampling:** Complete random sampling within groups/strata
 
 - **Cluster random sampling:** Whole groups brought into sample together
 
@@ -517,7 +488,7 @@ strat =
 
 ```{r, cache = TRUE}
 set.seed(20250127)
-strat_df = simulate_design(strat, future.seed = FALSE)
+strat_df = simulate_design(strat)
 ```
 
 
