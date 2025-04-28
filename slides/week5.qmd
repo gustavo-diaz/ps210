@@ -47,6 +47,9 @@ Introduction to Empirical Methods in Political Science
 
 :::
 
+---
+
+![](fig/bridgenu.png){fig-align="center"}
 
 
 ## Last week
