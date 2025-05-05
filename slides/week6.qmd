@@ -41,18 +41,6 @@ Introduction to Empirical Methods in Political Science
 :::
 
 
-## AI Prompts {background-color="#B6ACD1"}
-
-- (Fundamental problem of) causal inference
-
-- Potential outcomes framework
-
-- Average treatment effect
-
-- "Help me design a [survey/field/laboratory] experiment about X"
-
-- Internal vs. external validity
-
 
 
 ## Last week
@@ -249,7 +237,8 @@ colnames(dat_2) = c("ID", "\\(Y(1)\\)", "\\(Y(0)\\)", "\\(\\tau_i\\)",
 
 dat_2 %>% 
   kbl(escape = FALSE) %>%
-  add_header_above(c(" ", "Unobserved" = 3,  "Observed" = 2))
+  add_header_above(c(" ", "Unobserved" = 3,  "Observed" = 2)) %>% 
+  column_spec(2:4, color = "gray")
 ```
 
 . . .
@@ -265,7 +254,8 @@ But we only observe one at a time for each unit
 ```{r}
 dat_2 %>% 
   kbl(escape = FALSE) %>%
-  add_header_above(c(" ", "Unobserved" = 3,  "Observed" = 2))
+  add_header_above(c(" ", "Unobserved" = 3,  "Observed" = 2)) %>% 
+  column_spec(2:4, color = "gray")
 ```
 
 This is the **FUNDAMENTAL PROBLEM OF CAUSAL INFERENCE**
@@ -373,91 +363,7 @@ $$
 $$
 
 
-## Aside on notation
 
-:::: {.columns}
-
-::: {.column width="50%"}
-### Greek
-
-- Letters like $\mu$ denote **estimands** (unobserved quantities of interest)
-
-- A hat $\widehat{\mu}$ denotes **estimators** (rules to calculate a quantity)
-
-:::
-
-::: {.column width="50%"}
-### Latin
-
-- Letters like $X$ denote **actual variables** in our data
-
-- A bar $\overline{X}$  denotes an **estimate** calculated from our data
-
-:::
-
-::::
-
-. . .
-
-::: {style="text-align: center"}
-$X \rightarrow \overline{X} \rightarrow \widehat{\mu} \xrightarrow{\text{hopefully!}} \mu$
-::: 
-
-## Aside on notation
-
-:::: {.columns}
-
-::: {.column width="50%"}
-### Greek
-
-- Letters like $\mu$ denote **estimands** (unobserved quantities of interest)
-
-- A hat $\widehat{\mu}$ denotes **estimators** (rules to calculate a quantity)
-
-:::
-
-::: {.column width="50%"}
-### Latin
-
-- Letters like $X$ denote **actual variables** in our data
-
-- A bar $\overline{X}$  denotes an **estimate** calculated from our data
-
-:::
-
-::::
-
-::: {style="text-align: center"}
-$\text{Data} \rightarrow \text{Estimate} \rightarrow \text{Estimator} \xrightarrow{\text{hopefully!}} \text{Estimand}$
-::: 
-
-## Aside on notation
-
-:::: {.columns}
-
-::: {.column width="50%"}
-### Greek $\rightarrow$ conceptual
-
-- Letters like $\mu$ denote **estimands** (unobserved quantities of interest)
-
-- A hat $\widehat{\mu}$ denotes **estimators** (rules to calculate a quantity)
-
-:::
-
-::: {.column width="50%"}
-### Latin $\rightarrow$ practical
-
-- Letters like $X$ denote **actual variables** in our data
-
-- A bar $\overline{X}$  denotes an **estimate** calculated from our data
-
-:::
-
-::::
-
-::: {style="text-align: center"}
-$\text{Data} \rightarrow \text{Estimate} \rightarrow \text{Estimator} \xrightarrow{\text{hopefully!}} \text{Estimand}$
-::: 
 
 ## What can we do?
 
@@ -951,7 +857,7 @@ dat_0 %>% kbl()
 ```{r}
 dat_1 = dat %>% select(ID, female, Y0, Y1, Z)
 colnames(dat_1) = c("ID", "Female", "Y(0)", "Y(1)", "Z")
-dat_1 %>% kbl()
+dat_1 %>% kbl() %>% column_spec(3:4, color = "gray")
 ```
 
 . . .
@@ -965,7 +871,7 @@ dat_1 %>% kbl()
 ```{r}
 dat_2 = dat %>% select(ID, female, Y0, Y1, Z, Y)
 colnames(dat_2) = c("ID", "Female", "Y(0)", "Y(1)", "Z", "Y obs")
-dat_2 %>% kbl()
+dat_2 %>% kbl() %>% column_spec(3:4, color = "gray")
 ```
 
 . . .
@@ -981,7 +887,7 @@ $$ATE = E[Y(1)] - E[Y(0)] = 3/4 - 1/4 = 1/2$$
 ```{r}
 dat_2 = dat %>% select(ID, female, Y0, Y1, Z, Y)
 colnames(dat_2) = c("ID", "Female", "Y(0)", "Y(1)", "Z", "Y obs")
-dat_2 %>% kbl()
+dat_2 %>% kbl() %>% column_spec(3:4, color = "gray")
 ```
 
 - We can **approximate** the ATE with $\widehat{ATE} = 2/2 - 0/2 = 1$
@@ -995,7 +901,7 @@ set.seed(142)
 redo = draw_data(design_1)
 dat_3 = redo %>% select(ID, female, Y0, Y1, Z, Y)
 colnames(dat_3) = c("ID", "Female", "Y(0)", "Y(1)", "Z", "Y obs")
-dat_3 %>% kbl()
+dat_3 %>% kbl() %>% column_spec(3:4, color = "gray")
 ```
 
 . . .
@@ -1013,7 +919,8 @@ dat_4 = dat %>% select(ID, female, Y0, Y1, Z, Y)
 dat_4$Z2 = dat_3[, 5]
 dat_4$Y2 = dat_3[, 6]
 colnames(dat_4) = c("ID", "Female", "Y(0)", "Y(1)", "Z", "Y obs", "Z", "Y obs")
-dat_4 %>% kbl() %>% add_header_above(c(" " = 4, "Experiment 1" = 2, "Experiment 2" = 2))
+dat_4 %>% kbl() %>% add_header_above(c(" " = 4, "Experiment 1" = 2, "Experiment 2" = 2)) %>% 
+  column_spec(3:4, color = "gray")
 ```
 
 . . .
@@ -1102,17 +1009,6 @@ Half of the time we are spot on, half of the time we are wrong in either directi
 <https://youtu.be/9wmvZH5lX_U?si=pSNn03CKvYLH4SNm>
 :::
 
-## Questions
-
-::: incremental
-1. What are these monkeys representative of?
-
-2. To what other contexts would this apply?
-
-3. Are the treatments realistic?
-
-4. Is this behavior common/expected?
-:::
 
 ## External validity concerns
 
@@ -1199,25 +1095,6 @@ See [Shadish et al (2002)](https://psycnet.apa.org/record/2002-17373-000) and [E
 These ideas come from qualitative methods!
 :::
 
-## Scales and drills
-
-. . .
-
-- **Scaling up:** Whether we can apply intervention to broader area 
-
-    - Small scale interventions can become **unfeasible** or **cost-prohibitive** in a larger scale
-
-    - Some policies only work at a small scale!
-    
-## Scales and drills {visibility="uncounted"}
-
-- **Drilling down:** Can we apply the results of an intervention to individual units?
-
-    - Just because it works **on average**, it does not mean that everyone will benefit from it
-
-    - May waste money on people for whom the policy does not work
-
-    - This can be **unethical**
     
 ## Summary
 
