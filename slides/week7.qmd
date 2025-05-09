@@ -44,45 +44,14 @@ Introduction to Empirical Methods in Political Science
 
 :::
 
-## Be ready for next week! {.smaller background-color="#FDBF57"}
 
-**NO EMPS CHAPTER ASSIGNED**
-
-**Lecture reading**
-
-- Huntinton-Klein, Nick. 2022. [*The Effect: An Introduction to Research Design and Causality*](https://theeffectbook.net). Chapman & Hall. Chapter 18
-
-- Cattaneo, Matias D., Nicolás Idrobo, and Rocío Titiunik. 2020. [*A Practical Introduction to Regression Discontinuity Designs: Foundations*](https://titiunik.github.io/books/CattaneoIdroboTitiunik2020-CUP-Foundations.pdf). Cambridge University Press. Chapters 1-4
-
-**Discussion section (read at least on very carefully)**
-
-- García-Montoya, Laura, Ana Arjona, and Matthew Lacombe. 2022. ["Violence and Voting in the United States: How School Shootings Affect Elections."](https://doi.org/10.1017/S0003055421001179) *American Political Science Review* 116 (3): 807-826
-<!-- Critique: https://doi.org/10.1017/S0003055424000108 -->
-
-- Ademi, Ubeydullah and Firat Kimya. 2024. ["Democratic transition and party polarization: A fuzzy regression discontinuity design approach."](https://doi.org/10.1177/13540688231171689) *Party Politics* 30 (4):736-749
-
-
-
-## AI Prompts {background-color="#B6ACD1"}
-
-- (Linear) regression
-
-- Bivariate vs. multivariate regression
-
-- Ordinary least squares (OLS)
-
-- OLS regression assumptions (ask me why I did not mention them in class)
-
-- How to choose what variables to include
-
-- Covariance vs. correlation vs. regression
 
 
 ## Last week
 
 - Experiments to learn about *cause and effect*
 
-- **Broadly:** Summarizing relationships between two variables (difference in means between treatment and control)
+- **Broadly:** Summarizing relationships between two variables (difference in means)
 
 - **This week:** A more general method to summarize relationships between two (or more) variables
 
