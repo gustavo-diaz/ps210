@@ -47,21 +47,6 @@ Introduction to Empirical Methods in Political Science
 :::
 
 
-
-## AI Prompts {background-color="#B6ACD1"}
-
-- Necessary vs. sufficient
-
-- INUS, SUIN causes
-
-- Causal mechanism
-
-- Case selection for [study]
-
-- When to use one method/approach over another
-
-- Mixed methods?
-
 ## So far
 
 - Course mostly about **statistical** and **causal inference**
@@ -366,7 +351,7 @@ Explaining **how** or **why** cause and effect are related entails identifying a
 
 . . .
 
-Large N relies **data set observations** (DSOs) that do not say much about the **mechanism**
+Large N relies on **data set observations** (DSOs) that do not say much about the **mechanism**
 
 . . .
 
