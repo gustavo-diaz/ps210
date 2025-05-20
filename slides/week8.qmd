@@ -65,9 +65,6 @@ What have you learned so far?
 
 Any reservations with the methods we have discussed?
 
-. . .
-
-Any other methods you would like to learn about?
 
 ## Back to regression: QoG 2024
 
