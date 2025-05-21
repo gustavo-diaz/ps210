@@ -623,16 +623,7 @@ Ordered by increasing *level of immersion*
 
 5. Ethnography
 
-## Becoming a detective
 
-```{=html}
-<p align="center"><iframe width="900" height="500" src="https://www.youtube.com/embed/5Z1hPH3b5RA?si=9sntmHBU5n_Ek1qG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
-```
-
-
-::: aside
-<https://youtu.be/5Z1hPH3b5RA?si=9sntmHBU5n_Ek1qG>
-:::
 
 ## Process-tracing
 
@@ -748,14 +739,15 @@ part_obs %>% tt() %>%
 - **Thick description:** Produce vast amount of data (notes) to capture the complexity of behavior and its context
 :::
 
-## And I mean THICC
+## Example
 
 ```{=html}
-<p align="center"><iframe width="900" height="500" src="https://www.youtube.com/embed/3AhSNsBs2Y0?si=_R1TGfSgHxumhJ_E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+<p align="center"><iframe width="900" height="500" src="https://www.youtube.com/embed/5Z1hPH3b5RA?si=9sntmHBU5n_Ek1qG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
 ```
 
+
 ::: aside
-<https://youtu.be/3AhSNsBs2Y0?si=ehUIf9COf9x9KAtz>
+<https://youtu.be/5Z1hPH3b5RA?si=9sntmHBU5n_Ek1qG>
 :::
 
 
