@@ -46,18 +46,6 @@ Introduction to Empirical Methods in Political Science
 
 
 
-## AI Prompts {background-color="#B6ACD1"}
-
-- Supervised vs. unsupervised learning
-
-- Overfitting problem [in machine learning]
-
-- Explain how your (AI chatbot) algorithm works
-
-- Explain how [fancy algorithm] works
-
-- How can a [political scientist] use [machine learning/AI] for [application of interest]
-
 ## Roadmap
 
 - **Tuesday:** Big picture, simple models
@@ -82,7 +70,7 @@ Introduction to Empirical Methods in Political Science
 
 - **Causal inference:** Impose some structure to justify assumptions
 
-- **Small N:** Necessary and sufficient as logic of inference
+- **Small N:** Necessary and sufficient as logic for inference
 
 . . .
 
@@ -92,7 +80,7 @@ But *inference* is not the only thing we do with *data*
 
 . . .
 
-But they all mean (kinda) the same
+And they all mean (kinda) the same
 
 . . .
 
@@ -381,7 +369,11 @@ c1 + labs(subtitle = "Overfitting") +
 
 . . .
 
-**Nonparametric:** Cannot be written as an equation
+**Nonparametric:** Cannot be written as an equation 
+
+. . .
+
+- Written in pseudocode instead
 
 ## Nonparametric cookies
 
