@@ -16,29 +16,57 @@ fontsize: 12pt
 #show link: set text(blue)
 ```
 
-<!-- Remember double space for line skip -->
-**Instructor:** Gustavo Diaz (he/him/his)  
-**Email:** <gustavo.diaz@northwestern.edu>  
-**Lecture:**  Tues/Thurs 11:00am -- 12:20pm, University Hall 102     
-**Canvas:** <https://canvas.northwestern.edu/courses/230637>      
-**Student Hours:** Wednesday 2:00 -- 4:00pm, Scott Hall 103 or [by appointment](https://calendly.com/gustavo-diaz-nu/meetings)
+```{=typst}
+#block(
+  fill: luma(230),
+  width: 100%,
+  inset: 8pt,
+  radius: 4pt,
+)[
+*Instructor:* Gustavo Diaz (#link("gustavo.diaz@northwestern.edu")) \
+*Lecture:* Tues/Thurs 11:00am -- 12:20pm, Harris Hall L07 \
+*Canvas:* TBD \
+*Student Hours:* Tuesday 2:00 -- 4:00pm, Scott Hall 103
 
-**Teaching Assistants:**
+*Teaching Assistants*
+- Tanner Bentley (#link("tannerbentley2029@u.northwestern.edu"))
+- Chloe Bernadaux (#link("chloebernadaux2028@u.northwestern.edu"))
+- Mikhail Turchenko (#link("mturchenko@u.northwestern.edu"))
 
-|               | **Chloe Bernadaux**   | **Sara Kayyali**   |
-|:-|:--------|:--------|
-| **Email**         | <chloebernadaux2028@u.northwestern.edu>  | <sarakayyali2022@u.northwestern.edu> |
-| **Office**        | Scott Hall 215 | Scott Hall 213 |
-| **Hours** | Mo 12:00--2:00pm  | Tu 12:30--2:30pm |
-|           | (or by appointment) | (or by appointment) |
+*TA Student Hours*
+#table(
+columns: (33%, 33%, 33%),
+stroke: none,
+align: left,
+table.hline(y: 1, start: 0),
+[*TA*], [*Time*], [*Office*],
+[Bentley], [TBD], [TBD],
+[Bernadaux], [TBD], [TBD],
+[Turchenko], [TBD], [TBD]
+)
 
-**Discussion Sections:**
+*Discussion Sections*
+#table(
+columns: (13%, 29%, 29%, 29%),
+stroke: none,
+align: left,
+table.hline(y: 1, start: 0),
+[*Section*], [*Time*], [*Room*], [*TA*],
+[60], [Fr 10:00 -- 10:50AM], [University Hall 312], [TBD],
+[61], [Fr 11:00 -- 11:50AM], [University Hall 312], [TBD],
+[62], [Fr 1:00 -- 1:50PM], [University Hall 112], [TBD],
+[63], [Fr 2:00 -- 2:50PM], [University Hall 412], [TBD],
+[64], [Fr 10:00 -- 10:50AM], [University Library 3722], [TBD],
+[65], [Fr 11:00 -- 11:50AM], [University Hall 318], [TBD]
+)
 
-| | **Section 60** | **Section 61** | **Section 62** | **Section 63** |
-|:----|:-----------|:-----------|:-----------|:-----------|
-| **Time**          | Th 2:00--2:50pm      | Th 3:00--3:50pm      | Fr 11:00--11:50am      | Fr 2:00--2:50pm      |
-| **Room**      | Kresge Hall 3-410 | Kresge Hall 2-335  | University Hall 218  | University Hall 418  |
-| **TA**            | Kayyali   | Kayyali    | Bernadaux     | Bernadaux   |
+]
+
+
+```
+
+
+
 
 {{< pagebreak >}}
 
@@ -151,21 +179,13 @@ This course follows the [Northwestern University Syllabus Standards](https://www
 
 # Schedule
 
-## Week 1 (April 3): Introduction and Overview
-
-**NO CLASS ON APRIL 1 AND NO DISCUSSION SECTIONS**
-
-## Week 2 (April 10): The Scientific Method
-
-**NO CLASS ON APRIL 8**
+## Week 1 (January 6/8): Introduction and Overview
+**NO DISCUSSION SECTIONS**
 
 EMPS Chapters 1-2
 
-Lange, Matthew, James Mahoney, and Matthias vom Hau. 2006. ["Colonialism and Development: A Comparative Analysis of Spanish and British Colonies."](https://doi.org/10.1086/499510) *American Journal of Sociology* 111 (5): 1412-1462
 
-
-## Week 3 (April 15/17): Theory and Data
-
+## Week 2 (January 13/15): Theory and Data
 
 EMPS Chapters 3-4
 
@@ -175,8 +195,8 @@ EMPS Chapters 3-4
 
 Krcmaric, Daniel, Stephen C. Nelson, and Andrew Roberts. 2024. ["Billionaire Politicians: A Global Perspective."](https://doi.org/10.1017/S1537592723002761) *Perspectives on Politics* 22 (2): 357-371
 
+## Week 3 (January 20/22): Inference
 
-## Week 4 (April 22/24): Inference
 
 EMPS Chapter 5
 
@@ -184,7 +204,8 @@ EMPS Chapter 5
 
 Baum, Matthew A., James N. Druckman, Matthew D. Simonson, Jennifer Lin, and Roy H. Perlis. 2024. ["The Political Consequences of Depression: How Conspiracy Beliefs, Participatory Inclinations, and Depression Affect Support for Political Violence."](https://doi.org/10.1111/ajps.12827) *American Journal of Political Science* 68 (2):575-594
 
-## Week 5 (April 29/May 1): Surveys
+
+## Week 4 (January 27/29): Surveys
 
 EMPS Chapter 6
 
@@ -193,10 +214,11 @@ EMPS Chapter 6
 
 <!-- https://doi.org/10.1093/ijpor/edz019 -->
 
-Merseth, Julie Lee. 2018. ["Race-ing solidarity: Asian Americans and support for Black Lives Matter."](https://doi.org/10.1080/21565503.2018.1494015) *Politics, Groups, and Identities* 6 (3): 337-356
+<!-- Merseth, Julie Lee. 2018. ["Race-ing solidarity: Asian Americans and support for Black Lives Matter."](https://doi.org/10.1080/21565503.2018.1494015) *Politics, Groups, and Identities* 6 (3): 337-356 -->
 
+Application TBD
 
-## Week 6 (May 6/8): Experiments
+## Week 5 (February 3/5): Experiments
 
 EMPS Chapter 7
 
@@ -207,14 +229,27 @@ Naunov, Martin. 2024. ["The Effect of Protesters' Gender on Public Reactions to 
 <!-- https://doi.org/10.1017/S0003055413000488 -->
 
 
-## Week 7 (May 13/15): Large N
+## Week 6 (February 10/12): Large N
 
 EMPS Chapter 8
 
 Harbridge-Yong, Laurel,  Craig Volden, and Alan E. Wiseman. 2023. ["The Bipartisan Path to Effective Lawmaking."](https://doi.org/10.1086/723805) *Journal of Politics* 85 (3): 795-1165
 
 
-## Week 8 (May 20/22): Small N
+## Week 7 (February 17/19): Quasi-Experiments
+
+Huntinton-Klein, Nick. 2022. [*The Effect: An Introduction to Research Design and Causality*](https://theeffectbook.net). Chapman & Hall. Chapter 18
+
+Cattaneo, Matias D., Nicolás Idrobo, and Rocío Titiunik. 2020. [*A Practical Introduction to Regression Discontinuity Designs: Foundations*](https://doi.org/10.1017/9781108684606). Cambridge University Press. Chapters 1-4
+
+García-Montoya, Laura, Ana Arjona, and Matthew Lacombe. 2022. ["Violence and Voting in the United States: How School Shootings Affect Elections."](https://doi.org/10.1017/S0003055421001179) *American Political Science Review* 116 (3): 807-826
+<!-- Critique: https://doi.org/10.1017/S0003055424000108 -->
+
+
+<!-- Saab: https://doi.org/10.1016/j.electstud.2025.103010 -->
+
+
+## Week 8 (February 24/26): Small N
 
 EMPS Chapter 9
 
@@ -224,7 +259,7 @@ EMPS Chapter 9
 <!-- Dani Gilbert interviews: https://doi.org/10.1017/S0003055422000041 -->
 Gilbert, Danielle. 2022. ["The Logic of Kidnapping in Civil War: Evidence from Colombia."](https://doi.org/10.1017/S0003055422000041) *American Political Science Review* 116 (4): 1226-1241
 
-## Week 9 (May 27/29): Machine Learning
+## Week 9 (March 3/5): Machine Learning
 
 EMPS Chapter 12
 
@@ -232,7 +267,7 @@ EMPS Chapter 12
 
 Libgober, Brian and Connor T. Jerzak. 2024. ["Linking datasets on organizations using half a billion open-collaborated records."](https://doi.org/10.1017/psrm.2024.55) *Political Science Research and Methods* 
 
-## Week 10 (June 3/5): Weinberg College Reading Period
+## Week 10 (March 10/12): Weinberg College Reading Period
 
 **NO CLASS**
 
