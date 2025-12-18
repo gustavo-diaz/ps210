@@ -3,7 +3,7 @@ title: |
        | POLI SCI 210
        | Introduction to
        | Empirical Methods in Political Science
-       | Spring 2025
+       | Spring 2026
 format: 
   typst:
     margin:
@@ -269,7 +269,7 @@ Libgober, Brian and Connor T. Jerzak. 2024. ["Linking datasets on organizations 
 
 ## Week 10 (March 10/12): Weinberg College Reading Period
 
-**NO CLASS**
+**Make up class if needed**
 
 
 
