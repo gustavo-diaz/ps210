@@ -1,8 +1,8 @@
 ---
 title: "POLI SCI 210"
 subtitle: "Introduction to Empirical Methods in Political Science"
-date: "Spring 2025"
-date-format: "[S]pring 2025"
+date: "Winter 2026"
+date-format: "[W]inter 2026"
 format:
     revealjs:
       slide-number: false
@@ -59,15 +59,7 @@ format:
 . . .
 
 ::: {.r-stack}
-NO CLASS ON TUESDAY, APRIL 8
-:::
-
-&nbsp;
-
-. . .
-
-::: {.r-stack}
-NO SECTIONS THIS WEEK
+DISCUSSION SECTIONS START ON WEEK 3
 :::
 
 &nbsp;
@@ -76,14 +68,6 @@ NO SECTIONS THIS WEEK
 
 ::: {.r-stack}
 **Next Thursday:** The scientific method
-:::
-
----
-
-![](fig/codex.png)
-
-::: aside
-[codex.northwestern.edu](https://codex.northwestern.edu)
 :::
 
 
@@ -97,23 +81,29 @@ NO SECTIONS THIS WEEK
 
 {{< fa building-columns >}}  Scott Hall 103
 
-{{< fa calendar-check >}} Wednesdays 2:00 -- 4:00pm or [by appointment](https://calendly.com/gustavo-diaz-nu/meetings)
+{{< fa calendar-check >}} Tuesdays 2:00 -- 4:00pm
 
 ## Teaching Assistants
+
+{{< fa user >}} [Tanner Bentley](https://polisci.northwestern.edu/people/graduate-students/tanner-bentley.html)
+
+{{< fa envelope >}} <tannerbentley2029@u.northwestern.edu>  
+
+
+&nbsp;
 
 {{< fa user >}} [Chloe Bernadaux](https://polisci.northwestern.edu/people/graduate-students/chloe-bernadaux.html)
 
 {{< fa envelope >}} <chloebernadaux2028@u.northwestern.edu>  
 
-{{< fa building-columns >}}  Scott Hall 215
 
 &nbsp;
 
-{{< fa user >}} [Sara Kayyali](https://mena.northwestern.edu/people/graduate-students/sara-kayyali.html)
+{{< fa user >}} [Mikhail Turchenko](https://msturchenko.com)
 
-{{< fa envelope >}} <sarakayyali2022@u.northwestern.edu>  
+{{< fa envelope >}} <mturchenko@u.northwestern.edu>  
 
-{{< fa building-columns >}}  Scott Hall 213
+
 
 ::: aside
 Check the syllabus for discussion sections and TA office hours
@@ -195,38 +185,45 @@ Registration questions or problems? Contact Undergraduate Program Coordinator: <
 
 
 
-## Assignments (starting on week 2)
+## Weekly assignments 
 
 ::: incremental
-1. **Quizzes** (10 points each, weekly)
-2. **Research design critiques** (10 points each, weekly)
-3. **AI memos** (10 points each, weekly) 
-4. **Section participation** (10 points each, weekly)
-5. **Research proposal** (30 points, optional)
+1. **Quizzes** (10 points each)
+2. **Research design critiques** (10 points each)
+3. **AI memos** (10 points each) 
+4. **Section participation** (10 points each)
 :::
 
 . . .
 
-370 points total, need 250 for an A
+Quizzes and AI memos start on **Week 2**
 
 . . .
 
-25 points/week to get an A
+Research design critiques and sections start on **Week 3**
 
-. . .
-
-3 assignments/week gives you a week to spare
 
 ## Rules
 
 ::: incremental
 - **Halfway rule:** Get 100 points by May 9 or get 20 points deduction
 
-- **Collective attendance:** If every lecture has at least 50% attendance, everyone gets 50 extra points
+- **Collective attendance:** If lecture averages 50% attendance, everyone gets 50 extra points
 
-- **Research study participation requirement:** Details to come
+- **Research study participation requirement**
 :::
 
+## Planning
+
+300 points total, need 250 for an A
+
+. . .
+
+25 points/week to get an A (assuming collective attendance points)
+
+. . .
+
+3 assignments/week gives you a week to spare
 
 # AI memo example
 
@@ -238,7 +235,7 @@ Registration questions or problems? Contact Undergraduate Program Coordinator: <
 
 - **Tuesday:** Quizzes available at beginning of lecture
 
-- **Wednesday:** Prepare for discussion sections, instructor open office hours
+- **Wednesday:** Prepare for discussion sections
 
 - **Thursday:** Lecture, discussion sections
 
