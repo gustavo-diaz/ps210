@@ -163,7 +163,7 @@ Registration questions or problems? Contact Undergraduate Program Coordinator: <
 <https://nulib-oer.github.io/empirical-methods-polisci/>
 :::
 
-## Canvas [{{< fa link >}}](https://canvas.northwestern.edu/courses/230637){preview-link="false"}
+## Canvas [{{< fa link >}}](https://canvas.northwestern.edu/courses/245612){preview-link="false"}
 
 ::: incremental
 
