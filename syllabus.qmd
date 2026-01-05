@@ -24,8 +24,8 @@ fontsize: 12pt
   radius: 4pt,
 )[
 *Instructor:* Gustavo Diaz (#link("gustavo.diaz@northwestern.edu")) \
-*Lecture:* Tues/Thurs 11:00am -- 12:20pm, Harris Hall L07 \
-*Canvas:* TBD \
+*Lecture:* Tuesday/Thursday 9:30 -- 10:50am, Harris Hall L07 \
+*Canvas:* #link("https://canvas.northwestern.edu/courses/245612") \
 *Student Hours:* Tuesday 2:00 -- 4:00pm, Scott Hall 103
 
 *Teaching Assistants*
@@ -40,9 +40,9 @@ stroke: none,
 align: left,
 table.hline(y: 1, start: 0),
 [*TA*], [*Time*], [*Office*],
-[Bentley], [TBD], [TBD],
-[Bernadaux], [TBD], [TBD],
-[Turchenko], [TBD], [TBD]
+[Bentley], [Wednesday 1:00 -- 2:50pm], [Scott Hall 111],
+[Bernadaux], [Tue/Thu 1:00 -- 2:00pm], [Scott Hall 413],
+[Turchenko], [Tuesday 2:00 -- 4:00pm], [Scott Hall 110]
 )
 
 *Discussion Sections*
@@ -107,7 +107,7 @@ Any other required material or reading will be linked in the schedule below and 
 
 This course uses a labor-based grading agreement, commonly known as contract grading. In this course, instead of being given a final grade based on how “good” your submitted assignments are, your final grade will be based on the amount of work you put into the course. The goal is to decouple grades from performance and emphasize learning and effort.
 
-Each assignment is worth a number of points. You need 250 points out of a total of 370 to receive an A. The following table translates points to letter grades. These correspond in ratio to the [Weinberg College grading system](https://weinberg.northwestern.edu/undergraduate/courses-registration-grades/the-grading-system.html).
+Each assignment is worth a number of points. You need 250 points out of a total of 340 to receive an A. The following table translates points to letter grades. These correspond in ratio to the [Weinberg College grading system](https://weinberg.northwestern.edu/undergraduate/courses-registration-grades/the-grading-system.html).
 
 | **Grade** | **A** | **A-** | **B+** | **B**| **B-** | **C+** | **C** | **C-** | **D** | **F** |
 :----|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:----:|:---:|
@@ -120,30 +120,29 @@ There are five types of assignments:
 2. **Research design critiques** (10 points each)
 3. **AI memos** (10 points each) 
 4. **Section participation** (10 points each)
-5. **Research proposal (optional)** (30 points)
 
 With the exception of quizzes, which award points based on correct answers, all assignments are marked as satisfactory or unsatisfactory. You receive full points for every assignment marked as satisfactory.
 
-The weekly assignments will be made available no later than the beginning of the first lecture of the corresponding week. These assignments are due on Fridays at 11:59 PM of the week they are assigned. You can choose which assignments to complete, but you will be deducted 20 points if you have not obtained at least 100 points by Friday, May 9. This requirement is waived if you have been approved for accommodations for this course by [AccessibleNU](https://www.northwestern.edu/accessiblenu/).
+The weekly assignments will be made available no later than the beginning of the first lecture of the corresponding week. These assignments are due on Fridays at 11:59 PM of the week they are assigned. You can choose which assignments to complete, but you will be deducted 20 points if you have not obtained at least 100 points by Friday, February 13. This requirement is waived if you have been approved for accommodations for this course by [AccessibleNU](https://www.northwestern.edu/accessiblenu/).
 
-This course does not formally require attendance, but if every lecture meeting has at least 50% attendance based on the total number of students enrolled in the class at the time of meeting, then every student enrolled in the course will receive **50 extra points** at the end of the term.
+This course does not formally require attendance, but if the average lecture meeting attendance, based on the total number of students enrolled in the class at the time of meeting, exceeds 50% by the end of the quarter then every student enrolled in the course will receive **50 extra points** at the end of the term. The first week of instruction is excluded from this calculation.
 
 As a point of reference, with 8 weeks of available assignments and assuming the collective attendance requirement is met, you should average 25 points every week to secure an A. If you plan complete 3 assignments every week, then you will get an A and have a week to spare.
 
-## Quizzes (10 points each x 8)
+## Quizzes (10 points each x 9)
 
-Weekly quizzes on the lecture and textbook material will be available on Canvas each week. These quizzes are brief, untimed, and consist only of multiple choice, matching, and true/false questions. Each quiz may be taken as many times as you want before the deadline to earn 10 points. Quizzes may be taken while referencing notes and course materials. The first quiz is due on week 2.
+Weekly quizzes on the lecture and textbook material will be available on Canvas each week. These quizzes are brief, untimed, and consist only of multiple choice, matching, and true/false questions. Each quiz may be taken as many times as you want before the deadline. Quizzes may be taken while referencing notes and course materials. The first quiz is due on week 2.
 
 ## Research design critiques (10 points each x 8)
 
 Every week has additional non-textbook readings assigned, these are usually published articles that illustrate the application of the methods we discuss that week. You can choose to write a short form document (around 700-1,000 words) that summarizes the question, relevance, and research design of the study in question, and then use course material to evaluate its design or implementation.
 
-Ultimately, your research design critique must answer the question of "what should we change if we were to go back and conduct the study ourselves?" The first research design critique is due on week 3.
+Ultimately, your research design critique must answer the question of "what should we change if we were to go back and conduct the study ourselves?" The first research design critique is due on week 3. A detailed rubric is posted on Canvas.
 
 
-## AI memos (10 points each x 8)
+## AI memos (10 points each x 9)
 
-Starting on week 2, you can ask a generative AI chatbot to explain the a concept, topic, or issue related to the corresponding week's theme. You should then ask at least five follow up or clarification questions on the topic. You are encouraged to be creative in selecting your prompts, as long as they relate to course material for that week.
+Starting on week 2, you can ask a generative AI chatbot to explain the a concept, topic, or issue related to the corresponding week's theme. You should then ask at least five follow up or clarification questions on the topic. You are encouraged to be creative in selecting your prompts, as long as they relate to course material for that week and align with the rubric posted on Canvas.
 
 Based on your conversation with the AI, you will write a short memo (500-1000 words) summarizing the interaction and evaluating its quality. How does the AI explanation compare to what we discussed in class? Why is it different from the course material? Why is it more/less helpful than what is covered in the textbook or lectures? Do you feel the recommended sources (if any) are credible? At the end of the document, you should also attach a transcript of your conversation with the AI (you can directly ask in the chat to export a copy in Word format, include an external URL, or submit a separate file).
 
@@ -156,15 +155,7 @@ Northwestern University recommends students and faculty to use [Microsoft Copilo
 
 During sections, we will engage in additional discussion of the week's material, with emphasis on the assigned non-textbook readings for each week. Your participation will be marked as satisfactory/unsatisfactory in each week. You must actively participate, not merely attend, in order to receive credit.
 
-## Research proposal (30 points)
 
-This course is a good opportunity to start thinking about your own research interests. As an optional assignment, you can write a research grant proposal following the guidelines of the [Office of Undergraduate Research](https://undergradresearch.northwestern.edu) for [academic year](https://undergradresearch.northwestern.edu/funding/ayurg/) or [summer](https://undergradresearch.northwestern.edu/funding/surg/) research grants.
-
-You can only complete this assignment after if you receive prior approval to do so. To receive approval, you must schedule a meeting with a member of the instructional team to discuss your research interests and expectations prior to **Friday, May 16**.
-
-Note that your research proposal needs to be about a political science topic OR connect with one of the methods covered in the course, but not both necessarily.
-
-If approved to complete it, your research proposal is due on **Wednesday, June 11, 11:59 PM**.
 
 # Research Study Participation Requirement
 
@@ -186,6 +177,7 @@ EMPS Chapters 1-2
 
 
 ## Week 2 (January 13/15): Theory and Data
+**NO DISCUSSION SECTIONS**
 
 EMPS Chapters 3-4
 
@@ -193,16 +185,14 @@ EMPS Chapters 3-4
 
 <!-- What theory is not: https://doi.org/10.2307/2393788 -->
 
-Krcmaric, Daniel, Stephen C. Nelson, and Andrew Roberts. 2024. ["Billionaire Politicians: A Global Perspective."](https://doi.org/10.1017/S1537592723002761) *Perspectives on Politics* 22 (2): 357-371
+<!-- Krcmaric, Daniel, Stephen C. Nelson, and Andrew Roberts. 2024. ["Billionaire Politicians: A Global Perspective."](https://doi.org/10.1017/S1537592723002761) *Perspectives on Politics* 22 (2): 357-371 -->
 
 ## Week 3 (January 20/22): Inference
 
 
 EMPS Chapter 5
 
-<!-- Rosenzweig, Leah R. and Nicole E. Wilson. 2023. ["State of the Fiscal Contract in Lagos' Informal Settlements."](https://doi.org/10.1007/s12116-022-09369-6) *Studies in Comparative International Development* 58: 1-28 -->
-
-Baum, Matthew A., James N. Druckman, Matthew D. Simonson, Jennifer Lin, and Roy H. Perlis. 2024. ["The Political Consequences of Depression: How Conspiracy Beliefs, Participatory Inclinations, and Depression Affect Support for Political Violence."](https://doi.org/10.1111/ajps.12827) *American Journal of Political Science* 68 (2):575-594
+Krcmaric, Daniel, Stephen C. Nelson, and Andrew Roberts. 2024. ["Billionaire Politicians: A Global Perspective."](https://doi.org/10.1017/S1537592723002761) *Perspectives on Politics* 22 (2): 357-371
 
 
 ## Week 4 (January 27/29): Surveys
@@ -214,9 +204,9 @@ EMPS Chapter 6
 
 <!-- https://doi.org/10.1093/ijpor/edz019 -->
 
-<!-- Merseth, Julie Lee. 2018. ["Race-ing solidarity: Asian Americans and support for Black Lives Matter."](https://doi.org/10.1080/21565503.2018.1494015) *Politics, Groups, and Identities* 6 (3): 337-356 -->
 
-Application TBD
+Rosenzweig, Leah R. and Nicole E. Wilson. 2023. ["State of the Fiscal Contract in Lagos' Informal Settlements."](https://doi.org/10.1007/s12116-022-09369-6) *Studies in Comparative International Development* 58: 1-28
+
 
 ## Week 5 (February 3/5): Experiments
 
@@ -247,6 +237,8 @@ García-Montoya, Laura, Ana Arjona, and Matthew Lacombe. 2022. ["Violence and Vo
 
 
 <!-- Saab: https://doi.org/10.1016/j.electstud.2025.103010 -->
+
+Saab, Andrew. 2026. ["Fickle loyalties: Intragroup competition in open list elections."](https://doi.org/10.1016/j.electstud.2025.103010) *Electoral Studies*
 
 
 ## Week 8 (February 24/26): Small N
