@@ -52,12 +52,12 @@ stroke: none,
 align: left,
 table.hline(y: 1, start: 0),
 [*Section*], [*Time*], [*Room*], [*TA*],
-[60], [Fr 10:00 -- 10:50AM], [University Hall 312], [TBD],
-[61], [Fr 11:00 -- 11:50AM], [University Hall 312], [TBD],
-[62], [Fr 1:00 -- 1:50PM], [University Hall 112], [TBD],
-[63], [Fr 2:00 -- 2:50PM], [University Hall 412], [TBD],
-[64], [Fr 10:00 -- 10:50AM], [University Library 3722], [TBD],
-[65], [Fr 11:00 -- 11:50AM], [University Hall 318], [TBD]
+[60], [Fr 10:00 -- 10:50AM], [University Hall 312], [Turchenko],
+[61], [Fr 11:00 -- 11:50AM], [University Hall 312], [Turchenko],
+[62], [Fr 1:00 -- 1:50PM], [University Hall 112], [Bentley],
+[63], [Fr 2:00 -- 2:50PM], [University Hall 412], [Bentley],
+[64], [Fr 10:00 -- 10:50AM], [University Library 3722], [Bernadaux],
+[65], [Fr 11:00 -- 11:50AM], [University Hall 318], [Bernadaux]
 )
 
 ]
