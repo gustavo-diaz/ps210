@@ -67,7 +67,7 @@ DISCUSSION SECTIONS START ON WEEK 3
 . . .
 
 ::: {.r-stack}
-**Next Thursday:** The scientific method
+[**Next Thursday:** The scientific method](#thursday)
 :::
 
 
@@ -242,4 +242,328 @@ Research design critiques and sections start on **Week 3**
 - **Friday:** Discussion sections, weekly assignments due at 11:59 PM
 
 
+::: {style="text-align: center"}
+## The Scientific Method { .center #thursday}
 
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
+
+## Lingering questions
+
+::: incremental
+- About syllabus?
+- Canvas?
+- Assignments?
+- Grading?
+- Readings?
+- Office hours?
+- Anything?
+
+:::
+
+## Last time
+
+. . .
+
+This is a course about **Political Science** research methods
+
+::: incremental
+1. **Politics:** Power relationships across many subfields
+2. **Science:** Knowledge generation through falsification
+:::
+
+## Informally
+
+. . .
+
+Some philosophers may think "Political Science" is an *oxymoron*
+
+::: incremental
+1. **Politics:** Normative statements about what's good for the *polity*
+2. **Science:** True, unquestionable knowledge
+:::
+
+. . .
+
+Can there be a **SCIENCE** of **POLITICS**?
+
+# [Whiteboard](https://miro.com/app/board/uXjVLxbPeSU=/?share_link_id=628474761690)
+
+![](fig/science_board.png){fig-align="center"}
+
+---
+
+```{=html}
+<iframe width="1000" height="800" src="https://miro.com/app/live-embed/uXjVLxbPeSU=/?moveToViewport=-1253,-996,2602,1355&embedId=980138490683" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+```
+
+
+
+---
+
+![](fig/wrongness.jpg){width="60%" fig-align="center"}
+
+::: aside
+[{{< fa brands instagram >}} @nathanwpylestrangeplanet](https://www.instagram.com/p/B9tzu1yl476/?utm_source=ig_web_button_share_sheet&igsh=M2M0Y2JmOTAyOA==){preview-link="false"} 
+:::
+
+## The goal of science
+
+::: incremental
+- **Inference:** Use *what we know* to learn about *what we do not know*
+
+- **Key:** Try to prove ourselves wrong, even if we believe we are right (*falsification*)
+
+- Scientific statements are **falsifiable**
+:::
+
+## Scientific statement
+
+. . .
+
+A **meaningful**
+
+::: aside
+Definition from [Clark, Golder, and Golder (2024). "Principles of Comparative Politics." CQ Press.](https://collegepublishing.sagepub.com/products/principles-of-comparative-politics-4-259276) Chapter 2.
+:::
+
+## Scientific statement
+
+A **meaningful declarative** sentence
+
+::: aside
+Definition from [Clark, Golder, and Golder (2024). "Principles of Comparative Politics." CQ Press.](https://collegepublishing.sagepub.com/products/principles-of-comparative-politics-4-259276) Chapter 2.
+:::
+
+## Scientific statement
+
+A **meaningful declarative** sentence that is **unambiguously true or false**.
+
+::: aside
+Definition from [Clark, Golder, and Golder (2024). "Principles of Comparative Politics." CQ Press.](https://collegepublishing.sagepub.com/products/principles-of-comparative-politics-4-259276) Chapter 2.
+:::
+
+::: incremental
+- **Meaningful:** We agree on its interpretation
+
+- **Declarative:** Claims or asserts something
+
+- **Unambiguously true or false:** One or the other, but not both or neither (therefore refutable or falsifiable)
+:::
+
+## Unscientific statements
+
+::: incremental
+- Triangles have three sides
+
+- Political science is the study of politics
+
+- God created the world
+
+- Edison created the lightbulb
+:::
+
+## Unscientific statements
+
+Two types:
+
+. . .
+
+1. Tautologies
+2. Unobservable phenomena
+
+. . .
+
+**Important:** non-science $\neq$ nonsense
+
+## Reminder
+
+. . .
+
+**Scientific statements** are true or false
+
+**Scientific knowledge/evidence** is neither
+
+. . . 
+
+Why?
+
+. . .
+
+How do you **evaluate** a scientific statement?
+
+## The scientific method
+
+**Step 0:** Puzzle/Question
+
+**Step 1:** Theory/Model
+
+**Step 2:** Hypothesis/Implications
+
+**Step 3:** Observation/Testing
+
+**Step 4:** Conclusion/Evaluation
+
+::: aside
+More details next week!
+:::
+
+## Practice
+
+![](fig/nu_sing_study.png){fig-align="center" width="90%"}
+
+::: aside
+<https://news.northwestern.edu/stories/2025/04/virtual-singing-brings-connection-and-joy-to-isolated-older-adults-study-finds/>
+:::
+
+## Details
+
+> In collaboration with Illinois-based Sounds Good Choir, the study assessed the feasibility of virtual group singing for adults over 55 — including those with neurocognitive disorders like dementia — during the COVID-19 pandemic when older adults were experiencing health declines due to isolation. It found virtual group singing can be an effective tool for promoting well-being and social connection during isolation.
+
+::: aside
+<https://doi.org/10.1177/13872877251333155>
+:::
+
+## Findings
+
+> Participants in the group choir during the pandemic consistently described the activity as providing a sense of normalcy amid widespread disruption — a theme that emerged prominently and merits further investigation.
+
+. . .
+
+> This suggests that such interventions may help restore a feeling of normalcy, supporting psychological well-being and offering a means of reconnecting with a stable sense of self.
+
+::: aside
+<https://doi.org/10.1177/13872877251333155>
+:::
+
+## Breaking it apart
+
+. . .
+
+**Question:** Can singing help overcome isolation?
+
+. . .
+
+**Theory:** Choral singing is a therapeutic activity for individuals with neurological disorders
+
+. . .
+
+**Hypothesis:** Individuals who sing in a choir will report higher levels of well-being than those who do not
+
+. . .
+
+**Test:** Organize virtual group choir, ask survey questions in the end
+
+. . .
+
+**Conclusion:** "Isolated older adults find joy and connection through virtual singing"
+
+## Limitations?
+
+. . .
+
+**Ideal study**
+
+. . .
+
+Observe person $i$'s well-being with and without singing, everything else constant
+
+. . .
+
+
+**Actual study**
+
+- Adults 55 an older in Chicago
+
+- Elected to participate
+
+- Two teleconferencing programs
+
+- 176 survey responses out of 695 participants
+
+## Problem {.center}
+
+. . .
+
+Cannot observe the ideal counterfactual
+
+. . .
+
+Any test/evidence can only be **suggestive**
+
+## Testing theories
+
+::: incremental
+- Cannot test **theories** because they are **statements**
+
+- Need to **believe** theory is true to engage with it scientifically
+
+- Instead, test **arguments** that follow from a theory (hypotheses, implications)
+:::
+
+. . .
+
+**Valid argument:** Accepting it *compels us* to accept conclusion
+
+**Invalid argument:** Accepting it *frees us* from accepting/rejecting conclusion
+
+## Scientific critiques
+
+. . .
+
+**Valid critiques** to **valid arguments** fall in *three categories*
+
+::: incremental
+1. **Omitted variable:** Having a friend network leads to both choral singing and well-being
+
+2. **Reverse causation:** Improvements in well-being lead to choral singing
+
+3. **Selection bias:** Only people who would benefit from choral signing sign up for it
+:::
+
+## Scientific critiques
+
+A valid critique implies:
+
+::: incremental
+1. Observed implications also follow from **alternative theories**
+
+2. **Cannot falsify** theory
+
+3. Need to find **better implications** to distinguish among competing theories
+:::
+
+## Scientific critiques
+
+**Scientist's dilemma:**
+
+::: incremental
+- When evidence supports hypothesis, your theory is ~~accepted~~ **not rejected**
+- When evidence *does not* support hypothesis, your theory is ~~rejected~~ **not accepted**
+- No such thing as *definitive* knowledge
+- Future research can always flip things around!
+:::
+
+
+## Takeaways
+
+1. Science differs from other forms of knowledge generation in that we try really hard to prove ourselves wrong
+2. Scientific statements/arguments are falsifiable
+3. We never observe the ideal counterfactual
+4. We can only test a few implications of a theory at a time
+5. Findings can align with many alternative theories
+
+## Next week: Theory and data
+
+**EMPS Chapters 3-4**
+
+- What is a theory? What is a good theory?
+
+- Different types of data/variables
+
+**First Quiz:** Covers weeks 1-2
+
+**First AI memo:** Lecture/textbook content from weeks 1-2
