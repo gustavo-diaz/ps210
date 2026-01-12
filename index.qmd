@@ -5,17 +5,17 @@ format: html
 
 [Week 1: Introduction and Overview](slides/week1.html)
 
-[Week 2: The Scientific Method](slides/week2.html)
+[Week 2: Theory and Data](slides/week2.html)
 
-[Week 3: Theory and Data](slides/week3.html)
+[Week 3: Inference](slides/week3.html)
 
-[Week 4: Inference](slides/week4.html)
+[Week 4: Surveys](slides/week4.html)
 
-[Week 5: Surveys](slides/week5.html)
+[Week 5: Experiments](slides/week5.html)
 
-[Week 6: Experiments](slides/week6.html)
+[Week 6: Large N](slides/week6.html)
 
-[Week 7: Large N](slides/week7.html)
+Week 7: Quasi Experiments
 
 [Week 8: Small N](slides/week8.html)
 
