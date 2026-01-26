@@ -47,9 +47,6 @@ Introduction to Empirical Methods in Political Science
 
 :::
 
----
-
-![](fig/bridgenu.png){fig-align="center"}
 
 
 ## Last week
@@ -830,13 +827,21 @@ Small bits convey **researcher's epistemic interest**
 
 ## Priming effects
 
+Questions are affected by their **placement in the survey flow**
+
+. . .
+
+Preceding questions may influence how respondents interpret current question
+
+## Priming effects
+
 ![](fig/lasorsa.png){fig-align="center" width="70%"}
 
 ::: aside
 Lasorsa, Dominic L. 2003. ["Question-Order Effects in Surveys: The Case of Political Interest, News Attention, and Knowledge."](https://doi.org/10.1177/107769900308000302) *Journalism & Mass Communication Quarterly* 80 (3): 499-512
 :::
 
-## Priming effects
+## Priming effects example
 
 . . .
 
@@ -854,17 +859,11 @@ Lasorsa, Dominic L. 2003. ["Question-Order Effects in Surveys: The Case of Polit
 
 Shuffle order, and compare frequency for each combination
 
-## Priming effects
+## Priming effects example
 
 ![](fig/lasorsa_findings.png){fig-align="center"}
 
-## Priming effects
 
-Questions are affected by their **placement in the survey flow**
-
-. . .
-
-Preceding questions may influence how respondents interpret current question
 
 ::: {style="text-align: center"}
 ## What if... {.center}
@@ -876,7 +875,7 @@ The problem is *not* how to craft questions
 
 . . .
 
-But the questions *themselves*?
+But the topic of the questions *themselves*?
 
 :::
 
