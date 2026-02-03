@@ -63,20 +63,17 @@ Introduction to Empirical Methods in Political Science
 
 ## Return to counterfactuals
 
-![](fig/weed.png){width=40% fig-align="center"}
+![](fig/nu_sing_study.png){fig-align="center"}
 
-::: aside
-[medicine.tulane.edu/news/study-tulane-researcher-suggests-marijuana-can-cause-infertility-men](https://medicine.tulane.edu/news/study-tulane-researcher-suggests-marijuana-can-cause-infertility-men)
-:::
+
 
 ## Making causal statements
 
 ::: incremental
-- Why were we using cautious language?
 
-- **Ideal study:** Compare the same man with and without smoking
+- **Ideal study:** Compare the same person with and without singing
 
-- **Actual study:** Compare two *different* groups of men
+- **Actual study:** ???
 :::
 
 . . .
