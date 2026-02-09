@@ -324,7 +324,7 @@ You may see this equation with an extra error term $\varepsilon$ in some textboo
 
 ## Which line is a better summary?
 
-![](https://scholar.harvard.edu/sites/scholar.harvard.edu/files/styles/os_files_xxlarge/public/ellaudet/files/the_least_squares_method_new.gif)
+![](https://ellaudet.scholars.harvard.edu/sites/g/files/omnuum9971/files/styles/hwp_1_1__1440x1440_scale/public/ellaudet/files/the_least_squares_method_new.gif)
 
 ## More formally
 
