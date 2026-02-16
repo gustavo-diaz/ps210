@@ -15,7 +15,7 @@ format: html
 
 [Week 6: Large N](slides/week6.html)
 
-Week 7: Quasi Experiments
+[Week 7: Quasi Experiments](slides/week7.html)
 
 [Week 8: Small N](slides/week8.html)
 

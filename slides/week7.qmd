@@ -1,0 +1,1125 @@
+---
+format:
+    revealjs:
+      slide-number: false
+      progress: false
+      chalkboard: true
+      code-overflow: wrap
+      theme: [default, custom.scss]
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+
+opts_chunk$set(echo = FALSE, 
+               message = FALSE, 
+               warning = FALSE,
+               out.width = "100%")
+
+library(tidyverse)
+library(tinytable)
+library(kableExtra)
+library(gt)
+library(modelsummary)
+library(tidyr)
+library(broom)
+library(haven)
+library(rdrobust)
+library(estimatr)
+
+
+# ggplot global options
+theme_set(theme_gray(base_size = 20))
+
+# set NU purple
+nu_purple = "#4E2A84"
+
+
+```
+
+
+
+::: {style="text-align: center"}
+## Quasi-Experiments {.center}
+
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
+
+
+## So far
+
+- **Two weeks ago:** Experiments as a framework to think about causal inference (potential outcomes)
+
+- **Last week:** Regression as a flexible method to estimate conditional means/slopes
+
+. . . 
+
+- **This week:** 
+
+![](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXk0Z2NwMzgzb2dpaWdldG14OGRmaXo3cHllOXJubXByNG1iaW91YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QqkA9W8xEjKPC/giphy.gif){fig-align="center" width=30%}
+
+## Strategies for causal inference
+
+::: incremental
+- **Strategy 1:** Random assignment
+
+- **Strategy 2:** Ignorability assumption (conditional independence)
+:::
+
+. . .
+
+Ignorability is hard to justify:
+
+::: incremental
+1. Need to account for all relevant confounding variables
+2. Should not include more than 2-3 controls in regression
+:::
+
+## Roadmap
+
+**Quasi-experiments** as research designs for *credible* causal inference in observational studies
+
+. . .
+
+**Tuesday:** Ignorability satisfied by design (regression discontinuity)
+
+[**Thursday:**](#thu) Replace ignorability with a more plausible assumption (difference-in-differences)
+
+## Quasi-experiments
+
+::: incremental
+- *Observational studies*
+
+- Conditions (treatment, control) assigned in a manner that is **sufficiently independent** from potential outcomes
+
+- Enough to satisfly *ignorability* or *conditional independence*
+
+- $\neq$ **Natural experiments** (no random assignment)
+
+- We can *think* of them as experiments but they **are not**
+
+:::
+
+## Regression discontinuity design (RDD)
+
+**Ingredients**
+
+::: incremental
+- $Y$: Outcome
+
+- $X$: **Score** or **running variable** (numerical continuous)
+
+- $c$: **Cutoff** or **threshold**
+
+- $T$: **Treatment** indicator (1, 0)
+:::
+
+. . .
+
+**Potential outcomes**
+
+$$
+Y = (1 - T) Y(0) + T Y(1) = \begin{cases}
+Y(0) & \text{if } X < c\\
+Y(1) & \text{if } X \geq c
+\end{cases}
+$$
+
+## Sharp RDD
+
+![](fig/rd_assign.png){fig-align="center" width=59%}
+
+::: aside
+Called *sharp* because treatment assignment is *deterministic* at the cutoff
+:::
+
+## Interpretation: Two approaches
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+![](fig/rd_assign.png)
+
+:::
+
+::: {.column width="40%"}
+
+
+1. Local randomization
+
+2. Continuity-based
+
+
+:::
+::::
+
+## Local randomization approach
+
+:::: {.columns}
+::: {.column width="60%"}
+![](fig/rd_rand.png)
+:::
+
+::: {.column width="40%"}
+::: incremental
+- Potential outcomes are not random because they depend on the *score*
+
+- But around the *cutoff*, treatment assignment is **as-if random**
+
+
+:::
+
+:::
+
+::::
+
+. . .
+
+We can pretend we have an experiment within a **bandwidth** around the *cutoff*
+
+## Example {.smaller}
+
+![](fig/hoekstra_1.png){fig-align="center" width="65%"}
+
+::: aside
+**Source:** Hoekstra, Mark. 2009. ["The Effect of Attending the Flagship State University on Earnings: A Discontinuity-Based Approach."](https://doi.org/10.1162/rest.91.4.717) *The Review of Economics and Statistics* 91 (4): 717-724
+:::
+
+
+## Local randomization approach
+
+:::: {.columns}
+::: {.column width="60%"}
+![](fig/rd_rand.png)
+:::
+
+::: {.column width="40%"}
+::: incremental
+- Bandwidth $\mathcal{W} = [c−w,c+w]$
+
+- Treatment **as-if** random within $\mathcal{W}$
+
+- ATE *identified* within $\mathcal{W}$
+
+:::
+
+:::
+
+::::
+
+
+## Local randomization approach
+
+:::: {.columns}
+::: {.column width="60%"}
+![](fig/rd_rand.png)
+:::
+
+::: {.column width="40%"}
+
+**Requirements**
+
+::: incremental
+1. Known probability distribution of scores within $\mathcal{W}$ ($\equiv$ random assignment)
+
+2. Potential outcomes **not affected by scores** within $\mathcal{W}$
+
+:::
+
+:::
+
+::::
+
+## Local randomization approach
+
+:::: {.columns}
+::: {.column width="60%"}
+![](fig/rd_rand.png)
+:::
+
+::: {.column width="40%"}
+
+**Estimation**
+
+::: incremental
+- Difference in means within $\mathcal{W}$
+:::
+
+**Inference**
+
+::: incremental
+
+1. CLT approximation (needs a *super-population*)
+
+2. Simulation (*randomization inference*)
+
+:::
+
+:::
+
+::::
+
+## Challenge: choosing a bandwidth
+
+![](fig/rdd_bw.png){fig-align="center" width="83%"}
+
+::: aside
+A narrow bandwidth has low bias but high variance. A wider bandwidth has lower variance but more bias. Narrow makes more sense but may yield wide confidence intervals.
+:::
+
+## Continuity-based approach
+
+:::: {.columns}
+::: {.column width="60%"}
+![](fig/rd_cont.png)
+:::
+
+::: {.column width="40%"}
+::: incremental
+- Treatment assignment **deterministic** at cutoff
+
+- ATE *identified* **exactly** at *cutoff*
+
+- $\tau_{SRD} \equiv E[Y_i(1) - Y_i(0) | X_i = c]$
+
+- But it does not exist!
+
+
+:::
+
+:::
+
+::::
+
+## Example: Evanston school district
+
+```{=html}
+<p align="center"><iframe src="https://www.google.com/maps/d/embed?mid=1mvqxAi6H-pWrBpdD5QwbeWJKPYCl8p9l&hl=en&ehbc=2E312F" width="900" height="500"></iframe></p>
+```
+
+
+## Continuity-based approach
+
+:::: {.columns}
+::: {.column width="60%"}
+![](fig/rd_cont.png)
+:::
+
+::: {.column width="40%"}
+
+- ATE is *identified* but *nonexistent* at cutoff
+
+- Still, we can approximate gap
+
+:::
+
+::::
+
+## Continuity-based approach
+
+:::: {.columns}
+::: {.column width="60%"}
+![](fig/rd_cont.png)
+:::
+
+::: {.column width="40%"}
+
+- ATE is *identified* but *nonexistent* at cutoff
+
+- Still, we can approximate gap
+
+$$
+\lim_{x \downarrow c} E[Y | X = x] -
+\lim_{x \uparrow c} E[Y | X = x]
+$$
+:::
+
+::::
+
+## Continuity-based approach
+
+:::: {.columns}
+::: {.column width="60%"}
+![](fig/rd_cont.png)
+:::
+
+::: {.column width="40%"}
+
+- ATE is *identified* but *nonexistent* at cutoff
+
+- Still, we can approximate gap
+
+$$
+\lim_{x \downarrow c} E[Y | X = x] -
+\lim_{x \uparrow c} E[Y | X = x]
+$$
+
+- This becomes a **line-drawing** problem
+:::
+
+
+
+::::
+
+
+## Local polynomial point estimation
+
+**Steps**
+
+1. Choose polynomial $p$
+
+2. Choose kernel function $K(\cdot)$
+
+2. Choose bandwidth $h$
+
+3. Fit $\widehat \mu_+$ and $\widehat \mu_-$ via *weighted least-squares*
+
+4. Estimate: $\widehat{ATE} = \widehat \mu_+ - \widehat \mu_-$
+
+5. Inference: Correct for adaptive bandwidth selection
+
+
+::: aside
+This a non-parametric procedure since most choices are automated
+:::
+
+## Line drawing: Parametric
+
+![](fig/rdd_poly.png){fig-align="center" width="90%"}
+
+::: aside
+Different functional forms change the size of the gap
+:::
+
+## Line drawing: Nonparametric
+
+![](fig/rdd_loess.png){fig-align="center" width="90%"}
+
+::: aside
+These lines are made by an algorithm that calculates the local average at many windows or bins of data
+:::
+
+## Line drawing: Bandwidth
+
+![](fig/rdd_bw2.png){fig-align="center" width="90%"}
+
+::: aside
+The size of the bandwidth determines the data you use to draw lines
+:::
+
+## Practice
+
+![<https://doi.org/10.3982/ECTA9878>](fig/meyersson.png){fig-align="center"}
+
+## Ingredients
+
+```{r, results = "hide"}
+url = "http://gustavodiaz.org/ps403/data/CIT_2020_CUP_polecon.dta"
+
+tr = read_dta(url)
+
+# Inspect but do not print
+tr
+```
+
+- $Y$: Percentage of young women who had completed high school by 2000 (outcome)
+
+- $X`$: Islamic parties' margin of victory in the 1994 mayoral election (score)
+
+- $c$: Implicit in score being centered at 0
+
+- $T$: Whether a mayor from an Islamic party was elected in the 1994 election (treatment)
+
+## Visualize
+
+```{r}
+ggplot(tr) +
+  aes(x = X, y = Y, color = as.factor(T)) +
+  geom_point(alpha = 0.5) +
+  geom_vline(xintercept = 0, 
+             linewidth = 1,
+             linetype = "dashed") +
+  scale_color_viridis_d(begin = 0.8, end = 0, ) +
+  labs(
+    x = "Islamic party margin of victory (X)",
+    y = "% Women completed HS",
+    color = "Treatment"
+  )
+```
+
+## Visualize
+
+```{r}
+ggplot(tr) +
+  aes(x = X, y = Y, color = as.factor(T)) +
+  geom_point(alpha = 0.5) +
+  geom_vline(xintercept = 0, 
+             linewidth = 1,
+             linetype = "dashed") +
+  scale_color_viridis_d(begin = 0.8, end = 0, ) +
+  labs(
+    x = "Islamic party margin of victory (X)",
+    y = "% Women completed HS",
+    color = "Treatment"
+  ) +
+    geom_smooth(
+    aes(x = X, y = Y, color = as.factor(T)),
+    method = "lm", se = FALSE
+  )
+```
+
+
+## Bin observations
+
+```{r, results='hide', include = FALSE}
+# This is a ggplot object that can be further customized
+p = rdplot(y = tr$Y,x = tr$X, p = 1)
+```
+
+
+```{r}
+p$rdplot +
+   labs(
+    x = "Islamic party margin of victory (X)",
+    y = "% Women completed HS",
+    title = ""
+  ) +
+  theme_gray(base_size = 20)
+```
+
+## Models
+
+**OLS baseline:** $\widehat Y = \beta_0 + \beta_1 T + \beta_2 X$
+
+```{r}
+baseline = lm(Y ~ T + X, data = tr)
+```
+
+
+. . .
+
+**Local randomization:** 5% and 10% bandwidth
+
+```{r}
+bw5 = lm(Y ~ T, 
+         data = tr %>% 
+           filter(X >= -5 & X <= 5))
+
+bw10 = lm(Y ~ T, 
+         data = tr %>% 
+           filter(X >= -10 & X <= 10))
+```
+
+
+. . .
+
+**Continuity-based:** Default automation
+
+```{r}
+rd = rdrobust(
+  y = tr$Y,
+  x = tr$X)
+
+tidy.rdrobust <- function(model, ...) {
+  ret <- data.frame(
+    term = row.names(model$coef),
+    estimate = model$coef[, 1],
+    std.error = model$se[, 1],
+    p.value = model$pv[, 1]
+  )
+  row.names(ret) <- NULL
+  ret
+}
+
+
+a = tidy(baseline) %>% 
+  filter(term == "T") %>% 
+  mutate(Approach = "Baseline")
+  
+b = tidy(bw5) %>% 
+  filter(term == "T") %>% 
+  mutate(Approach = "Local randomization",
+         bw = 5)
+
+c = tidy(bw10) %>% 
+  filter(term == "T") %>% 
+  mutate(Approach = "Local randomization",
+         bw = 10)
+
+d = tidy(rd) %>% 
+  filter(term == "Conventional") %>% 
+  mutate(Approach = "Continuity",
+         bw = 17.24)
+
+rd_tab = bind_rows(a, b, c, d) %>% 
+  select(Approach, bw,
+         estimate, std.error, p.value)
+```
+
+## Results
+
+```{r}
+rd_tab %>% 
+  tt(digits = 3) %>% 
+  style_tt(i = 1:4,
+            color = "#00000000")
+```
+
+## Results
+
+```{r}
+rd_tab %>% 
+  tt(digits = 3) %>% 
+  style_tt(i = 2:4,
+            color = "#00000000")
+```
+
+## Results
+
+```{r}
+rd_tab %>% 
+  tt(digits = 3) %>% 
+  style_tt(i = 3:4,
+            color = "#00000000")
+```
+
+
+## Results
+
+```{r}
+rd_tab %>% 
+  tt(digits = 3) %>% 
+  style_tt(i = 4,
+            color = "#00000000")
+```
+
+
+## Results
+
+```{r}
+rd_tab %>% 
+  tt(digits = 3)
+```
+
+## Summary
+
+- RDD as a credible way to justify ignorability assumption
+
+- Because local randomization and continuity-based approach
+
+- Effects are **causal** but **local**
+
+- Do they apply to other cases?
+
+- Do they exist beyond the discontinuity?
+
+::: {style="text-align: center"}
+## Quasi-experiments {#thu .center}
+
+### POLI SCI 210
+
+Introduction to Empirical Methods in Political Science
+
+:::
+
+## Last time
+
+- RDD as an example of how to justify ignorability by design
+
+- But it is a very specific design!
+
+- **Today:** Take advantage of before/after comparisons to circumvent ignorability assumption
+
+- **Difference-in-differences** design
+
+## Example
+
+```{=html}
+<p align="center"><iframe width="900" height="500" src="https://www.youtube.com/embed/D2DzDDyKjR4?si=nFct16LCYQtLgSAe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+
+```
+
+::: aside
+<https://youtu.be/D2DzDDyKjR4?si=5h2JXBOPXtPZ5bG0>
+:::
+
+## King of the Pump
+
+. . .
+
+**How did John Snow prove that it was the water?**
+
+::: incremental
+- Before/after comparison (1849-1854)
+
+- **In between:** Lambeth water company forced to move upstream (away from dirty water)
+:::
+
+## Results
+
+```{r}
+snow = tribble(
+  ~Supplier, ~`1849`, ~`1854`,
+  "Lambeth (dirty to clean)", 85, 19,
+  "Others (dirty to dirty)", 135, 147
+)
+
+snow %>% 
+  tt() %>% 
+  group_tt(
+    j = list(
+      "Cholera deaths per 10,000" = 2:3
+    )
+  ) %>%
+  style_tt(i = 1:2,
+            color = "#00000000")
+  
+```
+
+
+::: aside
+**Adapted from:** Coleman, Thomas. 2019. ["Causality in the Time of Cholera: John Snow as a Prototype for Causal Inference."](https://dx.doi.org/10.2139/ssrn.3262234)
+:::
+
+## Results
+
+```{r}
+snow %>% 
+  tt() %>% 
+  group_tt(
+    j = list(
+      "Cholera deaths per 10,000" = 2:3
+    )
+  ) %>%
+  style_tt(i = 2,
+            color = "#00000000")
+  
+```
+
+
+::: aside
+**Adapted from:** Coleman, Thomas. 2019. ["Causality in the Time of Cholera: John Snow as a Prototype for Causal Inference."](https://dx.doi.org/10.2139/ssrn.3262234)
+:::
+
+## Results
+
+```{r}
+snow %>% 
+  tt() %>% 
+  group_tt(
+    j = list(
+      "Cholera deaths per 10,000" = 2:3
+    )
+  )
+```
+
+. . .
+
+Moving away from the {{< fa poo >}} certainly helped! 
+
+::: aside
+**Adapted from:** Coleman, Thomas. 2019. ["Causality in the Time of Cholera: John Snow as a Prototype for Causal Inference."](https://dx.doi.org/10.2139/ssrn.3262234)
+:::
+
+## Another example
+
+
+![](fig/card_krueger.png){fig-align="center"}
+
+::: aside
+Card, David and Alan B. Krueger (1994). ["Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania."](https://www.jstor.org/stable/2118030) *American Economic Review* 84 (4): 772-793
+:::
+
+---
+
+![](fig/card_nobel.jpeg){fig-align="center"}
+
+## Minimum wage and employment
+
+::: incremental
+- **Agreement:** Increasing minimum wage reduces employment
+
+- **New Jersey 1992:** \$4.25 $\rightarrow$ \$5.05
+
+- **Pennsylvania:** Stay at \$4.25
+
+- Look at **full time employment** (FTE) in *fast food restaurants*
+
+- Compare February-November 1992
+
+:::
+
+## Results
+
+```{r}
+card = tribble(
+  ~Variable, ~PA, ~NJ, ~`NJ-PA`,
+  "FTE before", 23.30, 20.44, -2.89,
+  "FTE after", 21.147, 21.03, -0.14,
+  "Change", -2.16, 0.59, 2.76
+ )
+```
+
+```{r}
+card %>% 
+  tt() %>% 
+    style_tt(j = 2:4,
+            color = "#00000000")
+```
+
+## Results
+
+```{r}
+card %>% 
+  tt() %>% 
+    style_tt(j = 3:4,
+            color = "#00000000")
+```
+
+## Results
+
+```{r}
+card %>% 
+  tt() %>% 
+    style_tt(j = 4,
+            color = "#00000000")
+```
+
+## Results
+
+```{r}
+card %>% 
+  tt()
+```
+
+. . .
+
+Increasing minimum waged created **more** jobs in NJ!
+
+## Difference-in-differences design
+
+::: incremental
+
+- Time periods: $t = \{1,2\}$ (Before/after treatment)
+
+- Treatment: $D_i = \{0,1\}$
+
+- Potential outcomes: $Y_{i,t}(0) = Y_{i,t}(0, 0)$ and $Y_{i,t}(1) = Y_{i,t}(0, 1)$
+
+:::
+
+. . .
+
+**Switching equation**
+
+$$
+Y_{i,t} = D_i Y_{i,t}(1) + (1-D_i) Y_{i,t}(0)
+$$
+
+
+::: aside
+aka DD, DiD, diff-in-diffs for short
+:::
+
+## Target quantity
+
+. . .
+
+**Average treated effect on the treated (ATT) in $t=2$**
+
+$$
+\tau_2 = E[Y_{i,2}(1) - Y_{i,2}(0) | D_i = 1]
+$$
+
+::: incremental
+- Cannot observe directly
+
+- Cannot avoid *selection bias*
+
+- But before/after setup allows for credible estimation
+:::
+
+## Target quantity
+
+![](fig/dd.png)
+
+## DID estimation
+
+![](fig/dd.png)
+
+
+$$
+\widehat{ATT} =  [\text{Mean}(B) - \text{Mean}(A)] - [\text{Mean}(D) - \text{Mean}(C)]
+$$
+
+
+
+## DID estimation
+
+
+
+![](fig/dd.png)
+
+$$
+\widehat{ATT} =  \underbrace{[\text{Mean}(B) - \text{Mean}(A)]}_\text{Difference} - \underbrace{[\text{Mean}(D) - \text{Mean}(C)]}_\text{Difference}
+$$
+
+## DID estimation
+
+![](fig/dd.png)
+
+$$
+\widehat{ATT} =  \underbrace{\underbrace{[\text{Mean}(B) - \text{Mean}(A)]}_\text{Difference} - \underbrace{[\text{Mean}(D) - \text{Mean}(C)]}_\text{Difference}}_\text{Difference-in-differences}
+$$
+
+## Rewrite as a regression
+
+. . .
+
+**Two time periods**
+
+
+$$
+\begin{align}
+Y = & \beta_0 + \beta_1 \text{Treated} + \beta_2 \text{Post-treatment} + \\
+& {\color{purple}{\beta_3 \text{Treated} \times \text{Post-treatment}}}
+\end{align}
+$$
+
+::: incremental
+- $\beta_0$: Avg. control group, before treatment
+
+- $\beta_0 + \beta_1$: Avg. treatment group, before treatment
+
+- $\beta_0 + \beta_2$: Avg. control group, post-treatment
+
+- $\beta_0 + \beta_1 + \beta_2 + \beta_3$: Avg. treatment group, post-treatment
+:::
+
+. . .
+
+$\beta_3$ gives the **difference-in-differences**
+
+## Rewrite as a regression
+
+**Multiple time periods**
+
+. . .
+
+$$
+Y = \alpha_i + \alpha_t + \color{purple}{\beta_1 \text{Treated}}
+$$
+
+::: incremental
+- $\alpha_i$: Control for variation **within units**
+
+- $\alpha_t$: Control for variation **over time**
+
+- $\alpha_i$ and $\alpha_t$ are called **fixed-effects**
+:::
+
+
+. . .
+
+This is a *two-way fixed-effects* estimator (TWFE)
+
+## Example with multiple periods
+
+<!-- https://github.com/gustavo-diaz/ps403/blob/main/labs/lab8.qmd -->
+
+```{r}
+library(causaldata)
+
+od = causaldata::organ_donations
+
+od = od %>%
+  mutate(Treatment = State == 'California',
+         Post = Quarter %in% c('Q32011','Q42011','Q12012'),
+         # Alternative version for TWFE
+         Treated = State == 'California' & 
+            Quarter %in% c('Q32011','Q42011','Q12012')
+         )
+```
+
+
+![<https://www.nber.org/papers/w20378>](fig/kessler.png){fig-align="center" width=70%}
+
+---
+
+<!-- Alabama is missing! -->
+
+![](fig/kessler_wording.png)
+
+## Intervention
+
+::: incremental
+- **2011:** California switches from *opt-in* $\rightarrow$ *active choice*
+
+- Compare with states that *remain opt-in* (AZ, DC, MN, NH, TN, SC, SD, VA, WI)
+
+- **Outcome:** Average sign-up rates per quarter per state
+:::
+
+## Comparison over time
+
+```{r}
+over_time = od %>% 
+  group_by(Quarter, Treatment) %>% 
+  summarize(avg_donors = mean(Rate))
+
+over_time$Quarter = fct_relevel(
+  over_time$Quarter,
+  "Q42010",
+  "Q12011",
+  "Q22011",
+  "Q32011",
+  "Q42011",
+  "Q12012"
+)
+
+ggplot(over_time) +
+  aes(x = Quarter, y = avg_donors, 
+      group = Treatment, color = Treatment) +
+  geom_line(linewidth = 1) + geom_point(size = 3) +
+  geom_vline(xintercept = "Q32011") +
+  labs(y = "Organ donation sign up rate") +
+  theme(legend.position = "none") +
+  annotate("text", y = 0.44, x = 6, 
+           label = "California",
+           size = 5, color = "#440154") +
+  annotate("text", y = 0.275, x = 6,
+           label = "Opt-in states",
+           size = 5, color = "#7AD151") +
+  scale_color_viridis_d(begin = 0, end = 0.8)
+```
+
+::: aside
+**Opt-in states:** AZ, DC, MN, NH, TN, SC, SD, VA, WI 
+:::
+
+## Models
+
+. . .
+
+**Two-periods:** $\widehat{\texttt{rate}} = \beta_0 + \beta_1 \texttt{california} + \beta_2 \texttt{post} + \color{purple}{\beta_3 \texttt{california} \times \texttt{post}}$
+
+. . .
+
+**Two-wave fixed-effects:** $\widehat{\texttt{rate}} = \alpha_{\texttt{state}} + \alpha_{\texttt{quarter}} + \color{purple}{\beta_1 \texttt{treated}}$ 
+
+
+## Models
+
+**Two-periods:** $\widehat{\texttt{rate}} = \beta_0 + \beta_1 \texttt{california} + \beta_2 \texttt{post} + \color{purple}{\beta_3 \texttt{california} \times \texttt{post}}$
+
+**Two-wave fixed-effects:** $\widehat{\texttt{rate}} = \beta_0 + \color{purple}{ \beta_1 \texttt{california-post}} + \beta_2 \texttt{state} + \beta_3 \texttt{quarter}$ 
+
+. . .
+
+&nbsp;
+
+Use [**clustered standard errors**](https://doi.org/10.1093/qje/qjac038) for statistical inference
+
+## Results
+
+```{r}
+two_periods = lm_robust(
+  Rate ~ Treatment * Post,
+  se_type = "classical",
+  data = od
+)
+
+two_periods_cluster = lm_robust(
+  Rate ~ Treatment * Post,
+  clusters = State,
+  data = od
+)
+
+twfe = lm_robust(
+  Rate ~ Treated,
+  fixed_effects = ~ State + Quarter,
+  clusters = State,
+  data = od
+)
+
+dd_df = bind_rows(
+  tidy(two_periods) %>% 
+    filter(term == "TreatmentTRUE:PostTRUE") %>% 
+    mutate(Model = "Two-periods (no clustering)"),
+  tidy(two_periods_cluster) %>% 
+    filter(term == "TreatmentTRUE:PostTRUE") %>% 
+    mutate(Model = "Two-periods (clustered)"),
+  tidy(twfe) %>%
+    mutate(Model = "Two-way FE")
+) %>% 
+  select(Model, estimate, conf.low, conf.high, p.value)
+```
+
+
+```{r}
+dd_df %>% 
+  tt(digits = 3) %>% 
+      style_tt(i = 1:3,
+            color = "#00000000")
+```
+
+
+## Results
+
+```{r}
+dd_df %>% 
+  tt(digits = 3) %>% 
+      style_tt(i = 2:3,
+            color = "#00000000")
+```
+
+
+## Results
+
+```{r}
+dd_df %>% 
+  tt(digits = 3) %>% 
+      style_tt(i = 3,
+            color = "#00000000")
+```
+
+## Results
+
+```{r}
+dd_df %>% 
+  tt(digits = 3)
+```
+
+. . .
+
+These estimates are only *valid* under a **BIG assumption**
+
+## Assumption: Parallel trends
+
+![](fig/dd_trend_1.png)
+
+## What if we break parallel trends?
+
+![](fig/dd_trend_2.png)
+
+## What if we break parallel trends?
+
+![](fig/dd_trend_3.png)
+
+## Challenge: Staggered adoption
+
+![](fig/dd_timing.png)
+
+## Summary
+
+- Difference in difference leverages before-after comparisons between treatment and control group to tease out causal effects
+
+- **Highly local:** Focus on average treatment effect *on the treated*
+
+- Could always change the control group
+
+- Parallel trends assumption is very important!
