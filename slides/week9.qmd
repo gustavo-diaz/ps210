@@ -76,35 +76,9 @@ Introduction to Empirical Methods in Political Science
 
 But *inference* is not the only thing we do with *data*
 
-## These are not statistical inference
+---
 
-. . .
-
-And they all mean (kinda) the same
-
-. . .
-
-::: {style="font-size: 80%;"}
-
-Data science
-
-Machine learning
-
-Statistical learning
-
-Artificial intelligence
-
-Predictive modeling
-
-Deep learning
-
-Big data (?)
-
-:::
-
-. . .
-
-Different flavors depending on the field, but methods are the same
+![](https://workshops.tidymodels.org/slides/images/what_is_ml.png)
 
 ## How are they different?
 
@@ -196,59 +170,8 @@ variables %>% tt()
 
 ## Flavors of machine learning
 
-```{mermaid}
-%%| fig-width: 10
-%%| mermaid-format: png
-flowchart LR
-  A(Machine Learning) --> B(Supervised Learning)
-  A --> C(Unsupervised Learning)
-  B --> D(Regression)
-  B --> E(Classification)
-```
+![](https://workshops.tidymodels.org/slides/images/ml_illustration.jpg){fig-align="center"}
 
-. . .
-
-**Supervised:** Predict "correct" answer
-
-. . .
-
-**Example:** Was this text written by AI? (yes/no)
-
-
-## Flavors of machine learning
-
-```{mermaid}
-%%| fig-width: 10
-%%| mermaid-format: png
-flowchart LR
-  A(Machine Learning) --> B(Supervised Learning)
-  A --> C(Unsupervised Learning)
-  B --> D(Regression)
-  B --> E(Classification)
-```
-
-**Unsupervised:** No "correct" answer
-
-. . .
-
-*Learn* underlying structure of data (dimensions, clusters)
-
-
-## Supervised learning
-
-**Regression**
-
-&nbsp;
-
-![](fig/supervised_learning.jpg){fig-align="center"}
-
-## Supervised learning
-
-**Classification**
-
-&nbsp;
-
-![](fig/supervised_learning_2.jpg){fig-align="center"}
 
 
 ## Toy example
@@ -365,15 +288,12 @@ c1 + labs(subtitle = "Overfitting") +
 
 . . .
 
-**Parametric:** Functional form can be written as an equation (e.g. OLS)
+**Parametric:** Functional form can be written as a linear combination (e.g. OLS)
 
 . . .
 
-**Nonparametric:** Cannot be written as an equation 
+**Nonparametric:** Cannot be written as a linear combination
 
-. . .
-
-- Written in pseudocode instead
 
 ## Nonparametric cookies
 
