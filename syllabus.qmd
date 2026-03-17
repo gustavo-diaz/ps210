@@ -16,54 +16,54 @@ fontsize: 12pt
 #show link: set text(blue)
 ```
 
-```{=typst}
-#block(
-  fill: luma(230),
-  width: 100%,
-  inset: 8pt,
-  radius: 4pt,
-)[
-*Instructor:* Gustavo Diaz (#link("gustavo.diaz@northwestern.edu")) \
-*Lecture:* Tuesday/Thursday 9:30 -- 10:50am, Harris Hall L07 \
-*Canvas:* #link("https://canvas.northwestern.edu/courses/245612") \
-*Student Hours:* Tuesday 2:00 -- 4:00pm, Scott Hall 103
+<!-- ```{=typst} -->
+<!-- #block( -->
+<!--   fill: luma(230), -->
+<!--   width: 100%, -->
+<!--   inset: 8pt, -->
+<!--   radius: 4pt, -->
+<!-- )[ -->
+<!-- *Instructor:* Gustavo Diaz (#link("gustavo.diaz@northwestern.edu")) \ -->
+<!-- *Lecture:* Tuesday/Thursday 9:30 -- 10:50am, Harris Hall L07 \ -->
+<!-- *Canvas:* #link("https://canvas.northwestern.edu/courses/245612") \ -->
+<!-- *Student Hours:* Tuesday 2:00 -- 4:00pm, Scott Hall 103 -->
 
-*Teaching Assistants*
-- Tanner Bentley (#link("tannerbentley2029@u.northwestern.edu"))
-- Chloe Bernadaux (#link("chloebernadaux2028@u.northwestern.edu"))
-- Mikhail Turchenko (#link("mturchenko@u.northwestern.edu"))
+<!-- *Teaching Assistants* -->
+<!-- - Tanner Bentley (#link("tannerbentley2029@u.northwestern.edu")) -->
+<!-- - Chloe Bernadaux (#link("chloebernadaux2028@u.northwestern.edu")) -->
+<!-- - Mikhail Turchenko (#link("mturchenko@u.northwestern.edu")) -->
 
-*TA Student Hours*
-#table(
-columns: (33%, 33%, 33%),
-stroke: none,
-align: left,
-table.hline(y: 1, start: 0),
-[*TA*], [*Time*], [*Office*],
-[Bentley], [Wednesday 1:00 -- 2:50pm], [Scott Hall 111],
-[Bernadaux], [Tue/Thu 1:00 -- 2:00pm], [Scott Hall 413],
-[Turchenko], [Tuesday 2:00 -- 4:00pm], [Scott Hall 110]
-)
+<!-- *TA Student Hours* -->
+<!-- #table( -->
+<!-- columns: (33%, 33%, 33%), -->
+<!-- stroke: none, -->
+<!-- align: left, -->
+<!-- table.hline(y: 1, start: 0), -->
+<!-- [*TA*], [*Time*], [*Office*], -->
+<!-- [Bentley], [Wednesday 1:00 -- 2:50pm], [Scott Hall 111], -->
+<!-- [Bernadaux], [Tue/Thu 1:00 -- 2:00pm], [Scott Hall 413], -->
+<!-- [Turchenko], [Tuesday 2:00 -- 4:00pm], [Scott Hall 110] -->
+<!-- ) -->
 
-*Discussion Sections*
-#table(
-columns: (13%, 29%, 29%, 29%),
-stroke: none,
-align: left,
-table.hline(y: 1, start: 0),
-[*Section*], [*Time*], [*Room*], [*TA*],
-[60], [Fr 10:00 -- 10:50AM], [University Hall 312], [Turchenko],
-[61], [Fr 11:00 -- 11:50AM], [University Hall 312], [Turchenko],
-[62], [Fr 1:00 -- 1:50PM], [University Hall 112], [Bentley],
-[63], [Fr 2:00 -- 2:50PM], [University Hall 412], [Bentley],
-[64], [Fr 10:00 -- 10:50AM], [University Hall 118], [Bernadaux],
-[65], [Fr 11:00 -- 11:50AM], [University Hall 318], [Bernadaux]
-)
+<!-- *Discussion Sections* -->
+<!-- #table( -->
+<!-- columns: (13%, 29%, 29%, 29%), -->
+<!-- stroke: none, -->
+<!-- align: left, -->
+<!-- table.hline(y: 1, start: 0), -->
+<!-- [*Section*], [*Time*], [*Room*], [*TA*], -->
+<!-- [60], [Fr 10:00 -- 10:50AM], [University Hall 312], [Turchenko], -->
+<!-- [61], [Fr 11:00 -- 11:50AM], [University Hall 312], [Turchenko], -->
+<!-- [62], [Fr 1:00 -- 1:50PM], [University Hall 112], [Bentley], -->
+<!-- [63], [Fr 2:00 -- 2:50PM], [University Hall 412], [Bentley], -->
+<!-- [64], [Fr 10:00 -- 10:50AM], [University Hall 118], [Bernadaux], -->
+<!-- [65], [Fr 11:00 -- 11:50AM], [University Hall 318], [Bernadaux] -->
+<!-- ) -->
 
-]
+<!-- ] -->
 
 
-```
+<!-- ``` -->
 
 
 
@@ -131,7 +131,7 @@ This course does not formally require attendance, but if the average lecture mee
 
 Weekly quizzes on the lecture and textbook material will be available on Canvas each week. These quizzes are brief, untimed, and consist only of multiple choice, matching, and true/false questions. Each quiz may be taken as many times as you want before the deadline. Quizzes may be taken while referencing notes and course materials. The first quiz is due on week 2.
 
-## Research design critiques (10 points each x 7)
+## Research design critiques (10 points each x 8)
 
 Every week has additional non-textbook readings assigned, these are usually published articles that illustrate the application of the methods we discuss that week. You can choose to write a short form document (around 700-1,000 words) that summarizes the question, relevance, and research design of the study in question, and then use course material to evaluate its design or implementation.
 
@@ -149,7 +149,7 @@ Northwestern University recommends students and faculty to use [Microsoft Copilo
 
 
 
-## Section participation (10 points each x 7)
+## Section participation (10 points each x 8)
 
 During sections, we will engage in additional discussion of the week's material, with emphasis on the assigned non-textbook readings for each week. Your participation will be marked as satisfactory/unsatisfactory in each week. You must actively participate, not merely attend, in order to receive credit.
 
@@ -166,14 +166,14 @@ Students enrolled in this course are required to complete a research participati
 
 # Schedule
 
-## Week 1 (January 6/8): Introduction and Overview
+## Week 1 (April): Introduction and Overview
+<!-- Make intro videos -->
 **NO DISCUSSION SECTIONS**
 
 EMPS Chapters 1-2
 
 
-## Week 2 (January 13/15): Theory and Data
-**NO DISCUSSION SECTIONS**
+## Week 2 (April 7/9): Theory and Data
 
 EMPS Chapters 3-4
 
@@ -183,7 +183,7 @@ EMPS Chapters 3-4
 
 <!-- Krcmaric, Daniel, Stephen C. Nelson, and Andrew Roberts. 2024. ["Billionaire Politicians: A Global Perspective."](https://doi.org/10.1017/S1537592723002761) *Perspectives on Politics* 22 (2): 357-371 -->
 
-## Week 3 (January 20/22): Inference
+## Week 3 (April 14/16): Inference
 
 
 EMPS Chapter 5
@@ -191,7 +191,7 @@ EMPS Chapter 5
 Krcmaric, Daniel, Stephen C. Nelson, and Andrew Roberts. 2024. ["Billionaire Politicians: A Global Perspective."](https://doi.org/10.1017/S1537592723002761) *Perspectives on Politics* 22 (2): 357-371
 
 
-## Week 4 (January 27/29): Surveys
+## Week 4 (April 21/23): Surveys
 
 EMPS Chapter 6
 
@@ -204,7 +204,7 @@ EMPS Chapter 6
 Rosenzweig, Leah R. and Nicole E. Wilson. 2023. ["State of the Fiscal Contract in Lagos' Informal Settlements."](https://doi.org/10.1007/s12116-022-09369-6) *Studies in Comparative International Development* 58: 1-28
 
 
-## Week 5 (February 3/5): Experiments
+## Week 5 (April 28/30): Experiments
 
 EMPS Chapter 7
 
@@ -215,14 +215,14 @@ Naunov, Martin. 2024. ["The Effect of Protesters' Gender on Public Reactions to 
 <!-- https://doi.org/10.1017/S0003055413000488 -->
 
 
-## Week 6 (February 10/12): Large N
+## Week 6 (May 5/7): Large N
 
 EMPS Chapter 8
 
 Harbridge-Yong, Laurel,  Craig Volden, and Alan E. Wiseman. 2023. ["The Bipartisan Path to Effective Lawmaking."](https://doi.org/10.1086/723805) *Journal of Politics* 85 (3): 795-1165
 
 
-## Week 7 (February 17/19): Quasi-Experiments
+## Week 7 (May 12/14): Quasi-Experiments
 
 Huntinton-Klein, Nick. 2022. [*The Effect: An Introduction to Research Design and Causality*](https://theeffectbook.net). Chapman & Hall. Chapter 18
 
@@ -237,7 +237,7 @@ García-Montoya, Laura, Ana Arjona, and Matthew Lacombe. 2022. ["Violence and Vo
 Saab, Andrew. 2026. ["Fickle loyalties: Intragroup competition in open list elections."](https://doi.org/10.1016/j.electstud.2025.103010) *Electoral Studies*
 
 
-## Week 8 (February 24/26): Small N
+## Week 8 (May 19/21): Small N
 
 EMPS Chapter 9
 
@@ -247,7 +247,7 @@ EMPS Chapter 9
 <!-- Dani Gilbert interviews: https://doi.org/10.1017/S0003055422000041 -->
 Gilbert, Danielle. 2022. ["The Logic of Kidnapping in Civil War: Evidence from Colombia."](https://doi.org/10.1017/S0003055422000041) *American Political Science Review* 116 (4): 1226-1241
 
-## Week 9 (March 3/5): Machine Learning
+## Week 9 (May 26/28): Machine Learning
 
 EMPS Chapter 12
 
@@ -255,7 +255,7 @@ EMPS Chapter 12
 
 Libgober, Brian and Connor T. Jerzak. 2024. ["Linking datasets on organizations using half a billion open-collaborated records."](https://doi.org/10.1017/psrm.2024.55) *Political Science Research and Methods* 
 
-## Week 10 (March 10/12): Weinberg College Reading Period
+## Week 10 (June 2/4): Weinberg College Reading Period
 
 **Make up class if needed**
 
