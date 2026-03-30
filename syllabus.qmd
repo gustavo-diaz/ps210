@@ -16,54 +16,50 @@ fontsize: 12pt
 #show link: set text(blue)
 ```
 
-<!-- ```{=typst} -->
-<!-- #block( -->
-<!--   fill: luma(230), -->
-<!--   width: 100%, -->
-<!--   inset: 8pt, -->
-<!--   radius: 4pt, -->
-<!-- )[ -->
-<!-- *Instructor:* Gustavo Diaz (#link("gustavo.diaz@northwestern.edu")) \ -->
-<!-- *Lecture:* Tuesday/Thursday 9:30 -- 10:50am, Harris Hall L07 \ -->
-<!-- *Canvas:* #link("https://canvas.northwestern.edu/courses/245612") \ -->
-<!-- *Student Hours:* Tuesday 2:00 -- 4:00pm, Scott Hall 103 -->
+```{=typst}
+#block(
+  fill: luma(230),
+  width: 100%,
+  inset: 8pt,
+  radius: 4pt,
+)[
+*Instructor:* Gustavo Diaz (#link("gustavo.diaz@northwestern.edu")) \
+*Lecture:* Tuesday/Thursday 11:00am -- 12:20pm, University Hall 102 \
+*Canvas:* #link("https://canvas.northwestern.edu/courses/251378") \
+*Student Hours:* Tuesday 2:00 -- 4:00pm, Scott Hall 103
 
-<!-- *Teaching Assistants* -->
-<!-- - Tanner Bentley (#link("tannerbentley2029@u.northwestern.edu")) -->
-<!-- - Chloe Bernadaux (#link("chloebernadaux2028@u.northwestern.edu")) -->
-<!-- - Mikhail Turchenko (#link("mturchenko@u.northwestern.edu")) -->
+*Teaching Assistants*
+- Tanner Bentley (#link("tannerbentley2029@u.northwestern.edu"))
+- Chloe Bernadaux (#link("chloebernadaux2028@u.northwestern.edu"))
 
-<!-- *TA Student Hours* -->
-<!-- #table( -->
-<!-- columns: (33%, 33%, 33%), -->
-<!-- stroke: none, -->
-<!-- align: left, -->
-<!-- table.hline(y: 1, start: 0), -->
-<!-- [*TA*], [*Time*], [*Office*], -->
-<!-- [Bentley], [Wednesday 1:00 -- 2:50pm], [Scott Hall 111], -->
-<!-- [Bernadaux], [Tue/Thu 1:00 -- 2:00pm], [Scott Hall 413], -->
-<!-- [Turchenko], [Tuesday 2:00 -- 4:00pm], [Scott Hall 110] -->
-<!-- ) -->
+*TA Student Hours*
+#table(
+columns: (33%, 33%, 33%),
+stroke: none,
+align: left,
+table.hline(y: 1, start: 0),
+[*TA*], [*Time*], [*Office*],
+[Bentley], [Tuesday 2:00 -- 4:00pm], [Scott Hall 210],
+[Bernadaux], [Tuesday 1:00 -- 3:00pm], [Scott Hall 213]
+)
 
-<!-- *Discussion Sections* -->
-<!-- #table( -->
-<!-- columns: (13%, 29%, 29%, 29%), -->
-<!-- stroke: none, -->
-<!-- align: left, -->
-<!-- table.hline(y: 1, start: 0), -->
-<!-- [*Section*], [*Time*], [*Room*], [*TA*], -->
-<!-- [60], [Fr 10:00 -- 10:50AM], [University Hall 312], [Turchenko], -->
-<!-- [61], [Fr 11:00 -- 11:50AM], [University Hall 312], [Turchenko], -->
-<!-- [62], [Fr 1:00 -- 1:50PM], [University Hall 112], [Bentley], -->
-<!-- [63], [Fr 2:00 -- 2:50PM], [University Hall 412], [Bentley], -->
-<!-- [64], [Fr 10:00 -- 10:50AM], [University Hall 118], [Bernadaux], -->
-<!-- [65], [Fr 11:00 -- 11:50AM], [University Hall 318], [Bernadaux] -->
-<!-- ) -->
+*Discussion Sections*
+#table(
+columns: (13%, 29%, 29%, 29%),
+stroke: none,
+align: left,
+table.hline(y: 1, start: 0),
+[*Section*], [*Time*], [*Room*], [*TA*],
+[60], [Th 4:00 -- 4:50pm], [University Hall 218], [Bernadaux],
+[61], [Th 5:00 -- 5:50pm], [University Hall 218], [Bernadaux],
+[62], [Fr 10:00 -- 10:50am], [Harris Hall L28], [Bentley],
+[63], [Fr 11:00 -- 11:50am], [Harris Hall L05], [Bentley] 
+)
 
-<!-- ] -->
+]
 
 
-<!-- ``` -->
+```
 
 
 
