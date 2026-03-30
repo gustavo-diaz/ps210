@@ -40,7 +40,7 @@ align: left,
 table.hline(y: 1, start: 0),
 [*TA*], [*Time*], [*Office*],
 [Bentley], [Tuesday 2:00 -- 4:00pm], [Scott Hall 210],
-[Bernadaux], [Tuesday 1:00 -- 3:00pm], [Scott Hall 213]
+[Bernadaux], [Thursday 2:00 -- 4:00pm], [Scott Hall 213]
 )
 
 *Discussion Sections*
