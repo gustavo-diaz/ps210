@@ -286,13 +286,7 @@ Can there be a **SCIENCE** of **POLITICS**?
 <iframe width="1000" height="800" src="https://miro.com/app/live-embed/uXjVLxbPeSU=/?moveToViewport=-1253,-996,2602,1355&embedId=980138490683" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
 ```
 
----
 
-![](fig/wrongness.jpg){width="60%" fig-align="center"}
-
-::: aside
-[{{< fa brands instagram >}} @nathanwpylestrangeplanet](https://www.instagram.com/p/B9tzu1yl476/?utm_source=ig_web_button_share_sheet&igsh=M2M0Y2JmOTAyOA==){preview-link="false"} 
-:::
 
 ## The goal of science
 
@@ -300,8 +294,6 @@ Can there be a **SCIENCE** of **POLITICS**?
 - **Inference:** Use *what we know* to learn about *what we do not know*
 
 - **Key:** Try to prove ourselves wrong, even if we believe we are right (*falsification*)
-
-- Scientific statements are **falsifiable**
 :::
 
 ---

@@ -6,10 +6,10 @@
 <script src="week1_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="week1_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="week1_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="week1_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="week1_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="week1_files/libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="week1_files/libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+  <meta name="generator" content="quarto-1.8.26">
 
   <title>POLI SCI 210</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -30,7 +30,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="week1_files/libs/revealjs/dist/theme/quarto-f75a6dde847e55bef954660260116088.css">
+  <link rel="stylesheet" href="week1_files/libs/revealjs/dist/theme/quarto-d4a496172dc514ebc3fb907a4d5d31f8.css">
   <link href="week1_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="week1_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="week1_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -351,23 +351,11 @@
 
 <iframe width="1000" height="800" src="https://miro.com/app/live-embed/uXjVLxbPeSU=/?moveToViewport=-1253,-996,2602,1355&amp;embedId=980138490683" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen=""></iframe>
 </section>
-<section class="slide level2">
-
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="fig/wrongness.jpg" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
-</figure>
-</div>
-
-<aside><div>
-<p><a href="https://www.instagram.com/p/B9tzu1yl476/?utm_source=ig_web_button_share_sheet&amp;igsh=M2M0Y2JmOTAyOA==" data-preview-link="false"><i class="fa-brands fa-instagram" aria-label="instagram"></i> <span class="citation" data-cites="nathanwpylestrangeplanet">@nathanwpylestrangeplanet</span></a></p>
-</div></aside></section>
 <section id="the-goal-of-science" class="slide level2">
 <h2>The goal of science</h2>
 <ul>
 <li class="fragment"><p><strong>Inference:</strong> Use <em>what we know</em> to learn about <em>what we do not know</em></p></li>
 <li class="fragment"><p><strong>Key:</strong> Try to prove ourselves wrong, even if we believe we are right (<em>falsification</em>)</p></li>
-<li class="fragment"><p>Scientific statements are <strong>falsifiable</strong></p></li>
 </ul>
 </section>
 <section class="slide level2">
@@ -799,7 +787,7 @@
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -873,13 +861,14 @@
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy
