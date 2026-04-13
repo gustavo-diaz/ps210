@@ -311,30 +311,11 @@ a contagious emotion (Schacter and Singer, 1962; Baron,
 
 . . .
 
-:::: columns
+![](fig/sketchplanations-prospect-theory.jpg){fig-align="center" width=70%}
 
-::: {.column width="60%"}
-
-![](fig/sketchplanations-prospect-theory.jpg)
-
-:::
-
-::: {.column width="40%"}
-
-::: incremental
-
-- Shows connections
-
-- Does not explain them
-
-:::
-:::
-
-::::
-
-::: aside
-[sketchplanations.com/prospect-theory](https://sketchplanations.com/prospect-theory)
-:::
+<!-- ::: aside -->
+<!-- [sketchplanations.com/prospect-theory](https://sketchplanations.com/prospect-theory) -->
+<!-- ::: -->
 
 ## Also not theories
 
@@ -449,6 +430,22 @@ Theory as *extremely detailed* description of the world
 
 . . .
 
+*Example:* Open list PR leads to legislative deadlock
+
+::: incremental
+- Only in presidential systems
+- with high district magnitude
+- without electoral thresholds
+- and regionally concentrated parties
+:::
+
+
+## Nuance traps
+
+1. **Nuance of the _fine-grain_**
+
+. . .
+
 2. **Nuance of the _conceptual framework_**
 
 <!-- e.g. social action theory -->
@@ -459,11 +456,25 @@ Expansion of an *irrefutable theoretical system*
 
 . . .
 
+*Example:* Social action theory
+
+## Nuance traps
+
+1. **Nuance of the _fine-grain_**
+
+2. **Nuance of the _conceptual framework_**
+
+. . .
+
 3. **Nuance of the _connoiseur_**
 
 . . .
 
 Nuanced theory as a sign of *sophistication*
+
+. . .
+
+*Example:* Definition of crime
 
 ## Rule of thumb
 
