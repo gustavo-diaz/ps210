@@ -1293,5 +1293,11 @@ error_types %>%
 ```
 
 
+## Summary
 
+- Mean as go-to single number summary because statistical properties
+
+- *Finite-sample* and *asymptotic*
+
+- Confidence intervals and hypothesis tests as *alternatives* to convey uncertainty about single number summaries
 
