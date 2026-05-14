@@ -66,10 +66,10 @@ What have you learned so far?
 Any reservations with the methods we have discussed?
 
 
-## Back to regression: QoG 2024
+## Back to regression: QoG 2025
 
 ```{r, results = "hide"}
-url = 'https://www.qogdata.pol.gu.se/data/qog_std_cs_jan24.csv'
+url = 'https://www.qogdata.pol.gu.se/data/qog_std_cs_jan25.csv'
 
 qog = read.csv(url)
 

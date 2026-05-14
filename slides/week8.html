@@ -6,10 +6,10 @@
 <script src="week8_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="week8_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="week8_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="week8_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="week8_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="week8_files/libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="week8_files/libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.42">
+  <meta name="generator" content="quarto-1.9.37">
 
   <title>week8</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,6 +18,9 @@
   <link rel="stylesheet" href="week8_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="week8_files/libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -30,7 +33,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="week8_files/libs/revealjs/dist/theme/quarto-33aa01105e931a5cc44ff5a1d9028e59.css">
+  <link rel="stylesheet" href="week8_files/libs/revealjs/dist/theme/quarto-afd592af6162c1bfbebe51146305816d.css">
   <link href="week8_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="week8_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="week8_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -151,8 +154,8 @@
 <p>Any reservations with the methods we have discussed?</p>
 </div>
 </section>
-<section id="back-to-regression-qog-2024" class="slide level2">
-<h2>Back to regression: QoG 2024</h2>
+<section id="back-to-regression-qog-2025" class="slide level2">
+<h2>Back to regression: QoG 2025</h2>
 
 <img data-src="week8_files/figure-revealjs/unnamed-chunk-2-1.png" style="width:100.0%" class="r-stretch"></section>
 <section id="fit-regression" class="slide level2">
@@ -161,13 +164,11 @@
 <img data-src="week8_files/figure-revealjs/unnamed-chunk-3-1.png" style="width:100.0%" class="r-stretch"></section>
 <section id="more-questions" class="slide level2">
 <h2>More questions</h2>
-<div>
 <ul>
 <li class="fragment"><p>Can we claim <em>access to clean water</em> <strong>reduces</strong> <em>infant mortality</em>?</p></li>
 <li class="fragment"><p>What do we need to believe?</p></li>
 <li class="fragment"><p>Random assignment? Conditional independence? Quasi-experiment?</p></li>
 </ul>
-</div>
 <div class="fragment">
 <p><strong>Critique 1:</strong> <em>Correlation does not imply causation</em></p>
 </div>
@@ -195,14 +196,12 @@
 <h2>More more questions</h2>
 <div class="fragment">
 <p>Let’s say you believe this relationship is causal</p>
-<div>
 <ul>
 <li class="fragment"><p>How is it that one thing causes the other?</p></li>
 <li class="fragment"><p>Direction of causality?</p></li>
 <li class="fragment"><p>Is this true everywhere?</p></li>
 <li class="fragment"><p>Are we comparing apples and apples or apples and oranges and pick-up trucks?</p></li>
 </ul>
-</div>
 </div>
 <div class="fragment">
 <p><strong>Critique 2:</strong> <em>Large N findings are what happens <strong>on average</strong></em></p>
@@ -235,12 +234,10 @@
 </div>
 <div class="fragment">
 <p><strong>Now:</strong></p>
-<div>
 <ul>
 <li class="fragment"><p>High access to clean water is <strong>sufficient</strong> for low infant mortality</p></li>
 <li class="fragment"><p>Low access to water is <strong>necessary</strong> for high infant mortality</p></li>
 </ul>
-</div>
 </div>
 </section>
 <section class="slide level2">
@@ -254,14 +251,12 @@
 <section id="logic-of-causation" class="slide level2">
 <h2>Logic of causation</h2>
 <p><strong>Large N: Effect of causes</strong></p>
-<div>
 <ul>
 <li class="fragment"><p>“What is the relationship between X and Y?”</p></li>
 <li class="fragment"><p>Focus on averages, associations</p></li>
 <li class="fragment"><p>Quantify uncertainty</p></li>
 <li class="fragment"><p>Impose assumptions for causal interpretation</p></li>
 </ul>
-</div>
 
 <aside><div>
 <p>See <a href="https://doi.org/10.1177/0010414007313115">Mahoney (2008)</a> for more</p>
@@ -269,13 +264,11 @@
 <section id="logic-of-causation-1" class="slide level2">
 <h2>Logic of causation</h2>
 <p><strong>Small N: Causes of effect</strong></p>
-<div>
 <ul>
 <li class="fragment"><p>“Why does Y happen?”</p></li>
 <li class="fragment"><p><strong>Equifinality:</strong> Multiple paths to the same outcome</p></li>
 <li class="fragment"><p>Focus on <strong>causal mechanisms</strong></p></li>
 </ul>
-</div>
 
 <aside><div>
 <p>See <a href="https://doi.org/10.1177/0010414007313115">Mahoney (2008)</a> for more</p>
@@ -475,80 +468,58 @@
     </script>
     <!-- tinytable mathjax end -->
 
+    <script src="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.js"></script>
+
     <script>
-      function styleCell_5hee50yfc346dvjlkf79(i, j, css_id) {
-        var table = document.getElementById("tinytable_5hee50yfc346dvjlkf79");
-        table.rows[i].cells[j].classList.add(css_id);
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_5hee50yfc346dvjlkf79');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_5hee50yfc346dvjlkf79(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_5hee50yfc346dvjlkf79");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-window.addEventListener('load', function () { styleCell_5hee50yfc346dvjlkf79(0, 0, 'tinytable_css_idocei64nwihqs2t9fk0dm') })
-window.addEventListener('load', function () { styleCell_5hee50yfc346dvjlkf79(0, 1, 'tinytable_css_idocei64nwihqs2t9fk0dm') })
-window.addEventListener('load', function () { styleCell_5hee50yfc346dvjlkf79(0, 2, 'tinytable_css_idocei64nwihqs2t9fk0dm') })
-window.addEventListener('load', function () { styleCell_5hee50yfc346dvjlkf79(0, 3, 'tinytable_css_idocei64nwihqs2t9fk0dm') })
+      // Create table-specific functions using external factory
+      const tableFns_fpoa3gr70h083ya3nz9l = TinyTable.createTableFunctions("tinytable_fpoa3gr70h083ya3nz9l");
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: '2', j: 1 }, { i: '2', j: 2 }, { i: '2', j: 3 }, { i: '2', j: 4 } ], css_id: 'tinytable_css_zqviiflhlk0txl8g4ruv',}, 
+          { positions: [ { i: '0', j: 1 }, { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 } ], css_id: 'tinytable_css_o51qo93burjb7xyfh7u9',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  tableFns_fpoa3gr70h083ya3nz9l.styleCell(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
     </script>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.css">
     <style>
-    .table td.tinytable_css_idocei64nwihqs2t9fk0dm, .table th.tinytable_css_idocei64nwihqs2t9fk0dm {  border-bottom: solid 0.1em #d3d8dc; }
+    /* tinytable css entries after */
+    #tinytable_fpoa3gr70h083ya3nz9l td.tinytable_css_zqviiflhlk0txl8g4ruv, #tinytable_fpoa3gr70h083ya3nz9l th.tinytable_css_zqviiflhlk0txl8g4ruv {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%;  }
+    #tinytable_fpoa3gr70h083ya3nz9l td.tinytable_css_o51qo93burjb7xyfh7u9, #tinytable_fpoa3gr70h083ya3nz9l th.tinytable_css_o51qo93burjb7xyfh7u9 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%;  }
     </style>
     <div class="container">
-      <table class="table table-borderless" id="tinytable_5hee50yfc346dvjlkf79" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
+      <table class="tinytable" id="tinytable_fpoa3gr70h083ya3nz9l" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         
+        <thead>
               <tr>
-                <th scope="col">Case</th>
-                <th scope="col">$X_1$</th>
-                <th scope="col">$X_2$</th>
-                <th scope="col">$Y$</th>
+                <th scope="col" data-row="0" data-col="1">Case</th>
+                <th scope="col" data-row="0" data-col="2">$X_1$</th>
+                <th scope="col" data-row="0" data-col="3">$X_2$</th>
+                <th scope="col" data-row="0" data-col="4">$Y$</th>
               </tr>
         </thead>
         
         <tbody>
                 <tr>
-                  <td>1</td>
-                  <td>+</td>
-                  <td>+</td>
-                  <td>+</td>
+                  <td data-row="1" data-col="1">1</td>
+                  <td data-row="1" data-col="2">+</td>
+                  <td data-row="1" data-col="3">+</td>
+                  <td data-row="1" data-col="4">+</td>
                 </tr>
                 <tr>
-                  <td>2</td>
-                  <td>-</td>
-                  <td>+</td>
-                  <td>-</td>
+                  <td data-row="2" data-col="1">2</td>
+                  <td data-row="2" data-col="2">-</td>
+                  <td data-row="2" data-col="3">+</td>
+                  <td data-row="2" data-col="4">-</td>
                 </tr>
         </tbody>
       </table>
@@ -556,13 +527,11 @@ window.addEventListener('load', function () { styleCell_5hee50yfc346dvjlkf79(0, 
 <!-- hack to avoid NA insertion in last line -->
 </div>
 </div>
-<div>
 <ul>
 <li class="fragment"><p>Needs at least two cases</p></li>
 <li class="fragment"><p>Similar in every variable except for key explanatory and outcome variable</p></li>
 <li class="fragment"><p><strong>Example:</strong> Economic development in South Korea and North Korea since the war</p></li>
 </ul>
-</div>
 </section>
 <section id="most-different" class="slide level2">
 <h2>Most different</h2>
@@ -584,80 +553,58 @@ window.addEventListener('load', function () { styleCell_5hee50yfc346dvjlkf79(0, 
     </script>
     <!-- tinytable mathjax end -->
 
+    <script src="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.js"></script>
+
     <script>
-      function styleCell_fkrmertw4mhamxu8s65d(i, j, css_id) {
-        var table = document.getElementById("tinytable_fkrmertw4mhamxu8s65d");
-        table.rows[i].cells[j].classList.add(css_id);
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_fkrmertw4mhamxu8s65d');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_fkrmertw4mhamxu8s65d(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_fkrmertw4mhamxu8s65d");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-window.addEventListener('load', function () { styleCell_fkrmertw4mhamxu8s65d(0, 0, 'tinytable_css_idwffkj7k53uxofawdl2j6') })
-window.addEventListener('load', function () { styleCell_fkrmertw4mhamxu8s65d(0, 1, 'tinytable_css_idwffkj7k53uxofawdl2j6') })
-window.addEventListener('load', function () { styleCell_fkrmertw4mhamxu8s65d(0, 2, 'tinytable_css_idwffkj7k53uxofawdl2j6') })
-window.addEventListener('load', function () { styleCell_fkrmertw4mhamxu8s65d(0, 3, 'tinytable_css_idwffkj7k53uxofawdl2j6') })
+      // Create table-specific functions using external factory
+      const tableFns_fokvrltwk0mu43nrsfjg = TinyTable.createTableFunctions("tinytable_fokvrltwk0mu43nrsfjg");
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: '2', j: 1 }, { i: '2', j: 2 }, { i: '2', j: 3 }, { i: '2', j: 4 } ], css_id: 'tinytable_css_y0wjxvftt0na5xmvz9yr',}, 
+          { positions: [ { i: '0', j: 1 }, { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 } ], css_id: 'tinytable_css_818sbrrvtfvwgdi69308',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  tableFns_fokvrltwk0mu43nrsfjg.styleCell(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
     </script>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.css">
     <style>
-    .table td.tinytable_css_idwffkj7k53uxofawdl2j6, .table th.tinytable_css_idwffkj7k53uxofawdl2j6 {  border-bottom: solid 0.1em #d3d8dc; }
+    /* tinytable css entries after */
+    #tinytable_fokvrltwk0mu43nrsfjg td.tinytable_css_y0wjxvftt0na5xmvz9yr, #tinytable_fokvrltwk0mu43nrsfjg th.tinytable_css_y0wjxvftt0na5xmvz9yr {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%;  }
+    #tinytable_fokvrltwk0mu43nrsfjg td.tinytable_css_818sbrrvtfvwgdi69308, #tinytable_fokvrltwk0mu43nrsfjg th.tinytable_css_818sbrrvtfvwgdi69308 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%;  }
     </style>
     <div class="container">
-      <table class="table table-borderless" id="tinytable_fkrmertw4mhamxu8s65d" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
+      <table class="tinytable" id="tinytable_fokvrltwk0mu43nrsfjg" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         
+        <thead>
               <tr>
-                <th scope="col">Case</th>
-                <th scope="col">$X_1$</th>
-                <th scope="col">$X_2$</th>
-                <th scope="col">$Y$</th>
+                <th scope="col" data-row="0" data-col="1">Case</th>
+                <th scope="col" data-row="0" data-col="2">$X_1$</th>
+                <th scope="col" data-row="0" data-col="3">$X_2$</th>
+                <th scope="col" data-row="0" data-col="4">$Y$</th>
               </tr>
         </thead>
         
         <tbody>
                 <tr>
-                  <td>1</td>
-                  <td>+</td>
-                  <td>+</td>
-                  <td>+</td>
+                  <td data-row="1" data-col="1">1</td>
+                  <td data-row="1" data-col="2">+</td>
+                  <td data-row="1" data-col="3">+</td>
+                  <td data-row="1" data-col="4">+</td>
                 </tr>
                 <tr>
-                  <td>2</td>
-                  <td>+</td>
-                  <td>-</td>
-                  <td>+</td>
+                  <td data-row="2" data-col="1">2</td>
+                  <td data-row="2" data-col="2">+</td>
+                  <td data-row="2" data-col="3">-</td>
+                  <td data-row="2" data-col="4">+</td>
                 </tr>
         </tbody>
       </table>
@@ -665,16 +612,13 @@ window.addEventListener('load', function () { styleCell_fkrmertw4mhamxu8s65d(0, 
 <!-- hack to avoid NA insertion in last line -->
 </div>
 </div>
-<div>
 <ul>
 <li class="fragment"><p>Cases differ on everything except for key explanatory and outcome variable</p></li>
 <li class="fragment"><p><strong>Example:</strong> Japan and Australia driving on the left</p></li>
 </ul>
-</div>
 </section>
 <section id="typical-case" class="slide level2">
 <h2>Typical case</h2>
-<div>
 <ul>
 <li class="fragment"><p>Common or representative case that a theory explains</p></li>
 <li class="fragment"><p><strong>Representative</strong> by definition</p></li>
@@ -682,7 +626,6 @@ window.addEventListener('load', function () { styleCell_fkrmertw4mhamxu8s65d(0, 
 <li class="fragment"><p>Used to confirm causal mechanism proposed by the theory</p></li>
 <li class="fragment"><p><strong>Trap:</strong> Usually, you don’t want to look at a typical case <strong>only</strong></p></li>
 </ul>
-</div>
 </section>
 <section id="typical-cases-are-on-the-line" class="slide level2">
 <h2>Typical cases are “on the line”</h2>
@@ -690,18 +633,15 @@ window.addEventListener('load', function () { styleCell_fkrmertw4mhamxu8s65d(0, 
 <img data-src="week8_files/figure-revealjs/unnamed-chunk-13-1.png" style="width:100.0%" class="r-stretch"></section>
 <section id="extreme-case" class="slide level2">
 <h2>Extreme case</h2>
-<div>
 <ul>
 <li class="fragment"><p>Extreme value on explanatory OR outcome variable</p></li>
 <li class="fragment"><p>Far away from the “mean”</p></li>
 <li class="fragment"><p>Valuable because it is <em>rare</em> in one dimension</p></li>
 <li class="fragment"><p><strong>Example:</strong> Qatar and Saudi Arabia as cases of extreme autocracy (Polity score of -10)</p></li>
 </ul>
-</div>
 </section>
 <section id="deviant-case" class="slide level2">
 <h2>Deviant case</h2>
-<div>
 <ul>
 <li class="fragment"><p>Surprising value on some variable</p></li>
 <li class="fragment"><p>Poorly explained by the theory</p></li>
@@ -709,29 +649,24 @@ window.addEventListener('load', function () { styleCell_fkrmertw4mhamxu8s65d(0, 
 <li class="fragment"><p>Once explained, not deviant anymore</p></li>
 <li class="fragment"><p><strong>Example:</strong> Norway as an oil-state that is not an autocracy</p></li>
 </ul>
-</div>
 </section>
 <section id="diverse-cases" class="slide level2">
 <h2>Diverse cases</h2>
-<div>
 <ul>
 <li class="fragment"><p>Choose cases to maximize variance along relevant dimensions</p></li>
 <li class="fragment"><p>At least two cases</p></li>
 <li class="fragment"><p>Represent full range of values characterizing X and Y</p></li>
 <li class="fragment"><p><strong>Example:</strong> Colonial heritage influences economic development. Look at French, Spanish, British colonies</p></li>
 </ul>
-</div>
 </section>
 <section id="influential-case" class="slide level2">
 <h2>Influential case</h2>
-<div>
 <ul>
 <li class="fragment"><p><strong>Concern:</strong> results may be driven by one or a few cases</p></li>
 <li class="fragment"><p>Choose a case to check the assumptions behind proposed causal mechanism</p></li>
 <li class="fragment"><p><strong>Example:</strong> Relationship between mass education and democratization <em>influenced</em> by countries who expanded education before becoming democracies</p></li>
 <li class="fragment"></li>
 </ul>
-</div>
 </section>
 <section id="practice" class="slide level2">
 <h2>Practice</h2>
@@ -762,7 +697,6 @@ window.addEventListener('load', function () { styleCell_fkrmertw4mhamxu8s65d(0, 
 </section>
 <section id="process-tracing" class="slide level2">
 <h2>Process-tracing</h2>
-<div>
 <ul>
 <li class="fragment"><p>Usually based on <strong>archival research</strong></p></li>
 <li class="fragment"><p>Extensive analysis of <strong>primary</strong> or <strong>secondary</strong> sources</p></li>
@@ -770,7 +704,6 @@ window.addEventListener('load', function () { styleCell_fkrmertw4mhamxu8s65d(0, 
 <li class="fragment"><p><strong>Secondary:</strong> Summaries, critiques, opinions, analyses of those who did not participate or witness directly</p></li>
 <li class="fragment"><p>Find <em>pieces of evidence</em> that assist on <em>establishing causality</em></p></li>
 </ul>
-</div>
 </section>
 <section id="process-tracing-tests" class="slide level2">
 <h2>Process tracing tests</h2>
@@ -785,13 +718,11 @@ window.addEventListener('load', function () { styleCell_fkrmertw4mhamxu8s65d(0, 
 </div></aside></section>
 <section id="interviews" class="slide level2">
 <h2>Interviews</h2>
-<div>
 <ul>
 <li class="fragment"><p><strong>Structured:</strong> Stick to script. Easy to compare across subjects</p></li>
 <li class="fragment"><p><strong>Semi-structured:</strong> Start with guide, allow for deviations. Somewhat comparable</p></li>
 <li class="fragment"><p><strong>Unstructured:</strong> Let people say whatever they want. Harder to compare and more time consuming to analyze</p></li>
 </ul>
-</div>
 <div class="fragment">
 <p><strong>Key informants</strong> more important than a <strong>representative sample</strong></p>
 </div>
@@ -814,13 +745,11 @@ window.addEventListener('load', function () { styleCell_fkrmertw4mhamxu8s65d(0, 
 </section>
 <section id="focus-groups" class="slide level2">
 <h2>Focus groups</h2>
-<div>
 <ul>
 <li class="fragment"><p>Essentially an interview with multiple people in a controlled space</p></li>
 <li class="fragment"><p>Interactions in group discussion provide data</p></li>
 <li class="fragment"><p>Researcher acts as facilitator</p></li>
 </ul>
-</div>
 </section>
 <section id="why-focus-groups" class="slide level2">
 <h2>Why focus groups?</h2>
@@ -831,13 +760,11 @@ window.addEventListener('load', function () { styleCell_fkrmertw4mhamxu8s65d(0, 
 </div></aside></section>
 <section id="participant-observation" class="slide level2">
 <h2>Participant observation</h2>
-<div>
 <ul>
 <li class="fragment"><p>Researcher acts as an observer for an <em>extended period</em> of time</p></li>
 <li class="fragment"><p>Unlike focus groups, observe subjects <em>in their natural habitat</em></p></li>
 <li class="fragment"><p>Must determine <strong>level of involvement</strong> and <strong>whether to reveal identity</strong></p></li>
 </ul>
-</div>
 </section>
 <section id="types-of-participant-observation" class="slide level2">
 <h2>Types of participant observation</h2>
@@ -859,85 +786,65 @@ window.addEventListener('load', function () { styleCell_fkrmertw4mhamxu8s65d(0, 
     </script>
     <!-- tinytable mathjax end -->
 
+    <script src="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.js"></script>
+
     <script>
-      function styleCell_nzjmynnrxuoi4p69mlh4(i, j, css_id) {
-        var table = document.getElementById("tinytable_nzjmynnrxuoi4p69mlh4");
-        table.rows[i].cells[j].classList.add(css_id);
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_nzjmynnrxuoi4p69mlh4');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_nzjmynnrxuoi4p69mlh4(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_nzjmynnrxuoi4p69mlh4");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-window.addEventListener('load', function () { styleCell_nzjmynnrxuoi4p69mlh4(0, 0, 'tinytable_css_idx1snv8vd2khbmddm8rnr') })
-window.addEventListener('load', function () { styleCell_nzjmynnrxuoi4p69mlh4(0, 1, 'tinytable_css_idy8aavd4t3rm5x2ezw9jj') })
-window.addEventListener('load', function () { styleCell_nzjmynnrxuoi4p69mlh4(0, 2, 'tinytable_css_idx1snv8vd2khbmddm8rnr') })
-window.addEventListener('load', function () { styleCell_nzjmynnrxuoi4p69mlh4(1, 0, 'tinytable_css_ido5kdxmwuq6qz14wuqqhq') })
-window.addEventListener('load', function () { styleCell_nzjmynnrxuoi4p69mlh4(1, 1, 'tinytable_css_ido5kdxmwuq6qz14wuqqhq') })
-window.addEventListener('load', function () { styleCell_nzjmynnrxuoi4p69mlh4(1, 2, 'tinytable_css_ido5kdxmwuq6qz14wuqqhq') })
+      // Create table-specific functions using external factory
+      const tableFns_3qw32md8oxe5wht874q1 = TinyTable.createTableFunctions("tinytable_3qw32md8oxe5wht874q1");
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: '-1', j: 3 } ], css_id: 'tinytable_css_47mtkivvect9nz7m05iv',}, 
+          { positions: [ { i: '-1', j: 2 } ], css_id: 'tinytable_css_e1s390963r21yflr5tkr',}, 
+          { positions: [ { i: '2', j: 1 }, { i: '2', j: 2 }, { i: '2', j: 3 } ], css_id: 'tinytable_css_f918twptu8g6kbw8voh7',}, 
+          { positions: [ { i: '0', j: 1 }, { i: '0', j: 2 }, { i: '0', j: 3 } ], css_id: 'tinytable_css_qmyqhr1sh41bqvvcdlgn',}, 
+          { positions: [ { i: '-1', j: 1 } ], css_id: 'tinytable_css_1wybv25q84njyqbw6etd',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  tableFns_3qw32md8oxe5wht874q1.styleCell(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
     </script>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.css">
     <style>
-    .table td.tinytable_css_idx1snv8vd2khbmddm8rnr, .table th.tinytable_css_idx1snv8vd2khbmddm8rnr {  text-align: center; }
-    .table td.tinytable_css_idy8aavd4t3rm5x2ezw9jj, .table th.tinytable_css_idy8aavd4t3rm5x2ezw9jj {  border-bottom: solid 0.05em #d3d8dc;  text-align: center; }
-    .table td.tinytable_css_ido5kdxmwuq6qz14wuqqhq, .table th.tinytable_css_ido5kdxmwuq6qz14wuqqhq {  border-bottom: solid 0.1em #d3d8dc; }
+    /* tinytable css entries after */
+    #tinytable_3qw32md8oxe5wht874q1 td.tinytable_css_47mtkivvect9nz7m05iv, #tinytable_3qw32md8oxe5wht874q1 th.tinytable_css_47mtkivvect9nz7m05iv {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: black; --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.03em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
+    #tinytable_3qw32md8oxe5wht874q1 td.tinytable_css_e1s390963r21yflr5tkr, #tinytable_3qw32md8oxe5wht874q1 th.tinytable_css_e1s390963r21yflr5tkr {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: black; --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.03em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --trim-bottom-left: 3%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
+    #tinytable_3qw32md8oxe5wht874q1 td.tinytable_css_f918twptu8g6kbw8voh7, #tinytable_3qw32md8oxe5wht874q1 th.tinytable_css_f918twptu8g6kbw8voh7 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%;  }
+    #tinytable_3qw32md8oxe5wht874q1 td.tinytable_css_qmyqhr1sh41bqvvcdlgn, #tinytable_3qw32md8oxe5wht874q1 th.tinytable_css_qmyqhr1sh41bqvvcdlgn {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%;  }
+    #tinytable_3qw32md8oxe5wht874q1 td.tinytable_css_1wybv25q84njyqbw6etd, #tinytable_3qw32md8oxe5wht874q1 th.tinytable_css_1wybv25q84njyqbw6etd {  position: relative; --border-bottom: 0; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.1em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
     </style>
     <div class="container">
-      <table class="table table-borderless" id="tinytable_nzjmynnrxuoi4p69mlh4" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="tinytable" id="tinytable_3qw32md8oxe5wht874q1" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        
         <thead>
 <tr>
-<th scope="col" align="center" colspan="1"> </th>
-<th scope="col" align="center" colspan="2">Identity</th>
+<th scope="col" align="center" colspan="1" data-row="-1" data-col="1"> </th>
+<th scope="col" align="center" colspan="2" data-row="-1" data-col="2">Identity</th>
 </tr>
-        
               <tr>
-                <th scope="col">Involvement</th>
-                <th scope="col">Overt</th>
-                <th scope="col">Covert</th>
+                <th scope="col" data-row="0" data-col="1">Involvement</th>
+                <th scope="col" data-row="0" data-col="2">Overt</th>
+                <th scope="col" data-row="0" data-col="3">Covert</th>
               </tr>
         </thead>
         
         <tbody>
                 <tr>
-                  <td>Passive</td>
-                  <td>City hall meeting   </td>
-                  <td>Public space, hidden camera</td>
+                  <td data-row="1" data-col="1">Passive</td>
+                  <td data-row="1" data-col="2">City hall meeting</td>
+                  <td data-row="1" data-col="3">Public space, hidden camera</td>
                 </tr>
                 <tr>
-                  <td>Active </td>
-                  <td>Visiting rural areas</td>
-                  <td>Community center           </td>
+                  <td data-row="2" data-col="1">Active</td>
+                  <td data-row="2" data-col="2">Visiting rural areas</td>
+                  <td data-row="2" data-col="3">Community center</td>
                 </tr>
         </tbody>
       </table>
@@ -948,13 +855,11 @@ window.addEventListener('load', function () { styleCell_nzjmynnrxuoi4p69mlh4(1, 
 </section>
 <section id="ethnography" class="slide level2">
 <h2>Ethnography</h2>
-<div>
 <ul>
 <li class="fragment"><p><strong>Deep immersion</strong> in a culture or community</p></li>
 <li class="fragment"><p>Combination of interviews, focus groups, participant observation</p></li>
 <li class="fragment"><p><strong>Thick description:</strong> Produce vast amount of data (notes) to capture the complexity of behavior and its context</p></li>
 </ul>
-</div>
 </section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
@@ -969,14 +874,12 @@ window.addEventListener('load', function () { styleCell_nzjmynnrxuoi4p69mlh4(1, 
 <blockquote>
 <p>A person’s social location and how it shapes their perspective</p>
 </blockquote>
-<div>
 <ul>
 <li class="fragment"><p>Affects researcher’s relationship with and access to participants</p></li>
 <li class="fragment"><p><strong>Large N:</strong> Same protocol, same results</p></li>
 <li class="fragment"><p><strong>Small N:</strong> Same protocol, <em>different</em> results</p></li>
 <li class="fragment"><p>Can be an advantage and a disadvantage</p></li>
 </ul>
-</div>
 </div>
 </section>
 <section id="summary" class="slide level2">
@@ -1181,7 +1084,7 @@ window.addEventListener('load', function () { styleCell_nzjmynnrxuoi4p69mlh4(1, 
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1246,190 +1149,173 @@ window.addEventListener('load', function () { styleCell_nzjmynnrxuoi4p69mlh4(1, 
     </script>
 
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
           }
+          return false;
         }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
           }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
           for (const childEl of codeEl.children) {
             if (isCodeAnnotation(childEl)) {
               childEl.remove();
             }
           }
           return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
             }
           }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
           }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
           }
-        } else {
-          return undefined;
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
         }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
-              }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>
