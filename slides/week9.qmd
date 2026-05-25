@@ -82,13 +82,50 @@ But *inference* is not the only thing we do with *data*
 
 ## How are they different?
 
-```{=html}
-<p align="center"><iframe width="900" height="500" src="https://www.youtube.com/embed/uHGlCi9jOWY?si=nhKlbLuU6Zd9sK1u" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
-```
-
-::: aside
-<https://youtu.be/uHGlCi9jOWY?si=wgfvS9IiV5_FQ2aT>
+::: {style="text-align: center;"}
+**Real world**<br>
+![](fig/nature.png)
 :::
+
+. . .
+
+:::: {.columns}
+
+::: {.column width=50%}
+
+**Statistical inference**<br>
+![](fig/dmc.png)
+
+:::
+
+
+::::
+
+## How are they different?
+
+::: {style="text-align: center;"}
+**Real world**<br>
+![](fig/nature.png)
+:::
+
+
+:::: {.columns}
+
+::: {.column width=50%}
+
+**Statistical inference**<br>
+![](fig/dmc.png)
+
+:::
+
+::: {.column width=50%}
+
+
+**Machine learning**<br>
+![](fig/amc.png)
+
+:::
+::::
 
 ## Ok, but how are they different?
 
@@ -104,7 +141,7 @@ But *inference* is not the only thing we do with *data*
 - *Main product:* Estimates, uncertainty
 :::
 
-**Statistical learning**
+**Machine learning**
 
 ::: incremental
 - Use data we have to *predict* how new data will look like
@@ -118,7 +155,7 @@ But *inference* is not the only thing we do with *data*
 
 ```{r}
 variables = tribble(
-  ~`Statistical inference`, ~`Statistical learning`,
+  ~`Statistical inference`, ~`Machine learning`,
   "Outcome variable", "Response, output",
   "Explanatory variable", "Predictor, input, feature",
   "Model", "Algorithm",
