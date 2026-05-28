@@ -936,7 +936,7 @@ ggplot(Auto) +
   geom_point(size = 2, color = nu_purple)
 ```
 
-## OLS models
+## OLS models {.smaller}
 
 **Linear:** $\widehat{\texttt{mpg}} = \beta_0 + \beta_1 \texttt{horsepower}$
 
@@ -1245,11 +1245,11 @@ These are a few examples at the limits of consumer-level computing power
 ## Neural networks
 
 ```{=html}
-<p align="center"><iframe width="900" height="500" src="https://www.youtube.com/embed/bfmFfD2RIcg?si=xAEVyJ3BKr2JCQzF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+<p><iframe width="900" height="500" src="https://www.youtube.com/embed/CqOfi41LfDw?si=anlSmZhs0FdcNYNg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
 
 ```
 
-<https://youtu.be/bfmFfD2RIcg?si=xAEVyJ3BKr2JCQzF>
+<https://youtu.be/CqOfi41LfDw?si=mfqBuOzPCjV8vmLl>
 
 ## Beyond consumer-level
 
