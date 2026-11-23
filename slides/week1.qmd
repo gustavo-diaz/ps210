@@ -1,8 +1,8 @@
 ---
 title: "POLI SCI 210"
 subtitle: "Introduction to Empirical Methods in Political Science"
-date: "Spring 2026"
-date-format: "[S]pring 2026"
+date: "Winter 2027"
+date-format: "[W]inter 2027"
 format:
     revealjs:
       slide-number: false
@@ -64,7 +64,7 @@ DISCUSSION SECTIONS START NEXT WEEK
 . . .
 
 ::: {.r-stack}
-[**Next Thursday:** The scientific method](#thursday)
+[**Thursday:** The scientific method](#thursday)
 :::
 
 
@@ -179,7 +179,7 @@ Registration questions or problems? Contact Undergraduate Program Coordinator: <
 ## Weekly assignments 
 
 ::: incremental
-1. **Quizzes** (10 points each)
+1. **Quizzes** (5 points each, one in-class question per lecture)
 2. **Research design critiques** (10 points each)
 3. **AI memos** (10 points each) 
 4. **Section participation** (10 points each)
@@ -193,7 +193,7 @@ Starting **next week**
 ## Rules
 
 ::: incremental
-- **Halfway rule:** Get 100 points by May 8 or get 20 points deduction
+- **Halfway rule:** Get 120 points by Feb 12 or get 20 points deduction
 
 - **Collective attendance:** If lecture averages 50% attendance, everyone gets 40 extra points
 
@@ -202,7 +202,7 @@ Starting **next week**
 
 ## Planning
 
-280 points total, need 240 for an A
+320 points total, need 280 for an A
 
 . . .
 
@@ -219,13 +219,13 @@ Starting **next week**
 
 - **Before Monday:** Check Canvas for updated materials (1-2 chapters + 1 article)
 
-- **Tuesday:** Quizzes available at beginning of lecture
+- **Tuesday:** Lecture + in-class quiz question (Canvas)
 
 - **Wednesday:** Prepare for discussion sections
 
-- **Thursday:** Lecture, discussion sections
+- **Thursday:** Lecture + in-class quiz question (Canvas), discussion sections
 
-- **Friday:** Discussion sections, weekly assignments due at 11:59 PM
+- **Friday:** Discussion sections, research design critiques and AI memos due at 11:59 PM
 
 
 ::: {style="text-align: center"}
@@ -562,7 +562,7 @@ A valid critique implies:
 
 - Different types of data/variables
 
-**First quiz:** Covers weeks 1-2
+**Quizzes:** In class, starting next Tuesday
 
 **First AI memo:** Lecture/textbook content from weeks 1-2
 
